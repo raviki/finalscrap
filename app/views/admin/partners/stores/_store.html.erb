@@ -1,0 +1,16 @@
+	<tr>
+      	<td><%= link_to store.id,  admin_partners_store_path(store) %></td>
+        <td><%= store.name %></td>
+        <td><%= store.contact_name %></td>
+        <td><%= store.contact_no %></td>
+        <% if defined? product_detail_page %>
+        	<td><%= @product.store_to_products.find_by_store_id_and_product_id(store.id, @product.id).price %></td>
+        <% end %>
+        <td><%= store.address %></td>
+        <td><%= store.pin %></td>
+        <td><%= store.review %></td>
+        <td><%= store.rating %></td>
+        <td><%= store.active %></td>
+        <td><%= link_to 'Edit', edit_admin_partners_store_path(store) %></td>
+        <td><%= link_to  (store.active)? 'Deactivate': 'Activate', :controller => admin_partners_stores_path, :id => store.id, :action => "toggle_active", :method => :put %> 	
+      </tr>

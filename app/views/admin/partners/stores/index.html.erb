@@ -1,0 +1,56 @@
+<% if @show_search == true  %>
+
+<h4 style='text-align:right'>Search Filter</h4>
+
+<div class="admin_filters">
+    <%= form_tag admin_partners_stores_path, :method => 'get', :id => "stores_search" do %>
+    
+    <label>Id</label>
+    <%= text_field_tag :id, params[:id] %>
+
+    <label>Name</label>
+    <%= text_field_tag :name, params[:name] %>
+
+    <label>Contact Name</label>
+    <%= text_field_tag :contact_name, params[:contact_name] %>
+
+    <label>Address</label>
+    <%= text_field_tag :address, params[:address] %>
+
+    <label>Pin</label>
+    <%= text_field_tag :pin, params[:pin] %>
+
+    <label>Review</label>
+    <%= text_field_tag :review, params[:review] %>
+
+    <label>Rating</label>
+    <%= text_field_tag :rating, params[:rating] %>
+
+    <label>Active</label>
+    <%= check_box_tag :active, params[:active] %>
+    
+    <div style='text-align:left'>
+        <%= submit_tag "Search", :name => nil, :class => "button small blue-button" %>
+    </div>
+    
+    <% end %>
+ </div>
+ <% else %>
+ 	<div style="float: left"; >
+		<%= link_to "Store Search", :url => admin_merchandise_products_path, :show_search => "yes", :action => "index", :method => "get" %>
+	</div>
+<% end %>
+
+
+<h4 style='text-align:right'>Listing Stores</h4>
+<table>
+	<%= render 'admin/partners/stores/table_header' %>
+	<tbody>
+      <%= render :partial => 'admin/partners/stores/store', :collection => @stores %>
+	</tbody>
+</table>
+
+<%= will_paginate @stores %>
+
+
+<%= link_to 'New Store', new_admin_partners_store_path, :class => 'button small blue-button'%>

@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  first_name: MyString
+  second_name: MyString
+  contact_no: 9.99
+  add_line1: MyText
+  add_line2: MyText
+  city: MyText
+  pin: 9.99
+  wishlist: false
+  customer_group_id: 1
+  customer_lead_id: 1
+
+two:
+  first_name: MyString
+  second_name: MyString
+  contact_no: 9.99
+  add_line1: MyText
+  add_line2: MyText
+  city: MyText
+  pin: 9.99
+  wishlist: false
+  customer_group_id: 1
+  customer_lead_id: 1

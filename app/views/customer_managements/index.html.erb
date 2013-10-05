@@ -1,0 +1,37 @@
+<h1>Listing customer_managements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Password</th>
+      <th>Email</th>
+      <th>Customer</th>
+      <th>Remember token</th>
+      <th>Password digest</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customer_managements.each do |customer_management| %>
+      <tr>
+        <td><%= customer_management.name %></td>
+        <td><%= customer_management.password %></td>
+        <td><%= customer_management.email %></td>
+        <td><%= customer_management.customer_id %></td>
+        <td><%= customer_management.remember_token %></td>
+        <td><%= customer_management.password_digest %></td>
+        <td><%= link_to 'Show', customer_management %></td>
+        <td><%= link_to 'Edit', edit_customer_management_path(customer_management) %></td>
+        <td><%= link_to 'Destroy', customer_management, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Customer management', new_customer_management_path %>

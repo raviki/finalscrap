@@ -1,0 +1,29 @@
+<h4 style='text-align:right'>Search Filter</h4>
+
+<div class="admin_filters">
+    <%= form_tag admin_history_sales_path, :method => 'get', :id => "stores_search" do %>
+    
+    <label>Id</label>
+    <%= text_field_tag :id, params[:id] %>
+
+    <label>User Id</label>
+    <%= text_field_tag :user_id, params[:user_id] %>
+
+    <label>Order Id</label>
+    <%= text_field_tag :order_id, params[:order_id] %>
+
+    <label>Voucher Id</label>
+    <%= text_field_tag :voucher_id, params[:voucher_id] %>
+
+    <label>Payment Id</label>
+    <%= text_field_tag :payment_id, params[:payment_id] %>
+    
+    <div style='text-align:left'>
+        <%= submit_tag "Search", :name => nil, :class => "button" %>
+    </div>
+    
+    <% end %>
+ </div>
+
+<%= render 'admin/history/sales/table' %>
+

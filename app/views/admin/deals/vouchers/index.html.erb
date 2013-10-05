@@ -1,0 +1,52 @@
+<% if @show_search == true  %>
+
+<h4 style='text-align:right'>Search Filter</h4>
+
+<div class="admin_filters">
+    <%= form_tag admin_deals_vouchers_path, :method => 'get', :id => "vouchers_search" do %>
+    
+    <label>Id</label>
+    <%= text_field_tag :id, params[:id] %>
+
+    <label>Description</label>
+    <%= text_field_tag :description, params[:description] %>
+
+	<label>Customer Group Id</label>
+    <%= text_field_tag :customer_group_id, params[:customer_group_id] %>
+    
+    <label>Type</label>
+    <%= text_field_tag :type, params[:type] %>
+
+    <label>Value</label>
+    <%= text_field_tag :value, params[:value] %>
+
+    <label>Validity Till[yyyy-mm-dd]</label>
+    <%= date_field_tag :validity_till, params[:validity_till] %>
+    
+
+    <label>Active</label>
+    <%= check_box_tag :active, params[:active] %>
+    
+    <div style='text-align:left'>
+        <%= submit_tag "Search", :name => nil, :class => "button small blue-button" %>
+    </div>
+    
+    <% end %>
+ </div>
+ <% else %>
+ 	<div style="float: left"; >
+		<%= link_to "Voucher search", :url => admin_deals_vouchers_path, :show_search => "yes", :action => "index", :method => "get" %>
+	</div>
+<% end %>
+
+ <h4 style='text-align:right'>Listing Vouchers</h4>
+ <table>
+	<%= render 'admin/deals/vouchers/table_header' %>
+	<tbody>
+      <%= render :partial => 'admin/deals/vouchers/voucher', :collection => @vouchers %>
+	</tbody>
+</table>
+<%= will_paginate @vouchers %>
+
+
+<%= link_to 'New Voucher', new_admin_deals_voucher_path, :class => 'button small blue-button' %>

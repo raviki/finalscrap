@@ -1,0 +1,14 @@
+        <td><%= link_to voucher.id ,  admin_deals_voucher_path(voucher) %></td>
+        <td><%= voucher.description %></td>
+        <td><%= voucher.customer_group_id %></td>
+        <td><%= voucher.type_name %></td>
+        <td><%= voucher.value %></td>
+        <td><%= voucher.validity_till %></td>
+        <td><%= voucher.active %></td>
+        
+        <td><%= link_to 'Edit', edit_admin_deals_voucher_path(voucher) %></td>
+        <td><%= link_to (voucher.active)? 'Deactivate': 'Activate', :controller => admin_deals_vouchers_path, :id => voucher.id, :action => "toggle_active", :method => :put %>
+   		
+		<% if defined? customer_group_page %>
+        	<td><%= link_to 'Detach', :controller => admin_deals_vouchers_path, :id => voucher.id, :action => "update_customer_group_id", :customer_group_id => 0, :method => :put %></td>
+        <% end %>

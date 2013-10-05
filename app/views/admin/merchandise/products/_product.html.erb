@@ -1,0 +1,41 @@
+	<tr>
+      	<td><%= link_to product.id,  admin_merchandise_product_path(product) %></td>
+        <td><%= product.name %></td>
+        <td><%= product.image %></td>
+        <% if defined? store_page %>
+        	<td><%= @store.store_to_products.find_by_store_id_and_product_id(@store.id, product.id).price %></td>
+        <% else %>
+        	<td><%= product.price %></td>
+        <% end %>
+        <td><%= product.description %></td>
+        <td><%= product.meta_description %></td>
+        <td><%= product.meta_keyword %></td>
+        <td><%= product.views %></td>
+        <td><%= product.active %></td>
+
+        <% if defined? order_page %>
+        	<% storeId = @order.order_to_products.find_by_order_id_and_product_id(@order.id, product.id).store_id  %>
+        	<% if storeId %>
+        		<td><%= link_to storeId,  admin_partners_store_path(storeId) %></td> 
+        	<% else %>
+        		<td></td> 
+        	<% end %>     	
+        <% elsif defined? select_page %>
+        	<td><%= check_box_tag "select[]", product.id %></td>       	
+        <% elsif defined? update_product4store_page %>
+            <% @tempStroeProduct = @store.store_to_products.find_by_store_id_and_product_id(@store.id, product.id) %>
+            <% @storePrice = (@tempStroeProduct? @tempStroeProduct.price: "") %>
+    
+        	<td><%=  text_field_tag "price[]", @storePrice  %></td>
+        	<td><%= check_box_tag "select[]", product.id %></td>       	
+        <% elsif defined? category_page %>
+        		<td><%= link_to 'Detach', :controller => admin_merchandise_categories_path, :id => @category.id, :product_id => product.id, :action => "delete_product_map", :method => :put %></td>
+ 		<% elsif defined? store_page %>
+        		<td><%= link_to 'Detach', :controller => admin_partners_stores_path, :id => @store.id, :product_id => product.id, :action => "delete_product_map", :method => :put %></td>				
+        <% else %>
+        	<td><%= link_to 'Edit', edit_admin_merchandise_product_path(product) %></td>      		
+        	<td><%= link_to (product.active)? 'Deactivate': 'Activate', :controller => admin_merchandise_products_path, :id => product.id, :action => "toggle_active", :method => :put %>
+   
+	
+ 		<% end %>
+ 	</tr>

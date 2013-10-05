@@ -1,0 +1,36 @@
+<h4 style='text-align:right'>Search Filter</h4>
+
+<div class="admin_filters">
+    <%= form_tag admin_merchandise_categories_path, :method => 'get', :id => "categories_search" do %>
+    
+    <label>Id</label>
+    <%= text_field_tag :id, params[:id] %>
+
+    <label>Name</label>
+    <%= text_field_tag :name, params[:name] %>
+    
+    <label>Description</label>
+    <%= text_field_tag :description, params[:description] %>
+
+    <label>Active</label>
+    <%= check_box_tag :active, params[:active] %>
+    
+    <div style='text-align:left'>
+        <%= submit_tag "Search", :name => nil, :class => "button small blue-button" %>
+    </div>
+      
+    <% end %>
+ </div>
+ 
+
+<h4 style='text-align:right'>Listing Categories</h4>
+<table>
+	<%= render 'admin/merchandise/categories/table_header', :locals => { :category_page => 'yes' }  %>
+	<tbody>
+      <%= render :partial => 'admin/merchandise/categories/category', :collection => @categories, :locals => { :category => 'yes' }  %>
+	</tbody>
+</table>
+<%= will_paginate @categories %>
+
+
+<%= link_to 'New Category', new_admin_merchandise_category_path , :class => "button small blue-button"%>

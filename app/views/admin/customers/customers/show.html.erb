@@ -1,0 +1,64 @@
+ <h4 style='text-align:center'>Customer Information</h4>
+ <table>
+	<%= render 'admin/customers/customers/table_header' %>
+	<tbody>
+      <%= render :partial => 'admin/customers/customers/customer', :collection => @customers %>
+	</tbody>
+</table>
+
+<% if @customer.orders.size > 0 %>
+<h5 style='text-align:right'>Listing Orders</h5>
+<table>
+	<%= render 'admin/fulfillments/orders/table_header', :locals => { :customer_page_id => 'yes' }  %>
+	<tbody>
+      <%= render :partial => 'admin/fulfillments/orders/order', :collection => @customer.orders.all , :locals => { :customer_page_id => 'yes' } %>
+	</tbody>
+</table>
+<% end %>
+
+<% if @customer.wishProducts.size > 0 %>
+<h5 style='text-align:right'>WishList</h5>
+<table>
+	<%= render :partial => 'admin/merchandise/products/table_header', :locals =>  { :customer_page_id => @customer.id } %>
+	<tbody>
+      <%= render :partial => 'admin/merchandise/products/product', :locals => { :customer_page_id => @customer.id }, :collection => @customer.wishProducts.all %>
+	</tbody>
+</table>
+<%= link_to 'Add to List', admin_customers_customers_url, :class => 'button small blue-button' %>
+<%= link_to 'Place an Order', :controller => admin_fulfillments_orders_path, :customer_id => @customer.id, :action => "create_order", :method => :put, :class => "button small blue-button" %>
+<% end %>
+
+
+<% if @customer.customer_group %>
+<h5 style='text-align:right'>Customer Group Details</h5>
+<table>
+	<%= render :partial => 'admin/customers/customer_groups/table_header' , :locals => { :customer_page_id => @customer.id } %>
+	<tbody>
+	
+      <%= render :partial => 'admin/customers/customer_groups/customer_group', :object => @customer.customer_group , :locals => { :customer_page_id =>  @customer.id }%>	
+	</tbody>
+</table>
+
+<h5 style='text-align:right'>Eligible Vouchers</h5>
+<table>
+	<%= render :partial => 'admin/deals/vouchers/table_header' , :locals => { :customer_page_id => @customer.id } %>
+	<tbody>
+	
+      <%= render :partial => 'admin/deals/vouchers/voucher', :collection => @customer.vouchers.all , :locals => { :customer_page_id =>  @customer.id }%>	
+	</tbody>
+</table>
+<% end %>	
+
+<% if @customer.customer_lead %>
+<h5 style='text-align:right'>Customer Lead Details</h5>
+<table>
+	<%= render :partial => 'admin/customers/customer_leads/table_header' , :locals => { :customer_page_id => @customer.id } %>
+	<tbody>
+	
+      <%= render :partial => 'admin/customers/customer_leads/customer_lead', :object => @customer.customer_lead , :locals => { :customer_page_id =>  @customer.id }%>	
+	</tbody>
+</table>
+<% end %>
+
+
+<%= link_to 'Search Page', admin_customers_customers_url, :class => 'button small blue-button' %>

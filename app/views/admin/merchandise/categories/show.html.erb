@@ -1,0 +1,32 @@
+<h4 style='text-align:center'>Category Information</h4>
+<table>
+	<%= render 'admin/merchandise/categories/table_header' %>
+	<tbody>
+      <%= render :partial => 'admin/merchandise/categories/category', :object => @category %>
+	</tbody>
+</table>
+ 
+<h4 style='text-align:right'>Listing Products</h4>
+<table>
+	<%= render :partial => 'admin/merchandise/products/table_header', :locals => { :category_page => 'yes' }  %>
+	<tbody>
+      <%= render :partial => 'admin/merchandise/products/product', :locals => { :category_page => 'yes' }, :collection => @category.products.all %>
+	</tbody>
+</table>
+
+<% if @show_products == true  %>
+	<h5 style='text-align:left'>Select Products</h5>
+	<%= form_for @category, :url  => admin_merchandise_category_path(@category), :url => { :action => "new_product_map" },
+				:html => {:class => 'prepend-6', :method => "put"} do |f| %>
+				
+	<%= render :partial => 'admin/select', :locals => { :show_products => 'yes' }  %>	
+	<%= submit_tag "Confirm Product Linking",
+                        :name => nil, :class => 'button small blue-button', :method =>  "new_product_map" %>
+                        
+	<% end %>
+<% else %>
+	<%= link_to "Link Products",  :class => 'button small blue-button', :url => admin_merchandise_category_path, :id => @category.id, :show_products => "yes", :action => "show", :method => "get" %>
+<% end %>
+
+<%= link_to 'Search Page', admin_merchandise_categories_url, :class => 'button small blue-button' %>
+

@@ -1,0 +1,29 @@
+<h1>Listing customer_groups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Permission level</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customer_groups.each do |customer_group| %>
+      <tr>
+        <td><%= customer_group.description %></td>
+        <td><%= customer_group.permission_level %></td>
+        <td><%= link_to 'Show', customer_group %></td>
+        <td><%= link_to 'Edit', edit_customer_group_path(customer_group) %></td>
+        <td><%= link_to 'Destroy', customer_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Customer group', new_customer_group_path %>

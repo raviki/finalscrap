@@ -1,0 +1,31 @@
+ <% if defined? show_products %>
+ <% if @products.size > 10 %>
+	<div class="longtable">
+<% else %>
+	<div>
+<% end %>
+ 	<table>
+		<%= render :partial => 'admin/merchandise/products/table_header', :locals => { :select_page => 'yes' }  %>
+		<tbody>
+   		   <%= render :partial => 'admin/merchandise/products/product', :locals => { :select_page => 'yes' }, :collection => @products %>
+		</tbody>
+	</table>
+</div>
+
+<% end %>
+
+ <% if defined? update_products4store %>
+ <% if @products.size > 10 %>
+	<div class="longtable">
+<% else %>
+	<div>
+<% end %>
+ 	<table>
+		<%= render :partial => 'admin/merchandise/products/table_header', :locals => { :update_product4store_page => 'yes' }  %>
+		<tbody>
+   		   <%= render :partial => 'admin/merchandise/products/product', :locals => { :update_product4store_page => 'yes' }, :collection => @products %>
+		</tbody>
+	</table>
+</div>
+
+<% end %>

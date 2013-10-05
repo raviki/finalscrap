@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyText
+  image: MyString
+  price: 9.99
+  description: MyText
+  meta_description: MyText
+  meta_keyword: MyText
+  views: 1
+  active: false
+
+two:
+  name: MyText
+  image: MyString
+  price: 9.99
+  description: MyText
+  meta_description: MyText
+  meta_keyword: MyText
+  views: 1
+  active: false

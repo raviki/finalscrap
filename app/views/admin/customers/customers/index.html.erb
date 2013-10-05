@@ -1,0 +1,51 @@
+<% if @show_search == true  %>
+
+<h4 style='text-align:right'>Search Filter</h4>
+
+<div class="admin_filters">
+    <%= form_tag admin_customers_customers_path, :method => 'get', :id => "customers_search" do %>
+    
+    <label>Id</label>
+    <%= text_field_tag :id, params[:id] %>
+
+    <label>First Name</label>
+    <%= text_field_tag :first_name, params[:first_name] %>
+
+    <label>Contact No</label>
+    <%= text_field_tag :contact_no, params[:contact_no] %>
+
+    <label>Pin</label>
+    <%= text_field_tag :pin, params[:pin] %>
+
+    <label>Wishlist</label>
+    <%= check_box_tag :wishlist, params[:wishlist] %>
+
+    <label>Customer Group Id</label>
+    <%= text_field_tag :customer_group_id, params[:customer_group_id] %>
+
+    <label>Customer Lead Id</label>
+    <%= text_field_tag :customer_lead_id, params[:customer_lead_id] %>
+
+    
+    <div style='text-align:left'>
+        <%= submit_tag "Search", :name => nil, :class => "button small blue-button" %>
+    </div>
+    
+    <% end %>
+ </div>
+<% else %>
+ 	<div style="float: left"; >
+		<%= link_to "Customer search", :url => admin_customers_customers_path, :show_search => "yes", :action => "index", :method => "get" %>
+	</div>
+<% end %>
+ 
+ <h4 style='text-align:right'>Listing Customers</h4>
+ <table>
+	<%= render 'admin/customers/customers/table_header' %>
+	<tbody>
+      <%= render :partial => 'admin/customers/customers/customer', :collection => @customers %>
+	</tbody>
+</table>
+<%= will_paginate @customers %>
+
+<%= link_to 'New Customer', new_admin_customers_customer_path, :class => 'button small blue-button' %>

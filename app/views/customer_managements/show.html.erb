@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @customer_management.name %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @customer_management.password %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @customer_management.email %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @customer_management.customer_id %>
+</p>
+
+<p>
+  <strong>Remember token:</strong>
+  <%= @customer_management.remember_token %>
+</p>
+
+<p>
+  <strong>Password digest:</strong>
+  <%= @customer_management.password_digest %>
+</p>
+
+<%= link_to 'Edit', edit_customer_management_path(@customer_management) %> |
+<%= link_to 'Back', customer_managements_path %>

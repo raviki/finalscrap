@@ -1,0 +1,35 @@
+<h4 style='text-align:center'>Product Information</h4>
+<table>
+	<%= render 'admin/merchandise/products/table_header' %>
+	<tbody>
+      <%= render :partial => 'admin/merchandise/products/product', :object => @product %>
+	</tbody>
+</table>
+
+<h5 style='text-align:right'>Listing Categories</h5>
+<table>
+	<%= render :partial => 'admin/merchandise/categories/table_header', :locals => { :product_detail_page => 'yes' } %>
+	<tbody>
+      <%= render :partial => 'admin/merchandise/categories/category', :collection => @product.categories.all , :locals => { :product_detail_page => 'yes' } %>
+	</tbody>
+</table>
+
+<h5 style='text-align:right'>Stores Offer this product</h5>
+<table>
+	<%= render :partial => 'admin/partners/stores/table_header', :locals => { :product_detail_page => 'yes' } %>
+	<tbody>
+      <%= render :partial => 'admin/partners/stores/store', :collection => @product.stores.all , :locals => { :product_detail_page => 'yes' } %>
+	</tbody>
+</table>
+
+<h5 style='text-align:right'>Active Orders</h5>
+<table>
+	<%= render :partial => 'admin/fulfillments/orders/table_header', :locals => { :product_detail_page => 'yes' } %>
+	<tbody>
+      <%= render :partial => 'admin/fulfillments/orders/order', :collection => @product.orders.all , :locals => { :product_detail_page => 'yes' } %>
+	</tbody>
+</table>
+
+<%= link_to 'Search Page', admin_merchandise_products_url, :class => 'button small blue-button' %>
+
+

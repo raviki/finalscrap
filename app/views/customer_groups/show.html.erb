@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @customer_group.description %>
+</p>
+
+<p>
+  <strong>Permission level:</strong>
+  <%= @customer_group.permission_level %>
+</p>
+
+<%= link_to 'Edit', edit_customer_group_path(@customer_group) %> |
+<%= link_to 'Back', customer_groups_path %>

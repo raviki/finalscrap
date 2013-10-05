@@ -1,0 +1,29 @@
+<h1>Listing customer_leads</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type name</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customer_leads.each do |customer_lead| %>
+      <tr>
+        <td><%= customer_lead.type_name %></td>
+        <td><%= customer_lead.description %></td>
+        <td><%= link_to 'Show', customer_lead %></td>
+        <td><%= link_to 'Edit', edit_customer_lead_path(customer_lead) %></td>
+        <td><%= link_to 'Destroy', customer_lead, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Customer lead', new_customer_lead_path %>

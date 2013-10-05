@@ -1,0 +1,28 @@
+<h4 style='text-align:center'>Customer Group Information</h4>
+<table>
+	<%= render 'admin/customers/customer_groups/table_header' %>
+	<tbody>
+      <%= render :partial => 'admin/customers/customer_groups/customer_group', :object => @customer_group %>
+	</tbody>
+</table>
+ 
+<h5 style='text-align:right'>Customers List</h5>
+<table>
+	<%= render :partial => 'admin/customers/customers/table_header', :locals => { :customer_group_page => 'yes' }  %>
+	<tbody>
+      <%= render :partial => 'admin/customers/customers/customer', :locals => { :customer_group_page => 'yes' }, :collection => @customer_group.customers.all %>
+	</tbody>
+</table>
+
+<h5 style='text-align:right'>Vouchers List</h5>
+<table>
+	<%= render :partial => 'admin/deals/vouchers/table_header', :locals => { :customer_group_page => 'yes' }  %>
+	<tbody>
+      <%= render :partial => 'admin/deals/vouchers/voucher', :locals => { :customer_group_page => 'yes' }, :collection => @customer_group.vouchers.all %>
+	</tbody>
+</table>
+
+<%= link_to 'Search Page', admin_customers_customer_groups_url, :class => 'button small blue-button' %>
+
+
+

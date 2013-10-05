@@ -1,0 +1,8 @@
+<div class="bs-docs-sidebar span6">
+<h1>Login</h1>
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+<%= render 'form' %>
+<p> New User?<%=link_to 'Sign Up', new_customer_management_path %></p>
+</div>

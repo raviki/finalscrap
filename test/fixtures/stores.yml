@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  contact_name: MyText
+  contact_no: 9.99
+  address: MyText
+  pin: 9.99
+  review: MyText
+  rating: 9.99
+  active: false
+
+two:
+  name: MyString
+  contact_name: MyText
+  contact_no: 9.99
+  address: MyText
+  pin: 9.99
+  review: MyText
+  rating: 9.99
+  active: false

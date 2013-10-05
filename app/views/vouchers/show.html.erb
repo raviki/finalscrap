@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @voucher.description %>
+</p>
+
+<p>
+  <strong>Customer group:</strong>
+  <%= @voucher.customer_group_id %>
+</p>
+
+<p>
+  <strong>Type name:</strong>
+  <%= @voucher.type_name %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @voucher.value %>
+</p>
+
+<p>
+  <strong>Validity till:</strong>
+  <%= @voucher.validity_till %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @voucher.active %>
+</p>
+
+<%= link_to 'Edit', edit_voucher_path(@voucher) %> |
+<%= link_to 'Back', vouchers_path %>

@@ -1,0 +1,32 @@
+
+<h4 style='text-align:right'>Search Filter</h4>
+
+<div class="admin_filters">
+    <%= form_tag admin_customers_customer_leads_path, :method => 'get', :id => "customer_leads_search" do %>
+    
+    <label>Id</label>
+    <%= text_field_tag :id, params[:id] %>
+
+    <label>Type</label>
+    <%= text_field_tag :type_name, params[:type_name] %>
+
+    <label>Description</label>
+    <%= text_field_tag :description, params[:description] %>
+    
+    <div style='text-align:left'>
+        <%= submit_tag "Search", :name => nil, :class => "button small blue-button" %>
+    </div>
+    
+    <% end %>
+</div>
+ 
+<h4 style='text-align:right'>Listing Customer Leads</h4>
+<table>
+	<%= render 'admin/customers/customer_leads/table_header' %>
+	<tbody>
+      <%= render :partial => 'admin/customers/customer_leads/customer_lead', :collection => @customer_leads %>
+	</tbody>
+</table>
+<%= will_paginate @customer_leads %>
+
+<%= link_to 'New Customer Lead', new_admin_customers_customer_lead_path,:class =>'button small blue-button' %>

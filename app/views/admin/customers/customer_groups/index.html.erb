@@ -1,0 +1,27 @@
+<h4 style='text-align:right'>Search Filter</h4>
+<div class="admin_filters">
+    <%= form_tag admin_customers_customer_groups_path, :method => 'get', :id => "customer_groups_search" do %>
+    
+    <label>Id</label>
+    <%= text_field_tag :id, params[:id] %>
+
+    <label>Description</label>
+    <%= text_field_tag :description, params[:description] %>
+    
+    <div style='text-align:left; height:1em'>
+        <%= submit_tag "Search", :name => nil, :class => "button"%>
+    </div>
+    
+    <% end %>
+</div>
+ 
+<h4 style='text-align:right'>Listing Customer Groups</h4>
+<table>
+	<%= render 'admin/customers/customer_groups/table_header' %>
+	<tbody>
+      <%= render :partial => 'admin/customers/customer_groups/customer_group', :collection => @customer_groups %>
+	</tbody>
+</table>
+<%= will_paginate @customer_groups %>
+
+<%= link_to 'New Customer group', new_admin_customers_customer_group_path %>

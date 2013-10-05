@@ -1,0 +1,18 @@
+ 	<ul class="nav nav-list bs-docs-sidenav">
+ 		<% @categories.each do |c| %>
+ 			<li class="dropdown-submenu">
+ 				<% @category = c %>
+ 				
+ 				<%= link_to '<i class="icon-chevron-right"></i>'.html_safe+c.name, category_path(c), :class => "dropdown-toggle", :data => { :toggle => "dropdown" } %>
+ 				<% if @category.activeProduct.size > 0 %>
+ 					<ul class="dropdown-menu">
+ 						
+ 						<% @category.activeProduct.order("views  desc").each do |product| %>
+ 							<li><%= link_to product.name,  product_path(product) %></li>
+ 						<% end%> 	
+ 					</ul>	
+ 				<% end %>		
+ 			</li> 							
+ 		<% end %>
+	</ul> 
+

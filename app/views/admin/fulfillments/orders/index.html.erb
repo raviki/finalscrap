@@ -1,0 +1,58 @@
+<% if @show_search == true  %>
+
+<h4 style='text-align:right'>Search Filter</h4>
+
+<div class="admin_filters">
+    <%= form_tag admin_fulfillments_orders_path, :method => 'get', :id => "orders_search" do %>
+    
+    <label>Id</label>
+    <%= text_field_tag :id, params[:id] %>
+
+    <label>Customer Id</label>
+    <%= text_field_tag :customer_id, params[:customer_id] %>
+
+    <label>Voucher Id</label>
+    <%= text_field_tag :voucher_id, params[:voucher_id] %>
+
+    <label>Payment Id</label>
+    <%= text_field_tag :payment_id, params[:payment_id] %>
+
+    <label>Discount</label>
+    <%= text_field_tag :discount, params[:discount] %>
+
+    <label>Discount Message</label>
+    <%= text_field_tag :discount_message, params[:discount_message] %>
+
+    <label>Appointment Date</label>
+    <%= text_field_tag :appointment_date, params[:appointment_date] %>
+
+    <label>Duration InHrs</label>
+    <%= text_field_tag :duration_inHrs, params[:duration_inHrs] %>
+
+    <label>Active</label>
+    <%= check_box_tag :active, params[:active] %>
+    
+    <div style='text-align:left'>
+        <%= submit_tag "Search", :name => nil, :class => "button small blue-button" %>
+    </div>
+      
+    <% end %>
+ </div>
+  <% else %>
+ 	<div style="float: left"; >
+		<%= link_to "Orders Search", :url => admin_fulfillments_orders_path, :show_search => "yes", :action => "index", :method => "get" %>
+	</div>
+<% end %>
+
+
+<h4 style='text-align:right'>Listing Orders</h4>
+<table>
+	<%= render 'admin/fulfillments/orders/table_header', :locals => { :order_page => 'yes' }  %>
+	<tbody>
+      <%= render :partial => 'admin/fulfillments/orders/order', :collection => @orders , :locals => { :order_page => 'yes' } %>
+	</tbody>
+</table>
+<%= will_paginate @orders %>
+
+
+<%= link_to 'New Order', new_admin_fulfillments_order_path , :class => "button small blue-button"%>

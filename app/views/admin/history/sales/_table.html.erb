@@ -1,0 +1,27 @@
+<h4 style='text-align:right'>Sales Log</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User</th>
+      <th>Order</th>
+      <th>Voucher</th>
+      <th>Payment</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order_logs.each do |order_log| %>
+      <tr>
+      	<td><%= order_log.id %></td>
+        <td><%= order_log.user_id %></td>
+        <td><%= order_log.order_id %></td>
+        <td><%= order_log.voucher_id %></td>
+        <td><%= order_log.payment_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @order_logs %>

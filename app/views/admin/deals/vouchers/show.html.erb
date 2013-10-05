@@ -1,0 +1,26 @@
+ 
+<h4 style='text-align:right'>Listing Vouchers</h4>
+<table>
+	<%= render 'admin/deals/vouchers/table_header' %>
+	<tbody>
+      <%= render :partial => 'admin/deals/vouchers/voucher', :object => @voucher %>
+	</tbody>
+</table>
+
+
+<% if @voucher.customer_group %>
+<h5 style='text-align:right'>Customer Group Details</h5>
+<table>
+	<%= render :partial => 'admin/customers/customer_groups/table_header' , :locals => { :voucher_page_id => @voucher.id } %>
+	<tbody>
+	
+      <%= render :partial => 'admin/customers/customer_groups/customer_group', :object => @voucher.customer_group , :locals => { :voucher_page_id =>  @voucher.id }%>
+	
+	</tbody>
+</table>
+<% else %>
+<h5 style='text-align:left'>No Customer Group.</h5>
+<% end %>
+
+
+<%= link_to 'Search Page', admin_deals_vouchers_url, :class => 'button small blue-button' %>

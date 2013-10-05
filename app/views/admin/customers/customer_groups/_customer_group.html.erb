@@ -1,0 +1,9 @@
+<tr>
+      	<td><%= link_to customer_group.id,  admin_customers_customer_group_path(customer_group)  %></td>
+        <td><%= customer_group.description %></td>
+        <td><%= customer_group.permission_level %></td>
+        <td><%= link_to 'Edit', edit_admin_customers_customer_group_path(customer_group) %></td>
+        <% if defined? customer_page_id %>
+        	<td><%= link_to 'Detach', :controller => admin_customers_customers_path, :id => customer_page_id, :action => "update_customer_group_id", :customer_group_id => 0, :method => :put %></td>
+        <% end %>
+      </tr>

@@ -1,0 +1,9 @@
+<tr>
+      	<td><%= link_to customer_lead.id,  admin_customers_customer_lead_path(customer_lead)  %></td>
+      	<td><%= customer_lead.type_name %></td>
+        <td><%= customer_lead.description %></td>
+        <td><%= link_to 'Edit', edit_admin_customers_customer_lead_path(customer_lead) %></td>       
+        <% if defined? customer_page_id %>
+        	<td><%= link_to 'Detach', :controller => admin_customers_customers_path, :id => customer_page_id, :action => "update_customer_lead_id", :customer_lead_id => 0, :method => :put %></td>
+        <% end %>
+      </tr>

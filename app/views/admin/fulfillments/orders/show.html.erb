@@ -1,0 +1,33 @@
+<h4 style='text-align:center'>Order Information</h4>
+<table>
+	<%= render 'admin/fulfillments/orders/table_header' %>
+	<tbody>
+      <%= render :partial => 'admin/fulfillments/orders/order', :object => @order %>
+	</tbody>
+</table>
+
+<% if @assgn_products == true  %>
+	<h5 style='text-align:left'>Assign Products</h5>
+	<%= form_for @order, :url  => admin_fulfillments_order_path(@order), :url => { :action => "assign_store" },
+				:html => {:class => 'prepend-6', :method => "get"} do |f| %>
+				
+	<%= render :partial => 'admin/select', :locals => { :show_products => 'yes' }  %>	
+	
+	<%= select("store", "store_id", Store.all.collect {|s| [ s.name, s.id ] }) %>
+	<%= submit_tag "Confirm Store Linking",
+                        :name => nil, :class => 'button small blue-button', :method =>  "assign_store" %>                        
+	<% end %>
+<% else %>
+
+	<h5 style='text-align:right'>Listing Products</h5>
+	<table>
+		<%= render :partial => 'admin/merchandise/products/table_header', :locals => { :order_page => 'yes' }  %>
+		<tbody>
+	      <%= render :partial => 'admin/merchandise/products/product', :locals => { :order_page => 'yes' }, :collection => @order.products.all %>
+		</tbody>
+	</table>
+
+	<%= link_to "Assign Store",  :class => 'button small blue-button', :url => admin_fulfillments_orders_path, :id => @order.id, :assgn_products => "yes", :action => "show", :method => "get" %>
+<% end %>
+
+<%= link_to 'Search Page', admin_fulfillments_orders_url, :class => 'button small blue-button' %>

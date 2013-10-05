@@ -1,0 +1,40 @@
+  <thead>
+    <tr>
+    	<% if defined? product_page %>
+      		<th><%= sortable "id" %></th>
+      		<th><%= sortable "name" %></th>
+      	<% else %>
+      		<th>Id</th>
+      		<th>Name</th>
+      	<% end %>
+      	
+      <th>Image</th>
+      <% if defined? store_page %>
+      	<th>Store Price</th>
+      <% else %>
+      	<th>Price</th>
+      <% end %>
+      <th>Description</th>
+      <th>Meta description</th>
+      <th>Meta keyword</th>
+      <th>Views</th>
+      <th>Active</th>
+      
+      <% if defined? order_page %>
+      	<th> Store Assigned</th>  
+      <% elsif defined? update_product4store_page %>
+        <th>Store Price</th>
+      	<th>select to update</th>
+      <% elsif defined? select_page %>
+      	<th>Select</th>
+      <% elsif defined? category_page || defined? store_page %>
+      		<th></th>     	
+      <% else %>
+      	<th></th>
+      	<th></th>
+      <% end %>
+    </tr>
+  </thead>
+
+
+  
