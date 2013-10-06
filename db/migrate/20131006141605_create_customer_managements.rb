@@ -7,6 +7,10 @@ class CreateCustomerManagements < ActiveRecord::Migration
       t.integer :customer_id
       t.string :remember_token
       t.string :password_digest
+      t.text :provider
+      t.text :uid
+      t.text :oauth_token
+      t.datetime :oauth_expires_at
 
       t.timestamps
     end

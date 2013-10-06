@@ -1,48 +1,57 @@
+<%= form_for(@customer_management) do |f| %>
+  <% if @customer_management.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@customer_management.errors.count, "error") %> prohibited this customer_management from being saved:</h2>
 
-<%= form_for(@customer_management, :html =>{:class => "form-horizontal"}) do |f| %>
-<% if @customer_management.errors.any? %>
-    <div class="alert alert-error offset2 span8">
-      <h3 class="offset1">Please fix these <%= pluralize(@customer_management.errors.count, "error")%> to Sign Up</h3>
-
-      <ul class="offset2">
+      <ul>
       <% @customer_management.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
-  <% end %>  
-<div class="row-fluid">
-	<div class="offset3">
-  <div class="control-group">
-    <%= f.label :name,"Name",:class => "control-label" %>
-    <div class="controls">
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
     <%= f.text_field :name %>
-    </div>
   </div>
-  <div class="control-group">
-    <%= f.label :password,"Password",:class => "control-label" %>
-    <div class="controls">
-    <%= f.password_field :password %>
-    </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.text_field :password %>
   </div>
-  <div class="control-group">
-    <%= f.label :password_confirmation,"Confirmation" ,:class => "control-label"%>
-    <div class="controls">
-    <%= f.password_field :password_confirmation %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :email, :class => "control-label" %>
-    <div class="controls">
+  <div class="field">
+    <%= f.label :email %><br>
     <%= f.text_field :email %>
-    </div>
   </div>
-  <div class="controls">
+  <div class="field">
+    <%= f.label :customer_id %><br>
+    <%= f.number_field :customer_id %>
+  </div>
+  <div class="field">
+    <%= f.label :remember_token %><br>
+    <%= f.text_field :remember_token %>
+  </div>
+  <div class="field">
+    <%= f.label :password_digest %><br>
+    <%= f.text_field :password_digest %>
+  </div>
+  <div class="field">
+    <%= f.label :provider %><br>
+    <%= f.text_area :provider %>
+  </div>
+  <div class="field">
+    <%= f.label :uid %><br>
+    <%= f.text_area :uid %>
+  </div>
+  <div class="field">
+    <%= f.label :oauth_token %><br>
+    <%= f.text_area :oauth_token %>
+  </div>
+  <div class="field">
+    <%= f.label :oauth_expires_at %><br>
+    <%= f.datetime_select :oauth_expires_at %>
+  </div>
   <div class="actions">
-    <%= f.submit "Create Account", class: "btn btn-info"%>
-  </div>
-  </div>
-  </div>
+    <%= f.submit %>
   </div>
 <% end %>
-

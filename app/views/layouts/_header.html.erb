@@ -27,7 +27,7 @@
 						<li>
 							<form class="navbar-search">
 								<div class="input-prepend input-append offset2">
-									<%=	select(@categories,"id", Category.all.collect {|p| [ p.name, p.id ] }, { prompt:"All" },{class:"selectpicker span2", id: "cat",name:"select"})%>
+									<%=	select(@caties,"id", Category.all.collect {|p| [ p.name, p.id ] }, { prompt:"All" },{class:"selectpicker span2", id: "cat",name:"select"})%>
 									<input type="text" class=" span4 search-query">
     								<button type="submit" class="btn">Search</button>
 								</div>
@@ -39,10 +39,10 @@
 								<a href="#">Link</a>
 							</li>
 							<li class="divider-vertical"></li>
-							<% if signed_in? %>
+							<% if signed_in? || current_user %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				Hello <%= @user.name %> <b class="caret"></b>
+				Hello <%= @user.first_name %> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Account", '#' %></li>

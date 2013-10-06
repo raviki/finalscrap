@@ -69,6 +69,6 @@ class CustomerManagementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_management_params
-      params.require(:customer_management).permit(:name, :password, :email, :customer_id, :remember_token, :password_digest,:password_confirmation)
+      params.require(:customer_management).permit(:name, :password, :email, :customer_id, :remember_token, :password_digest, :provider, :uid, :oauth_token, :oauth_expires_at)
     end
 end

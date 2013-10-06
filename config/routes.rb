@@ -1,6 +1,10 @@
 Website::Application.routes.draw do
   
   get "log_out" => "sessions#destroy", :as => "log_out"
+
+  get '/auth/:provider/callback', to: 'categories#facebook_callback'
+  get '/auth/failure', to: redirect('/')
+  
   resources :searches
 
   resources :vouchers

@@ -7,9 +7,11 @@ module SessionsHelper
    puts "Encrypted Token #{encrypted_token}"
    if rem_token_cookie
       @user = CustomerManagement.find_by(:remember_token => :encrypted_token)
-    else 
-      return false
-    end
+   elsif session[:customer_id]
+        @user = Customer.find(session[:customer_id]) 
+   else 
+     return false
+   end
    if @user
      return true
    else 

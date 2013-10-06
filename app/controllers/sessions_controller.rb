@@ -35,6 +35,7 @@ end
 end
 def destroy
   cookies.delete(:remember_token)
+  session[:customer_id] = nil
   redirect_to categories_path, :success => "Logged Out!!"
   end
 

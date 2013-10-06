@@ -30,5 +30,25 @@
   <%= @customer_management.password_digest %>
 </p>
 
+<p>
+  <strong>Provider:</strong>
+  <%= @customer_management.provider %>
+</p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @customer_management.uid %>
+</p>
+
+<p>
+  <strong>Oauth token:</strong>
+  <%= @customer_management.oauth_token %>
+</p>
+
+<p>
+  <strong>Oauth expires at:</strong>
+  <%= @customer_management.oauth_expires_at %>
+</p>
+
 <%= link_to 'Edit', edit_customer_management_path(@customer_management) %> |
 <%= link_to 'Back', customer_managements_path %>

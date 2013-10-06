@@ -17,6 +17,10 @@ gem 'coffee-rails', '~> 4.0.0'
 #added start
 
 gem 'will_paginate', '~> 3.0.4'
+gem 'mysql2'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 # end 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

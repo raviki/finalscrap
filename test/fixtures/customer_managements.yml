@@ -7,6 +7,10 @@ one:
   customer_id: 1
   remember_token: MyString
   password_digest: MyString
+  provider: MyText
+  uid: MyText
+  oauth_token: MyText
+  oauth_expires_at: 2013-10-06 19:46:05
 
 two:
   name: MyString
@@ -15,3 +19,7 @@ two:
   customer_id: 1
   remember_token: MyString
   password_digest: MyString
+  provider: MyText
+  uid: MyText
+  oauth_token: MyText
+  oauth_expires_at: 2013-10-06 19:46:05
