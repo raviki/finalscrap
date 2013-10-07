@@ -4,8 +4,20 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.admin_grid(params,true).order(sort_column + " " + sort_direction).
-                                              paginate(:page => pagination_page, :per_page => pagination_rows)
+    
+    if params[:select].present?
+      @category = Category.find(params[:select])
+      if @category
+        @products = @category.activeProducts.standard_search(params[:key])
+      end
+    end
+    puts "-------#{params[:key]}"
+    if !@products
+        
+        @products = Product.admin_grid(params,true,params[:key]).order(sort_column + " " + sort_direction).
+                                             paginate(:page => pagination_page, :per_page => pagination_rows)
+
+    end
   end
 
   # GET /products/1

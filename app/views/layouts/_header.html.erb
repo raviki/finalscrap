@@ -25,13 +25,17 @@
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li>
-							<form class="navbar-search">
+							<%= form_tag products_path, :method => 'get', :id => "index", :class => 'navbar-search' do %>
 								<div class="input-prepend input-append offset2">
+									
+									
 									<%=	select(@caties,"id", Category.all.collect {|p| [ p.name, p.id ] }, { prompt:"All" },{class:"selectpicker span2", id: "cat",name:"select"})%>
-									<input type="text" class=" span4 search-query">
-    								<button type="submit" class="btn">Search</button>
+									
+									<%= text_field_tag :key, params[:key], :class => " span4 search-query" %>
+									<%= submit_tag "Search", :name => nil, :class => "btn" %>
+    								
 								</div>
-							</form>
+							<% end %>
 						</li>
 						</ul>
 						<ul class="nav pull-right">

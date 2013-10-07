@@ -27,6 +27,24 @@ class Product < ActiveRecord::Base
     self.save
   end
   
+    
+  def self.standard_search(text)
+     puts "in std search: #{text}"
+    if text.present?
+      keys=text.split(" ")
+      @query = ""
+      keys.each do |key|
+       if @query != ""
+          @query=@query+" or " 
+        end
+        @query=@query+"products.name LIKE '%#{key}%'"
+      end
+      grid = where(@query)
+    else
+      all
+    end
+  end
+  
   def updateViewCount
     self.views = self.views.to_i + 1;
     self.save
@@ -35,12 +53,13 @@ class Product < ActiveRecord::Base
   ## Auto generated code using java @ Ravi
   ## Begin 
 
-  def self.admin_grid(params = {}, active_state = nil)
+  def self.admin_grid(params = {}, active_state = nil, text = nil)
     grid = id_filter(params[:id]).
           name_filter(params[:name])
           price_filter(params[:price]).
           description_filter(params[:description]).
-          active_filter(active_state)
+          active_filter(active_state).
+          standard_search(text)
   end
 
   private
