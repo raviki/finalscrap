@@ -17,20 +17,30 @@ def new_remember_token
   
 end
 
-def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |customerManagement|
+def update_facebook_omniauth(auth)
+  self.provider = auth.provider
+  self.uid = auth.uid    
+  self.oauth_token = auth.credentials.token
+  self.password_confirmation = self.password  
+  self.oauth_expires_at = Time.at(auth.credentials.expires_at)
+end
+
+def self.from_omniauth(auth)   
+
+   where(auth.slice(:provider, :uid)).first_or_initialize.tap do |customerManagement|
       customerManagement.provider = auth.provider
       customerManagement.uid = auth.uid
-      customerManagement.name = auth.info.name      
-      @customer = Customer.where(:id => customerManagement.customer_id).first_or_create
-      @customer.first_name = auth.info.name
-      @customer.save
-      customerManagement.customer_id = @customer.id
+      customerManagement.name = auth.info.name  
+      customerManagement.password = "0"  
+      customerManagement.password_confirmation = "0"
+      customerManagement.email = auth.extra.raw_info.email
       customerManagement.oauth_token = auth.credentials.token
       customerManagement.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      customerManagement.save!
+      customerManagement.save
+      @customer = Customer.create_find4CustomerManager(customerManagement)
     end
-  end
+    return @customer
+end
 
 def encrypt_token(token)
   return Digest::SHA1.hexdigest(token.to_s)
