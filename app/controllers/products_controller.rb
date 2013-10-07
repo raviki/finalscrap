@@ -11,7 +11,6 @@ class ProductsController < ApplicationController
         @products = @category.activeProducts.standard_search(params[:key])
       end
     end
-    puts "-------#{params[:key]}"
     if !@products
         
         @products = Product.admin_grid(params,true,params[:key]).order(sort_column + " " + sort_direction).

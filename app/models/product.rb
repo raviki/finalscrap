@@ -29,7 +29,6 @@ class Product < ActiveRecord::Base
   
     
   def self.standard_search(text)
-     puts "in std search: #{text}"
     if text.present?
       keys=text.split(" ")
       @query = ""
