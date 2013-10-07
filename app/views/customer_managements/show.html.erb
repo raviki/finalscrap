@@ -50,5 +50,15 @@
   <%= @customer_management.oauth_expires_at %>
 </p>
 
+<p>
+  <strong>Password reset token:</strong>
+  <%= @customer_management.password_reset_token %>
+</p>
+
+<p>
+  <strong>Password reset sent at:</strong>
+  <%= @customer_management.password_reset_sent_at %>
+</p>
+
 <%= link_to 'Edit', edit_customer_management_path(@customer_management) %> |
 <%= link_to 'Back', customer_managements_path %>

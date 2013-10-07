@@ -1,10 +1,9 @@
 Website::Application.routes.draw do
   
-  get "password_resets/new"
-  get "log_out" => "sessions#destroy", :as => "log_out"
 
+  get "log_out" => "sessions#destroy", :as => "log_out"
   get '/auth/:provider/callback', to: 'categories#facebook_callback'
-  get '/auth/failure', to: redirect('/')
+  get "/auth/failure" => redirect("/")
   
   resources :searches
 
@@ -25,6 +24,8 @@ Website::Application.routes.draw do
   resources :customer_managements
 
   resources :customers
+  
+  resources :password_resets
 
   namespace :users do
     resources :managements

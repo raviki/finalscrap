@@ -12,8 +12,17 @@ class CategoriesController < ApplicationController
     @categories = Category.admin_grid(params,true).order(sort_column + " " + sort_direction).
                                           paginate(:page => pagination_page, :per_page => pagination_rows)
     
-    @customer = CustomerManagement.from_omniauth(env["omniauth.auth"])
-    session[:customer_id] = @customer.id
+    @customerManagement = CustomerManagement.where(:email => env["omniauth.auth"].extra.raw_info.email).first
+    if @customerManagement
+      @customerManagement.update_facebook_omniauth(env["omniauth.auth"])
+      @customerManagement.save
+      @customer = Customer.create_find4CustomerManager(@customerManagement)
+      session[:customer_id] = @customer.id
+    else
+      @customer = CustomerManagement.from_omniauth(env["omniauth.auth"])
+      session[:customer_id] = @customer.id
+    end 
+      
     redirect_to action: "index"
     
   end

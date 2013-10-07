@@ -26,8 +26,6 @@ class Admin::Fulfillments::OrdersController < AdminController
         if StoreToProduct.where(:store_id => params[:store][:store_id], :product_id => productId).size > 0
           @order_to_product = OrderToProduct.where(:order_id => @order.id, :product_id => productId).first_or_create
           @order_to_product.update_attributes(:store_id => params[:store][:store_id])
-          puts "==== #{params[:store][:store_id]} and #{productId}"
-          #@order_to_product.updateShopId(params[:store][:store_id])
         else
           @error = "Store #{params[:store][:store_id]} does not surve Product #{productId}\n"
         end

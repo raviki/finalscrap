@@ -8,7 +8,7 @@ module SessionsHelper
    if rem_token_cookie
       @user = CustomerManagement.find_by(:remember_token => :encrypted_token)
    elsif session[:customer_id]
-        @user = Customer.find(session[:customer_id]) 
+      @user = Customer.find(session[:customer_id]) 
    else 
      return false
    end

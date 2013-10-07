@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 def index
-  render 'new'
+  session[:customer_id] = nil
+  render 'new' 
 end
   def new
   end
@@ -9,6 +10,7 @@ end
   user = CustomerManagement.find_by(:email => params[:session][:email])
  # user = user.downcase
  puts"User found #{user}"
+ 
   if user
     @user_hash= BCrypt::Password.new(user.password) 
     if @user_hash== params[:session][:password]

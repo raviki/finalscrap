@@ -10,7 +10,9 @@ one:
   provider: MyText
   uid: MyText
   oauth_token: MyText
-  oauth_expires_at: 2013-10-06 19:46:05
+  oauth_expires_at: 2013-10-07 16:49:52
+  password_reset_token: MyString
+  password_reset_sent_at: 2013-10-07 16:49:52
 
 two:
   name: MyString
@@ -22,4 +24,6 @@ two:
   provider: MyText
   uid: MyText
   oauth_token: MyText
-  oauth_expires_at: 2013-10-06 19:46:05
+  oauth_expires_at: 2013-10-07 16:49:52
+  password_reset_token: MyString
+  password_reset_sent_at: 2013-10-07 16:49:52

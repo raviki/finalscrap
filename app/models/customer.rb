@@ -14,6 +14,20 @@ class Customer < ActiveRecord::Base
     wishProduct.find_or_create_by_category_id_and_product_id(self.id, product_id)
   end
   
+  def self.create_find4CustomerManager(customerManagement)
+    if customerManagement.customer_id
+      @customer = Customer.find(customerManagement.customer_id)
+    end 
+      
+    if !@customer
+      @customer = Customer.new
+      @customer.first_name = customerManagement.name
+      @customer.save
+      customerManagement.update_attributes(:customer_id => @customer.id)
+    end
+    return @customer
+  end
+  
   
   ## Auto generated code using java @ Ravi
   ## Begin

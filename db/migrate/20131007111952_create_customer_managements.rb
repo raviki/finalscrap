@@ -11,6 +11,8 @@ class CreateCustomerManagements < ActiveRecord::Migration
       t.text :uid
       t.text :oauth_token
       t.datetime :oauth_expires_at
+      t.string :password_reset_token
+      t.datetime :password_reset_sent_at
 
       t.timestamps
     end
