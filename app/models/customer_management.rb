@@ -7,7 +7,6 @@ class CustomerManagement < ActiveRecord::Base
                     format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
 validates :password, presence: true
-puts" Here ?"
 validates_confirmation_of :password, on: :create
 validates_presence_of :password_confirmation 
 before_save :encrypt
@@ -21,6 +20,13 @@ end
 def encrypt_token(token)
   return Digest::SHA1.hexdigest(token.to_s)
 end  
+
+def send_password_reset
+  self.password_reset_token = SecureRandom.urlsafe_base64
+  self.password_reset_sent_at = Time.zone.now
+  save(:validate => false)
+  UserMailer.password_reset(self).deliver
+end
 
 private
 def encrypt
