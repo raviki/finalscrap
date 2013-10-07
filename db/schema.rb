@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131006141605) do
+ActiveRecord::Schema.define(version: 20131007092456) do
 
   create_table "categories", force: true do |t|
     t.text     "name"
@@ -61,16 +61,18 @@ ActiveRecord::Schema.define(version: 20131006141605) do
   create_table "customers", force: true do |t|
     t.string   "first_name"
     t.string   "second_name"
-    t.decimal  "contact_no",        precision: 10, scale: 0
+    t.decimal  "contact_no",             precision: 10, scale: 0
     t.text     "add_line1"
     t.text     "add_line2"
     t.text     "city"
-    t.decimal  "pin",               precision: 10, scale: 0
+    t.decimal  "pin",                    precision: 10, scale: 0
     t.boolean  "wishlist"
     t.integer  "customer_group_id"
     t.integer  "customer_lead_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
   create_table "order_to_products", force: true do |t|
