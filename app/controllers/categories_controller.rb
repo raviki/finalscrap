@@ -16,11 +16,10 @@ class CategoriesController < ApplicationController
     if @customerManagement
       @customerManagement.update_facebook_omniauth(env["omniauth.auth"])
       @customerManagement.save
-      @customer = Customer.create_find4CustomerManager(@customerManagement)
-      session[:customer_id] = @customer.id
+      session[:customer_id] = @customerManagement.id
     else
-      @customer = CustomerManagement.from_omniauth(env["omniauth.auth"])
-      session[:customer_id] = @customer.id
+      @customerManagement = CustomerManagement.from_omniauth(env["omniauth.auth"])
+      session[:customer_id] = @customerManagement.id
     end 
       
     redirect_to action: "index"

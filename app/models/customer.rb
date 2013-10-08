@@ -15,11 +15,7 @@ class Customer < ActiveRecord::Base
   end
   
   def self.create_find4CustomerManager(customerManagement)
-    if customerManagement.customer_id
-      @customer = Customer.find(customerManagement.customer_id)
-    end 
-      
-    if !@customer
+    if !customerManagement.customer_id
       @customer = Customer.new
       @customer.first_name = customerManagement.name
       @customer.save

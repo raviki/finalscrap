@@ -32,7 +32,6 @@ class CustomerManagementsController < ApplicationController
 
       respond_to do |format|
       if @customer_management.save
-        @customer = Customer.create_find4CustomerManager(@customer_management)
         format.html { redirect_to @customer_management, notice: 'Customer management was successfully created.' }
         format.json { render action: 'show', status: :created, location: @customer_management }
       else

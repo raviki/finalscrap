@@ -12,7 +12,7 @@ end
  puts"User found #{user}"
  
   if user
-    @user_hash= BCrypt::Password.new(user.password) 
+    @user_hash= BCrypt::Password.new(user.password)
     if @user_hash== params[:session][:password]
       remember_token = user.new_remember_token
       session[:user_id] = user.id
@@ -23,8 +23,7 @@ end
       end
       encrypted_token = user.encrypt_token(remember_token)
       user.update_columns(remember_token: :encrypted_token)
-      redirect_to categories_path, :success  => "Logged In!!"
-    
+      redirect_to categories_path, :success  => "Logged In!!"    
     else
       #puts "#{user_hash} this is not #{params.inspect}"
      render "new"

@@ -46,7 +46,7 @@
 							<% if signed_in? || current_user %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				Hello <%= @user.first_name %> <b class="caret"></b>
+				Hello <%= @user.name %> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Account", '#' %></li>

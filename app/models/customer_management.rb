@@ -1,5 +1,7 @@
 class CustomerManagement < ActiveRecord::Base
 
+belongs_to :customer
+
 include BCrypt
  validates :name, presence: true, length: { maximum: 50 }
  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -37,9 +39,7 @@ def self.from_omniauth(auth)
       customerManagement.oauth_token = auth.credentials.token
       customerManagement.oauth_expires_at = Time.at(auth.credentials.expires_at)
       customerManagement.save
-      @customer = Customer.create_find4CustomerManager(customerManagement)
     end
-    return @customer
 end
 
 def encrypt_token(token)
