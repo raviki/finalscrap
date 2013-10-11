@@ -6,25 +6,7 @@ class CategoriesController < ApplicationController
   def index
     @categories = Category.admin_grid(params,true).order(sort_column + " " + sort_direction).
                                           paginate(:page => pagination_page, :per_page => pagination_rows)
-  end
-  
-  def facebook_callback
-    @categories = Category.admin_grid(params,true).order(sort_column + " " + sort_direction).
-                                          paginate(:page => pagination_page, :per_page => pagination_rows)
-    
-    @customerManagement = CustomerManagement.where(:email => env["omniauth.auth"].extra.raw_info.email).first
-    if @customerManagement
-      @customerManagement.update_facebook_omniauth(env["omniauth.auth"])
-      @customerManagement.save
-      session[:customer_id] = @customerManagement.id
-    else
-      @customerManagement = CustomerManagement.from_omniauth(env["omniauth.auth"])
-      session[:customer_id] = @customerManagement.id
-    end 
-      
-    redirect_to action: "index"
-    
-  end
+   end
 
   # GET /categories/1
   # GET /categories/1.json

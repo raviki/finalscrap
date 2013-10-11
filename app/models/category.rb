@@ -64,12 +64,9 @@ class Category < ActiveRecord::Base
     end
 
     def self.active_filter(active)
-      puts "---------active filter"
       if active.present? and active
-        puts "---------active filter yes"
         where("categories.active")
       else
-        puts "---------active filter no"
         all
       end
     end

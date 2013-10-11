@@ -28,7 +28,6 @@ def update_facebook_omniauth(auth)
 end
 
 def self.from_omniauth(auth)   
-
    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |customerManagement|
       customerManagement.provider = auth.provider
       customerManagement.uid = auth.uid
@@ -37,7 +36,7 @@ def self.from_omniauth(auth)
       customerManagement.password_confirmation = "0"
       customerManagement.email = auth.extra.raw_info.email
       customerManagement.oauth_token = auth.credentials.token
-      customerManagement.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      customerManagement.oauth_expires_at = Time.at(auth.credentials.expires_at)      
       customerManagement.save
     end
 end
