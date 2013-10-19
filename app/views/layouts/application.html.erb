@@ -13,8 +13,12 @@
   </head>
 <%= render 'layouts/header' %>
   <body>
-    <div class="container">
+
+    <div class="container", style='margin-bottom: 1.5em;' >
       <%= yield %>
-    </div>
+    </div>  
   </body>
+ <footer>
+ 	<%= render 'shared/footer' %>
+ </footer>
 </html>

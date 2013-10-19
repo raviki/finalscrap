@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
   layout "admin"
+  before_filter :verify_admin
   
   def index
        
@@ -17,6 +18,16 @@ class AdminController < ApplicationController
     flash.keep
     super
   end
+  
+  def verify_admin
+    if !signed_in?
+       session[:return_to] = request.url
+       redirect_to sessions_path 
+    end
+     
+  end
+  
+ # redirect_to sessions_path
   
   def pagination_page
     params[:page] ||= 1

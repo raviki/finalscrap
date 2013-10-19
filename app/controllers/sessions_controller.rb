@@ -51,7 +51,7 @@ end
     end 
      session[:customer_id] = @customerManagement.id    
      
-     redirect_to categories_path, :success  => "Logged In!!" 
+     redirect_back_or(categories_path)
   end
 
 def destroy
