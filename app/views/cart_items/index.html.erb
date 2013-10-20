@@ -1,0 +1,30 @@
+<table class="table table-hover">
+	
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cart_items.each do |cart_item| %>
+      <tr>
+        <td><%= cart_item.product.name%></td>
+        <td><%= cart_item.price %></td>
+        <td><%= cart_item.quantity %></td>
+        <td> Rs<%= cart_item.total_price %></td>
+        <td><%= link_to raw('<i class="icon-remove"></i>'), cart_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+ <tr >
+<td >Total</td>
+<td class="total_cell" ><%= @cart_items.to_a.sum(&:total_price) %></td>
+</tr>
+</table> 
+
+

@@ -1,5 +1,9 @@
 Website::Application.routes.draw do
   
+  resources :cart_items
+
+  resources :carts
+
   get "password_resets/new"
   get "log_out" => "sessions#destroy", :as => "log_out"
   resources :searches
