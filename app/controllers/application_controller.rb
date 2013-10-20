@@ -35,4 +35,45 @@ class ApplicationController < ActionController::Base
    session[:return_to] = nil
   end
   
+   def current_cart
+    puts "------------------------------------In current cart-----------------"
+    if cookies[:cart_id]
+      puts "-----------Cant come here------------"
+      @cart = Cart.find_by(:customer_id => cookies[:cart_id])
+      puts "---------cart not existing #{@cart}"
+      unless @cart
+        puts "so creating .............. cart new"
+        @cart = Cart.new(:customer_id => cookies[:cart_id])
+        cookies.permanent[:cart_id] = @cart.customer_id
+      end
+    end
+    @current_user = current_user
+    if @current_user
+      if @cart
+        @cart.update(:customer_id => @current_user.id)
+      else
+        @cart = Cart.find_by(:customer_id => @current_user.id)
+        unless @cart
+          @cart = Cart.new(:customer_id => @current_user.id)
+          cookies.permanent[:cart_id] = @cart.customer_id
+        end
+      end
+    else
+      unless @cart
+        @cart = Cart.create(:customer_id => rand(1990))
+        cookies[:cart_id] = @cart.customer_id
+      end
+    end
+    return @cart
+  end
+
+  def current_user
+    rem_token_cookie = cookies[:remember_token]
+    encrypted_token  = Digest::SHA1.hexdigest(rem_token_cookie.to_s)
+    @current_user ||= CustomerManagement.find_by(:remember_token => :encrypted_token)
+    puts " CUrrent user:#{@current_user}"
+    return @current_user
+  end
+
+  
 end
