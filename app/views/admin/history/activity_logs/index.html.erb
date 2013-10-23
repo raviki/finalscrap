@@ -1,2 +1,30 @@
-<h1>Admin::History::ActivityLogs#index</h1>
-<p>Find me in app/views/admin/history/activity_logs/index.html.erb</p>
+<h1>Listing activities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Admin name</th>
+      <th>Model</th>
+      <th>Index</th>
+      <th>Action performed</th>
+      <th>Data</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @activities.each do |activity| %>
+      <tr>
+      	<td><%= activity.user_name %></td>
+        <td><%= activity.model %></td>
+        <td><%= activity.belongsTo %></td>
+        <td><%= activity.action_performed %></td>
+        <td><%= activity.data %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= will_paginate @activit	ies %>
+

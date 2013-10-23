@@ -21,7 +21,7 @@
 <% end %>
 
 <% if @customer.products.size > 0 %>
-<h5 style='text-align:right'>WishList</h5>
+<h5 style='text-align:right'>Cart Items</h5>
 <table>
 	<%= render :partial => 'admin/merchandise/products/table_header', :locals =>  { :customer_page_id => @customer.id } %>
 	<tbody>
@@ -64,5 +64,5 @@
 </table>
 <% end %>
 
-
+<br>
 <%= link_to 'Search Page', admin_customers_customers_url, :class => 'button small blue-button' %>
