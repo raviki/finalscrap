@@ -3,9 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   include SessionsHelper
-  
-  private 
-  
+
+  private
   def pagination_page
     params[:page] ||= 1
     params[:page].to_i
@@ -15,22 +14,22 @@ class ApplicationController < ActionController::Base
     params[:rows] ||= 10
     params[:rows].to_i
   end
-  
+
   def store_location
-    session[:return_to] = request.env["HTTP_REFERER"] 
-    
+    session[:return_to] = request.env["HTTP_REFERER"]
+
   end
 
   def redirect_back_or(default, hsh = {})
-     redirect_to(session[:return_to] || default, hsh )
-     clear_return_to
+    redirect_to(session[:return_to] || default, hsh )
+    clear_return_to
   end
 
   def clear_return_to
-   session[:return_to] = nil
+    session[:return_to] = nil
   end
-  
-   def current_cart
+
+  def current_cart
     puts "------------------------------------In current cart-----------------"
     if cookies[:cart_id]
       puts "-----------Cant come here------------"
@@ -70,5 +69,8 @@ class ApplicationController < ActionController::Base
     return @current_user
   end
 
-  
+  def update_cart_items
+    @cart_items = CartItem.all
+  end
+
 end
