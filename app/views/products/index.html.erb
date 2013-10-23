@@ -1,41 +1,59 @@
-<h1>Listing products</h1>
+<script type="text/javascript" charset="utf-8">
+      $(function() {
+        $("#addcart").bind("ajax:complete",function() {
+        	
+        	alert ("Hello");
+          $("#myModal").modal();
+          return false;
+        })
+      })
+    </script>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Image</th>
-      <th>Price</th>
-      <th>Description</th>
-      <th>Meta description</th>
-      <th>Meta keyword</th>
-      <th>Views</th>
-      <th>Active</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="row-fluid">
+	<div class="span2"></div>
+	<div class="span10">
 
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.image %></td>
-        <td><%= product.price %></td>
-        <td><%= product.description %></td>
-        <td><%= product.meta_description %></td>
-        <td><%= product.meta_keyword %></td>
-        <td><%= product.views %></td>
-        <td><%= product.active %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+		<ul class="thumbnails">
+			<% @products.each do |product| %>
+			<li >
+				<div class="thumbnail">
+					<%= link_to image_tag(product.image,:height => "200px", :width => "200px" ),product_path(product)%>
+					<div class="caption">
+						<%= simple_format(product.name,:class=>:name)%>
+						<%= simple_format("Rs #{product.price}",:class =>:pricehilit)%>
+						<%=form_for(:cart_item,url: cart_items_path, remote:true, :html => {id: "addcart"}) do |f|%>
+						<div class="centerform">
+							<%= f.text_field :quantity, :class=>"span6"%>
+							<%= hidden_field_tag :product_id, product.id%>
+							<%= f.submit "Add", {class: "btn btn-info", id:"addcart"}%>
+						</div>
+						<%end%>
 
-<br>
+					</div>
+				</div>
+			</li>
+			<%end%>
+		</ul>
 
-<%= link_to 'New Product', new_product_path %>
+	</div>
+	<!-- Modal -->
+	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+				×
+			</button>
+			<h3 id="myModalLabel">Modal header</h3>
+		</div>
+		<div class="modal-body" id="modal-body"></div>
+		<div class="modal-footer">
+
+			<button class="btn" data-dismiss="modal" aria-hidden="true">
+				Close
+			</button>
+			<button class="btn btn-primary">
+				Save changes
+			</button>
+		</div>
+	</div>
+
+</div>
