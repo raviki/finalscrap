@@ -1,14 +1,14 @@
 <script type="text/javascript" charset="utf-8">
       $(function() {
         $("#addcart").bind("ajax:complete",function() {
-        	alert ("Hello");
         	
+        	alert ("Hello");
           $("#myModal").modal();
-          $("#modal-body").html("<%=escape_javascript(render partial:"/cart_items/index")%>");
           return false;
         })
       })
     </script>
+    
 <div class="row-fluid">
 	<div class="container">
 	<div class="span4">
@@ -32,9 +32,8 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Modal header</h3>
   </div>
-  <div class="modal-body" id="modal-body">
-  <%= link_to "cart",cart_items_path%>
-  </div>
+  <div class="modal-body" id="modal-body">	
+  	</div>
   <div class="modal-footer">
   	
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> 
