@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @product.updateViewCount
-    @cart_items = CartItem.all
+    @cart_items =CartItem.all
   end
 
   # GET /products/new

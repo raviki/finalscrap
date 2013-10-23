@@ -1,6 +1,6 @@
 class Admin::Customers::CustomersController < AdminController
-  before_action :set_customer, only: [:show, :edit, :update, :destroy, :add_to_cart, :create_order, :update_customer_lead_id, :update_customer_group_id]
-  after_action :log, only: [:update, :destroy, :add_to_cart, :create_order, :update_customer_lead_id, :update_customer_group_id]
+  before_action :set_customer, only: [:show, :edit, :update, :destroy, :add_to_cart, :create_order, :update_customer_lead_id, :update_customer_group_id,:add_customer_info]
+  after_action :log, only: [:update, :destroy, :add_to_cart, :create_order, :update_customer_lead_id, :update_customer_group_id, :add_customer_info]
 
   # GET /customers
   # GET /customers.json
@@ -23,6 +23,14 @@ class Admin::Customers::CustomersController < AdminController
   def new
     @customer = CustomerManagement.new
   end
+  
+  def add_customer_info    
+    @customer_info = Customer.create_new(params)
+    if @customer_info
+      @customer.update_columns(customer_id: @customer_info.id)
+    end
+    redirect_to action: "show"
+  end
 
   # GET /customers/1/edit
   def edit
@@ -35,9 +43,6 @@ class Admin::Customers::CustomersController < AdminController
    redirect_to action: "show"
   end
   
-  def add_customer_info
-    
-  end
 
   # POST /customers
   # POST /customers.json
@@ -114,7 +119,7 @@ class Admin::Customers::CustomersController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer_management).permit(:name, :password, :password_confirmation, :email, :customer_id, :remember_token, :password_digest, :provider, :uid, :oauth_token, :oauth_expires_at, :password_reset_token, :password_reset_sent_at)
+      params.require(:customer_management).permit(:name, :password, :password_confirmation, :email, :customer_id, :remember_token, :password_digest, :provider, :uid, :oauth_token, :oauth_expires_at, :password_reset_token, :password_reset_sent_at, :contact_no, :add_line1, :add_line2, :city, :pin, :wishlist, :customer_group_id, :customer_lead_id)
     end
     def sort_column
         CustomerManagement.column_names.include?(params[:sort]) ? params[:sort] : "id"

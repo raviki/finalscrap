@@ -1,5 +1,7 @@
 Website::Application.routes.draw do
 
+  get "customer_infos/edit"
+  get "customer_info/edit"
   get "activity_logs/index"
   get "activity_log/index"
   resources :activities
@@ -57,10 +59,11 @@ Website::Application.routes.draw do
        resources :customers
        resources :customer_groups
        resources :customer_leads
+       resources :customer_infos
        get "customers/:id/update_customer_group_id" => "customers#update_customer_group_id"
        get "customers/:id/update_customer_lead_id" => "customers#update_customer_lead_id"
        get "customers/:id/add_to_wishlist" => "customers#add_to_wishlist"
-       
+       get "customers/:id/add_customer_info" => "customers#add_customer_info"    
     end
     
     namespace :partners do

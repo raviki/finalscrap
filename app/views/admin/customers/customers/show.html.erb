@@ -1,3 +1,15 @@
+ <script type="text/javascript" charset="utf-8">
+      $(function() {
+      	// alert("called here")
+        $("#addcustomerinfo").click(function() {
+        	alert("callinherer")
+          $("#myModal").modal();
+          $("#modal-body").html("<%=escape_javascript(render partial:"/admin/customers/customers/customer_info_form")%>");
+          return false;
+        });
+      })
+    </script>
+    
  <h4 style='text-align:center'>Customer Information</h4>
  <table>
 	<%= render 'admin/customers/customers/table_header' %>
@@ -7,7 +19,9 @@
 </table>
 
 <% if !@customer.customer_id %>
-	<%= link_to 'Add to Customer Info', "#", :class => 'button small blue-button' %>
+<%= link_to 'Add Customer Info', "#", :remote => true, :class => 'button small blue-button', :id => "addcustomerinfo" %>
+<% else %>
+<%= render :partial => 'admin/customers/customer_infos/table', :object => @customer.customer, :as => :item %>
 <% end %>
 
 <% if @customer.orders.size > 0 %>
@@ -66,3 +80,16 @@
 
 <br>
 <%= link_to 'Search Page', admin_customers_customers_url, :class => 'button small blue-button' %>
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+  <div class="modal-body" id="modal-body">	
+  </div>
+  <div class="modal-footer">	
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> 
+  </div>
+</div>

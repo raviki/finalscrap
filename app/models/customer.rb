@@ -27,6 +27,19 @@ class Customer < ActiveRecord::Base
     return @customer
   end
   
+  def self.create_new(params)
+    @customer = Customer.new
+    @customer.contact_no = params[:contact_no]
+    @customer.add_line1 = params[:add_line1]
+    @customer.add_line2 = params[:add_line2]
+    @customer.city = params[:city] 
+    @customer.pin = params[:pin]
+    @customer.customer_group_id = params[:customer_group_id]
+    @customer.customer_lead_id = params[:customer_lead_id]
+    @customer.save
+    return @customer
+  end
+  
   
   ## Auto generated code using java @ Ravi
   ## Begin
