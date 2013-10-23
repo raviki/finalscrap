@@ -1,30 +1,33 @@
-<table class="table table-hover">
-	
-  <thead>
-    <tr>
-      <th>Product</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>Total</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @cart_items.each do |cart_item| %>
-      <tr>
-        <td><%= cart_item.product.name%></td>
-        <td><%= cart_item.price %></td>
-        <td><%= cart_item.quantity %></td>
-        <td> Rs<%= cart_item.total_price %></td>
-        <td><%= link_to raw('<i class="icon-remove"></i>'), cart_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
- <tr >
-<td >Total</td>
-<td class="total_cell" ><%= @cart_items.to_a.sum(&:total_price) %></td>
-</tr>
-</table> 
+<table class="table table-bordered">
 
+	<thead>
+		<tr>
+			<th text-align="justify">Product</th>
+			<th align="center">Price</th>
+			<th align="center">Quantity</th>
+			<th align="center">Total</th>
+			<th align="center">Delete</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @cart_items.each do |cart_item| %>
+		<tr>
+			<td class="span2"><%= cart_item.product.name%></td>
+			<td class="span2"><%= cart_item.price %></td>
+			<td class="span2" align="center"> <%= form_for(cart_item, remote:true) do |f| %><%= f.text_field :quantity, class: "span8"%><% end %></td>
+			<td class="span2"> Rs<%= cart_item.total_price %></td>
+			<td class="span2"><%= link_to raw('<i class="icon-remove"></i>'), cart_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		</tr>
+		<% end %>
+	</tbody>
+	<tr >
+		<td></td>
+		<td></td>
+		<td></td>
+		<td >Total</td>
+		<td class="total_cell" ><%= @cart_items.to_a.sum(&:total_price) %></td>
+	</tr>
+</table>
 
