@@ -37,6 +37,7 @@ class CartItemsController < ApplicationController
         @isShowCartItems = "yes"
         format.html { redirect_back_or(cart_items_url(@cart_item, notice: 'Cart item was successfully created.')) }
         format.json { render action: 'show', status: :created, location: @cart_item }
+        format.js 
       else
         format.html { render action: 'new' }
         format.json { render json: @cart_item.errors, status: :unprocessable_entity }
