@@ -1,7 +1,7 @@
 <div class="center">
 	
 <%= form_tag password_resets_path, :method => :post do %>
-	<div class="form-horizontal">
+	<div class="form-horizontal", style='margin-top: 10%;margin-bottom: 25%;'>
   
     <%= text_field_tag :email, params[:email], :placeholder => "Email Address" %> 
   	<%= submit_tag "Reset Password", :class => 'btn btn-info', :style => 'width: 15%;'%>

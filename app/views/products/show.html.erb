@@ -4,7 +4,7 @@
         	alert ("Hello");
         	
           $("#myModal").modal();
-          $("#modal-body").html("<%=escape_javascript(render partial:"/cart_items/index")%>");
+          $("#modal-body").html("<%=escape_javascript(render template:"/cart_items/index")%>");
           return false;
         })
       })

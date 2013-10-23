@@ -1,5 +1,9 @@
 Website::Application.routes.draw do
 
+  get "activity_logs/index"
+  get "activity_log/index"
+  resources :activities
+
   get "password_resets/new"
   get "log_out" => "sessions#destroy", :as => "log_out"
   get 'auth/:provider/callback', to: 'sessions#create'
@@ -75,6 +79,7 @@ Website::Application.routes.draw do
     
     namespace :history do
       resources :sales
+      resources :activity_logs
     end
     
     namespace :fulfillments do

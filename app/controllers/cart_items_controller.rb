@@ -23,8 +23,9 @@ class CartItemsController < ApplicationController
   # POST /cart_items
   # POST /cart_items.json
   def create
+    store_location()
     @cart = current_cart
-    puts "Cart 000---> #{@cart}"
+    puts "Cart 000---> #{@cart.customer_id}"
     product = Product.find(params[:product_id])
     puts" Product loded here"
     @cart_item = @cart.add_products({:product_id => product.id, :price => product.price,:quantity => params[:cart_item][:quantity],:cart_id => @cart.customer_id})
@@ -32,11 +33,14 @@ class CartItemsController < ApplicationController
 
     respond_to do |format|
       if @cart_item.save
-        format.html { redirect_to @cart_item, notice: 'Cart item was successfully created.' }
+        puts "==== #{params}" 
+        @isShowCartItems = "yes"
+        format.html { redirect_back_or(cart_items_url(@cart_item, notice: 'Cart item was successfully created.')) }
         format.json { render action: 'show', status: :created, location: @cart_item }
       else
         format.html { render action: 'new' }
         format.json { render json: @cart_item.errors, status: :unprocessable_entity }
+        
       end
     end
   end
@@ -74,6 +78,6 @@ class CartItemsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def cart_item_params
-    params.require(:cart_item).permit(:product_id, :price, :quantity,:cart_id)
+    params.require(:cart_item).permit(:product_id, :price, :quantity, :cart_id)
   end
 end

@@ -6,6 +6,12 @@ class AdminController < ApplicationController
        
   end
   
+  def log
+    Activity.log_activity(self.class, @user.id, @user.name, params[:id], params[:action],params)
+  end
+  
+  
+  
   def select_page
     self.store_location()
     @select_page = true

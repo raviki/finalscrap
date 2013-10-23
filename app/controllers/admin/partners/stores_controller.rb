@@ -1,5 +1,6 @@
 class Admin::Partners::StoresController < AdminController
  before_action :set_store, only: [:show, :edit, :update, :destroy, :update_product_map]
+ after_action :log, only: [:update, :destroy, :update_product_map]
 
   # GET /stores
   # GET /stores.json

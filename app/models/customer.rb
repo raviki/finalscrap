@@ -3,15 +3,18 @@ class Customer < ActiveRecord::Base
   belongs_to :customer_group
   belongs_to :customer_lead
   
-  has_many :wishlists
-  has_many :wishProducts,    :through => :wishlists,             :class_name => "Product"
+  has_one :customer_management
+  has_one :cart,             :through => :customer_management
+  has_many :cart_items,      :through => :cart
+  has_many :products,        :through => :cart_items
 
   has_many :orders         
   has_many :vouchers,        :through => :customer_group
   
   
-  def add_to_wishlist(product_id)   
-    wishProduct.find_or_create_by_category_id_and_product_id(self.id, product_id)
+  def add_to_cart(product_id)
+    cart.find_or_create_by_customer_id(self.id)
+    products.find_or_create_by_cart_id_and_product_id(cart.id, product_id)
   end
   
   def self.create_find4CustomerManager(customerManagement)
@@ -27,7 +30,6 @@ class Customer < ActiveRecord::Base
   
   ## Auto generated code using java @ Ravi
   ## Begin
-
 
   def self.admin_grid(params = {}, active_state = nil)
     grid = id_filter(params[:id]).

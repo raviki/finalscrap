@@ -6,6 +6,10 @@
 	</tbody>
 </table>
 
+<% if !@customer.customer_id %>
+	<%= link_to 'Add to Customer Info', "#", :class => 'button small blue-button' %>
+<% end %>
+
 <% if @customer.orders.size > 0 %>
 <h5 style='text-align:right'>Listing Orders</h5>
 <table>
@@ -16,12 +20,12 @@
 </table>
 <% end %>
 
-<% if @customer.wishProducts.size > 0 %>
+<% if @customer.products.size > 0 %>
 <h5 style='text-align:right'>WishList</h5>
 <table>
 	<%= render :partial => 'admin/merchandise/products/table_header', :locals =>  { :customer_page_id => @customer.id } %>
 	<tbody>
-      <%= render :partial => 'admin/merchandise/products/product', :locals => { :customer_page_id => @customer.id }, :collection => @customer.wishProducts.all %>
+      <%= render :partial => 'admin/merchandise/products/product', :locals => { :customer_page_id => @customer.id }, :collection => @customer.products.all %>
 	</tbody>
 </table>
 <%= link_to 'Add to List', admin_customers_customers_url, :class => 'button small blue-button' %>

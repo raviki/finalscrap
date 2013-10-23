@@ -1,6 +1,7 @@
 class Admin::Merchandise::ProductsController < AdminController
   before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle_active]
   helper_method :sort_column, :sort_direction
+  after_action :log, only: [:update, :destroy, :toggle_active]
 
   # GET /products
   # GET /products.json

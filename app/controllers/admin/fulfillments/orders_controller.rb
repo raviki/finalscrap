@@ -1,5 +1,6 @@
 class Admin::Fulfillments::OrdersController < AdminController
   before_action :set_order, only: [:show, :edit, :update, :destroy, :assign_store]
+  after_action :log, only: [:update, :destroy, :assign_store]
 
   # GET /orders
   # GET /orders.json
@@ -45,18 +46,18 @@ class Admin::Fulfillments::OrdersController < AdminController
 
   def create_order
     store_location()
-    @wishlists = Wishlist.where(customer_id: params[:customer_id])
     @customer = Customer.where(:id => params[:customer_id]).first
-    if @wishlists.length > 0 
+    if @customer.cart_items.length > 0 
       @order = Order.find_or_create_by_customer_id(params[:customer_id])
-      @wishlists.each do |wishlist|      
-        @order_to_product = OrderToProduct.where(:product_id => wishlist.product_id, :order_id => @order.id).first_or_create
-        wishlist.delete       
+      @customer.cart_items.each do |cart_item|      
+        @order_to_product = OrderToProduct.where(:product_id => cart_item.product_id, :order_id => @order.id).first_or_create
+        cart_item.delete       
       end
+      @customer.cart.delete
       @order.save
       redirect_to action: 'show', id: @order.id
     else
-      redirect_back_or(admin_customers_customers_url(@customer), notice: 'Empty Wishlist.')
+      redirect_back_or(admin_customers_customers_url(@customer), notice: 'Empty Cart.')
     end
   end
   

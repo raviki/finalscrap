@@ -1,5 +1,6 @@
 class Admin::Merchandise::CategoriesController < AdminController
-  before_action :set_category, only: [:show, :edit, :update, :destroy, :new_product_map, :delete_product_map]
+  before_action :set_category, only: [:show, :edit, :update, :destroy, :new_product_map, :delete_product_map, :toggle_active]
+  after_action :log, only: [:update, :destroy, :new_product_map, :delete_product_map, :toggle_active]
 
   # GET /categories
   # GET /categories.json
@@ -10,7 +11,6 @@ class Admin::Merchandise::CategoriesController < AdminController
   
    def toggle_active    
     store_location()
-    @category = Category.find(params[:id])
     @category.toggle_active
     @category.save
     redirect_back_or(admin_merchandise_categories_url)

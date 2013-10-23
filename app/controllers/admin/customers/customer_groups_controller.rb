@@ -1,5 +1,6 @@
 class Admin::Customers::CustomerGroupsController < AdminController
   before_action :set_customer_group, only: [:show, :edit, :update, :destroy]
+  after_action :log, only: [:update, :destroy]
 
   # GET /customer_groups
   # GET /customer_groups.json
