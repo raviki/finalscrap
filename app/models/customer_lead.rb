@@ -1,6 +1,7 @@
 class CustomerLead < ActiveRecord::Base
   
   has_many :customers
+  has_many :customer_managements, :through => :customers
   validates :description, :length => {:maximum =>300}, :presence => true
   
     ## Auto generated code using java @ Ravi

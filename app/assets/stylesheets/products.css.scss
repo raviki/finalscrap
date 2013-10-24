@@ -1,0 +1,104 @@
+
+
+html body div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.caption p.pricehilit{
+  text-align:right;
+  font-size:1em;
+}
+
+p.mrp{
+text-decoration:line-through;
+font-size:1em;
+}
+
+p.name{
+font-family:'Oswald-Light',Arial,Helvetica,sans-serif;
+text-align: center;
+font-size: 1.1em;
+}
+
+html body div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail a img
+{
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1em;
+  max-height: 12em;
+  max-width: 80%;
+}
+
+html body div.container div.row-fluid div.span10 ul.thumbnails li
+{
+  width: 22.5%;
+  margin-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+
+html body div.container div.row-fluid div.span10 ul.thumbnails li div.center
+{
+  margin-top: 1em;
+}
+
+div.centerform{
+width: 50%; 
+margin: 0 auto;
+}
+
+.thumbnail:hover {
+  -webkit-box-shadow: 1px 1px 5px #b2b2b2; 
+  box-shadow: 1px 1px 5px #b2b2b2;
+}
+
+html body div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.caption
+{
+  margin-top:0;
+  margin-bottom:0;
+}
+
+
+
+html body div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail 
+{
+  margin-top: 1em;
+  margin-right: 1em;
+  div.product-info
+  {
+    visibility: hidden;
+    display: none;
+  }    
+}
+
+html body div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail:hover
+{
+    background-color: #CEECF5;
+    position: absolute;
+    div.product-info
+    { 
+      display: block;      
+      visibility: visible;
+      z-index: 101;
+    }
+}
+
+html body div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info .centerform
+{
+  margin-top: 0;
+  margin-bottom:0;   
+}
+
+html body div.container div.row-fluid div.span10 ul.thumbnails
+{
+  margin-bottom: 5%;
+}
+
+html body
+{
+  background-color: #CEECF5;
+}
+
+html body div.container div.row-fluid div.span10 ul.thumbnails
+{
+  margin-top: 1em;
+  background-color: #FFFFFF;
+}
+
+

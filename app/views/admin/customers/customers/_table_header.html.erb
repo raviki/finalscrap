@@ -5,7 +5,11 @@
       <th>Name</th>
       <th>Email</th>
       <th>Provider</th>
-      <th></th>
+      <% if defined? customer_group_page %>
+        	<th></th>
+      <% elsif defined? customer_lead_page %>
+        	<th></th>
+      <% end %>
     </tr>
   </thead>
 

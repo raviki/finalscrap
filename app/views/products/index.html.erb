@@ -12,27 +12,35 @@
 <div class="row-fluid">
 	<div class="span2"></div>
 	<div class="span10">
-
+		
 		<ul class="thumbnails">
 			<% @products.each do |product| %>
-			<li >
+			<li >				
 				<div class="thumbnail">
+					
+					<div class="center">
 					<%= link_to image_tag(product.image,:height => "200px", :width => "200px" ),product_path(product)%>
+					
+					
+					
+					</div>
 					<div class="caption">
 						<%= simple_format(product.name,:class=>:name)%>
-						<%= simple_format("Rs #{product.price}",:class =>:pricehilit)%>
+						<%= simple_format("<del>&#2352;</del> #{product.price}",:class =>:pricehilit)%>
+					</div>
+					<div class="product-info">
 						<%=form_for(:cart_item,url: cart_items_path, remote:true, :html => {id: "addcart"}) do |f|%>
-						<div class="centerform">
-							<%= f.text_field :quantity, :class=>"span6"%>
+						<div class="form-horizontal">
+							<%= f.text_field :quantity, :class=>"span6", :placeholder => "Quantity"%>
 							<%= hidden_field_tag :product_id, product.id%>
 							<%= f.submit "Add", {class: "btn btn-info", id:"addcart"}%>
 						</div>
 						<%end%>
-
 					</div>
 				</div>
 			</li>
 			<%end%>
+								
 		</ul>
 
 

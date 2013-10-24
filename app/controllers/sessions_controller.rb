@@ -8,6 +8,7 @@ end
   
 
  def create
+  store_location()
   if env["omniauth.auth"].present?  
         facebook_callback()
   else
@@ -28,12 +29,12 @@ end
       end
       encrypted_token = user.encrypt_token(remember_token)
       user.update_columns(remember_token: :encrypted_token)
-      redirect_to categories_path, :success  => "Logged In!!"    
+      redirect_back_or(categories_path, :success  => "Logged In!!")   
     else
       #puts "#{user_hash} this is not #{params.inspect}"
      render "new"
      end
-   else
+   else 
     # Create an error message and re-render the signin form.
     flash.now[:error] = 'Invalid email/password combination' # Not quite right!
      render 'new'
