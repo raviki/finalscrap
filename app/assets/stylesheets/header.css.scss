@@ -4,6 +4,7 @@ html body header div.navbar div.navbar-inner,
 html body header div.navbar 
 {
 	background-color: #E3E6E7;
+	font-family: "Helvetica,​sans-serif";
 }
 
 html body header div.navbar div.navbar-inner div.container a.brand
@@ -27,11 +28,16 @@ html body header div.navbar div.navbar-inner div.container div.nav-collapse .nav
 	margin-right:1em;
 }
 
-html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li a#addcart,
+html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li a,
 html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li.divider-vertical,
-html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li#fat-menu.dropdown
+html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li#fat-menu.dropdown a.dropdown-toggle
 {
 	margin-top:5px;
+}
+
+html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li form#index.navbar-search div.input-prepend input.btn
+{
+  margin-top:1px;
 }
 
 html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li form#index.navbar-search div.input-prepend div.btn-group button.btn

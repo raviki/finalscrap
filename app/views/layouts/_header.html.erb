@@ -6,10 +6,8 @@
 </script>
 <script type="text/javascript" charset="utf-8">
       $(function() {
-        $("#addcart").bind("ajax:complete",function() {
-        	
+        $("#addcart").bind("ajax:complete",function() {        	
           $("#myModal").modal();
-          $("#modal-body").html("<%=escape_javascript(render template: "cart_items/index")%>");
           return false;
         })	
       })
@@ -47,7 +45,7 @@
 						</li>
 						</ul>
 						<ul class="nav pull-right">
-							<li><%= link_to "Cart", '#', :remote => true, :id => "addcart" %></li>
+							<li><%= link_to 'Cart', :controller => cart_items_path,  :id => "addcart", :remote => true, :action => "get_cart_items", :method => :put %></li>
 							<li class="divider-vertical"></li>
 							<% if signed_in? %>
             <li id="fat-menu" class="dropdown">

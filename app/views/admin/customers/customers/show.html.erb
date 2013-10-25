@@ -2,7 +2,6 @@
       $(function() {
       	// alert("called here")
         $("#addcustomerinfo").click(function() {
-        	alert("callinherer")
           $("#myModal").modal();
           $("#modal-body").html("<%=escape_javascript(render partial:"/admin/customers/customers/customer_info_form")%>");
           return false;

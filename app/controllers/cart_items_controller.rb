@@ -12,7 +12,11 @@ class CartItemsController < ApplicationController
     @cart_items = CartItem.all
     update_cart_items
   end
- 
+  
+  def get_cart_items
+    puts "----------get_cart_items"
+    update_cart_items
+  end
 
   # GET /cart_items/new
   def new

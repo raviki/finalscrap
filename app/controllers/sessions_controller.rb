@@ -4,11 +4,11 @@ def index
   render 'new' 
 end
   def new
+    store_location()
   end
   
 
  def create
-  store_location()
   if env["omniauth.auth"].present?  
         facebook_callback()
   else
