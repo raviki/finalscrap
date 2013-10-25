@@ -4,7 +4,17 @@
    $('.selectpicker').selectpicker();
 });
 </script>
-       
+<script type="text/javascript" charset="utf-8">
+      $(function() {
+        $("#addcart").bind("ajax:complete",function() {
+        	
+          $("#myModal").modal();
+          $("#modal-body").html("<%=escape_javascript(render template: "cart_items/index")%>");
+          return false;
+        })	
+      })
+</script>
+	       
 	<br>
 	<div class="container">
 		<ul class="inline">
@@ -28,7 +38,7 @@
 							<%= form_tag products_path, :method => 'get', :id => "index", :class => 'navbar-search' do %>
 								<div class="input-prepend input-append offset2">
 																		
-									<%=	select(@caties,"id", Category.all.collect {|p| [ p.name, p.id ] }, { prompt:"All" },{class:"selectpicker span2", id: "cat",name:"select"})%>									
+									<%=	select(@caties,"id", Category.all.collect {|p| [ p.name, p.id ] }, { prompt:"All" },{class:"selectpicker span1", id: "cat",name:"select"})%>									
 									<%= text_field_tag :key, params[:key], :class => " span4 search-query" %>
 									<%= submit_tag "Search", :name => nil, :class => "btn btn-info" %>
     								
@@ -37,9 +47,7 @@
 						</li>
 						</ul>
 						<ul class="nav pull-right">
-							<li>
-								<a href="#">Link</a>
-							</li>
+							<li><%= link_to "Cart", '#', :remote => true, :id => "addcart" %></li>
 							<li class="divider-vertical"></li>
 							<% if signed_in? %>
             <li id="fat-menu" class="dropdown">
@@ -58,10 +66,11 @@
           <% else %>
             <li><%= link_to "Sign in", sessions_path %></li>
           <% end %>	
-          					</ul>
+          		</ul>
 				</div><!-- /.nav-collapse -->
 			</div>
 		</div><!-- /navbar-inner -->
 	</div><!-- /navbar -->
 	</div>
+	
 </header>

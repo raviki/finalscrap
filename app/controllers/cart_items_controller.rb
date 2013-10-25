@@ -10,7 +10,9 @@ class CartItemsController < ApplicationController
   # GET /cart_items/1.json
   def show
     @cart_items = CartItem.all
+    update_cart_items
   end
+ 
 
   # GET /cart_items/new
   def new
@@ -31,10 +33,12 @@ class CartItemsController < ApplicationController
     puts" Product loded here"
     @cart_item = @cart.add_products({:product_id => product.id, :price => product.price,:quantity => params[:cart_item][:quantity],:cart_id => @cart.customer_id})
     puts " Cart addition done proceeding to saving"
-
+    update_cart_items
+    
     respond_to do |format|
       if @cart_item.save
         puts "==== #{params}" 
+        
         @isShowCartItems = "yes"
         format.html { redirect_back_or(cart_items_url(@cart_item, notice: 'Cart item was successfully created.')) }
         format.json { render action: 'show', status: :created, location: @cart_item }
@@ -64,10 +68,13 @@ class CartItemsController < ApplicationController
   # DELETE /cart_items/1
   # DELETE /cart_items/1.json
   def destroy
+    store_location()
     @cart_item.destroy
+    update_cart_items
     respond_to do |format|
-      format.html { redirect_to cart_items_url }
+      format.html { redirect_back_or(cart_items_url) }
       format.json { head :no_content }
+      format.js
     end
   end
 

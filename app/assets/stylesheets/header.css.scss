@@ -1,0 +1,59 @@
+html body header div.navbar div.navbar-inner div.container,
+header,
+html body header div.navbar div.navbar-inner,
+html body header div.navbar 
+{
+	background-color: #E3E6E7;
+}
+
+html body header div.navbar div.navbar-inner div.container a.brand
+{
+	margin-left:1em;
+	margin-top:5px;
+}
+
+
+
+html body header div.navbar div.navbar-inner
+{
+	padding-left: 0;
+	padding-right: 0;
+	font-family: "Helvetica,​sans-serif";
+}
+
+html body header div.navbar div.navbar-inner div.container div.nav-collapse .nav
+{
+	padding-top: 0;
+	margin-right:1em;
+}
+
+html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li a#addcart,
+html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li.divider-vertical,
+html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li#fat-menu.dropdown
+{
+	margin-top:5px;
+}
+
+html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li form#index.navbar-search div.input-prepend div.btn-group button.btn
+{
+	border-radius: 5px 0 0 5px;
+}
+
+
+
+html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li form#index.navbar-search
+{
+	margin-top:auto;
+	margin-bottom:auto;
+	padding-top:10px;
+}
+
+
+html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li form#index.navbar-search div.input-prepend .btn-group 
+{
+	margin-top:auto;
+	margin-bottom: auto;
+}
+
+
+

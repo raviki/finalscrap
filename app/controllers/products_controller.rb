@@ -4,19 +4,17 @@ class ProductsController < ApplicationController
 
   # GET /products
   # GET /products.json
-  def index
-    
+  def index    
     if params[:select].present?
       @category = Category.find(params[:select])
       if @category
         @products = @category.activeProducts.standard_search(params[:key])
       end
     end
-    if !@products
-        
+    if !@products        
         @products = Product.admin_grid(params,true,params[:key]).order(sort_column + " " + sort_direction).
                                              paginate(:page => pagination_page, :per_page => pagination_rows)
-
+    @cart_items = current_cart.cart_items
     end
   end
 
@@ -25,7 +23,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @product.updateViewCount
-    @cart_items =CartItem.all
+    @cart_items = current_cart.cart_items
   end
 
   # GET /products/new

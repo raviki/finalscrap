@@ -11,9 +11,8 @@ font-size:1em;
 }
 
 p.name{
-font-family:'Oswald-Light',Arial,Helvetica,sans-serif;
 text-align: center;
-font-size: 1.1em;
+font-size: 1.25em;
 }
 
 html body div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail a img
@@ -27,6 +26,7 @@ html body div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail 
 
 html body div.container div.row-fluid div.span10 ul.thumbnails li
 {
+  font-family: "Helvetica,​sans-serif";
   width: 22.5%;
   margin-left: 1.5em;
   margin-bottom: 1em;
@@ -43,10 +43,6 @@ width: 50%;
 margin: 0 auto;
 }
 
-.thumbnail:hover {
-  -webkit-box-shadow: 1px 1px 5px #b2b2b2; 
-  box-shadow: 1px 1px 5px #b2b2b2;
-}
 
 html body div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.caption
 {
@@ -60,6 +56,7 @@ html body div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail
 {
   margin-top: 1em;
   margin-right: 1em;
+  position: relative;
   div.product-info
   {
     visibility: hidden;
@@ -69,17 +66,25 @@ html body div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail
 
 html body div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail:hover
 {
-    background-color: #CEECF5;
-    position: absolute;
+    background-color: #CEECF5;    
+    z-index: 101;
+    border-radius: 4px 4px 0 0;
     div.product-info
     { 
+      background-color: #CEECF5;
       display: block;      
       visibility: visible;
-      z-index: 101;
+      left: 0;
+      margin-top:0.5em;
+      padding-left:0.5em;
+      padding-right:0.5em;
+      position: absolute;
+      border: 1px solid #DDDDDD;
+      border-radius: 0 0 4px 4px;
     }
 }
 
-html body div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info .centerform
+html body div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.caption p.pricehilit
 {
   margin-top: 0;
   margin-bottom:0;   
@@ -87,18 +92,70 @@ html body div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail 
 
 html body div.container div.row-fluid div.span10 ul.thumbnails
 {
-  margin-bottom: 5%;
-}
-
-html body
-{
-  background-color: #CEECF5;
-}
-
-html body div.container div.row-fluid div.span10 ul.thumbnails
-{
+  margin-bottom: 1.5em;
+  margin-right: 1em;
   margin-top: 1em;
   background-color: #FFFFFF;
 }
 
+html body div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info form div.center input#cart_item_quantity.span6
+{
+  max-width: 40%;
+}
+
+
+//Cart Item css
+
+html body div#myModal.modal div#modal-body.modal-body table.table tbody tr td,
+html body div#myModal.modal div#modal-body.modal-body table.table thead tr th
+{
+  text-align: center;
+}
+
+html body div#myModal.modal div#modal-body.modal-body
+{
+  background-color: #FFFFFF;
+}
+
+html body div#myModal.modal
+{
+  font-family: "Helvetica,​sans-serif";
+}
+
+html body div#myModal.modal div#modal-body.modal-body table.table
+{
+  background-color: #E0F2F7;
+  box-shadow: 1px 1px 5px #b2b2b2;
+  -webkit-box-shadow: 1px 1px 5px #b2b2b2;
+  margin-bottom:0;
+}
+
+
+html body div#myModal.modal div.modal-header
+{
+  background-color: #E3E6E7;
+  border-radius: 8px 8px 0 0;
+}
+html body div#myModal.modal div.modal-footer
+{
+  background-color: #E3E6E7;
+  border-radius: 0 0 8px 8px;
+}
+
+html body div#myModal.modal div#modal-body.modal-body table.table tbody tr td.span2 form
+{
+  margin-bottom: 0; 
+}
+
+html body div#myModal.modal div#modal-body.modal-body table.table tbody tr td.span2 form input
+{
+  margin-bottom: 0;
+  width:100%;
+}
+
+html body div#myModal.modal div#modal-body.modal-body table.table tbody tr td.span2
+{
+  margin-left:auto;
+  margin-right:auto;
+}
 
