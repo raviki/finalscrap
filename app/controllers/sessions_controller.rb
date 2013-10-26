@@ -56,9 +56,10 @@ end
   end
 
 def destroy
+  store_location()
   cookies.delete(:remember_token)
   session[:customer_id] = nil
-  redirect_to categories_path, :success => "Logged Out!!"
+  redirect_back_or(categories_path, :success => "Logged Out!!")
   end
 
 end

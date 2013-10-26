@@ -3,18 +3,12 @@ class CartItemsController < ApplicationController
   # GET /cart_items
   # GET /cart_items.json
   def index
-    @cart_items = CartItem.all
+    update_cart_items
   end
 
   # GET /cart_items/1
   # GET /cart_items/1.json
   def show
-    @cart_items = CartItem.all
-    update_cart_items
-  end
-  
-  def get_cart_items
-    puts "----------get_cart_items"
     update_cart_items
   end
 
@@ -34,15 +28,18 @@ class CartItemsController < ApplicationController
     @cart = current_cart
     puts "Cart 000---> #{@cart.customer_id}"
     product = Product.find(params[:product_id])
-    puts" Product loded here"
+    puts" Product loded here #{params[:cart_item][:quantity].to_i > 0}"
+    if !(params[:cart_item][:quantity].to_i > 0)
+      params[:cart_item][:quantity] = "0"
+    end
     @cart_item = @cart.add_products({:product_id => product.id, :price => product.price,:quantity => params[:cart_item][:quantity],:cart_id => @cart.customer_id})
     puts " Cart addition done proceeding to saving"
-    update_cart_items
+
     
     respond_to do |format|
       if @cart_item.save
         puts "==== #{params}" 
-        
+        update_cart_items
         @isShowCartItems = "yes"
         format.html { redirect_back_or(cart_items_url(@cart_item, notice: 'Cart item was successfully created.')) }
         format.json { render action: 'show', status: :created, location: @cart_item }

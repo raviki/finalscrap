@@ -14,10 +14,11 @@
   </head>
 <%= render 'layouts/header' %>
   <body style="background-color:#FAFAFA">
-
-    <div class="container", style='margin-bottom: 1em;' >
-      <%= yield %>
-    </div>  
+	<div class="body-area">
+    	<div class="container" >
+      		<%= yield %>
+    	</div>  
+    </div>
   </body>
  <footer>
  	<%= render 'shared/footer' %>

@@ -2,5 +2,22 @@ html body div.container div.row-fluid
 {
 	 box-shadow: 1px 1px 5px #b2b2b2;
     -webkit-box-shadow: 1px 1px 5px #b2b2b2;
+     background-color: #EDF8FC;
 }   
+
+html body div.body-area	
+{
+	margin-left: 3em;
+  	margin-right: 3em;	
+}
+
+html body div.body-area div.container
+{
+	max-width: 100%;
+}
+
+html body{
+	background-color: #EDF8FC;
+	font-family: "Helvetica,​sans-serif";
+}
 

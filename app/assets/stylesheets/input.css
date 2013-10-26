@@ -26,7 +26,7 @@
 
 .login-color
 {
-	background-color: #66CC66;
+	background-color: #EDF8FC;
 }
 
 .center
@@ -49,9 +49,8 @@
          width: 70%;
          margin-left:12.5%;
 }
-.container .form-horizontal .row-fluid div.control-group div.center input,
-.container .form-horizontal .control-group .center .btn
-
+.body-area .container .row-fluid .login-color .form-horizontal .control-group .center input,
+.body-area .container .row-fluid .control-group .center  .btn
 {
 	width: 50%;
 	height: 2em;

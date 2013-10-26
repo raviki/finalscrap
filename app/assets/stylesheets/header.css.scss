@@ -1,10 +1,33 @@
+header
+{
+  margin-left: 3em;
+  margin-right: 3em;
+  font-family: "Helvetica,​sans-serif";
+  color: #FFFFFF;
+  margin-top: 1.5em;
+  margin-bottom: 5px;
+  box-shadow: 5px 5px 5px #b2b2b2;
+  -webkit-box-shadow: 5px 5px 5px #b2b2b2;
+}
+
 html body header div.navbar div.navbar-inner div.container,
 header,
 html body header div.navbar div.navbar-inner,
 html body header div.navbar 
 {
-	background-color: #E3E6E7;
-	font-family: "Helvetica,​sans-serif";
+	background-color: #226B7F;
+	
+	
+}
+
+html body header div.container
+{
+  max-width: 100%;
+}
+html body header div.container .inline
+{
+  padding-left: 2.5em;
+  padding-right:2.5em;
 }
 
 html body header div.navbar div.navbar-inner div.container a.brand
@@ -13,12 +36,17 @@ html body header div.navbar div.navbar-inner div.container a.brand
 	margin-top:5px;
 }
 
-
+html body header div.navbar
+{
+  margin-bottom: 0;
+}
 
 html body header div.navbar div.navbar-inner
 {
 	padding-left: 0;
 	padding-right: 0;
+	border-right: 0;
+	border-left: 0;
 	font-family: "Helvetica,​sans-serif";
 }
 
@@ -33,11 +61,20 @@ html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.n
 html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li#fat-menu.dropdown a.dropdown-toggle
 {
 	margin-top:5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+  
+html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li a#addcart
+{
+  background: url("/assets/cart.png") no-repeat scroll right center rgba(0, 0, 0, 0);
 }
 
 html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li form#index.navbar-search div.input-prepend input.btn
 {
   margin-top:1px;
+  border-radius: 0 5px 5px 0;
+  margin-left: 0;
 }
 
 html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li form#index.navbar-search div.input-prepend div.btn-group button.btn
@@ -46,12 +83,12 @@ html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.n
 }
 
 
-
 html body header div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li form#index.navbar-search
 {
 	margin-top:auto;
 	margin-bottom:auto;
 	padding-top:10px;
+	margin-left: 3em;
 }
 
 

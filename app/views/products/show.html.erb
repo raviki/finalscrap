@@ -9,21 +9,27 @@
 </script>
     
 <div class="row-fluid">
-	<div class="container">
-	<div class="span4">
-		<%= image_tag(@product.image)%>
-	</div>
-	<div class ="span8">
-		<h3><%= @product.name%> </h3>
-		<p><FONT SIZE="3.5em>"><del>&#2352;</del></FONT SIZE></FONT> <%= @product.price%> </p>
-	<%=form_for(:cart_item,url: cart_items_path, remote:true, :html => {id: "productaddcart"}) do |f|%>
-	<%= f.number_field :quantity,  :placeholder => "Quantity"%>
-	<%= hidden_field_tag :product_id, @product.id%>
-	<%= f.submit "Add to Cart", {class: "btn btn-info", id:"productaddcart"}%>
-	<%end%>
-	<!-- Button to trigger modal -->
-<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a> 
+	<div class="product-show">
+		<div class="container">
+			<div class="span3">
+				<%= image_tag(@product.image)%>
+			</div>
+			<div class ="span6">
+				<h3><%= @product.name%> </h3>
+				<p><FONT SIZE="3.5em>"><del>&#2352;</del></FONT SIZE></FONT> <%= @product.price%> </p>
+				<%=form_for(:cart_item,url: cart_items_path, remote:true, :html => {id: "productaddcart"}) do |f|%>
+					<%= f.number_field :quantity,  :placeholder => "Quantity"%>
+					<%= hidden_field_tag :product_id, @product.id%>
+					<%= f.submit "Add to Cart", {class: "btn btn-info", id:"productaddcart"}%>
+				<%end%>
+				<!-- Button to trigger modal -->
+				<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a> 
  
-</div>
-</div>
+			</div>
+			<div class ="span2">
+			
+			</div>	
+			
+		</div>
+	</div>
 </div>

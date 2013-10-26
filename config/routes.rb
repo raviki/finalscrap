@@ -12,7 +12,6 @@ Website::Application.routes.draw do
   get 'auth/failure', to: redirect('/')
   
   resources :cart_items
-  get "cart_items/:id/get_cart_items" => "cart_items#get_cart_items"
 
   resources :carts
 

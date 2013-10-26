@@ -41,16 +41,21 @@ class ApplicationController < ActionController::Base
     @current_user = current_user
     if @current_user
       if @cart
-        @cart.update(:customer_id => @current_user.id)
+        if @cart.customer_id != @current_user.id
+          @cart.update(:customer_id => @current_user.id)
+          cookies.delete :cart_customer_id
+        end
       else
         @cart = Cart.find_or_create_by_customer_id(@current_user.id)
       end
+      
     else
       unless @cart
         @cart = Cart.create(:customer_id => rand(1990))
       end
+      cookies.permanent[:cart_customer_id] = @cart.customer_id
     end
-    cookies.permanent[:cart_customer_id] = @cart.customer_id
+      
     return @cart
   end
 
@@ -67,7 +72,8 @@ class ApplicationController < ActionController::Base
   end
 
   def update_cart_items
-    @cart_items = CartItem.all
+    @cart = current_cart
+    @cart_items = @cart.cart_items.all
   end
 
 end

@@ -1,11 +1,17 @@
 .footer {
-    background: none repeat scroll 0 0 #E3E6E7;;
+    background-color: #909DA1;;
     clear: both;
-    height: 100px;
     position: absolute;
     left: 0;
     right: 0;
 	font-family: "Helvetica,​sans-serif";
+	color: #FFFFFF;
+	margin-left: 3em;
+  	margin-right: 3em;
+  	margin-top: 5px;
+  	margin-bottom: 1em;
+  	box-shadow: 5px 5px 5px #b2b2b2;
+  	-webkit-box-shadow: 5px 5px 5px #b2b2b2;
 }
 
 .row:before, .row:after {
@@ -31,6 +37,7 @@
     ul, ol {
     margin-bottom: 0px;
     padding: 0;
+    
 	}
 }
 .footer .row .section {
@@ -53,7 +60,7 @@
 }
 
 .footer .row .section .link .text {
-    color: #545454;
+    color: #FFFFFF;
     font-size: 14px;
     font-weight: lighter;
 }
