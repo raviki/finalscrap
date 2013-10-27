@@ -1,5 +1,7 @@
 Website::Application.routes.draw do
 
+  resources :product_variants
+
   get "customer_infos/edit"
   get "customer_info/edit"
   get "activity_logs/index"

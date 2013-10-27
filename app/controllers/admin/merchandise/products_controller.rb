@@ -19,7 +19,7 @@ class Admin::Merchandise::ProductsController < AdminController
   def show
     @products = Product.admin_grid(params).order(sort_column + " " + sort_direction).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
-    
+    @product_variants = @product.product_variants
   end
   
   def select_page

@@ -36,6 +36,12 @@
 	margin-right: auto;
 }
 
+.center-vertical
+{
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
 .center-text
 {
 	text-align: center;

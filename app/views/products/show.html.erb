@@ -12,16 +12,33 @@
 	<div class="product-show">
 		<div class="container">
 			<div class="span3">
-				<%= image_tag(@product.image)%>
+				<div class="center center-vertical">
+					<%= image_tag(@product.image)%>
+				</div>
 			</div>
 			<div class ="span6">
 				<h3><%= @product.name%> </h3>
 				<p><FONT SIZE="3.5em>"><del>&#2352;</del></FONT SIZE></FONT> <%= @product.price%> </p>
+				<b>Description:</b>
+				<p> <%=@product.description%></p>
+				<% if @product.product_variants.size > 0 %>
+					<b>Sizes:</b>
+					<ul class="size-buttons">
+						<% @product.product_variants.each do |variant| %>
+							<li id= <%="#{variant.id}"%> ><%= variant.value %></li>
+						<%end%>
+					</ul>
+				<% end %>
+											
 				<%=form_for(:cart_item,url: cart_items_path, remote:true, :html => {id: "productaddcart"}) do |f|%>
-					<%= f.number_field :quantity,  :placeholder => "Quantity"%>
-					<%= hidden_field_tag :product_id, @product.id%>
-					<%= f.submit "Add to Cart", {class: "btn btn-info", id:"productaddcart"}%>
+					<b>Quantity:</b>
+					<div class="form-horizontal">
+						<%= f.text_field :quantity, :class=>"span6"%>
+						<%= hidden_field_tag :product_id, @product.id%>
+						<%= f.submit "Add to Cart", {class: "btn btn-info", id:"productaddcart"}%>
+					</div>
 				<%end%>
+						
 				<!-- Button to trigger modal -->
 				<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a> 
  
