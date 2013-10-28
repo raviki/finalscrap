@@ -1,5 +1,7 @@
 Website::Application.routes.draw do
 
+  get "product_variants/edit"
+  get "product_variants/new"
   resources :product_variants
 
   get "customer_infos/edit"
@@ -47,7 +49,8 @@ Website::Application.routes.draw do
   
   namespace :admin do
     namespace :merchandise do
-      resources :products 
+      resources :products
+      resource  :product_variants
       resources :categories 
       get "products/:id/toggle_active" => "products#toggle_active"
       get "categoties/:id/toggle_active" => "categories#toggle_active"

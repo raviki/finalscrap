@@ -53,6 +53,7 @@ class Admin::Merchandise::ProductsController < AdminController
 
     respond_to do |format|
       if @product.save
+        ProductVariant.create(:product_id => @product.id, :price => 0)
         format.html { redirect_back_or(admin_merchandise_products_url, notice: 'Product was successfully created.') }
         format.json { render action: 'show', status: :created, location: @product }
       else
@@ -94,7 +95,7 @@ class Admin::Merchandise::ProductsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :image, :price, :description, :meta_description, :meta_keyword, :views, :active)
+      params.require(:product).permit(:name, :image, :description, :meta_description, :meta_keyword, :views, :active)
     end
     
     def sort_column

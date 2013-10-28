@@ -38,10 +38,15 @@ html body div.container div.row-fluid div.span10 ul.thumbnails li div.center
   margin-top: 5px;
 }
 
+html body div.body-area div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info
+{
+  padding-top: 5px;
+}
 html body div.body-area div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info form
 {
   margin-top: 5px;
   margin-bottom: 5px;
+  padding-top: 5px;
 }
 
 html body div.body-area div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info b
@@ -178,42 +183,62 @@ html body div.body-area div.container div.row-fluid div.span10 ul.thumbnails li 
   font-size:0.8em;
 }
 
-html body div.body-area div.container div.row-fluid div.product-show div.container div.span6 ul.size-buttons li,
+html body div.body-area div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info ul.size-buttons li p
+{
+  margin:0;
+  padding:0;
+}
+
+html body div.body-area div.container div.row-fluid div.product-show div.container div.span5 ul.size-buttons li p
+{
+  margin-left:0;
+  margin-right:0;
+  margin-bottom:0;
+  padding-top: 5px;
+}
+
+html body div.body-area div.container div.row-fluid div.product-show div.container div.span5 ul.size-buttons li,
 html body div.body-area div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info ul.size-buttons li
 {
-  text-align: center; 
   display: inline-block;
-  padding-left:1px;
-  padding-right:1px;
+  border-radius: 2px 2px 2px 2px;
+  border: 1px solid #B2B2B2;
   margin-right: 2px;
   margin-left:2px;
   margin-top:3px;
   margin-bottom:3px;
-  border: 1px solid #B2B2B2;
+  padding-left:2px;
+  padding-right:2px;
+  text-align: center; 
 }
 
-html body div.body-area div.container div.row-fluid div.product-show div.container div.span6 ul.size-buttons li:hover,
+html body div.body-area div.container div.row-fluid div.product-show div.container div.span5 ul.size-buttons li:hover,
 html body div.body-area div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info ul.size-buttons li:hover {
   border-color: #000000;
   color: #000000;
+  p
+  {
+    font-weight:bold;
+  }
 }
 
-html body div.body-area div.container div.row-fluid div.product-show div.container div.span6 ul.size-buttons li.selected,
+html body div.body-area div.container div.row-fluid div.product-show div.container div.span5 ul.size-buttons li.selected,
 html body div.body-area div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info ul.size-buttons li.selected {
     background: none repeat scroll 0 0 #000000;
     border-color: #000000;
     color: #FFFFFF !important;
 }
 
-html body div.body-area div.container div.row-fluid div.product-show div.container div.span6 ul.size-buttons li,
-html body div.body-area div.container div.row-fluid div.product-show div.container div.span6 ul.size-buttons li:hover,
-html body div.body-area div.container div.row-fluid div.product-show div.container div.span6 ul.size-buttons li.selected
+html body div.body-area div.container div.row-fluid div.product-show div.container div.span5 ul.size-buttons li,
+html body div.body-area div.container div.row-fluid div.product-show div.container div.span5 ul.size-buttons li:hover,
+html body div.body-area div.container div.row-fluid div.product-show div.container div.span5 ul.size-buttons li.selected
 {
   padding-left: 5px;
   padding-right:5px;
   padding-top: 5px;
   padding-bottom:5px;
   border-radius: 3px 3px 3px 3px;
+  min-width: 12.5%;
 }
 
 // Product Show
@@ -227,22 +252,86 @@ html body div.body-area div.container div.row-fluid div.product-show div.contain
   min-height: 100%;
 }
 
-.body-area .container .row-fluid .product-show .container .span6
+
+
+.body-area .container .row-fluid .product-show .container .span5
 {
-  height:600px;
   font-size: 1.1em;
+  margin-top:1em;
+  margin-left: 3em;
 }
 
-.body-area .container .row-fluid .product-show .container .span6 form#productaddcart input#cart_item_quantity.span6
+.body-area .container .row-fluid .product-show .container .span5 form#productaddcart input#cart_item_quantity.span6
 {
   max-height: 1em;
   width: 25%;
   margin-left: 1.5em;
 }
-.body-area .container .row-fluid .product-show .container .span6 p
+.body-area .container .row-fluid .product-show .container .span5 p
 {
     margin-left: 1.5em;
 }
+.body-area .container .row-fluid .product-show .container div.span5 .size-buttons li hr.dotted,
+html body div.body-area div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info ul.size-buttons li hr.dotted
+{
+  border: 1px dotted #ff0000; 
+  border-style: none none dotted; 
+  color: #fff; 
+  background-color: #fff; 
+  margin-top:0;
+  margin-bottom:0;
+}
 
+.body-area .container .row-fluid .product-show .container .span4
+{
+  margin-left:0;
+  background-color: #ffffff;
+}
 
+.body-area .container .row-fluid .product-show .container .span4 .product-sidebar
+{
+  margin:0;
+}
 
+.body-area .container .row-fluid .product-show .container .span4 .product-sidebar .product-sidebar-each
+{
+  background-color: #EDF8FC;
+  margin-left:1em;
+  margin-right:1em;
+  margin-top: 5px;
+  margin-bottom:5px;
+  border-radius: 10px 10px 10px 10px;
+  border: 1px solid #B2B2B2;
+  box-shadow: 1px 1px 5px #b2b2b2;
+  -webkit-box-shadow: 1px 1px 5px #b2b2b2;
+  max-height:8em;
+  padding:3px;
+  padding-top:0;
+}
+html body div.body-area div.container div.row-fluid div.product-show div.container div.span4 ul.product-sidebar li.product-sidebar-each ul.product-sidebar-each-split li.center-vertical p,
+.body-area .container .row-fluid .product-show .container .span4 .product-sidebar .product-sidebar-each .product-sidebar-each-split
+{
+  margin:0;
+  padding:0;
+}
+
+.body-area .container .row-fluid .product-show .container .span4 .product-sidebar .product-sidebar-each .product-sidebar-each-split li
+{
+  display: inline-block;
+  margin-top:auto;
+  margin-bottom:auto;
+}
+
+.body-area .container .row-fluid .product-show .container .span4 .product-sidebar .product-sidebar-each .product-sidebar-each-split li img
+{
+  height: 6em;
+  width: 6em;
+  margin:1em;
+}
+
+html body div.body-area div.container div.row-fluid div.product-show div.container div.span4 ul.product-sidebar li.product-sidebar-each ul.product-sidebar-each-split li.center-vertical
+{
+  margin-top: 1em;
+  margin-bottom: 1em;
+  max-height: 6em;
+}

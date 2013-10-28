@@ -24,6 +24,8 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.updateViewCount
     @cart_items = current_cart.cart_items
+    @sidebar_products = Product.all
+    @lowerbar_products = Product.all
   end
 
   # GET /products/new

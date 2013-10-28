@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
   has_many :stores,                 :through => :store_to_products
   
   has_many :product_variants
+  has_many :cart_items,             :through => :product_variants
   
   has_many :category_to_products
   has_many :categories,             :through => :category_to_products
@@ -17,7 +18,6 @@ class Product < ActiveRecord::Base
   validates :name,                  :presence => true,          :length => { :maximum => 165 }
   validates :image,                 :presence => true
   validates :description,           :presence => true,          :length => { :maximum => 300 }
-  validates :price,                 :presence => true,          :numericality => true
  
   def toggle_active
     if self.active == true

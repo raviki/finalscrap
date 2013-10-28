@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131026181840) do
+ActiveRecord::Schema.define(version: 20131027095611) do
 
   create_table "activities", force: true do |t|
     t.text     "model"
@@ -137,12 +137,12 @@ ActiveRecord::Schema.define(version: 20131026181840) do
     t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "price",      precision: 10, scale: 0
   end
 
   create_table "products", force: true do |t|
     t.text     "name"
     t.string   "image"
-    t.decimal  "price",            precision: 10, scale: 0
     t.text     "description"
     t.text     "meta_description"
     t.text     "meta_keyword"

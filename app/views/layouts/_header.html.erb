@@ -36,7 +36,7 @@
 							<%= form_tag products_path, :method => 'get', :id => "index", :class => 'navbar-search' do %>
 								<div class="input-prepend input-append offset1">
 																		
-									<%=	select(@caties,"id", Category.all.collect {|p| [ p.name, p.id ] }, { prompt:"All" },{class:"selectpicker span1", id: "cat",name:"select"})%>									
+									<%=	select(@categories,"id", Category.all.collect {|p| [ p.name, p.id ] }, { prompt:"All" },{class:"selectpicker span1", id: "cat",name:"select"})%>									
 									<%= text_field_tag :key, params[:key], :class => " span4 search-query" %>
 									<%= submit_tag "Search", :name => nil, :class => "btn btn-info" %>
 								</div>

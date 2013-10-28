@@ -1,32 +1,18 @@
-class ProductVariantsController < ApplicationController
-  before_action :set_product_variant, only: [:show, :edit, :update, :destroy]
-
-  # GET /product_variants
-  # GET /product_variants.json
-  def index
-    @product_variants = ProductVariant.all
-  end
-
-  # GET /product_variants/1
-  # GET /product_variants/1.json
-  def show
-  end
-
-  # GET /product_variants/new
+class Admin::Merchandise::ProductVariantsController < AdminController
+  before_action :set_product_variant, only: [:edit, :update, :destroy]
+    
+   # GET /product_variants/new
   def new
     @product_variant = ProductVariant.new
   end
 
   # GET /product_variants/1/edit
   def edit
-    store_location()
   end
 
   # POST /product_variants
   # POST /product_variants.json
-  def create
-    store_location()
-    
+  def create 
     puts "entered the dragon #{params[:product_id]}"
     @product_variant = ProductVariant.new(product_variant_params)
     
@@ -50,7 +36,7 @@ class ProductVariantsController < ApplicationController
   def update
     respond_to do |format|
       if @product_variant.update(product_variant_params)
-        format.html { redirect_back_or(@product_variant, notice: 'Product variant was successfully updated.') }
+        format.html { redirect_to @product_variant, notice: 'Product variant was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

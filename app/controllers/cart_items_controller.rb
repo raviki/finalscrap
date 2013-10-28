@@ -26,22 +26,18 @@ class CartItemsController < ApplicationController
   def create
     store_location()
     @cart = current_cart
-    puts "Cart 000---> #{@cart.customer_id}"
-    product = Product.find(params[:product_id])
-    puts" Product loded here #{params[:cart_item][:quantity].to_i > 0}"
+    @product = ProductVariant.find(params[:cart_item][:product_id])   
+        
     if !(params[:cart_item][:quantity].to_i > 0)
       params[:cart_item][:quantity] = "0"
     end
-    @cart_item = @cart.add_products({:product_id => product.id, :price => product.price,:quantity => params[:cart_item][:quantity],:cart_id => @cart.customer_id})
-    puts " Cart addition done proceeding to saving"
-
-    
+    @cart_item = @cart.add_products({:product_id => @product.id, :price => @product.price,:quantity => params[:cart_item][:quantity],:cart_id => @cart.customer_id})
+   
     respond_to do |format|
-      if @cart_item.save
-        puts "==== #{params}" 
+      if @cart_item.save 
         update_cart_items
         @isShowCartItems = "yes"
-        format.html { redirect_back_or(cart_items_url(@cart_item, notice: 'Cart item was successfully created.')) }
+        format.html { redirect_back_or(cart_items_url(@cart_item), notice: 'Cart item was successfully created.') }
         format.json { render action: 'show', status: :created, location: @cart_item }
         format.js 
       else

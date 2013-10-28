@@ -2,6 +2,8 @@
   <thead>
     <tr>    
       <th>Value</th>
+      <th>Price</th>
+       <th></th>
        <th></th>
     </tr>
   </thead>
@@ -10,6 +12,8 @@
     <% @product_variants.each do |product_variant| %>
       <tr>
         <td><%= product_variant.value %></td>
+        <td><%= product_variant.price %></td>
+        <td><%= link_to 'Edit', edit_product_variant_path(product_variant) %></td>      		
         <td><%= link_to 'Destroy', product_variant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

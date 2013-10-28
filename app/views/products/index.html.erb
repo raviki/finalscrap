@@ -16,27 +16,29 @@
 					</div>
 					<div class="caption">
 						<%= simple_format(product.name,:class=>:name)%>
-						<%= simple_format("<del>&#2352;</del> #{product.price}",:class =>:pricehilit)%>
-					</div>
-				
-					<div class="product-info">
 						<% @item = product %>
-						<% if @item.product_variants.size > 0 %>
+						<%= simple_format("<del>&#2352;</del> #{@item.product_variants.first.price}",:class =>:pricehilit)%>
+					</div>
+								
+					<div class="product-info">
+						<% if @item.product_variants.size > 1 %>
 							<b>Sizes:</b>
 							<ul class="size-buttons">
 								<% @item.product_variants.each do |variant| %>
-									<li id= <%="#{variant.id}"%> ><%= variant.value %></li>
-								<%end%>
-								
-							</ul>
-							
+									<li id= <%="#{variant.id}"%> >
+										<%= variant.value %>
+										<hr class='dotted' />
+										<%= simple_format("<del>&#2352;</del> #{variant.price}") %>
+									</li>
+								<%end%>								
+							</ul>							
 						<% end %>
 											
 						<%=form_for(:cart_item,url: cart_items_path, :action => :create) do |f|%>
 						<b>Quantity:</b>
 						<div class="center form-horizontal">
 							<%= f.text_field :quantity, :class=>"span6"%>
-							<%= hidden_field_tag :product_id, product.id%>
+							<%= hidden_field_tag :product_id, @item.product_variants.first.id %>
 							<%= f.submit "Quick Add", {class: "btn btn-info", id:"addcart"}%>
 						</div>
 						<%end%>
