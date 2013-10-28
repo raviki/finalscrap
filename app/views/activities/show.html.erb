@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @activity.model %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @activity.user_id %>
+</p>
+
+<p>
+  <strong>User name:</strong>
+  <%= @activity.user_name %>
+</p>
+
+<p>
+  <strong>Belongsto:</strong>
+  <%= @activity.belongsTo %>
+</p>
+
+<p>
+  <strong>Action performed:</strong>
+  <%= @activity.action_performed %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @activity.data %>
+</p>
+
+<%= link_to 'Edit', edit_activity_path(@activity) %> |
+<%= link_to 'Back', activities_path %>

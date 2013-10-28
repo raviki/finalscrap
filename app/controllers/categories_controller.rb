@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   def index
     @categories = Category.admin_grid(params,true).order(sort_column + " " + sort_direction).
                                           paginate(:page => pagination_page, :per_page => pagination_rows)
-  end
+   end
 
   # GET /categories/1
   # GET /categories/1.json

@@ -1,11 +1,24 @@
 Website::Application.routes.draw do
+
+  get "product_variants/edit"
+  get "product_variants/new"
+  resources :product_variants
+
+  get "customer_infos/edit"
+  get "customer_info/edit"
+  get "activity_logs/index"
+  get "activity_log/index"
+  resources :activities
+
+  get "password_resets/new"
+  get "log_out" => "sessions#destroy", :as => "log_out"
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
   
   resources :cart_items
 
   resources :carts
 
-  get "password_resets/new"
-  get "log_out" => "sessions#destroy", :as => "log_out"
   resources :searches
 
   resources :vouchers
@@ -25,6 +38,8 @@ Website::Application.routes.draw do
   resources :customer_managements
 
   resources :customers
+  
+  resources :password_resets
 
   namespace :users do
     resources :managements
@@ -34,7 +49,8 @@ Website::Application.routes.draw do
   
   namespace :admin do
     namespace :merchandise do
-      resources :products 
+      resources :products
+      resource  :product_variants
       resources :categories 
       get "products/:id/toggle_active" => "products#toggle_active"
       get "categoties/:id/toggle_active" => "categories#toggle_active"
@@ -48,10 +64,11 @@ Website::Application.routes.draw do
        resources :customers
        resources :customer_groups
        resources :customer_leads
+       resources :customer_infos
        get "customers/:id/update_customer_group_id" => "customers#update_customer_group_id"
        get "customers/:id/update_customer_lead_id" => "customers#update_customer_lead_id"
        get "customers/:id/add_to_wishlist" => "customers#add_to_wishlist"
-       
+       get "customers/:id/add_customer_info" => "customers#add_customer_info"    
     end
     
     namespace :partners do
@@ -70,6 +87,7 @@ Website::Application.routes.draw do
     
     namespace :history do
       resources :sales
+      resources :activity_logs
     end
     
     namespace :fulfillments do
@@ -82,58 +100,4 @@ Website::Application.routes.draw do
     get "help" => "help#index"
   end 
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-  
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

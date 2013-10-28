@@ -1,47 +1,72 @@
 <script type="text/javascript" charset="utf-8">
       $(function() {
-        $("#addcart").bind("ajax:complete",function() {
+        $("#productaddcart").bind("ajax:complete",function() {
         	
-        	alert ("Hello");
           $("#myModal").modal();
           return false;
-        })
+        })	
       })
-    </script>
+</script>
     
 <div class="row-fluid">
-	<div class="container">
-	<div class="span4">
-		<%= image_tag(@product.image)%>
-	</div>
-	<div class ="span8">
-		<h3><%= @product.name%> </h3>
-		<p><strong> Rs </strong><%= @product.price%> </p>
-	<%=form_for(:cart_item,url: cart_items_path, remote:true, :html => {id: "addcart"}) do |f|%>
-	<%= f.label :quantity, "Quantity"%>
-	<%= f.number_field :quantity%>
-	<%= hidden_field_tag :product_id, @product.id%>
-	<%= f.submit "Add to Cart", {class: "btn btn-info", id:"addcart"}%>
-	<%end%>
-	<!-- Button to trigger modal -->
-<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a> 
+	<div class="product-show">
+		<div class="container">
+			<div class="span3">
+				<div class="center center-vertical">
+					<%= image_tag(@product.image)%>
+				</div>
+			</div>
+			<div class ="span5">
+				<h3><%= @product.name%> </h3>
+				<p><FONT SIZE="3.5em>"><del>&#2352;</del></FONT SIZE></FONT> <%= @product.product_variants.first.price%> </p>
+				<b>Description:</b>
+				<p> <%=@product.description%></p>
+				<% if @product.product_variants.size > 1 %>
+					<b>Sizes:</b>
+					<ul class="size-buttons">
+						<% @product.product_variants.each do |variant| %>
+							<li id= <%="#{variant.id}"%> >
+								<%= variant.value %>
+								<hr class='dotted' />
+								<%= simple_format("<del>&#2352;</del> #{variant.price}") %>
+							</li>
+						<%end%>
+					</ul>
+				<% end %>
+											
+				<%=form_for(:cart_item,url: cart_items_path, remote:true, :html => {id: "productaddcart"}) do |f|%>
+					<b>Quantity:</b>
+					<div class="form-horizontal">
+						<%= f.text_field :quantity, :class=>"span6"%>
+						<%= f.hidden_field :product_id, value:@product.product_variants.first.id%>
+						<%= f.submit "Add to Cart", {class: "btn btn-info", id:"productaddcart"}%>
+					</div>
+				<%end%>
+						
+				<!-- Button to trigger modal -->
+				<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a> 
  
-<!-- Modal -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Modal header</h3>
-  </div>
-  <div class="modal-body" id="modal-body">	
-  	</div>
-  <div class="modal-footer">
-  	
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> 
-    <button class="btn btn-primary">Save changes</button>
-  </div>
-</div>
-				
+			</div>
+			<div class ="span4">
+				<ul class="product-sidebar">
+					<% @sidebar_products.each do |product_sidebar| %>
+					<li class="product-sidebar-each">
+						<ul class="product-sidebar-each-split">
+							<li><%= image_tag(product_sidebar.image)%></li>
+							<li class="center-vertical">
 
-</div>
-</div>
+								<p><%= product_sidebar.name%></p>
+								<br>
+								<%= simple_format("<del>&#2352;</del> #{product_sidebar.product_variants.first.price}")%>
+							</li>
+							<li>
+								
+							</li>
+						</ul>
+					</li>	
+					<% end %>
+				</ul>
+			</div>				
+		</div>
+	</div>
 </div>

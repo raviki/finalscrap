@@ -14,6 +14,7 @@ class CustomerManagementsController < ApplicationController
 
   # GET /customer_managements/new
   def new
+    store_location()
     @customer_management = CustomerManagement.new
   end
 
@@ -24,17 +25,22 @@ class CustomerManagementsController < ApplicationController
   # POST /customer_managements
   # POST /customer_managements.json
   def create
-    @customer_management = CustomerManagement.new(customer_management_params)
+    @customer_management = CustomerManagement.where(:email => customer_management_params[:email]).first
+    if @customer_management
+      redirect_to @customer_management, notice: 'Account Email is already present.'
+    else
+      @customer_management = CustomerManagement.new(customer_management_params)
 
-    respond_to do |format|
+      respond_to do |format|
       if @customer_management.save
-        format.html { redirect_to @customer_management, notice: 'Customer management was successfully created.' }
+        format.html { redirect_back_or(@customer_management, notice: 'Account was successfully created.') }
         format.json { render action: 'show', status: :created, location: @customer_management }
       else
         format.html { render action: 'new' }
         format.json { render json: @customer_management.errors, status: :unprocessable_entity }
       end
-    end
+      end
+    end 
   end
 
   # PATCH/PUT /customer_managements/1
@@ -69,6 +75,6 @@ class CustomerManagementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_management_params
-      params.require(:customer_management).permit(:name, :password, :email, :customer_id, :remember_token, :password_digest,:password_confirmation)
+      params.require(:customer_management).permit(:name, :password, :password_confirmation, :email, :customer_id, :remember_token, :password_digest, :provider, :uid, :oauth_token, :oauth_expires_at, :password_reset_token, :password_reset_sent_at)
     end
 end

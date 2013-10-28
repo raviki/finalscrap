@@ -20,7 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  company:              'Bhai Cave'
+  company:              'Intiki.com'
   company_phone:        '9676070600'
   hello:                'Hello'
   out_of_stock_notice:  'Sorry this item is out of stock.'

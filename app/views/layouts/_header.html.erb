@@ -4,7 +4,15 @@
    $('.selectpicker').selectpicker();
 });
 </script>
-       
+<script type="text/javascript" charset="utf-8">
+		$(function() {
+        $("#addcart").bind("ajax:complete",function() {	
+          $("#myModal").modal();
+          return false;
+        })	
+      })
+</script>
+	       
 	<br>
 	<div class="container">
 		<ul class="inline">
@@ -21,24 +29,23 @@
 		<div class="navbar-inner">
 			<div class="container">
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
-				<a class="brand" href="#">Title</a>
+				<a class="brand" href="#"><%= site_name %></a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li>
-							<form class="navbar-search">
-								<div class="input-prepend input-append offset2">
-									<%=	select(@categories,"id", Category.all.collect {|p| [ p.name, p.id ] }, { prompt:"All" },{class:"selectpicker span2", id: "cat",name:"select"})%>
-									<input type="text" class=" span4 search-query">
-    								<button type="submit" class="btn">Search</button>
+							<%= form_tag products_path, :method => 'get', :id => "index", :class => 'navbar-search' do %>
+								<div class="input-prepend input-append offset1">
+																		
+									<%=	select(@categories,"id", Category.all.collect {|p| [ p.name, p.id ] }, { prompt:"All" },{class:"selectpicker span1", id: "cat",name:"select"})%>									
+									<%= text_field_tag :key, params[:key], :class => " span4 search-query" %>
+									<%= submit_tag "Search", :name => nil, :class => "btn btn-info" %>
 								</div>
-							</form>
+							<% end %>
 						</li>
 						</ul>
 						<ul class="nav pull-right">
-							<li>
-								<a href="#">Link</a>
-							</li>
-							<li class="divider-vertical"></li>
+							<li><%= link_to "Cart", carts_path, :remote => true, :method=>:get , :id => "addcart" %></li>
+
 							<% if signed_in? %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -56,10 +63,11 @@
           <% else %>
             <li><%= link_to "Sign in", sessions_path %></li>
           <% end %>	
-          					</ul>
+          		</ul>
 				</div><!-- /.nav-collapse -->
 			</div>
 		</div><!-- /navbar-inner -->
 	</div><!-- /navbar -->
 	</div>
+	
 </header>

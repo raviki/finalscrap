@@ -18,7 +18,7 @@ class CustomerManagementsControllerTest < ActionController::TestCase
 
   test "should create customer_management" do
     assert_difference('CustomerManagement.count') do
-      post :create, customer_management: { customer_id: @customer_management.customer_id, email: @customer_management.email, name: @customer_management.name, password: @customer_management.password, password_digest: @customer_management.password_digest, remember_token: @customer_management.remember_token }
+      post :create, customer_management: { customer_id: @customer_management.customer_id, email: @customer_management.email, name: @customer_management.name, oauth_expires_at: @customer_management.oauth_expires_at, oauth_token: @customer_management.oauth_token, password: @customer_management.password, password_digest: @customer_management.password_digest, password_reset_sent_at: @customer_management.password_reset_sent_at, password_reset_token: @customer_management.password_reset_token, provider: @customer_management.provider, remember_token: @customer_management.remember_token, uid: @customer_management.uid }
     end
 
     assert_redirected_to customer_management_path(assigns(:customer_management))
@@ -35,7 +35,7 @@ class CustomerManagementsControllerTest < ActionController::TestCase
   end
 
   test "should update customer_management" do
-    patch :update, id: @customer_management, customer_management: { customer_id: @customer_management.customer_id, email: @customer_management.email, name: @customer_management.name, password: @customer_management.password, password_digest: @customer_management.password_digest, remember_token: @customer_management.remember_token }
+    patch :update, id: @customer_management, customer_management: { customer_id: @customer_management.customer_id, email: @customer_management.email, name: @customer_management.name, oauth_expires_at: @customer_management.oauth_expires_at, oauth_token: @customer_management.oauth_token, password: @customer_management.password, password_digest: @customer_management.password_digest, password_reset_sent_at: @customer_management.password_reset_sent_at, password_reset_token: @customer_management.password_reset_token, provider: @customer_management.provider, remember_token: @customer_management.remember_token, uid: @customer_management.uid }
     assert_redirected_to customer_management_path(assigns(:customer_management))
   end
 

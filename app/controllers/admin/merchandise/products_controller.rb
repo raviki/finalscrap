@@ -1,6 +1,7 @@
 class Admin::Merchandise::ProductsController < AdminController
   before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle_active]
   helper_method :sort_column, :sort_direction
+  after_action :log, only: [:update, :destroy, :toggle_active]
 
   # GET /products
   # GET /products.json
@@ -18,7 +19,7 @@ class Admin::Merchandise::ProductsController < AdminController
   def show
     @products = Product.admin_grid(params).order(sort_column + " " + sort_direction).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
-    
+    @product_variants = @product.product_variants
   end
   
   def select_page
@@ -52,6 +53,7 @@ class Admin::Merchandise::ProductsController < AdminController
 
     respond_to do |format|
       if @product.save
+        ProductVariant.create(:product_id => @product.id, :price => 0)
         format.html { redirect_back_or(admin_merchandise_products_url, notice: 'Product was successfully created.') }
         format.json { render action: 'show', status: :created, location: @product }
       else
@@ -93,7 +95,7 @@ class Admin::Merchandise::ProductsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :image, :price, :description, :meta_description, :meta_keyword, :views, :active)
+      params.require(:product).permit(:name, :image, :description, :meta_description, :meta_keyword, :views, :active)
     end
     
     def sort_column

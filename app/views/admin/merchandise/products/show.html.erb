@@ -6,6 +6,17 @@
 	</tbody>
 </table>
 
+<% if @product.product_variants.size > 0 %>
+<h5 style='text-align:right'>Listing Variants</h5>
+<%= render :partial => 'admin/merchandise/product_variants/table' %>
+<% end %>
+<%=form_for(:product_variant, url: product_variants_path, :action => :create) do |f|%>
+<%= f.number_field :value,  :placeholder => "Units"%>
+<%= f.number_field :price,  :placeholder => "Price"%>
+<%= hidden_field_tag :product_id, @product.id %>
+<%= f.submit "Add Variants", {class: "btn btn-info"}%>
+<%end%>
+
 <h5 style='text-align:right'>Listing Categories</h5>
 <table>
 	<%= render :partial => 'admin/merchandise/categories/table_header', :locals => { :product_detail_page => 'yes' } %>

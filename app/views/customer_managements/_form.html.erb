@@ -1,48 +1,60 @@
-
 <%= form_for(@customer_management, :html =>{:class => "form-horizontal"}) do |f| %>
 <% if @customer_management.errors.any? %>
-    <div class="alert alert-error offset2 span8">
-      <h3 class="offset1">Please fix these <%= pluralize(@customer_management.errors.count, "error")%> to Sign Up</h3>
+	<div class="center-box">
+    <div class="alert alert-error span8">
+      <h3 class="">Please fix these <%= pluralize(@customer_management.errors.count, "error")%> to Sign Up</h3>
 
-      <ul class="offset2">
+      <ul class="">
       <% @customer_management.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
+   </div>
   <% end %>  
-<div class="row-fluid">
-	<div class="offset3">
   <div class="control-group">
-    <%= f.label :name,"Name",:class => "control-label" %>
-    <div class="controls">
-    <%= f.text_field :name %>
+    <div class="center">
+    <%= f.text_field :name, :placeholder => "Full Name" %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :password,"Password",:class => "control-label" %>
-    <div class="controls">
-    <%= f.password_field :password %>
+    <div class="center">
+    <%= f.password_field :password, :placeholder => "Password" %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :password_confirmation,"Confirmation" ,:class => "control-label"%>
-    <div class="controls">
-    <%= f.password_field :password_confirmation %>
+    <div class="center">
+    <%= f.password_field :password_confirmation, :placeholder => "Re-type Password" %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :email, :class => "control-label" %>
-    <div class="controls">
-    <%= f.text_field :email %>
+    <div class="center">
+    <%= f.text_field :email, :placeholder => "Email Address" %>
     </div>
   </div>
-  <div class="controls">
-  <div class="actions">
-    <%= f.submit "Create Account", class: "btn btn-info"%>
+  
+  <div class="control-group">
+	<div class="center"
+  		<div class="actions">
+    		<%= f.submit "Create Account", class: "btn btn-info"%>
+  		</div>
+	</div>
   </div>
-  </div>
-  </div>
+  
+  <div class="control-group">
+	<div class="center-text">(OR) </div>
+  </div>  
+  
+  <div class="control-group">
+	<div class="center">	
+		<%= button_to 'Login with facebook', "/auth/facebook", :class => "btn btn-primary" %>
+	</div> 
+  </div> 
+  
+  <div class="control-group">
+	<div class="center">
+	</div> 
   </div>
 <% end %>
+
 

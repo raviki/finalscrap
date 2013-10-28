@@ -1,11 +1,21 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  
 
   # GET /products
   # GET /products.json
-  def index
-    @products = Product.admin_grid(params,true).order(sort_column + " " + sort_direction).
-                                              paginate(:page => pagination_page, :per_page => pagination_rows)
+  def index    
+    if params[:select].present?
+      @category = Category.find(params[:select])
+      if @category
+        @products = @category.activeProducts.standard_search(params[:key])
+      end
+    end
+    if !@products        
+        @products = Product.admin_grid(params,true,params[:key]).order(sort_column + " " + sort_direction).
+                                             paginate(:page => pagination_page, :per_page => pagination_rows)
+    @cart_items = current_cart.cart_items
+    end
   end
 
   # GET /products/1
@@ -13,6 +23,9 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @product.updateViewCount
+    @cart_items = current_cart.cart_items
+    @sidebar_products = Product.all
+    @lowerbar_products = Product.all
   end
 
   # GET /products/new

@@ -1,5 +1,6 @@
 class Admin::Partners::StoresController < AdminController
  before_action :set_store, only: [:show, :edit, :update, :destroy, :update_product_map]
+ after_action :log, only: [:update, :destroy, :update_product_map]
 
   # GET /stores
   # GET /stores.json
@@ -32,13 +33,13 @@ class Admin::Partners::StoresController < AdminController
   def update_product_map    
     if params[:select].present?
       params[:select].each do |productId|
-        if params[:price][productId.to_i].to_i > 0
-          @store.update_product_map(productId,params[:price][productId.to_i])
+        if params[:price][productId.to_i-1].to_i > 0
+          @store.update_product_map(productId,params[:price][productId.to_i-1].to_i)
         else
           if @alert
             @alert= "#{@alert} <br>"          
           end
-          @alert = "#{@alert} Product:#{productId} Pirce has to be a number"
+          @alert = "#{@alert} Product:#{productId} Pirce has to be a number .#{productId} Value: #{params[:price][productId.to_i-1]}"
         end
       end
    end

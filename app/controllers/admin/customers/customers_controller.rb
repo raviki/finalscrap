@@ -1,10 +1,11 @@
 class Admin::Customers::CustomersController < AdminController
-  before_action :set_customer, only: [:show, :edit, :update, :destroy, :add_to_wishlist, :create_order]
+  before_action :set_customer, only: [:show, :edit, :update, :destroy, :add_to_cart, :create_order, :update_customer_lead_id, :update_customer_group_id,:add_customer_info]
+  after_action :log, only: [:update, :destroy, :add_to_cart, :create_order, :update_customer_lead_id, :update_customer_group_id, :add_customer_info]
 
   # GET /customers
   # GET /customers.json
   def index
-    @customers = Customer.admin_grid(params).order(sort_column + " " + sort_direction).
+    @customers = CustomerManagement.admin_grid(params).order(sort_column + " " + sort_direction).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
     if params[:show_search].present?
       @show_search = true
@@ -14,30 +15,39 @@ class Admin::Customers::CustomersController < AdminController
   # GET /customers/1
   # GET /customers/1.json
   def show
-    @customers = Customer.admin_grid(params).order(sort_column + " " + sort_direction).
+    @customers = CustomerManagement.admin_grid(params).order(sort_column + " " + sort_direction).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
   end
 
   # GET /customers/new
   def new
-    @customer = Customer.new
+    @customer = CustomerManagement.new
+  end
+  
+  def add_customer_info    
+    @customer_info = Customer.create_new(params)
+    if @customer_info
+      @customer.update_columns(customer_id: @customer_info.id)
+    end
+    redirect_to action: "show"
   end
 
   # GET /customers/1/edit
   def edit
   end
   
-  def add_to_wishlist
+  def add_to_cart
     if params[:product_id].present?    
-      @customer.add_to_wishlist(params[:product_id])
+      @customer.add_to_cart(params[:product_id])
     end
    redirect_to action: "show"
   end
+  
 
   # POST /customers
   # POST /customers.json
   def create
-    @customer = Customer.new(customer_params)
+    @customer = CustomerManagement.new(customer_params)
 
     respond_to do |format|
       if @customer.save
@@ -53,18 +63,26 @@ class Admin::Customers::CustomersController < AdminController
   def update_customer_group_id
     store_location()
     if params[:customer_group_id].present?
-      @customer = Customer.find(params[:id])
-      @customer.update_columns(customer_group_id: params[:customer_group_id])
-    end
+            if @customer.customer_id 
+        @customer_info = Customer.find(@customer.customer_id)
+        if @customer_info.size > 0
+          @customer.update_columns(customer_group_id: params[:customer_group_id])
+        end
+      end
+    end 
     redirect_back_or(admin_customers_customers_url)
   end
   
     def update_customer_lead_id
     store_location()
     if params[:customer_lead_id].present?
-      @customer = Customer.find(params[:id])
-      @customer.update_columns(customer_lead_id: params[:customer_lead_id])
-    end
+      if @customer.customer_id 
+        @customer_info = Customer.find(@customer.customer_id)
+        if @customer_info.size > 0
+          @customer.update_columns(customer_lead_id: params[:customer_lead_id])
+        end
+      end
+    end 
     redirect_back_or(admin_customers_customers_url)
   end
 
@@ -96,15 +114,15 @@ class Admin::Customers::CustomersController < AdminController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
-      @customer = Customer.find(params[:id])
+      @customer = CustomerManagement.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:first_name, :second_name, :contact_no, :add_line1, :add_line2, :city, :pin, :wishlist, :customer_group_id, :customer_lead_id)
+      params.require(:customer_management).permit(:name, :password, :password_confirmation, :email, :customer_id, :remember_token, :password_digest, :provider, :uid, :oauth_token, :oauth_expires_at, :password_reset_token, :password_reset_sent_at, :contact_no, :add_line1, :add_line2, :city, :pin, :wishlist, :customer_group_id, :customer_lead_id)
     end
     def sort_column
-        Customer.column_names.include?(params[:sort]) ? params[:sort] : "id"
+        CustomerManagement.column_names.include?(params[:sort]) ? params[:sort] : "id"
     end
 
     def sort_direction

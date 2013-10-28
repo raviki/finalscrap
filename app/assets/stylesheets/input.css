@@ -1,0 +1,85 @@
+.container div.bs-docs-sidebar  div.row-fluid div.control-group 
+{
+		margin-left: 10%;
+}
+
+.container .bs-docs-sidebar .row-fluid .text-box input,
+.container .form-horizontal .bs-docs-sidebar .row-fluid .btn
+{
+	width: 65%;
+	height: 2em;
+	font-size: 1.25em;	
+	margin-right: 17.5%;
+	margin-left: 17.5%;	
+	margin-top: 2%;	
+	margin-bottom: 2%;	
+}
+
+
+
+.container .form-horizontal .bs-docs-sidebar .row-fluid .checkbox
+{
+	margin-right: 17.5%;
+	margin-left: 17.5%;	
+	margin-bottom: 4%;
+}
+
+.login-color
+{
+	background-color: #EDF8FC;
+}
+
+.center
+{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.center-vertical
+{
+	margin-top: auto;
+	margin-bottom: auto;
+	vertical-align:middle
+}
+
+.center-text
+{
+	text-align: center;
+	margin-top:0;
+	margin-bottom:1em;
+	font-size: 1.25em;	
+}
+
+.center-box
+{
+         width: 70%;
+         margin-left:12.5%;
+}
+.body-area .container .row-fluid .login-color .form-horizontal .control-group .center input,
+.body-area .container .row-fluid .control-group .center  .btn
+{
+	width: 50%;
+	height: 2em;
+	font-size: 1.25em;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1em;
+}
+
+.container .center .form-horizontal input
+{
+	height: 2em;
+	font-size: 1.25em;
+	width: 35%;
+}
+
+.container .form-horizontal .bs-docs-sidebar .row-fluid .checkbox
+{
+	width: 50%;
+}
+	
+
+
+
+

@@ -4,8 +4,6 @@
         <td><%= product.image %></td>
         <% if defined? store_page %>
         	<td><%= @store.store_to_products.find_by_store_id_and_product_id(@store.id, product.id).price %></td>
-        <% else %>
-        	<td><%= product.price %></td>
         <% end %>
         <td><%= product.description %></td>
         <td><%= product.meta_description %></td>

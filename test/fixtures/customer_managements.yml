@@ -7,6 +7,12 @@ one:
   customer_id: 1
   remember_token: MyString
   password_digest: MyString
+  provider: MyText
+  uid: MyText
+  oauth_token: MyText
+  oauth_expires_at: 2013-10-07 16:49:52
+  password_reset_token: MyString
+  password_reset_sent_at: 2013-10-07 16:49:52
 
 two:
   name: MyString
@@ -15,3 +21,9 @@ two:
   customer_id: 1
   remember_token: MyString
   password_digest: MyString
+  provider: MyText
+  uid: MyText
+  oauth_token: MyText
+  oauth_expires_at: 2013-10-07 16:49:52
+  password_reset_token: MyString
+  password_reset_sent_at: 2013-10-07 16:49:52
