@@ -1,5 +1,9 @@
 Website::Application.routes.draw do
   
+  get "checkout/index"
+  get "checkout/create"
+  resources :addresses
+
   resources :cart_items
 
   resources :carts
