@@ -1,5 +1,7 @@
 Website::Application.routes.draw do
 
+  root to: "welcome#index"
+  
   get "product_variants/edit"
   get "product_variants/new"
   resources :product_variants

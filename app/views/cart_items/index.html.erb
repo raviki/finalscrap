@@ -5,9 +5,8 @@
 
 	<thead>
 		<tr>
-			<th>Product</th>
-			<th>Type</th>
-			<th>Price</th>
+			<th>Task Name</th>
+			<th>Min. Price</th>
 			<th>Quantity</th>
 			<th>Total</th>
 			<th></th>
@@ -19,15 +18,6 @@
 		<tr>
 			<td class="span2"><%= cart_item.product.name%></td>
 			<% @temp_product = cart_item.product %>
-			<% if @temp_product.product_variants.size > 1 %>
-				<td>
-					<%= form_for(cart_item, remote:true, action: :create) do |f| %>
-					<%= select_tag(:product_id, options_from_collection_for_select(@temp_product.product_variants, "id", "value"), {:prompt => cart_item.product_variant.value, :onchange => "$(this).parent('form').submit();"}) %>			
-					<% end %>					
-				</td>									
-			<% else %>
-				<td class="span2" align="center"><del>&#2352;</del>  <%= cart_item.product_variant.value %></td>
-			<% end %>
 			<td class="span2" align="center"><%= cart_item.price %></td>
 			<td class="span2" align="center"> <%= form_for(cart_item, remote:true) do |f| %><%= f.text_field :quantity, class: "span8 center"%><% end %></td>
 			<td class="span2" align="center"><del>&#2352;</del>  <%= cart_item.total_price %></td>
@@ -36,7 +26,6 @@
 		<% end %>
 	</tbody>
 	<tr >
-		<td></td>
 		<td></td>
 		<td></td>
 		<strong>

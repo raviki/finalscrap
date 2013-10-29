@@ -26,7 +26,7 @@ class CartItemsController < ApplicationController
   def create
     store_location()
     @cart = current_cart
-    @product = ProductVariant.find(params[:cart_item][:product_id])   
+    @product = ProductVariant.find(params[:product_id])   
         
     if !(params[:cart_item][:quantity].to_i > 0)
       params[:cart_item][:quantity] = "0"
