@@ -3,6 +3,7 @@
 		margin-left: 10%;
 }
 
+
 .container .bs-docs-sidebar .row-fluid .text-box input,
 .container .form-horizontal .bs-docs-sidebar .row-fluid .btn
 {
@@ -22,11 +23,7 @@
 	margin-right: 17.5%;
 	margin-left: 17.5%;	
 	margin-bottom: 4%;
-}
-
-.login-color
-{
-	background-color: #EDF8FC;
+	text-align: left;
 }
 
 .center
@@ -56,16 +53,41 @@
          width: 70%;
          margin-left:12.5%;
 }
-.body-area .container .row-fluid .login-color .form-horizontal .control-group .center input,
-.body-area .container .row-fluid .control-group .center  .btn
+
+
+.body-area .container .login-new .form-horizontal .control-group .center .text-Box,
+.body-area .container .control-group .center .btn
 {
-	width: 50%;
+	width: 45%;
 	height: 2em;
-	font-size: 1.25em;
+	font-size: 1.5em;
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: 1em;
+	margin-bottom: 0.25em
+	padding:0;
 }
+
+.body-area .container .login-new
+{
+	 margin-top: 2em;
+     margin-bottom: 2em;   
+}
+
+.body-area .container .login-new .form-horizontal .control-group .center .text-Box
+{
+	padding-left: 1em;
+}
+
+.body-area .container .login-new .form-horizontal .control-group .center input
+{
+	padding: 0;
+}
+
+.body-area .container .login-new .form-horizontal .control-group .center .left-padding
+{
+	padding-left: 1em;
+}
+
 
 .container .center .form-horizontal input
 {
@@ -77,6 +99,11 @@
 .container .form-horizontal .bs-docs-sidebar .row-fluid .checkbox
 {
 	width: 50%;
+}
+
+.body-area .container .form-horizontal .bs-docs-sidebar .row-fluid .text-box
+{
+	margin-top: 1em;
 }
 	
 

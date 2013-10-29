@@ -1,3 +1,4 @@
+
 <%= form_for(@customer_management, :html =>{:class => "form-horizontal"}) do |f| %>
 <% if @customer_management.errors.any? %>
 	<div class="center-box">
@@ -14,22 +15,27 @@
   <% end %>  
   <div class="control-group">
     <div class="center">
-    <%= f.text_field :name, :placeholder => "Full Name" %>
+    <%= f.text_field :name, :placeholder => "Full Name", :class => "text-Box" %>
     </div>
   </div>
   <div class="control-group">
     <div class="center">
-    <%= f.password_field :password, :placeholder => "Password" %>
+    <%= f.password_field :password, :placeholder => "Password", :class => "text-Box"  %>
     </div>
   </div>
   <div class="control-group">
     <div class="center">
-    <%= f.password_field :password_confirmation, :placeholder => "Re-type Password" %>
+    <%= f.password_field :password_confirmation, :placeholder => "Re-type Password", :class => "text-Box"  %>
     </div>
   </div>
   <div class="control-group">
     <div class="center">
-    <%= f.text_field :email, :placeholder => "Email Address" %>
+    <%= f.text_field :email, :placeholder => "Email Address", :class => "text-Box"  %>
+    </div>
+  </div>
+    <div class="control-group">
+    <div class="center">
+    <%= f.text_field :mobile_number, :placeholder => "Mobile Number", :class => "text-Box"  %>
     </div>
   </div>
   
@@ -42,7 +48,8 @@
   </div>
   
   <div class="control-group">
-	<div class="center-text">(OR) </div>
+	<div class="center-text">(OR) 
+	</div>
   </div>  
   
   <div class="control-group">
