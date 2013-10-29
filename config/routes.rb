@@ -6,6 +6,13 @@ Website::Application.routes.draw do
   get "product_variants/new"
   resources :product_variants
 
+  get "checkout/index"
+  get "checkout/create"
+  resources :addresses
+
+  resources :cart_items
+
+
   get "customer_infos/edit"
   get "customer_info/edit"
   get "activity_logs/index"
