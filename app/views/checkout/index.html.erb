@@ -1,0 +1,209 @@
+<script>
+	function myfunction() {
+		$('#myTab a[href="#shipping"]').tab('show');
+	}
+
+	function myfunction2() {
+		$('#myTab a[href="#finalorder"]').tab('show');
+	}
+
+	function myfunction3() {
+		$('#myTab a[href="#payment"]').tab('show');
+	}
+
+</script>
+
+<script type="text/javascript" charset="utf-8">
+	$(function() {
+		$("#address_select").bind("ajax:complete", function() {
+
+			alert("Hello");
+			$('#myTab a[href="#finalorder"]').tab('show');
+			return false;
+		})
+	})
+</script>
+<div class="container">
+
+	<ul id="myTab" class="nav nav-tabs">
+		<li class="active">
+			<a href="#Login" data-toggle="tab">Login</a>
+		</li>
+		<li>
+			<a href="#shipping" data-toggle="tab">Shipping Address</a>
+		</li>
+		<li>
+			<a href="#finalorder" data-toggle="tab">Order Summary</a>
+		</li>
+		<li>
+			<a href="#payment" data-toggle="tab">Check Out</a>
+		</li>
+	</ul>
+	<div id="myTabContent" class="tab-content">
+		<div class="tab-pane fade in active" id="Login">
+			<% if signed_in? %>
+			<p>
+				Signed in as <%= @user.name%> Not You?	<%= link_to "Signout", log_out_path%>
+			</p>
+			<%= link_to "Proceed", "#shipping",:class=>"btn btn-info",:onclick => "myfunction()"%>
+			<%else%>
+			<%= render :template => "sessions/new"%>
+			<%end%>
+		</div>
+		<div class="tab-pane fade" id="shipping">
+
+			<div class="span4">
+
+				<%= form_for(:address,url: addresses_path, remote:true, :html => {id: "addcart"}) do |f| %>
+				<% if @address.errors.any? %>
+				<div id="error_explanation" class="alert alert-error">
+					<h4>Please fix the below errors</h2>
+					<ul>
+						<% @address.errors.full_messages.each do |msg| %>
+						<li>
+							<%= msg %>
+						</li>
+						<% end %>
+					</ul>
+				</div>
+				<% end %>
+
+				<%if signed_in? %>
+				<%= hidden_field_tag "user_id",@user.id%>
+				<%= f.hidden_field("user_id",:value => @user.id)%>
+				<%end%>
+				<table width="20%">
+					<tr>
+					<tr>
+						<td width="15%"> <%= f.label :name %> </td>
+						<td width="85%"> <%= f.text_field :name %> </td>
+					</tr>
+					<td width="15%"> <%= f.label :"Address*" %></td>
+					<td width="85%"> <%= f.text_area :line1 %> </td>
+					</tr>
+
+					<tr>
+						<td width="15%"> <%= f.label :city %> </td>
+						<td width="85%"> <%= f.text_field :city %> </td>
+					</tr>
+
+					<tr>
+						<td width="15%"> <%= f.label :pin %> </td>
+						<td width="85%"> <%= f.text_field :pin %> </td>
+					</tr>
+					<tr>
+						<td width="15%"> <%= f.label :phone %></td>
+						<td width="85%"><%= f.text_field :phone %></td>
+
+					</tr>
+					<tr>
+						<td> <%= f.submit "Save Address",:class =>"btn btn-info"%> </td>
+					</tr>
+					<% end %>
+				</table>
+			</div>
+			<div class="span6">
+				<%@user.addresses.each do |address| %>
+				<table class="span3">
+					<tr>
+						<td class="span2"><%= address.name%></td>
+					</tr>
+					<tr>
+						<td class="span4"><%= address.line1%></td>
+					</tr>
+					<tr>
+						<td class="span2"><%= address.city%></td>
+					</tr>
+					<tr>
+						<td class="span2"><%= address.pin%></td>
+					</tr>
+					<tr>
+						<td class="span1"><%= form_for(@cart,remote: true,:html =>{:id =>"address_select"}) do |f|%>
+						<%= f.hidden_field("address",:value => address.id)%>
+						<%= f.submit "Select Address",:class =>"btn btn-link"%>
+						<%end%> </td>
+					</tr>
+					<tr>
+						<td class="span1"><%= link_to raw('<i class="icon-remove"></i>'), address_path(address.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					</tr>
+				</table>
+				<% end %>
+			</div>
+		</div>
+
+		<div class="tab-pane fade" id="finalorder">
+
+			<table class="table table-hover">
+
+				<thead>
+					<tr>
+						<th text-align="justify">Product</th>
+						<th align="center">Price</th>
+						<th align="center">Quantity</th>
+						<th align="center">Total</th>
+						<th align="center">Delete</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @cart_items.each do |cart_item| %>
+					<tr>
+						<td class="span2"><%= cart_item.product.name%></td>
+						<td class="span2"><%= cart_item.price %></td>
+						<td class="span2" align="center"> <%= form_for(cart_item, remote:true) do |f| %><%= f.text_field :quantity, :class => "span1"%><% end %></td>
+						<td class="span2"> Rs<%= cart_item.total_price %></td>
+						<td class="span2"><%= link_to raw('<i class="icon-remove"></i>'), cart_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					</tr>
+					<% end %>
+				</tbody>
+				<tr >
+					<td></td>
+					<td></td>
+					<td >Total</td>
+					<td class="total_cell" ><%= @cart_items.to_a.sum(&:total_price) %></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td ></td>
+					<td class="total_cell" ><%= link_to "Checkout", "#payment",:class=>"btn btn-info",:style =>"float:center",:onclick => "myfunction3()"%></td>
+				</tr>
+			</table>
+
+		</div>
+		<div class="tab-pane fade" id="payment">
+			<p>
+				Select Your payment option
+			</p>
+			<div class="tabbable tabs-left">
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a href="#cod" data-toggle="tab">Cash on Delivery</a>
+						
+					</li>
+					<li>
+						<a href="#credit" data-toggle="tab">Credit Cards</a>
+					</li>
+  				</ul>
+  				<div class="tab-content">
+  					<div class="tab-pane fade in active" id="cod">
+  						<p>Please reenter your password </p>
+  					<%= form_tag do %>
+  					<%= label_tag(:password, "Password:") %>
+		 			<%= password_field_tag(:password) %>
+  					<%= submit_tag("Submit") %>
+					<% end %>		
+  					
+					</div>
+					<div class="tab-pane fade in" id="credit">
+  						<p>Please enter credit your password </p>
+					</div>
+ 				</div>
+			</div>
+
+		</div>
+	</div>
+
+</div>
