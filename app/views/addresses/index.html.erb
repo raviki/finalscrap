@@ -1,37 +1,71 @@
-<h1>Listing addresses</h1>
+<div class="span5">
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>City</th>
-      <th>Pin</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+	<%= form_for(:address,url: addresses_path, remote:true, :html => {id: "addcart"}) do |f| %>
+	<% if @address.errors.any? %>
+	<div id="error_explanation" class="alert alert-error">
+		<h4>Please fix the below errors</h2>
+		<ul>
+			<% @address.errors.full_messages.each do |msg| %>
+			<li>
+				<%= msg %>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
 
-  <tbody>
-    <% @addresses.each do |address| %>
-      <tr>
-        <td><%= address.name %></td>
-        <td><%= address.address %></td>
-        <td><%= address.city %></td>
-        <td><%= address.pin %></td>
-        <td><%= address.phone %></td>
-        <td><%= address.email %></td>
-        <td><%= link_to 'Show', address %></td>
-        <td><%= link_to 'Edit', edit_address_path(address) %></td>
-        <td><%= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+	<%if signed_in? %>
+	<%= hidden_field_tag "user_id",@user.id%>
+	<%= f.hidden_field("user_id",:value => @user.id)%>
+	<%end%>
+	<table width="20%">
+		<tr>
+		<tr>
+			<td width="15%"> <%= f.label :name %> </td>
+			<td width="85%"> <%= f.text_field :name %> </td>
+		</tr>
+		<td width="15%"> <%= f.label :"Address*" %></td>
+		<td width="85%"> <%= f.text_area :line1 %> </td>
+		</tr>
 
-<br>
+		<tr>
+			<td width="15%"> <%= f.label :city %> </td>
+			<td width="85%"> <%= f.text_field :city %> </td>
+		</tr>
 
-<%= link_to 'New Address', new_address_path %>
+		<tr>
+			<td width="15%"> <%= f.label :pin %> </td>
+			<td width="85%"> <%= f.text_field :pin %> </td>
+		</tr>
+		<tr>
+			<td width="15%"> <%= f.label :phone %></td>
+			<td width="85%"><%= f.text_field :phone %></td>
+
+		</tr>
+		<tr>
+			<td> <%= f.submit "Save Address",:class =>"btn btn-info"%> </td>
+		</tr>
+		<% end %>
+	</table>
+</div>
+<div class="span6">
+	<%@user.addresses.each do |address| %>
+	<table class="span3">
+		<tr>
+			<td class="span2"><%= address.name%></td>
+		</tr>
+		<tr>
+			<td class="span4"><%= address.line1%></td>
+		</tr>
+		<tr>
+			<td class="span2"><%= address.city%></td>
+		</tr>
+		<tr>
+			<td class="span2"><%= address.pin%></td>
+		</tr>
+		<tr>
+			<td class="span1"><%= link_to raw('<i class="icon-remove"></i>'), address_path(address.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		</tr>
+	</table>
+	<% end %>
+</div>
