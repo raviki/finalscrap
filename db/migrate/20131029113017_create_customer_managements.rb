@@ -4,6 +4,7 @@ class CreateCustomerManagements < ActiveRecord::Migration
       t.string :name
       t.string :password
       t.string :email
+      t.string :mobile_number
       t.integer :customer_id
       t.string :remember_token
       t.string :password_digest

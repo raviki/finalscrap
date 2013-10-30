@@ -24,17 +24,21 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
-
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @order }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+    @customer = CustomerManagement.find(order_params[:customer_id])
+    if @customer.cart_items.length > 0 
+      @order = Order.find_or_create_by_customer_id(params[:customer_id])
+      @customer.cart_items.each do |cart_item|      
+        @order_to_product = OrderToProduct.where(:product_id => cart_item.product_id, :order_id => @order.id).first_or_create
+        @order_to_product.update_price_quantity(cart_item.price, cart_item.quantity)
+        cart_item.delete       
       end
+      @customer.cart.delete
+      @order.save
+      redirect_to action: 'show', id: @order.id
+    else
+      redirect_back_or(products_url, notice: 'Empty Cart.')
     end
+    
   end
 
   # PATCH/PUT /orders/1

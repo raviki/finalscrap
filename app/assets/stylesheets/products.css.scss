@@ -26,7 +26,7 @@ html body div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail 
 
 html body div.container div.row-fluid div.span10 ul.thumbnails li
 {
-  font-family: "Helvetica,​sans-serif";
+  font-family: "Open Sans";
   width: 22.5%;
   margin-left: 1.5em;
   margin-bottom: 1em;
@@ -96,6 +96,8 @@ html body div.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail:
       position: absolute;
       border: 1px solid #DDDDDD;
       border-radius: 0 0 4px 4px;
+      z-index: 200;
+      
     }
 }
 
@@ -134,7 +136,7 @@ html body div#myModal.modal div#modal-body.modal-body
 
 html body div#myModal.modal
 {
-  font-family: "Helvetica,​sans-serif";
+  font-family: "Open Sans";
 }
 
 html body div#myModal.modal div#modal-body.modal-body table.table

@@ -1,4 +1,5 @@
 class Address < ActiveRecord::Base
+has_many :carts
 validates :address, :presence => true
 validates :name, :presence => true
 validates :pin, :presence => true

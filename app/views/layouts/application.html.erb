@@ -6,24 +6,35 @@
     <%= stylesheet_link_tag "application", media: "screen", recursive: false,
                                            "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
     <%= csrf_meta_tags %>
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
-<%= render 'layouts/header' %>
-  <body style="background-color:#FAFAFA">
-	<div class="body-area">
-    	<div class="container" >
-      		<%= yield %>
-    	</div>  
-    </div>
-  </body>
- <footer>
- 	<%= render 'shared/footer' %>
- </footer>
+
+  	<body style="background-color:#FAFAFA">
+
+	
+  		<div id="wrap">
+  			
+		<% if !(defined? @no_header) %>
+			<%= render 'layouts/header' %>
+		<% end %> 
+			<div id="main" class="container clear-top">
+      					<%= yield %>   			
+    		</div>  
+    	</div>
+    		<%= render 'shared/footer' %>
+  	</body>
  
+ 
+ 
+ 
+
+</html>
+
  <!-- Modal -->
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
@@ -35,7 +46,6 @@
   <div class="modal-footer">
   	
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> 
-    <button class="btn btn-primary">Save changes</button>
+    <%= button_to "Place an Order", checkout_index_path, :class => "btn btn-primary", :method => "get"%>
   </div>
 </div>
-</html>

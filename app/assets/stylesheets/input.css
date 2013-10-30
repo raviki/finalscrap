@@ -3,7 +3,6 @@
 		margin-left: 10%;
 }
 
-
 .container .bs-docs-sidebar .row-fluid .text-box input,
 .container .form-horizontal .bs-docs-sidebar .row-fluid .btn
 {
@@ -55,8 +54,8 @@
 }
 
 
-.body-area .container .login-new .form-horizontal .control-group .center .text-Box,
-.body-area .container .control-group .center .btn
+html body div#wrap .container .login-new .form-horizontal .control-group .center .text-Box,
+html body div#wrap .container .control-group .center .btn
 {
 	width: 45%;
 	height: 2em;
@@ -67,23 +66,27 @@
 	padding:0;
 }
 
-.body-area .container .login-new
+html body div#wrap .container .login-new
 {
-	 margin-top: 2em;
-     margin-bottom: 2em;   
+	padding-bottom: 4em; 
 }
 
-.body-area .container .login-new .form-horizontal .control-group .center .text-Box
+html body div#wrap .container .login-new .form-horizontal
 {
-	padding-left: 1em;
+	 padding-top: 2em;         
 }
 
-.body-area .container .login-new .form-horizontal .control-group .center input
+html body div#wrap .container .login-new .form-horizontal .control-group .center .text-Box
+{
+	padding-left: 2em;
+}
+
+html body div#wrap .container .login-new .form-horizontal .control-group .center input
 {
 	padding: 0;
 }
 
-.body-area .container .login-new .form-horizontal .control-group .center .left-padding
+html body div#wrap .container .login-new .form-horizontal .control-group .center .left-padding
 {
 	padding-left: 1em;
 }

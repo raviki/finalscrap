@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131029111854) do
+ActiveRecord::Schema.define(version: 20131030065612) do
 
   create_table "activities", force: true do |t|
     t.text     "model"
@@ -25,13 +25,15 @@ ActiveRecord::Schema.define(version: 20131029111854) do
   end
 
   create_table "addresses", force: true do |t|
+    t.string   "name"
     t.text     "address"
     t.string   "city"
     t.integer  "pin"
-    t.integer  "phone"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "phone"
   end
 
   create_table "cart_items", force: true do |t|
@@ -48,7 +50,7 @@ ActiveRecord::Schema.define(version: 20131029111854) do
     t.integer  "customer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "address"
+    t.integer  "address_id"
   end
 
   create_table "categories", force: true do |t|
@@ -85,6 +87,7 @@ ActiveRecord::Schema.define(version: 20131029111854) do
     t.string   "name"
     t.string   "password"
     t.string   "email"
+    t.string   "mobile_number"
     t.integer  "customer_id"
     t.string   "remember_token"
     t.string   "password_digest"
@@ -121,6 +124,8 @@ ActiveRecord::Schema.define(version: 20131029111854) do
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "quantity"
+    t.decimal  "price",      precision: 10, scale: 0
   end
 
   create_table "orders", force: true do |t|

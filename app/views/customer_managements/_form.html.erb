@@ -15,7 +15,7 @@
   <% end %>  
   <div class="control-group">
     <div class="center">
-    <%= f.text_field :name, :placeholder => "Full Name", :class => "text-Box" %>
+    <%= f.text_field :email, :placeholder => "Email Address", :class => "text-Box"  %>
     </div>
   </div>
   <div class="control-group">
@@ -30,7 +30,7 @@
   </div>
   <div class="control-group">
     <div class="center">
-    <%= f.text_field :email, :placeholder => "Email Address", :class => "text-Box"  %>
+    <%= f.text_field :name, :placeholder => "Full Name", :class => "text-Box" %>
     </div>
   </div>
     <div class="control-group">
@@ -51,7 +51,7 @@
 	<div class="center-text">(OR) 
 	</div>
   </div>  
-  
+<% end %>  
   <div class="control-group">
 	<div class="center">	
 		<%= button_to 'Login with facebook', "/auth/facebook", :class => "btn btn-primary" %>
@@ -62,6 +62,6 @@
 	<div class="center">
 	</div> 
   </div>
-<% end %>
+
 
 

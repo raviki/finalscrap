@@ -43,7 +43,7 @@
 		<div class="tab-pane fade in active" id="Login">
 			<% if signed_in? %>
 			<p>
-				Signed in as <%= @user.name%> Not You?	<%= link_to "Signout", log_out_path%>
+				Signed in as <%= @user.name%> Not You?	<%= link_to "Signout", log_out_path %>
 			</p>
 			<%= link_to "Proceed", "#shipping",:class=>"btn btn-info",:onclick => "myfunction()"%>
 			<%else%>
@@ -79,7 +79,7 @@
 						<td width="85%"> <%= f.text_field :name %> </td>
 					</tr>
 					<td width="15%"> <%= f.label :"Address*" %></td>
-					<td width="85%"> <%= f.text_area :line1 %> </td>
+					<td width="85%"> <%= f.text_area :address %> </td>
 					</tr>
 
 					<tr>
@@ -109,7 +109,7 @@
 						<td class="span2"><%= address.name%></td>
 					</tr>
 					<tr>
-						<td class="span4"><%= address.line1%></td>
+						<td class="span4"><%= address.address%></td>
 					</tr>
 					<tr>
 						<td class="span2"><%= address.city%></td>
@@ -190,10 +190,12 @@
   				<div class="tab-content">
   					<div class="tab-pane fade in active" id="cod">
   						<p>Please reenter your password </p>
-  					<%= form_tag do %>
+
+  					<%=form_for(:order,url: orders_path, :action => :create) do |f|%>
   					<%= label_tag(:password, "Password:") %>
 		 			<%= password_field_tag(:password) %>
-  					<%= submit_tag("Submit") %>
+		 			<%= f.hidden_field :customer_id, value:@user.id%>
+  					<%= f.submit "Submit" %>
 					<% end %>		
   					
 					</div>

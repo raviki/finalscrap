@@ -50,9 +50,9 @@ end
     else      
       @customerManagement = CustomerManagement.from_omniauth(env["omniauth.auth"])   
     end 
-     session[:customer_id] = @customerManagement.id    
+    session[:customer_id] = @customerManagement.id    
      
-     redirect_back_or(categories_path)
+    redirect_back_or(categories_path)
   end
 
 def destroy

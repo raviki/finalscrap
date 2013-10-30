@@ -1,44 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Customer:</strong>
-  <%= @order.customer_id %>
-</p>
+<% total_value = 0 %>
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Value</th>
+      <th>Total</th>
+    </tr>
+  </thead>
 
-<p>
-  <strong>Voucher:</strong>
-  <%= @order.voucher_id %>
-</p>
 
-<p>
-  <strong>Payment:</strong>
-  <%= @order.payment_id %>
-</p>
+  <tbody>
+    <% @order.order_to_products.each do |order_to_product| %>
+      <tr>
+      	<% @order2product = order_to_product %>
+        <td><%= @order2product.product.name %></td>
+        <td><%= @order2product.price %></td>  
+        <td><%= order_to_product.quantity %></td>
+        <td><%= @order2product.price * order_to_product.quantity %></td>
+        <% total_value += (@order2product.price * order_to_product.quantity) %>
+        
+        </tr>
+    <% end %>
+    <tr>
+    	<td></td>
+    	<td></td>
+    	<td>Total</td>
+    	<td><%= total_value%></td>
+   	</tr>
+  </tbody>
+</table>
 
-<p>
-  <strong>Discount:</strong>
-  <%= @order.discount %>
-</p>
 
-<p>
-  <strong>Discount message:</strong>
-  <%= @order.discount_message %>
-</p>
-
-<p>
-  <strong>Appointment date:</strong>
-  <%= @order.appointment_date %>
-</p>
-
-<p>
-  <strong>Duration inhrs:</strong>
-  <%= @order.duration_inHrs %>
-</p>
-
-<p>
-  <strong>Active:</strong>
-  <%= @order.active %>
-</p>
-
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>

@@ -41,11 +41,9 @@ class Admin::Customers::CustomerInfosController < AdminController
   # PATCH/PUT /customers/1
   # PATCH/PUT /customers/1.json
   def update
-    puts "-----------yes1"
+
     respond_to do |format|
-       puts "-----------yes1"
       if @customer.update(customer_params)
-         puts "-----------yes1"
         format.html { redirect_back_or(admin_customers_customers_url, notice: 'Customer was successfully updated.') }
         format.json { head :no_content }
       else

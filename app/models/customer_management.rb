@@ -5,11 +5,15 @@ has_one :cart, :foreign_key => "customer_id"
 has_many :cart_items,      :through => :cart
 has_many :products,        :through => :cart_items
 
+has_many :addresses,       :foreign_key => "user_id"
+
 has_one :customer_group,  :through => :customer
 has_one :customer_lead,   :through => :customer
 
 has_many :orders,         :through => :customer          
 has_many :vouchers,       :through => :customer_group
+
+
 
 include BCrypt
  validates :name, presence: true, length: { maximum: 50 }

@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Name</th>
       <th>Address</th>
       <th>City</th>
       <th>Pin</th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @addresses.each do |address| %>
       <tr>
+        <td><%= address.name %></td>
         <td><%= address.address %></td>
         <td><%= address.city %></td>
         <td><%= address.pin %></td>

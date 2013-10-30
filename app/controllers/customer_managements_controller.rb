@@ -27,13 +27,13 @@ class CustomerManagementsController < ApplicationController
   def create
     @customer_management = CustomerManagement.where(:email => customer_management_params[:email]).first
     if @customer_management
-      redirect_to @customer_management, notice: 'Account Email is already present.'
+      redirect_back_or(sessions_path, notice: 'Account Email is already present.')
     else
       @customer_management = CustomerManagement.new(customer_management_params)
 
       respond_to do |format|
       if @customer_management.save
-        format.html { redirect_back_or(@customer_management, notice: 'Account was successfully created.') }
+        format.html { redirect_back_or(sessions_path, notice: 'Account was successfully created.') }
         format.json { render action: 'show', status: :created, location: @customer_management }
       else
         format.html { render action: 'new' }
