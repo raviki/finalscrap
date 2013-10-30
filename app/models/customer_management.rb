@@ -23,8 +23,12 @@ include BCrypt
                     uniqueness: { case_sensitive: false }
 validates :password, presence: true
 validates_confirmation_of :password, on: :create
-validates_presence_of :password_confirmation 
+validates_presence_of :password_confirmation, :unless => lambda{ |user| user.password_confirmation.blank? } 
 before_save :encrypt
+
+
+has_many :addresses, foreign_key: "user_id"
+
  
 def new_remember_token
   @token = SecureRandom.urlsafe_base64

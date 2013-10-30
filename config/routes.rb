@@ -1,10 +1,12 @@
 Website::Application.routes.draw do
 
   root to: "categories#index"
-  
+ 
   get "product_variants/edit"
   get "product_variants/new"
   resources :product_variants
+
+  get "accounts/index"
 
   get "checkout/index"
   get "checkout/create"

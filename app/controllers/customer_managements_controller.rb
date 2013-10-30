@@ -45,15 +45,29 @@ class CustomerManagementsController < ApplicationController
 
   # PATCH/PUT /customer_managements/1
   # PATCH/PUT /customer_managements/1.json
-  def update
-    respond_to do |format|
-      if @customer_management.update(customer_management_params)
-        format.html { redirect_to @customer_management, notice: 'Customer management was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @customer_management.errors, status: :unprocessable_entity }
+    def update
+    if (params[:customer_management][:old_password] or params[:customer_management][:password_confirmation].blank?)
+      @user = current_user
+      if @user
+        @user_hash = BCrypt::Password.new(@user.password)
+        if (@user_hash == params[:customer_management][:old_password] or @user_hash == params[:customer_management][:password])
+          flag = true  
+        end
       end
+    end
+    if flag ==true 
+        respond_to do |format|
+        if @customer_management.update(customer_management_params)
+          format.html { redirect_to :back, notice: 'Customer management was successfully updated.' }
+          format.json { head :no_content }
+        format.js
+        else
+          format.html { render action: 'edit' }
+          format.json { render json: @customer_management.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      redirect_to :back, notice: 'Please re enter correct password'
     end
   end
 
