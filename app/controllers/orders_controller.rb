@@ -32,8 +32,9 @@ class OrdersController < ApplicationController
         @order_to_product.update_price_quantity(cart_item.price, cart_item.quantity)
         cart_item.delete       
       end
-      @customer.cart.delete
       @order.save
+      @order.update_columns(address_id: @customer.cart.address_id)
+      @customer.cart.delete      
       redirect_to action: 'show', id: @order.id
     else
       redirect_back_or(products_url, notice: 'Empty Cart.')

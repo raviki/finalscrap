@@ -4,7 +4,7 @@ class AddressesController < ApplicationController
   # GET /addresses
   # GET /addresses.json
   def index
-    @addresses = Address.all
+    @addresses = Address.all 
   end
 
   # GET /addresses/1
@@ -24,13 +24,18 @@ class AddressesController < ApplicationController
   # POST /addresses
   # POST /addresses.json
   def create
-    @cart= current_cart
+    store_location()
+    if !params[:just_add].present?
+      @cart= current_cart
+    end    
     @address = Address.new(address_params)
 
     respond_to do |format|
       if @address.save
-        @cart.update(:address => @address.id)
-        format.html { redirect_to @address, notice: 'Address was successfully created.' }
+        if @cart
+          @cart.update(:address => @address.id)
+        end
+        format.html { redirect_back_or(@address, notice: 'Address was successfully created.') }
         format.json { render action: 'show', status: :created, location: @address }
       else
         format.html { render action: 'new' }
@@ -56,9 +61,10 @@ class AddressesController < ApplicationController
   # DELETE /addresses/1
   # DELETE /addresses/1.json
   def destroy
+    store_location()
     @address.destroy
     respond_to do |format|
-      format.html { redirect_to addresses_url }
+      format.html { redirect_back_or(addresses_url) }
       format.json { head :no_content }
     end
   end

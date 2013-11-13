@@ -59,6 +59,7 @@ class Product < ActiveRecord::Base
           price_filter(params[:price]).
           description_filter(params[:description]).
           active_filter(active_state).
+          parent_filter(params[:parent]).
           standard_search(text)
   end
 
@@ -75,6 +76,14 @@ class Product < ActiveRecord::Base
     def self.id_filter(id)
       if id.present?
         where("products.id = ?", id)
+      else
+        all
+      end
+    end
+    
+    def self.parent_filter(id)
+      if id.present?
+        where("products.parent = ?", id)
       else
         all
       end

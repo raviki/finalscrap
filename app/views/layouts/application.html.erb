@@ -15,10 +15,7 @@
   </head>
 
   	<body style="background-color:#FAFAFA">
-
-	
-  		<div id="wrap">
-  			
+   		<div id="wrap">			
 		<% if !(defined? @no_header) %>
 			<%= render 'layouts/header' %>
 		<% end %> 
@@ -26,12 +23,9 @@
       					<%= yield %>   			
     		</div>  
     	</div>
-    		<%= render 'shared/footer' %>
+    	<%= render 'shared/google_analytics' unless @disable_ga %>
+    	<%= render 'shared/footer' %>
   	</body>
- 
- 
- 
- 
 
 </html>
 
@@ -39,13 +33,14 @@
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h4 id="myModalLabel">Tasks Lists</h4>
+    <h4 id="myModalLabel">Tasks List</h4>
   </div>
   <div class="modal-body" id="modal-body">	
   	</div>
   <div class="modal-footer">
-  	
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> 
-    <%= button_to "Place an Order", checkout_index_path, :class => "btn btn-primary", :method => "get"%>
+    <% if @cart_items and (@cart_items.size > 0) %>
+    	<%= link_to 'Place an Order', checkout_index_path, :class => "btn btn-primary", :method => "get"%>
+    <% end %>
   </div>
 </div>

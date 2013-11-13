@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131030065612) do
+ActiveRecord::Schema.define(version: 20131105160308) do
 
   create_table "activities", force: true do |t|
     t.text     "model"
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(version: 20131030065612) do
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "address_id"
   end
 
   create_table "payments", force: true do |t|
@@ -166,6 +167,7 @@ ActiveRecord::Schema.define(version: 20131030065612) do
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "parent"
   end
 
   create_table "searches", force: true do |t|

@@ -1,3 +1,43 @@
 // Place all the styles related to the accounts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+html body div#wrap div#main.container div.tab-content div#address.tab-pane div.span3 form#addcart
+{
+  max-width: 100%;
+}
+
+html body div#wrap div#main.container div.tab-content div#address.tab-pane div.span5 table
+{
+  border-radius: 8px 8px 8px 8px;
+  box-shadow: 1px 1px 5px #b2b2b2;
+  -webkit-box-shadow: 1px 1px 5px #b2b2b2;
+  margin-left: 4em;
+  margin-bottom: 1em;
+}
+html body div#wrap div#main.container div.tab-content div#address.tab-pane div.span5 table tbody tr td
+{
+  padding-left: 10px;
+}
+
+html body div#wrap div#main.container div.tab-content div#address.tab-pane .span5
+{
+  
+  margin-left: 0;
+}
+
+.account-page
+{
+  margin-left: 3em;
+  margin-top: 3em;  
+}
+
+html body div#wrap div#main.container div.account-page div.span2 div.tabbable
+{
+    margin-top: 2em;
+}
+
+html body div#wrap div#main.container div.account-page div.tab-content
+{
+  margin-right: 2em;
+}

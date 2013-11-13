@@ -1,21 +1,31 @@
 html body div#wrap .container div.row-fluid
 {
 	border-radius: 8px 8px 8px 8px;
-	 box-shadow: 1px 1px 5px #b2b2b2;
+	box-shadow: 1px 1px 5px #b2b2b2;
     -webkit-box-shadow: 1px 1px 5px #b2b2b2;
-     margin-top: 1em;
+     margin-top: 2em;
      margin-bottom: 1em;  
+     margin-left: 1em;
+     margin-right:3em;
+     max-width: 98%;
      min-height: 100%;   
      z-index: 101;	
 }   
 
 
 
-html body div#wrap div#main.container
+html body div#wrap .container
 {
 	max-width: 100%;
-	height:100%
+	height:100%;
+}
 
+html body div#wrap div#main.container div.container
+{
+	margin-left:1em;
+	margin-right: 3em;
+	margin-top:2em;
+	max-width:98%;
 }
 
 html body{
@@ -29,13 +39,6 @@ html body div#wrap div#main.container div.welcome-page div.span9 div.bs-docs div
 	min-width: 100%;
 }
 
-html body div#wrap div#main.container
-{
-  	margin-top: 2em;
-  	margin-bottom: 2em;
-	margin-left: 3em;
- 	margin-right: 4em;
-}
 
 html body div#wrap div#main.container div.span3
 {
@@ -46,6 +49,9 @@ html body div#wrap div#main.container div.span9
 {
 	margin-left: 0.5em;
 }
+
+
+
 
 
 

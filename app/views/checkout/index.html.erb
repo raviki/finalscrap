@@ -17,15 +17,14 @@
 	$(function() {
 		$("#address_select").bind("ajax:complete", function() {
 
-			alert("Hello");
 			$('#myTab a[href="#finalorder"]').tab('show');
 			return false;
 		})
 	})
 </script>
 <div class="container">
-
-	<ul id="myTab" class="nav nav-tabs">
+	<div class="center">
+	<ul id="myTab" class="nav nav-tabs offset3">
 		<li class="active">
 			<a href="#Login" data-toggle="tab">Login</a>
 		</li>
@@ -39,6 +38,7 @@
 			<a href="#payment" data-toggle="tab">Check Out</a>
 		</li>
 	</ul>
+	</div>
 	<div id="myTabContent" class="tab-content">
 		<div class="tab-pane fade in active" id="Login">
 			<% if signed_in? %>
@@ -106,25 +106,21 @@
 				<%@user.addresses.each do |address| %>
 				<table class="span3">
 					<tr>
-						<td class="span2"><%= address.name%></td>
+						<td class="span3"><%= address.name%></td>
 					</tr>
 					<tr>
 						<td class="span4"><%= address.address%></td>
 					</tr>
 					<tr>
-						<td class="span2"><%= address.city%></td>
+						<td class="span4"><%= address.city%>, <%=address.pin%></td>
 					</tr>
+
 					<tr>
-						<td class="span2"><%= address.pin%></td>
-					</tr>
-					<tr>
-						<td class="span1"><%= form_for(@cart,remote: true,:html =>{:id =>"address_select"}) do |f|%>
-						<%= f.hidden_field("address",:value => address.id)%>
+						
+						<td class="span2"><%= form_for(@cart,remote: true,:html =>{:id =>"address_select"}) do |f|%>
+						<%= f.hidden_field("address_id",:value => address.id)%>
 						<%= f.submit "Select Address",:class =>"btn btn-link"%>
 						<%end%> </td>
-					</tr>
-					<tr>
-						<td class="span1"><%= link_to raw('<i class="icon-remove"></i>'), address_path(address.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 					</tr>
 				</table>
 				<% end %>

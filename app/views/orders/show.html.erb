@@ -1,13 +1,55 @@
 <p id="notice"><%= notice %></p>
 
-<% total_value = 0 %>
+<div class="center">
+
+<div class="span4"><h4>Appointment Details</h4></div>
 <table>
+ <tbody>
+ 	 <tr>
+    	<td class="span2" style="text-align:right;">Order Number : </td>
+		<td class="span2"><%= @order.id %></td>
+ 	</tr>
+ 	<tr>
+ 	    <td class="span2" style="text-align:right;">Appointment Date : </td>
+		<td class="span2"><%= @order.appointment_date  %></td>
+ 	</tr>
+ 	 <tr>
+ 	    <td class="span2" style="text-align:right; vertical-align: top;">Address : </td>
+ 	    <% if @order.address %>
+			<td class="span2">
+				<%= @order.address.name %><br><%= @order.address.address %><br><%= @order.address.city %>, <%= @order.address.pin %></td>
+		<% end %>
+ 	</tr>
+  	<tr>
+ 	    <td class="span2" style="text-align:right;">Contact Number : </td>
+ 	    <% if @order.address %>
+			<td class="span2"><%= @order.address.phone %></td>
+		<% end %>
+ 	</tr>
+ 	 <tr>
+ 	    <td class="span2" style="text-align:right;">Additional Information : </td>
+		<td class="span2"></td>
+ 	</tr>
+
+ </tbody>
+</table>
+
+<br>
+<br>
+
+<% total_value = 0 %>
+
+<div class="span1"></div>
+<table class="table table-hover span10" >
   <thead>
     <tr>
       <th>Product</th>
       <th>Price</th>
       <th>Value</th>
       <th>Total</th>
+      <th>Workman Name</th>
+      <th>Workman Number</th>
+      
     </tr>
   </thead>
 
@@ -20,6 +62,8 @@
         <td><%= @order2product.price %></td>  
         <td><%= order_to_product.quantity %></td>
         <td><%= @order2product.price * order_to_product.quantity %></td>
+        <td><%= @order2product.store.contact_name unless !@order2product.store %></td>
+        <td><%= @order2product.store.contact_no unless !@order2product.store %></td>
         <% total_value += (@order2product.price * order_to_product.quantity) %>
         
         </tr>
@@ -28,9 +72,14 @@
     	<td></td>
     	<td></td>
     	<td>Total</td>
-    	<td><%= total_value%></td>
+    	<td><%= total_value %></td>
+    	<td></td>
+    	<td></td>
    	</tr>
   </tbody>
 </table>
+
+
+</div>
 
 

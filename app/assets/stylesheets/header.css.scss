@@ -73,13 +73,16 @@ html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse ul
 	border-radius: 5px 0 0 5px;
 }
 
-
+html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar
+{
+    margin-left: 25%;
+}
 html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li form#index.navbar-search
 {
 	margin-top:auto;
 	margin-bottom:auto;
 	padding-top:10px;
-	margin-left: 3em;
+  
 }
 
 
@@ -88,6 +91,16 @@ html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse ul
 	margin-top:auto;
 	margin-bottom: auto;
 }
+
+html body div#wrap div.navbar div.navbar-inner div.container img
+{
+  position: absolute;
+  margin-left:2.5em;
+  width: 10em;
+  margin-top:7px;
+}
+
+
 
 
 

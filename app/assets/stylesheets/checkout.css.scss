@@ -2,8 +2,44 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.modal .modal-footer .button_to
+html body div#wrap div#main.container div.container ul#myTab.nav li
 {
-  display: inline;
-  position: relative;
+  background-color: #FFFFFF;
 }
+
+
+html body div#wrap div#main.container div.container ul#myTab.nav li.active,
+html body div#wrap div#main.container div.container ul#myTab.nav li.active a
+{
+  background-color: #CEECF5;
+
+}
+
+html body div#wrap div#main.container div.container ul#myTab.nav,
+html body div#wrap div#main.container div.container div#myTabContent.tab-content
+{
+  font-size: 1.1em;
+}
+
+html body div#wrap div#main.container div.container ul#myTab.nav
+{
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px 5px 0 0;
+}
+
+html body div#wrap div#main.container div.center
+{
+  margin-top:2em;
+}
+
+html body div#wrap div#main.container div.center table.table thead tr
+{
+  max-width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+
