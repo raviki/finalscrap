@@ -18,7 +18,6 @@ class Order < ActiveRecord::Base
     self.save
   end
   
-  
   def addProduct(product_id_value)
     order_to_products.create(order_id: self.id, product_id: product_id_value)
   end
@@ -26,16 +25,17 @@ class Order < ActiveRecord::Base
     ## Auto generated code using java @ Ravi
   ## Begin
 
-  def self.admin_grid(params = {}, active_state = nil)
+  def self.admin_grid(params = {}, customer_id = "", active_state = nil, active = true)
+    puts "orders admin_grid"
     grid = id_filter(params[:id]).
-          customer_id_filter(params[:customer_id]).
+          customer_id_filter(customer_id).
           voucher_id_filter(params[:voucher_id]).
           payment_id_filter(params[:payment_id]).
           discount_filter(params[:discount]).
           discount_message_filter(params[:discount_message]).
           appointment_date_filter(params[:appointment_date]).
           duration_inHrs_filter(params[:duration_inHrs]).
-          active_filter(params[:active])
+          active_filter(active_state,active)
   end
 
 
@@ -106,9 +106,13 @@ class Order < ActiveRecord::Base
       end
     end
 
-    def self.active_filter(active)
-      if active.present? and active
-        where("orders.active")
+    def self.active_filter(state,active)
+      if state.present?
+        if active
+          where("orders.active")
+        else
+          where("!orders.active")
+        end 
       else
         all
       end

@@ -48,45 +48,49 @@ html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse .n
 }
 
 html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li a,
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li.divider-vertical,
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li#fat-menu.dropdown a.dropdown-toggle
+html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li.divider-vertical,
+html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li#fat-menu.dropdown a.dropdown-toggle
 {
 	margin-top:5px;
 	margin-left: 5px;
 	margin-right: 5px;
 }
   
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li a#addcart
+html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li a#addcart
 {
   background: url("/assets/cart.png") no-repeat scroll right center rgba(0, 0, 0, 0);
 }
 
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li form#index.navbar-search div.input-prepend input.btn
+html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li form.navbar-search div.input-prepend input.btn
 {
   margin-top:1px;
   border-radius: 0 5px 5px 0;
   margin-left: 0;
 }
-
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li form#index.navbar-search div.input-prepend div.btn-group button.btn
+html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li form.navbar-search div.input-prepend div.btn-group .btn
 {
 	border-radius: 5px 0 0 5px;
 }
-
+html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li form.navbar-search div.input-prepend
+{
+  margin-top:5px;
+  margin-bottom:10px;
+}
 html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar
 {
     margin-left: 25%;
 }
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li form#index.navbar-search
+
+html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li form.navbar-search
 {
 	margin-top:auto;
 	margin-bottom:auto;
-	padding-top:10px;
+	padding-top:5px;
   
 }
 
 
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li form#index.navbar-search div.input-prepend .btn-group 
+html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li form.navbar-search div.input-prepend .btn-group 
 {
 	margin-top:auto;
 	margin-bottom: auto;

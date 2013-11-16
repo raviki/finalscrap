@@ -115,7 +115,6 @@ html body div.container div.row-fluid div.span10 ul.thumbnails
   margin-bottom: 1em;
   margin-right: 1em;
   margin-top: 1em;
-  background-color: #FFFFFF;
   border-radius: 0 4px 4px 0;
   padding-left:0.5em;
 }
@@ -231,6 +230,28 @@ html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li 
   }
 }
 
+html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info
+{
+  max-width: 100%;
+}
+
+html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info form b,
+html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info form select
+{
+  margin-left:1em;
+}
+
+html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info form div.product-size
+{
+  margin-top:1em;
+  margin-bottom:0;
+}
+html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info form div.product-quantity
+{
+  margin-top:0.5em;
+  margin-bottom:0.5em;
+}
+
 html body div#wrap div#main.container div.row-fluid div.product-show div.container div.span5 ul.size-buttons li.selected,
 html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info ul.size-buttons li.selected {
     background: none repeat scroll 0 0 #000000;
@@ -252,35 +273,43 @@ html body div#wrap div#main.container div.row-fluid div.product-show div.contain
 
 // Product Show
 
-html body div#wrap div#main.container .row-fluid .product-show .container .span3
+html body div#wrap div#main.container .row-fluid .product-show .container .span4
 {
   padding-left: 1em;
   padding-bottom: 1em;
   padding-top: 1em;
-  background-color: #FFFFFF;
+  padding-right: 1em;
   min-height: 100%;
+  
 }
 
 
 
-html body div#wrap div#main.container .row-fluid .product-show .container .span5
+html body div#wrap div#main.container .row-fluid .product-show .container .span7
 {
   font-size: 1.1em;
   margin-top:1em;
   margin-left: 3em;
 }
 
-html body div#wrap div#main.container .row-fluid .product-show .container .span5 form#productaddcart input#cart_item_quantity.span6
+html body div#wrap div#main.container .row-fluid .product-show .container .span7 form#productaddcart input#cart_item_quantity.span6
 {
   max-height: 1em;
   width: 25%;
   margin-left: 1.5em;
 }
-html body div#wrap div#main.container .row-fluid .product-show .container .span5 p
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div table tbody tr td,
+html body div#wrap div#main.container .row-fluid .product-show .container .span7 p
 {
     margin-left: 1.5em;
 }
-html body div#wrap div#main.container .row-fluid .product-show .container div.span5 .size-buttons li hr.dotted,
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div table
+{
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+}
+html body div#wrap div#main.container .row-fluid .product-show .container div.span7 .size-buttons li hr.dotted,
 html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info ul.size-buttons li hr.dotted
 {
   border: 1px dotted #ff0000; 
@@ -294,7 +323,6 @@ html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li 
 html body div#wrap div#main.container .row-fluid .product-show .container .span4
 {
   margin-left:0;
-  background-color: #ffffff;
 }
 
 html body div#wrap div#main.container .row-fluid .product-show .container .span4 .product-sidebar
@@ -323,7 +351,7 @@ html body div#wrap div#main.container .row-fluid .product-show .container .span4
   margin:0;
   padding:0;
 }
-
+ 
 html body div#wrap div#main.container .row-fluid .product-show .container .span4 .product-sidebar .product-sidebar-each .product-sidebar-each-split li
 {
   display: inline-block;
@@ -343,4 +371,45 @@ html body div#wrap div#main.container div.row-fluid div.product-show div.contain
   margin-top: 1em;
   margin-bottom: 1em;
   max-height: 6em;
+}
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar ul.product-tools li.product-tools-each ul.product-tools-each-split li
+{
+  max-width: 50%;
+  max-height: 100%;
+}
+
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar ul.product-tools li,
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar ul.product-tools li.product-tools-each ul.product-tools-each-split li.center-vertical
+{
+  display: inline-block;
+  margin-left:0.5em;
+}
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar,
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar ul.product-tools li.product-tools-each ul.product-tools-each-split
+{
+  border: 1px solid #B2B2B2;
+  border-radius: 2px 2px 2px 2px;
+  margin:0;
+}
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar,
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.center,
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-how2fix-bar
+{
+  margin-bottom: 2em;
+}
+
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar ul.product-tools
+{
+  margin-top: 10px;
+  margin-left:10px;
+}
+
+html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info form select#cart_item_product_id
+{
+  max-width: 60%;
 }

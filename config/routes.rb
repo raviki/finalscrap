@@ -1,5 +1,6 @@
 Website::Application.routes.draw do
 
+
   root to: "categories#index"
  
   get "product_variants/edit"
@@ -13,8 +14,7 @@ Website::Application.routes.draw do
   resources :addresses
 
   resources :cart_items
-
-
+  
   get "customer_infos/edit"
   get "customer_info/edit"
   get "activity_logs/index"
@@ -23,6 +23,7 @@ Website::Application.routes.draw do
 
   get "password_resets/new"
   get "log_out" => "sessions#destroy", :as => "log_out"
+  get "random" => "products#new_parent_map", :as => "random"
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   
@@ -37,10 +38,6 @@ Website::Application.routes.draw do
   resources :orders
 
   resources :stores
-
-  resources :categories
-
-  resources :products
 
   resources :customer_leads
 
@@ -64,10 +61,10 @@ Website::Application.routes.draw do
       resource  :product_variants
       resources :categories 
       get "products/:id/toggle_active" => "products#toggle_active"
+      get "products/:id/new_parent_map" => "product#new_parent_map"
       get "categoties/:id/toggle_active" => "categories#toggle_active"
       put "categoties/:id/new_product_map" => "categories#new_product_map"
-      get "categoties/:id/delete_product_map" => "categories#delete_product_map"
-      
+      get "categoties/:id/delete_product_map" => "categories#delete_product_map"    
     end 
     
       
@@ -78,14 +75,12 @@ Website::Application.routes.draw do
        resources :customer_infos
        get "customers/:id/update_customer_group_id" => "customers#update_customer_group_id"
        get "customers/:id/update_customer_lead_id" => "customers#update_customer_lead_id"
-       get "customers/:id/add_to_wishlist" => "customers#add_to_wishlist"
        get "customers/:id/add_customer_info" => "customers#add_customer_info"    
     end
     
     namespace :partners do
        resources :stores
        get "stores/:id/toggle_active" => "stores#toggle_active"
-       get "stores/:id/update_product_map" => "stores#update_product_map"
        put "stores/:id/update_product_map" => "stores#update_product_map"
        get "stores/:id/delete_product_map" => "stores#delete_product_map"
     end
@@ -110,5 +105,13 @@ Website::Application.routes.draw do
     
     get "help" => "help#index"
   end 
+  
+  get ":id" => "categories#show"
+  resources :categories , :path => '' do
+    resources :products, :path=>''  
+  end
+  
+  
+  resources :products
 
 end

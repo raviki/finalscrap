@@ -15,7 +15,7 @@
 
 <script type="text/javascript" charset="utf-8">
 	$(function() {
-		$("#address_select").bind("ajax:complete", function() {
+		$("#addcartaddress").bind("ajax:complete", function() {
 
 			$('#myTab a[href="#finalorder"]').tab('show');
 			return false;
@@ -54,7 +54,7 @@
 
 			<div class="span4">
 
-				<%= form_for(:address,url: addresses_path, remote:true, :html => {id: "addcart"}) do |f| %>
+				<%= form_for(:address,url: addresses_path, remote:true, :html => {id: "addcartaddress"}) do |f| %>
 				<% if @address.errors.any? %>
 				<div id="error_explanation" class="alert alert-error">
 					<h4>Please fix the below errors</h2>

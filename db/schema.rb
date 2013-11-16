@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131105160308) do
+ActiveRecord::Schema.define(version: 20131115110145) do
 
   create_table "activities", force: true do |t|
     t.text     "model"
@@ -149,6 +149,13 @@ ActiveRecord::Schema.define(version: 20131105160308) do
     t.datetime "updated_at"
   end
 
+  create_table "product_to_tools", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "tool_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "product_variants", force: true do |t|
     t.integer  "product_id"
     t.text     "value"
@@ -167,7 +174,8 @@ ActiveRecord::Schema.define(version: 20131105160308) do
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "parent"
+    t.string   "video"
+    t.text     "how2fix"
   end
 
   create_table "searches", force: true do |t|
@@ -194,6 +202,13 @@ ActiveRecord::Schema.define(version: 20131105160308) do
     t.text     "review"
     t.decimal  "rating",       precision: 10, scale: 0
     t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "task_to_tools", force: true do |t|
+    t.integer  "task_id"
+    t.integer  "tool_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

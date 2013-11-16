@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
   include SessionsHelper
-
+  add_breadcrumb "Home", :root_path
+  
   private
   def pagination_page
     params[:page] ||= 1
@@ -22,7 +23,7 @@ class ApplicationController < ActionController::Base
       if cookies[:require_user_page]
         redirect_to root_url
       else
-        store_location(false)
+        store_location("false")
         redirect_to sessions_path 
       end
       cookies.delete(:require_user_page) 
@@ -31,18 +32,20 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def store_location(next_page = true)
-    disallowed_urls = [ sessions_path, log_out_url ]
-    disallowed_urls.map!{|url| url[/\/\w+$/]}
-    if next_page
-      unless disallowed_urls.include?(request.env["HTTP_REFERER"])
-        session[:return_to] = request.env["HTTP_REFERER"]
+  def store_location(next_page = nil)
+    if !session[:return_to].present?
+      disallowed_urls = [ sessions_path, log_out_url ]
+      disallowed_urls.map!{|url| url[/\/\w+$/]}
+      if !next_page
+        unless disallowed_urls.include?(request.env["HTTP_REFERER"])
+          session[:return_to] = request.env["HTTP_REFERER"]
+        end
+      else 
+        unless disallowed_urls.include?(request.url)
+          session[:return_to] = request.url
+        end
       end
-    else 
-      unless disallowed_urls.include?(request.url)
-        session[:return_to] = request.url
-      end
-    end
+     end
   end
 
   def redirect_back_or(default, hsh = {})

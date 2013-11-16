@@ -12,6 +12,17 @@ class Product < ActiveRecord::Base
   has_many :wishlists
   has_many :customers,              :through => :wishlists
   
+  has_one :parent_product,   -> { where(id: self.parent) }
+  
+  has_many :product_to_tools
+  has_many :tools,                  :through => :product_to_tools
+  
+  has_many :parent_maps,   class_name: "ProductToTool", :foreign_key => "tool_id" 
+  has_many :parents,  :through => :parent_maps, :source => :product    
+  
+  
+  belongs_to :parent, class_name: "Product"
+  
   has_many :order_to_products
   has_many :orders,                 :through => :order_to_products
   
@@ -28,7 +39,18 @@ class Product < ActiveRecord::Base
     self.save
   end
   
+  def to_param
+    "#{name}"
+  end
     
+  def self.find(input)
+    if input.to_i != 0
+      super
+    else
+      find_by_name(input)
+    end
+  end
+  
   def self.standard_search(text)
     if text.present?
       keys=text.split(" ")

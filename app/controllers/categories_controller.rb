@@ -4,6 +4,14 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
+    if params[:key].present?
+      if params[:select].present?
+        redirect_to :action => "show", :id => params[:select], :key => params[:key]
+      else
+        redirect_to :action => "show", :id => "all" , :key => params[:key]
+      end
+    end
+    
     @categories = Category.admin_grid(params,true).order(sort_column + " " + sort_direction).
                                           paginate(:page => pagination_page, :per_page => pagination_rows)
    end
@@ -11,6 +19,28 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    
+    if params[:key].present?
+      add_breadcrumb "Search", category_path
+      if @category       
+        @products = @category.activeProducts.standard_search(params[:key])
+      else
+        @temp_category = Category.find_by_name(params[:key])
+        if @temp_category
+          redirect_to @temp_category
+        end
+        @products = Product.standard_search(params[:key])
+      end
+    else
+      if @category
+        add_breadcrumb @category.name, category_path
+        @products = @category.activeProducts
+      else
+        
+      end
+    end
+    
+    @categories = Category.all
   end
 
   # GET /categories/new
@@ -72,7 +102,7 @@ class CategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @category = Category.find(params[:id])
+      @category = Category.find_by_name(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

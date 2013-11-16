@@ -4,7 +4,20 @@ class ProductsController < ApplicationController
 
   # GET /products
   # GET /products.json
-  def index    
+  def index 
+    add_breadcrumb "index", index_path
+    if params[:id].present?
+      @category = Category.find_by_name(params[:id]) 
+      if @category
+        @products = @category.activeProducts  
+      else 
+        @product = Product.find_by_name(params[:id]) 
+        if @product 
+          redirect_to @product  
+        end
+      end 
+    end
+       
     if params[:select].present?
       @category = Category.find(params[:select])
       if @category
@@ -14,18 +27,24 @@ class ProductsController < ApplicationController
     if !@products        
         @products = Product.admin_grid(params,true,params[:key]).order(sort_column + " " + sort_direction).
                                              paginate(:page => pagination_page, :per_page => pagination_rows)
-    @cart_items = current_cart.cart_items
+      @cart_items = current_cart.cart_items
     end
+    @categories = Category.all
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
-    @product = Product.find(params[:id])
+    add_breadcrumb @category.name, @category
+    add_breadcrumb @product.name, category_product_path
+    
+    if @product.parents.size > 0
+      
+    end
+    
     @product.updateViewCount
     @cart_items = current_cart.cart_items
-    @sidebar_products = Product.all
-    @lowerbar_products = Product.all
+    @tools = Product.all
   end
 
   # GET /products/new
@@ -80,7 +99,8 @@ class ProductsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.find_by_name(params[:id])
+      @category = Category.find_by_name(params[:category_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

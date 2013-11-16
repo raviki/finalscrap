@@ -3,7 +3,7 @@ html body div#wrap .container div.row-fluid
 	border-radius: 8px 8px 8px 8px;
 	box-shadow: 1px 1px 5px #b2b2b2;
     -webkit-box-shadow: 1px 1px 5px #b2b2b2;
-     margin-top: 2em;
+     margin-top: 1em;
      margin-bottom: 1em;  
      margin-left: 1em;
      margin-right:3em;
@@ -12,10 +12,15 @@ html body div#wrap .container div.row-fluid
      z-index: 101;	
 }   
 
-
-
-html body div#wrap .container
+html body div#wrap div#main.container div.breadcrumbs
 {
+	margin-left:1em;
+}
+
+
+html body div#wrap div#main.container
+{
+	margin-top: 1em;
 	max-width: 100%;
 	height:100%;
 }
@@ -42,7 +47,7 @@ html body div#wrap div#main.container div.welcome-page div.span9 div.bs-docs div
 
 html body div#wrap div#main.container div.span3
 {
-  margin-left: 0; 
+  margin-left: 1em; 
 }
 
 html body div#wrap div#main.container div.span9
@@ -50,9 +55,77 @@ html body div#wrap div#main.container div.span9
 	margin-left: 0.5em;
 }
 
+html body div#wrap div#main.container div.welcome-page div.span3 div.span3 ul.nav,
+html body div#wrap div#main.container div.row-fluid div.span2 div.bs-docs-sidebar ul.nav
+{
+    border-top: 1px solid #E0E0E0;
+    float: left;
+    list-style: none outside none;
+    width: 100%;
+    z-index: 2;
+    margin-top:1em;
+
+}
+html body div#wrap div#main.container div.welcome-page div.span3 div.span3 ul.nav
+{
+	max-width:90%;
+}
+
+html body div#wrap div#main.container div.welcome-page div.span3 div.span3 ul.nav li.dropdown-submenu a.dropdown-toggle,
+html body div#wrap div#main.container div.row-fluid div.span2 div.bs-docs-sidebar ul.nav li.dropdown-submenu a.dropdown-toggle
+{
+	margin-left:0;
+    margin-right:0;
+}
+
+html body div#wrap div#main.container div.welcome-page div.span3 div.span3 ul.nav li.dropdown-submenu,
+html body div#wrap div#main.container div.row-fluid div.span2 div.bs-docs-sidebar ul.nav li.dropdown-submenu
+{
+    border-bottom: 1px solid #E0E0E0;
+    line-height: 30px;
+    position: relative;
+}
+
+html body div#wrap div#main.container div.welcome-page div.span3 div.span3 ul.nav li ul li,
+html body div#wrap div#main.container div.row-fluid div.span2 div.bs-docs-sidebar ul.nav li ul li {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #E8E8E7;
+    border-image: none;
+    border-style: solid;
+    border-width: 0 0 1px;
+    margin: 0 8px 0 0;
+
+    
+}
+
+html body div#wrap div#main.container div.welcome-page div.span3 div.span3 ul.nav li.dropdown-submenu ul,
+html body div#wrap div#main.container div.row-fluid div.span2 div.bs-docs-sidebar ul.nav li.dropdown-submenu ul.dropdown-menu
+{
+	margin-top:0;
+}
 
 
+.flash_messages {
+  margin-top: 1em;
+}
 
+.alert-box {
+    background-color: #2BA6CB;
+    border-color: #2284A1;
+    border-style: solid;
+    border-width: 1px;
+    color: #FFFFFF;
+    display: block;
+    font-size: 0.875em;
+    font-weight: bold;
+    margin-left: 3.5em;
+    margin-right:3.5em;
+    margin-bottom:1em;
+    padding: 0.6875em 1.3125em 0.75em 0.6875em;
+}
 
 
 

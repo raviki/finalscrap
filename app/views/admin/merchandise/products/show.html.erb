@@ -6,6 +6,30 @@
 	</tbody>
 </table>
 
+<% if @show_products == true  %>
+	<h5 style='text-align:left'>Select Products</h5>
+	
+	<%= form_tag(admin_merchandise_product_path(@product), :method => 'get', :class => 'navbar-search') do %>
+			<div class="input-prepend input-append">																		
+			<%=	select(@products,"id", Product.all.collect {|p| [ p.name, p.name ] }, { prompt:"All" },{class:"selectpicker span1", id: "cat",name:"select"})%>									
+			<%= submit_tag "Search", :name => nil, :class => "btn btn-info" %>
+			</div>
+	<% end %>
+<% else %>
+	<%= link_to "Link Tools",  :class => 'button small blue-button', :url => admin_merchandise_product_path, :id => @product.id, :show_products => "yes", :action => "show", :method => "get" %>
+<% end %>
+
+<% if @product.tools.size > 0 %>
+<h5 style='text-align:right'>Listing Tools</h5>
+<table>
+	<%= render :partial =>'admin/merchandise/products/table_header', :locals => { :product_page => 'yes' }  %>
+	<tbody>
+      <%= render :partial => 'admin/merchandise/products/product', :collection => @product.tools, :locals => { :product_page => 'yes' }  %>
+	</tbody>
+</table>
+<%= will_paginate @products %>
+<% end %>
+
 <% if @product.product_variants.size > 0 %>
 <h5 style='text-align:right'>Listing Variants</h5>
 <%= render :partial => 'admin/merchandise/product_variants/table' %>

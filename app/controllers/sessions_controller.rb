@@ -1,10 +1,15 @@
 class SessionsController < ApplicationController
 def index
   session[:customer_id] = nil
-  render 'new' 
+  if current_user
+      redirect_to root_url
+  else
+    store_location()
+    render 'new' 
+  end 
 end
   def new
-    store_location()
+      store_location()
   end
   
 
@@ -33,7 +38,7 @@ end
     else
       #puts "#{user_hash} this is not #{params.inspect}"
      render "new"
-     end
+    end
    else 
     # Create an error message and re-render the signin form.
     flash.now[:error] = 'Invalid email/password combination' # Not quite right!
@@ -59,7 +64,7 @@ def destroy
   store_location()
   cookies.delete(:remember_token)
   session[:customer_id] = nil
-  redirect_back_or(categories_path, :success => "Logged Out!!")
+  redirect_back_or(root_url, :success => "Logged Out!!")
   end
 
 end

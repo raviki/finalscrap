@@ -16,10 +16,20 @@
 
   	<body style="background-color:#FAFAFA">
    		<div id="wrap">			
-		<% if !(defined? @no_header) %>
-			<%= render 'layouts/header' %>
-		<% end %> 
+			<% if !(defined? @no_header) %>
+				<%= render 'layouts/header' %>
+			<% end %> 
+			<% if notice || alert %>
+        	<div class="flash_messages">
+          		<%= raw "<div data-alert class='alert-box warning'> #{notice} <a href='' class='close'>&times;</a>"  if notice %>
+          		<%= raw "<div data-alert class='alert-box alert'> #{alert} <a href='' class='close'>&times;</a>"  if alert %>
+        	</div>
+      		<% end %>
 			<div id="main" class="container clear-top">
+				<div class="breadcrumbs">
+					<%= render_breadcrumbs :separator => ' -> ' %>
+				</div>
+
       					<%= yield %>   			
     		</div>  
     	</div>
@@ -39,8 +49,7 @@
   	</div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> 
-    <% if @cart_items and (@cart_items.size > 0) %>
-    	<%= link_to 'Place an Order', checkout_index_path, :class => "btn btn-primary", :method => "get"%>
-    <% end %>
+    <%= link_to 'Place an Order', checkout_index_path, :class => "btn btn-primary", :method => "get"%>
+
   </div>
 </div>

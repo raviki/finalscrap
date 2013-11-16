@@ -5,7 +5,7 @@ class Admin::Fulfillments::OrdersController < AdminController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.admin_grid(params).order(sort_column + " " + sort_direction).
+    @orders = Order.admin_grid(params,params[:customer_id],params[:active]).order(sort_column + " " + sort_direction).
                                           paginate(:page => pagination_page, :per_page => pagination_rows)
     if params[:show_search].present?
       @show_search = true
@@ -20,8 +20,7 @@ class Admin::Fulfillments::OrdersController < AdminController
     redirect_back_or(admin_fulfillments_orders_url)
   end
   
-  def assign_store
-    
+  def assign_store    
     if params[:select].present?      
       params[:select].each do |productId|
         if StoreToProduct.where(:store_id => params[:store][:store_id], :product_id => productId).size > 0

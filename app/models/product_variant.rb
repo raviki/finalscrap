@@ -4,4 +4,8 @@ class ProductVariant < ActiveRecord::Base
   has_many :order_to_product 
   
   validates :price,                 :presence => true,          :numericality => true
+  
+  def display_name
+    self.value + ": Rs. " + self.price.to_s
+  end
 end

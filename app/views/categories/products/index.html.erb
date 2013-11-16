@@ -1,0 +1,67 @@
+<div class="row-fluid">
+	<div class="span2">		
+	<% if @categories.size > 0 %>
+ 		<div class="bs-docs-sidebar">
+    		<%= render :partial => 'shared/items_sidebar' %>
+    	</div>
+    <% end %>    
+	</div>
+	<div class="span10">	
+		<% if @category %>
+			<h4 class="center"> <%= @category.name %> </h4> 
+		<% end %>
+		
+		<% if @products.size < 1 %>
+			<h5 style="margin-left:4em;margin-top:1em;"> No Tasks to list </h5>  
+		<% end %>
+		
+		<ul class="thumbnails">
+			<% @products.each do |product| %>
+			<% if !@category %>
+			  <% if product.categories.size > 0 %>
+			  	<% @category = product.categories.first %>
+			  <% end %>	
+			<% end %>
+			<% if @category %>
+			<li >				
+				<div class="thumbnail">
+					
+					<div class="center">
+					<%= link_to image_tag(product.image,:height => "200px", :width => "200px" ),category_product_path(@category,product)%>					
+					</div>
+					<div class="caption">
+						<%= simple_format(product.name,:class=>:name)%>
+						<% @item = product %>
+						<%= simple_format("<del>&#2352;</del> #{@item.product_variants.first.price}",:class =>:pricehilit)%>
+					</div>
+								
+					<div class="product-info">
+						<%=form_for(:cart_item,url: cart_items_path, :action => :create) do |f|%>
+			
+							<% if @item.product_variants.size > 1 %>
+							<div class="product-size">
+							<tr>
+								<td class="span1"><b>Sizes:</b></td>
+								<td class="span2 center form-horizontal">								
+									<%= select_tag "cart_item[product_id]", options_from_collection_for_select(@item.product_variants, "id", "display_name") %>
+								</td>
+							</tr>
+							</div>
+							<% else %>
+								<%= hidden_field_tag "cart_item[product_id]", @item.product_variants.first.id%>			
+							<% end %>
+						
+							<div class="product-quantity center form-horizontal">
+								<%= f.text_field :quantity, :class=>"span6",:placeholder => "Quantity"%>
+								<%= f.submit "Quick Add", {class: "btn btn-info", id:"addcart"}%>
+							</div>
+						<%end%>
+					</div>
+				</div>
+			</li>
+			<% end %>
+			<%end%>								
+		</ul>
+	</div>
+</div>
+

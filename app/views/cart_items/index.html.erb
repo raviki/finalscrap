@@ -4,6 +4,7 @@
 	<thead>
 		<tr>
 			<th>Task Name</th>
+			<th>Type</th>
 			<th>Min. Price</th>
 			<th>Quantity</th>
 			<th>Total</th>
@@ -16,6 +17,7 @@
 		<tr>
 			<td class="span2"><%= cart_item.product.name%></td>
 			<% @temp_product = cart_item.product %>
+			<td class="span2"><%= cart_item.product_variant.value%></td>
 			<td class="span2" align="center"><%= cart_item.price %></td>
 			<td class="span2" align="center"> <%= form_for(cart_item, remote:true) do |f| %><%= f.text_field :quantity, class: "span8 center"%><% end %></td>
 			<td class="span2" align="center"><del>&#2352;</del>  <%= cart_item.total_price %></td>

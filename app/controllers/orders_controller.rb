@@ -4,12 +4,21 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    require_user()
+    add_breadcrumb "Orders", orders_path
+    
+    @order = Order.find_or_create_by_customer_id_and_active(current_user.id,true)                                     
+    @past_orders = Order.admin_grid(params,current_user.id,true, false).order(sort_column + " " + sort_direction).
+                                          paginate(:page => pagination_page, :per_page => pagination_rows)
+
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
+    require_user()
+    add_breadcrumb "Orders", orders_path
+    add_breadcrumb @order.id, order_path
   end
 
   # GET /orders/new
@@ -26,18 +35,18 @@ class OrdersController < ApplicationController
   def create
     @customer = CustomerManagement.find(order_params[:customer_id])
     if @customer.cart_items.length > 0 
-      @order = Order.find_or_create_by_customer_id(params[:customer_id])
+      @order = Order.find_or_create_by_customer_id_and_active(params[:customer_id],true)
       @customer.cart_items.each do |cart_item|      
         @order_to_product = OrderToProduct.where(:product_id => cart_item.product_id, :order_id => @order.id).first_or_create
         @order_to_product.update_price_quantity(cart_item.price, cart_item.quantity)
         cart_item.delete       
       end
       @order.save
-      @order.update_columns(address_id: @customer.cart.address_id)
+      @order.update_columns(address_id: @customer.cart.address_id, customer_id: @customer.id, active: true)
       @customer.cart.delete      
       redirect_to action: 'show', id: @order.id
     else
-      redirect_back_or(products_url, notice: 'Empty Cart.')
+      redirect_back_or(root_url, notice: 'Empty Cart.')
     end
     
   end
@@ -75,5 +84,13 @@ class OrdersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
       params.require(:order).permit(:customer_id, :voucher_id, :payment_id, :discount, :discount_message, :appointment_date, :duration_inHrs, :active)
+    end
+    
+    def sort_column
+        Product.column_names.include?(params[:sort]) ? params[:sort] : "appointment_date"
+    end
+
+    def sort_direction
+        %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
 end
