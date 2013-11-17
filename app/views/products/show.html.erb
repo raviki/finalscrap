@@ -70,11 +70,18 @@
 							<ul class="product-tools-each-split">
 							
 							<li><%= link_to image_tag(tool.image),category_product_path(@category,tool)%></li>							</li>
-							<li class="center-vertical">
+							<li class="center-vertical center">
 
-								<p><%= tool.name%></p>
-								<br>
+								<p class="text-align:center;"><%= tool.name%></p>
 								<%= simple_format("<del>&#2352;</del> #{tool.product_variants.first.price}")%>
+								
+								<%=form_for(:cart_item,url: cart_items_path, :action => :create) do |f|%>
+								<div class="product-show-quantity span6 center form-horizontal">
+									<%= hidden_field_tag "cart_item[product_id]", tool.product_variants.first.id%>
+									<%= f.text_field :quantity, :class=>"product-show-quantity-input span4",:placeholder => "#"%>
+									<%= f.submit "Add", {class: "btn btn-info", id:"addcart"}%>
+								</div>
+								<%end%>
 							</li>
 							<li>							
 							</li>

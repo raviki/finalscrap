@@ -4,6 +4,8 @@ class Category < ActiveRecord::Base
   has_many :products,             :through => :category_to_products
   has_many :activeProducts,   -> { where(active: true) },    :source => :product,   :class_name => "Product",  :through => :category_to_products
   
+  has_many :tools,                :through => :products
+  
   validates :image, :presence => true
   validates :description, :length => {:maximum =>300}, :presence => true
   

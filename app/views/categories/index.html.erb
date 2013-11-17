@@ -1,16 +1,30 @@
- 	<div class="welcome-page">
+
  	
- 	<div class="span3">
- 	 <% if @categories.size > 0 %>
- 		<div class="span3 bs-docs-sidebar">
+ 	<div class="first-split container span12">
+		<div class="span3">
+ 		<% if @categories.size > 0 %>
+ 		<div class="bs-docs-sidebar">
     		<%= render :partial => 'shared/items_sidebar' %>
     	</div>
-    <% end %>
-    </div>
+    	<% end %>
+    	</div>
+    	
+    	<div class="span9">
+    		<div class="span8"></div>
+    		<div class="span1"><%= image_tag("green-tick.jpg")%></div>
+    	</div>
+    	<%= render 'order_requests/welcome_page' %>
+ 	</div>
+ 	
+ 	<div class="second-split container span12">
+ 		<div class="message-box">
+ 			
+ 		</div>
+ 	</div>
+ 	
     
     <div class="span9">
       <!--Body content-->	
-
             <div class="bs-docs">
               <div id="myCarousel" class="carousel slide">
                 <ol class="carousel-indicators">
@@ -45,45 +59,5 @@
                 <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
               </div>
             </div>
-     </div>
+     	</div>
 
-
-	</div>
-
-
-
-
-
-<!-- <h1>Listing categories</h1>
-
-<table>
-	<thead>
-		<tr>
-			<th>Category</th>
-			<th>Image</th>
-			<th>Description</th>
-			<th>Status</th>
-			<th></th>
-			<th></th>
-			<th></th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<% @categories.each do |category| %>
-		<tr>
-			<td><%= category.id %></td>
-			<td><%= category.image %></td>
-			<td><%= category.description %></td>
-			<td><%= category.active %></td>
-			<td><%= link_to 'Show', category %></td>
-			<td><%= link_to 'Edit', edit_category_path(category) %></td>
-			<td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Category', new_category_path %> -->

@@ -1,6 +1,7 @@
 Website::Application.routes.draw do
 
-
+  resources :order_requests
+  
   root to: "categories#index"
  
   get "product_variants/edit"

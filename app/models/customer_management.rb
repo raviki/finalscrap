@@ -58,6 +58,10 @@ def self.from_omniauth(auth)
     end
 end
 
+def first_name
+  return self.name.split(' ').first  
+end
+
 def encrypt_token(token)
   return Digest::SHA1.hexdigest(token.to_s)
 end  

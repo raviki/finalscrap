@@ -22,10 +22,10 @@
 					<div class="search-bar">
 						<ul class="nav">
 						<li>
-							<%= form_tag(categories_path, :method => 'get', :class => 'navbar-search') do %>
+							<%= form_tag(categories_path, :method => 'get', :class => 'navbar-search span5') do %>
 								<div class="input-prepend input-append">																		
-									<%=	select(@categories,"id", Category.all.collect {|p| [ p.name, p.name ] }, { prompt:"All" },{class:"selectpicker span1", id: "cat",name:"select"})%>									
-									<%= text_field_tag :key, params[:key], :class => " span4 search-query" %>
+									<%=	select(@categories,"id", Category.all.collect {|p| [ p.name, p.name ] }, { prompt:"All" },{class:"btn dropdown-toggle"})%>									
+									<%= text_field_tag :key, params[:key], :class => " search-query" %>
 									<%= submit_tag "Search", :name => nil, :class => "btn btn-info" %>
 								</div>
 							<% end %>
@@ -37,8 +37,8 @@
 
 							<% if signed_in? %>
             <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				Hello <%= @user.name %> <b class="caret"></b>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">	
+				Hello <%= @user.first_name %> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Account", accounts_index_path %></li>

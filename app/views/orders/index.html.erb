@@ -1,8 +1,16 @@
-<div class="order-index">
-<%= render :template => 'orders/show' %>
-</div>
+<% if @order %>
+	<div class="order-index">
+	<%= render :template => 'orders/show' %>
+	</div>
+<% end %>
 
-<table>
+
+
+<div class="span1"></div>
+<div class="order-cart center span10">
+<h5 style='text-align:left'>History</h5>
+<% if @past_orders.size > 0%>
+<table class="table table-hover" >
   <thead>
     <tr>
    	  <th>Id</th>
@@ -19,4 +27,8 @@
     <% end %>
   </tbody>
 </table>
+<% else %>
+<% end %>
+<p>No Past Records Found</p>
+</div>
 

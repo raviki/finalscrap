@@ -7,10 +7,11 @@
  					<ul class="dropdown-menu"> 						
  						<% @temp_category.activeProducts.order("views  desc").each do |product| %>
  							<li><%= link_to product.name,  category_product_path(@temp_category,product) %></li>
- 						<% end%> 	
+ 						<% end%> 
+ 						<li><%= link_to("Tools & Spares", category_path(c, :tools => true)) %></li>					
  					</ul>	
  				<% end %>		
  			</li> 							
- 		<% end %>
+ 		<% end %> 		
 	</ul> 
 

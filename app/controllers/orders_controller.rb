@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
     require_user()
     add_breadcrumb "Orders", orders_path
     
-    @order = Order.find_or_create_by_customer_id_and_active(current_user.id,true)                                     
+    @order = Order.find_by_customer_id_and_active(current_user.id,true)                                     
     @past_orders = Order.admin_grid(params,current_user.id,true, false).order(sort_column + " " + sort_direction).
                                           paginate(:page => pagination_page, :per_page => pagination_rows)
 
@@ -35,7 +35,7 @@ class OrdersController < ApplicationController
   def create
     @customer = CustomerManagement.find(order_params[:customer_id])
     if @customer.cart_items.length > 0 
-      @order = Order.find_or_create_by_customer_id_and_active(params[:customer_id],true)
+      @order = Order.find_or_create_by_customer_id_and_active(order_params[:customer_id],1)
       @customer.cart_items.each do |cart_item|      
         @order_to_product = OrderToProduct.where(:product_id => cart_item.product_id, :order_id => @order.id).first_or_create
         @order_to_product.update_price_quantity(cart_item.price, cart_item.quantity)

@@ -11,7 +11,7 @@ class CategoriesController < ApplicationController
         redirect_to :action => "show", :id => "all" , :key => params[:key]
       end
     end
-    
+    @root_url = "yes"
     @categories = Category.admin_grid(params,true).order(sort_column + " " + sort_direction).
                                           paginate(:page => pagination_page, :per_page => pagination_rows)
    end
@@ -34,9 +34,11 @@ class CategoriesController < ApplicationController
     else
       if @category
         add_breadcrumb @category.name, category_path
-        @products = @category.activeProducts
-      else
-        
+        if params[:tools]
+          @products = @category.tools
+        else
+          @products = @category.activeProducts
+        end
       end
     end
     

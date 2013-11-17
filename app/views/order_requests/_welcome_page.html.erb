@@ -1,0 +1,11 @@
+<div class="request-form span4">			
+		<%=form_for(:order_request,url: order_requests_path, :action => :create) do |f|%>
+		 	<%= text_area_tag 'request', nil, :class=>"span4",:placeholder => "Tell Your Need"%>
+			<%= text_field_tag 'mobile', nil, :class=>"span2",:placeholder => "Mobile Number" %>
+			<% if current_user %>
+				<%= hidden_field_tag 'user_id', current_user.id %>
+			<% end %>
+			<%=	select(@categories,"id", Category.all.collect {|p| [ p.name, p.name ] }, { prompt:"Select Type" },{class:"btn  span2 dropdown-toggle"})%>
+  			<%= f.submit "Place a Request", :class => "btn span4 btn-info" %>
+  		<% end %>
+</div>

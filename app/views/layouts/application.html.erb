@@ -6,7 +6,7 @@
     <%= stylesheet_link_tag "application", media: "screen", recursive: false,
                                            "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700italic" rel='stylesheet' type='text/css'>
     <%= csrf_meta_tags %>
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -25,12 +25,23 @@
           		<%= raw "<div data-alert class='alert-box alert'> #{alert} <a href='' class='close'>&times;</a>"  if alert %>
         	</div>
       		<% end %>
-			<div id="main" class="container clear-top">
-				<div class="breadcrumbs">
-					<%= render_breadcrumbs :separator => ' -> ' %>
+      		<div class="breadcrumbs container">
+      			
+      			<div class="span9" style="margin-left:0;">
+					<%= render_breadcrumbs :separator => ' / ' %>
 				</div>
+				<div class="span3" style="margin-left:0;text-align:right;">
+					<p style="padding-right:3.5em;">Contact Us: <%= link_to contact_number, "tel:"+contact_number %>	
+					</p>
+				</div>
+			</div>
+			<% if @root_url.present? %>
+			<div class="welcome-page container clear-top">
+			<% else %>
+			<div id="main" class="container clear-top">
+			<% end %>	
 
-      					<%= yield %>   			
+      			<%= yield %>   			
     		</div>  
     	</div>
     	<%= render 'shared/google_analytics' unless @disable_ga %>

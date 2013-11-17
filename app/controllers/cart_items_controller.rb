@@ -36,7 +36,7 @@ class CartItemsController < ApplicationController
       if @cart_item.save 
         update_cart_items
         @isShowCartItems = "yes"
-        format.html { redirect_back_or(request.env["HTTP_REFERER"], notice: 'Cart item was successfully created.') }
+        format.html { redirect_back_or(request.env["HTTP_REFERER"]) }
         format.json { render action: 'show', status: :created, location: @cart_item }
         format.js 
       else

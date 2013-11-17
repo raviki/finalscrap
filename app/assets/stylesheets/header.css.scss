@@ -67,10 +67,21 @@ html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse di
   border-radius: 0 5px 5px 0;
   margin-left: 0;
 }
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li form.navbar-search div.input-prepend div.btn-group .btn
+html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li form.navbar-search div.input-prepend .btn
 {
 	border-radius: 5px 0 0 5px;
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 0;
+	padding-right: 0;
+	width: 30%;
+	
 }
+html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li form.navbar-search div.input-prepend input#key.search-query
+{
+  width: 100%;   
+}
+
 html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li form.navbar-search div.input-prepend
 {
   margin-top:5px;
@@ -78,7 +89,7 @@ html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse di
 }
 html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar
 {
-    margin-left: 25%;
+    margin-left: 23%;
 }
 
 html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li form.navbar-search
@@ -101,7 +112,8 @@ html body div#wrap div.navbar div.navbar-inner div.container img
   position: absolute;
   margin-left:2.5em;
   width: 10em;
-  margin-top:7px;
+  max-height: 3em;
+  margin-top:0.25em;
 }
 
 
