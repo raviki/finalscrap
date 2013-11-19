@@ -1,5 +1,4 @@
 class Product < ActiveRecord::Base
-  
   has_many :store_to_products
   has_many :stores,                 :through => :store_to_products
   
@@ -40,13 +39,16 @@ class Product < ActiveRecord::Base
   end
   
   def to_param
-    "#{name}"
+    "#{name}".parameterize
   end
     
   def self.find(input)
     if input.to_i != 0
       super
     else
+      if input.include? '-'
+        input = input.sub!('-', ' ')
+      end 
       find_by_name(input)
     end
   end

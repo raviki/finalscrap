@@ -1,5 +1,4 @@
-class Category < ActiveRecord::Base
- 
+class Category < ActiveRecord::Base  
   has_many :category_to_products
   has_many :products,             :through => :category_to_products
   has_many :activeProducts,   -> { where(active: true) },    :source => :product,   :class_name => "Product",  :through => :category_to_products
@@ -18,15 +17,22 @@ class Category < ActiveRecord::Base
   end
   
   def self.find(input)
+    puts "------#{input.sub!('-', ' ')}"
+    
+    
     if input.to_i != 0
       super
     else
+      if input.include? '-'
+        input = input.sub!('-', ' ')
+      end 
+      puts "------#{input}"
       find_by_name(input)
     end
   end
   
   def to_param
-    "#{name}"
+    "#{name}".parameterize
   end
   
   def self.standard_search(text)

@@ -18,8 +18,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1
   # GET /categories/1.json
-  def show
-    
+  def show   
     if params[:key].present?
       add_breadcrumb "Search", category_path
       if @category       
@@ -33,7 +32,8 @@ class CategoriesController < ApplicationController
       end
     else
       if @category
-        add_breadcrumb @category.name, category_path
+        add_breadcrumb @category.name, @category
+        @show_request = true
         if params[:tools]
           @products = @category.tools
         else
@@ -104,7 +104,7 @@ class CategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @category = Category.find_by_name(params[:id])
+      @category = Category.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

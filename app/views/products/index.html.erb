@@ -5,7 +5,7 @@
 		<% end %>
 	</div>
 	<% if !@category %>
-		<div class="span2">		
+		<div class="category-submenu span3">		
 		<% if @categories.size > 0 %>
  			<div class="bs-docs-sidebar">
     			<%= render :partial => 'shared/items_sidebar' %>
@@ -13,7 +13,7 @@
     	<% end %>    
 		</div>
 	<% end %>
-	<div class="span9">	
+	<div class="products-list span9">	
 		<% if @products.size < 1 %>
 			<h5 class="offset4" style="margin-top:3em;"> No Tasks to list </h5>  
 		<% end %>
@@ -26,7 +26,7 @@
 			  <% end %>	
 			<% end %>
 			<% if @category %>
-			<li >				
+			<li class="span3">				
 				<div class="thumbnail">
 					
 					<div class="center">
@@ -68,7 +68,7 @@
 			<%end%>								
 		</ul>
 	</div>
-	<% if @category %>
+	<% if @show_request == true  %>
 		<%= render :template => 'order_requests/new' %>
 	<% end %>
 </div>

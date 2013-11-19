@@ -69,7 +69,19 @@ html body div#wrap div.welcome-page div.second-split div.message-box
 	margin-bottom: 2.5em;
 	background: url("/assets/task-background.jpg") no-repeat scroll left center rgba(0, 0, 0, 0);
 	border: 1px solid #DADADA;
-	min-height: 250px;
+	height: 250px;
+}
+
+html body div#wrap div.welcome-page div.second-split div.message-box div.thumbs-up-logo img
+{
+	margin:50px 65px 80px 65px;
+	width:120px;
+	height:120px;
+}
+html body div#wrap div.welcome-page div.second-split div.message-box div.value-message
+{
+	margin-top:1em;
+	color:#2284A1;
 }
 
 html body div#wrap div.welcome-page div.first-split div.span9 div.span1 img
@@ -78,12 +90,67 @@ html body div#wrap div.welcome-page div.first-split div.span9 div.span1 img
 	margin-left:1.5em;
 }
 
-
 html body div#wrap div.welcome-page div.first-split
 {
-	min-height: 300px;	
+	min-height: 350px;	
 }
 
+html body div#wrap div.welcome-page div.first-split div.content-block div.first-block,
+html body div#wrap div.welcome-page div.first-split div.content-block div.second-block,
+html body div#wrap div.welcome-page div.first-split div.first-split-submenu
+{
+	min-height: 225px;
+
+}
+
+html body div#wrap div.welcome-page div.first-split div.content-block div.tick-logo div.span1 img
+{
+	margin-top:-5px;
+}
+
+html body div#wrap div.welcome-page div.first-split div.content-block div.first-block div.message-block div.logo-images
+{
+	margin-top:1em;
+}
+
+html body div#wrap div.welcome-page div.first-split div.content-block div.warranty-message
+{
+	margin-left: 3.5em;	
+}
+
+html body div#wrap div.welcome-page div.first-split div.content-block div.warranty-message h4
+{
+	margin-top: 5em;
+}
+html body div#wrap div.welcome-page div.first-split div.content-block div.warranty-message h4.color1
+{
+	color: #088A29;
+}
+
+html body div#wrap div.welcome-page div.first-split div.content-block div.warranty-message span.color2
+{
+	color: #FFFFFF;
+}
+
+html body div#wrap div.welcome-page div.first-split div.content-block div.first-block div.message-block
+{
+	margin-left:10em;	
+}
+
+html body div#wrap div.welcome-page div.first-split div.content-block div.first-block div.message-block p
+{
+	color: #F2F2F2;	
+}
+html body div#wrap div.welcome-page div.first-split div.content-block div.first-block div.message-block h2
+{
+	color: #F2F2F2;	
+	margin-top: 3em;
+}
+html body div#wrap div.welcome-page div.first-split div.content-block div.logo-images img.span1
+{
+	width: 70px;
+	height:70px;
+}
 html body div#wrap div.welcome-page div.first-split div.span3
 {
 	margin-left: 3.5em;
@@ -95,7 +162,7 @@ html body div#wrap div#main.container div.span9
 }
 
 html body div#wrap div.welcome-page div.span3 ul.nav,
-html body div#wrap div#main.container div.row-fluid div.span2 div.bs-docs-sidebar ul.nav
+html body div#wrap div#main.container div.row-fluid div.category-submenu div.bs-docs-sidebar ul.nav
 {
     border-top: 1px solid #E0E0E0;
     float: left;
@@ -107,24 +174,27 @@ html body div#wrap div#main.container div.row-fluid div.span2 div.bs-docs-sideba
 }
 
 html body div#wrap div.welcome-page div.span3 ul.nav li.dropdown-submenu a.dropdown-toggle,
-html body div#wrap div#main.container div.row-fluid div.span2 div.bs-docs-sidebar ul.nav li.dropdown-submenu a.dropdown-toggle
+html body div#wrap div#main.container div.row-fluid div.category-submenu div.bs-docs-sidebar ul.nav li.dropdown-submenu a.dropdown-toggle
 {
 	margin-left:0;
     margin-right:0;
 }
 
 html body div#wrap div.welcome-page div.span3 ul.nav li.dropdown-submenu,
-html body div#wrap div#main.container div.row-fluid div.span2 div.bs-docs-sidebar ul.nav li.dropdown-submenu
+html body div#wrap div#main.container div.row-fluid div.category-submenu div.bs-docs-sidebar ul.nav li.dropdown-submenu
 {
     border-bottom: 1px solid #E0E0E0;
     line-height: 30px;
     position: relative;
 }
 
+
+html body div#wrap div#main.container div.row-fluid div.category-submenu div.bs-docs-sidebar,
 html body div#wrap div.welcome-page div.first-split div.span3 div.bs-docs-sidebar
 {
 	border-radius: 0 0 0 0;
 }
+html body div#wrap div#main.container div.row-fluid div.category-submenu div.bs-docs-sidebar ul.nav,
 html body div#wrap div.welcome-page div.first-split div.span3 div.bs-docs-sidebar ul.nav
 {
 	padding-left:0;
@@ -134,7 +204,7 @@ html body div#wrap div.welcome-page div.first-split div.span3 div.bs-docs-sideba
 }
 
 html body div#wrap div.welcome-page div.span3 ul.nav li ul li,
-html body div#wrap div#main.container div.row-fluid div.span2 div.bs-docs-sidebar ul.nav li ul li {
+html body div#wrap div#main.container div.row-fluid div.bs-docs-sidebar ul.nav li ul li {
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
@@ -148,12 +218,12 @@ html body div#wrap div#main.container div.row-fluid div.span2 div.bs-docs-sideba
 
 
 html body div#wrap div.welcome-page div.span3 ul.nav li.dropdown-submenu ul,
-html body div#wrap div#main.container div.row-fluid div.span2 div.bs-docs-sidebar ul.nav li.dropdown-submenu ul.dropdown-menu
+html body div#wrap div#main.container div.row-fluid div.bs-docs-sidebar ul.nav li.dropdown-submenu ul.dropdown-menu
 {
 	margin-top:0;
 }
-
-html body div#wrap div.welcome-page div.first-split div.span3 div.bs-docs-sidebar ul.nav li.dropdown-submenu ul.dropdown-menu
+html body div#wrap div#main.container div.row-fluid div.category-submenu div.bs-docs-sidebar ul.nav li.dropdown-submenu ul.dropdown-menu,
+html body div#wrap div.welcome-page div.first-split div.bs-docs-sidebar ul.nav li.dropdown-submenu ul.dropdown-menu
 {
 	border-radius: 0 8px 8px 0;
 	margin-top:-2px;
@@ -165,6 +235,12 @@ html body div#wrap div#main.container div.row-fluid div.span2 div.bs-docs-sideba
 	border-radius: 0 0 0 0;
 }
 
+html body div#wrap div#main.container div.row-fluid div.category-submenu
+{
+	margin-left: 0;
+	padding-left:1em;
+	padding-right:1em;
+}
 .flash_messages {
   margin-top: 1em;
 }
@@ -184,15 +260,18 @@ html body div#wrap div#main.container div.row-fluid div.span2 div.bs-docs-sideba
     padding: 0.6875em 1.3125em 0.75em 0.6875em;
 }
 
+
 html body div#wrap div.welcome-page div.first-split div.request-form
 {
 	align:right;
+	
 }
 html body div#wrap div.welcome-page div.first-split div.request-form form textarea,
 html body div#wrap div.welcome-page div.first-split div.request-form form input,
 html body div#wrap div.welcome-page div.first-split div.request-form form select
 {
 	margin-bottom:0.25em;
+	max-width:100%;
 }
 html body div#wrap div.welcome-page div.first-split div.request-form form input#mobile
 {
@@ -200,12 +279,14 @@ html body div#wrap div.welcome-page div.first-split div.request-form form input#
 }
 html body div#wrap div.welcome-page div.first-split div.request-form form select
 {
-	width:48%;
+	width:49%;
 }
 html body div#wrap div.welcome-page div.first-split div.request-form form input.btn
 
 {
 	width:100%;
+	font-size:1.2em;
+	height:2em;
 }
 
 

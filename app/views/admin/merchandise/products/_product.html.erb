@@ -34,8 +34,11 @@
         		<td><%= link_to 'Detach', :controller => admin_partners_stores_path, :id => @store.id, :product_id => product.id, :action => "delete_product_map", :method => :put %></td>				
         <% else %>
         	<td><%= link_to 'Edit', edit_admin_merchandise_product_path(product) %></td>      		
-        	<td><%= link_to (product.active)? 'Deactivate': 'Activate', :controller => admin_merchandise_products_path, :id => product.id, :action => "toggle_active", :method => :put %>
-   
-	
+        	<td><%= link_to (product.active)? 'Deactivate': 'Activate', :controller => admin_merchandise_products_path, :id => product.id, :action => "toggle_active", :method => :put %>	
+ 		<% end %>
+ 		
+ 		<% if defined? tools_display %>
+ 		<td><%= link_to 'DetachTool',{ :controller => admin_merchandise_products_path, :id => @product.id, :action => "delete_tool_map", :tool_id => product.id}%></td>
+ 		
  		<% end %>
  	</tr>

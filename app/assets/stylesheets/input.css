@@ -54,7 +54,6 @@
 }
 
 
-html body div#wrap .container .login-new .form-horizontal .control-group .center .text-Box,
 html body div#wrap .container .control-group .center .btn
 {
 	width: 45%;
@@ -71,25 +70,6 @@ html body div#wrap .container .login-new
 	padding-bottom: 4em; 
 }
 
-html body div#wrap .container .login-new .form-horizontal
-{
-	 padding-top: 2em;         
-}
-
-html body div#wrap .container .login-new .form-horizontal .control-group .center .text-Box
-{
-	padding-left: 2em;
-}
-
-html body div#wrap .container .login-new .form-horizontal .control-group .center input
-{
-	padding: 0;
-}
-
-html body div#wrap .container .login-new .form-horizontal .control-group .center .left-padding
-{
-	padding-left: 1em;
-}
 
 
 .container .center .form-horizontal input

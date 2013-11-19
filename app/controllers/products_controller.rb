@@ -7,11 +7,11 @@ class ProductsController < ApplicationController
   def index 
     add_breadcrumb "index", index_path
     if params[:id].present?
-      @category = Category.find_by_name(params[:id]) 
+      @category = Category.find(params[:id]) 
       if @category
         @products = @category.activeProducts  
       else 
-        @product = Product.find_by_name(params[:id]) 
+        @product = Product.find(params[:id]) 
         if @product 
           redirect_to @product  
         end
@@ -99,8 +99,8 @@ class ProductsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find_by_name(params[:id])
-      @category = Category.find_by_name(params[:category_id])
+      @product = Product.find(params[:id])
+      @category = Category.find(params[:category_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

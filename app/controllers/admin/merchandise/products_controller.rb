@@ -1,5 +1,5 @@
 class Admin::Merchandise::ProductsController < AdminController
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle_active, :new_parent_map]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle_active, :delete_tool_map, :new_parent_map]
   helper_method :sort_column, :sort_direction
   after_action :log, only: [:update, :destroy, :toggle_active]
 
@@ -41,13 +41,18 @@ class Admin::Merchandise::ProductsController < AdminController
   
   def toggle_active
     store_location()
-    @product = Product.find(params[:id])
     @product.toggle_active
     redirect_back_or(admin_merchandise_products_url)
   end
   
-  def new_parent_map
+  def delete_tool_map
     store_location()
+    @new_parent = Product.find(params[:tool_id])
+    if @new_parent
+        @link = ProductToTool.find_by_product_id_and_tool_id(@product.id,@new_parent.id)
+        @link.delete 
+    end
+
     redirect_back_or(admin_merchandise_products_url)
   end
 
@@ -113,7 +118,7 @@ class Admin::Merchandise::ProductsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :image, :video, :how2fix, :description, :meta_description, :meta_keyword,  :views, :active, :new_parent_map => ['product_id', 'select'])
+      params.require(:product).permit(:name, :image, :video, :how2fix, :description, :meta_description, :meta_keyword,  :views, :active,:tool_id, :new_parent_map => ['product_id', 'select'])
     end
     
     def sort_column

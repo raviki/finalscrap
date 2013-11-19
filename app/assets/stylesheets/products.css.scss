@@ -30,9 +30,13 @@ html body div.container div.row-fluid ul.thumbnails li div.thumbnail a img
 html body div.container div.row-fluid ul.thumbnails li
 {
   font-family: "Open Sans";
-  width: 22.5%;
   margin-left: 1em;
   margin-bottom: 1em;
+}
+
+html body div#wrap div#main.container div.row-fluid div.products-list ul.thumbnails li
+{
+  margin-left: 1%;
 }
 
 
@@ -40,7 +44,7 @@ html body div.container div.row-fluid ul.thumbnails li div.center
 {
   margin-top: 5px;
 }
-
+html body div#wrap div#main.container div.row-fluid div.products-list ul.thumbnails li.span3 div.thumbnail div.product-info,
 html body div.body-area div.container div.row-fluid ul.thumbnails li div.thumbnail div.product-info
 {
   padding-top: 5px;
@@ -301,10 +305,6 @@ html body div#wrap div#main.container div.row-fluid div.product-show div.contain
   min-width: 12.5%;
 }
 
-html body div#wrap div#main.container div.row-fluid div.span9 ul.thumbnails li div.thumbnail div.center
-{
-  margin:0.5em;
-}
 
 // Product Show
 
@@ -405,15 +405,18 @@ html body div#wrap div#main.container div.row-fluid div.product-show div.contain
 {
   max-width: 90%;
   max-height: 100%;
-  margin:0.25em;
 }
 
 
 html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar ul.product-tools li
 {
   display: inline-block;
-  margin-left:1em;
-  max-width:12%;
+  margin: 0.5em;
+}
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar ul.product-tools li.product-tools-each ul.product-tools-each-split li a img
+{
+  margin:0;
 }
 
 html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar ul.product-tools li.product-tools-each ul.product-tools-each-split li.center-vertical
@@ -470,12 +473,18 @@ html body div#wrap div#main.container div.row-fluid div.request-form
 {
   background-color: #CEECF5;
   border-radius: 8px 8px 8px 8px;
-  margin:2em 0.5em;
-  padding:2em 0.5em;
+  margin:2em 0.5em 2em 0;
+  padding:0.5em  0.5em 2em 0.5em;
+}
+
+html body div#wrap div#main.container div.row-fluid div.request-form div.request-title
+{
+  margin: 0.5em 0.5em 1.5em 0.5em;
 }
 
 html body div#wrap div#main.container div.row-fluid div.request-form form input,
 html body div#wrap div#main.container div.row-fluid div.request-form form textarea
 {
   min-width: 100%;
+  max-width: 100%;
 }

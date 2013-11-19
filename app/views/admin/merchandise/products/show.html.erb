@@ -22,9 +22,9 @@
 <% if @product.tools.size > 0 %>
 <h5 style='text-align:right'>Listing Tools</h5>
 <table>
-	<%= render :partial =>'admin/merchandise/products/table_header', :locals => { :product_page => 'yes' }  %>
+	<%= render :partial =>'admin/merchandise/products/table_header', :locals => { :product_page => 'yes', :tools_display => 'yes' }  %>
 	<tbody>
-      <%= render :partial => 'admin/merchandise/products/product', :collection => @product.tools, :locals => { :product_page => 'yes' }  %>
+      <%= render :partial => 'admin/merchandise/products/product', :collection => @product.tools, :locals => { :product_page => 'yes',  :tools_display => 'yes' }  %>
 	</tbody>
 </table>
 <%= will_paginate @products %>

@@ -62,10 +62,10 @@ Website::Application.routes.draw do
       resource  :product_variants
       resources :categories 
       get "products/:id/toggle_active" => "products#toggle_active"
-      get "products/:id/new_parent_map" => "product#new_parent_map"
-      get "categoties/:id/toggle_active" => "categories#toggle_active"
-      put "categoties/:id/new_product_map" => "categories#new_product_map"
-      get "categoties/:id/delete_product_map" => "categories#delete_product_map"    
+      get "products/:id/delete_tool_map" => "products#delete_tool_map"
+      get "categories/:id/toggle_active" => "categories#toggle_active"
+      put "categories/:id/new_product_map" => "categories#new_product_map"
+      get "categories/:id/delete_product_map" => "categories#delete_product_map"    
     end 
     
       
