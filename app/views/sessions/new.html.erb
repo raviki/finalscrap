@@ -1,9 +1,15 @@
-<div class="bs-docs-sidebar span6">
-<h1>Login</h1>
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
-<%= render 'form' %>
-<p><%= link_to "Forgot your password?", new_password_reset_path %></p>
-<p> New User?<%=link_to 'Sign Up', new_customer_management_path %></p>
+<div class="span3"></div>
+
+<div class="form-horizontal">
+<div class="bs-docs-sidebar span7">
+<div class="row-fluid">		
+		<%= render '/sessions/form' %>			
+		<div class="center-text">(OR)</div>				
+		<%= button_to 'Login with facebook', "/auth/facebook", :class => "btn btn-primary" %>
+		<div class="center-text"> <%= link_to "Forgot your password?", new_password_reset_path %> </div>
+		<div class="center-text"> New User?<%=link_to 'Sign Up', new_customer_management_path %></div>
+
+</div>
+</div>
+</div>
 </div>

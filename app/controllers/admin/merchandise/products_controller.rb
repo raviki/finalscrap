@@ -1,6 +1,7 @@
 class Admin::Merchandise::ProductsController < AdminController
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle_active]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle_active, :delete_tool_map, :new_parent_map]
   helper_method :sort_column, :sort_direction
+  after_action :log, only: [:update, :destroy, :toggle_active]
 
   # GET /products
   # GET /products.json
@@ -16,9 +17,19 @@ class Admin::Merchandise::ProductsController < AdminController
   # GET /products/1
   # GET /products/1.json
   def show
+    if params[:select].present? 
+      @new_parent = Product.find(params[:select])
+      if @new_parent
+        ProductToTool.find_or_create_by_product_id_and_tool_id(@product.id,@new_parent.id)
+      end
+    end
     @products = Product.admin_grid(params).order(sort_column + " " + sort_direction).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
+    @product_variants = @product.product_variants
     
+    if params[:show_products].present? 
+     @show_products = true
+    end  
   end
   
   def select_page
@@ -30,8 +41,18 @@ class Admin::Merchandise::ProductsController < AdminController
   
   def toggle_active
     store_location()
-    @product = Product.find(params[:id])
     @product.toggle_active
+    redirect_back_or(admin_merchandise_products_url)
+  end
+  
+  def delete_tool_map
+    store_location()
+    @new_parent = Product.find(params[:tool_id])
+    if @new_parent
+        @link = ProductToTool.find_by_product_id_and_tool_id(@product.id,@new_parent.id)
+        @link.delete 
+    end
+
     redirect_back_or(admin_merchandise_products_url)
   end
 
@@ -52,6 +73,7 @@ class Admin::Merchandise::ProductsController < AdminController
 
     respond_to do |format|
       if @product.save
+        ProductVariant.create(:product_id => @product.id, :price => 0)
         format.html { redirect_back_or(admin_merchandise_products_url, notice: 'Product was successfully created.') }
         format.json { render action: 'show', status: :created, location: @product }
       else
@@ -88,12 +110,15 @@ class Admin::Merchandise::ProductsController < AdminController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.find_by_name(params[:id])
+      if !@product
+         @product = Product.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :image, :price, :description, :meta_description, :meta_keyword, :views, :active)
+      params.require(:product).permit(:name, :image, :video, :how2fix, :description, :meta_description, :meta_keyword,  :views, :active,:tool_id, :new_parent_map => ['product_id', 'select'])
     end
     
     def sort_column

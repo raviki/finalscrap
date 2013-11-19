@@ -1,0 +1,13 @@
+<div class="request-form span3">			
+	<div class="request-title center">
+		<h5>Request Form</h5>
+	</div>
+	<%=form_for(:order_request,url: order_requests_path, :action => :create) do |f|%>
+	 	<%= text_field_tag 'mobile', nil, :class=>"span6",:placeholder => "Mobile Number" %>
+		<%= text_area_tag 'request', nil, :class=>"span6",:placeholder => "Request"%>
+		<% if @category %>
+	 		<%= hidden_field_tag 'category_id', @category.id %>
+	 	<% end %>
+ 		<%= f.submit "Place a Request", :class => "btn btn-info" %>
+  	<% end %>
+</div>

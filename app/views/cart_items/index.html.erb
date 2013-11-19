@@ -1,13 +1,14 @@
-
-<table class="table table-bordered">
+<% if @cart_items.size >0 %>
+<table class="table table-hover">
 
 	<thead>
 		<tr>
-			<th text-align="justify">Product</th>
-			<th align="center">Price</th>
-			<th align="center">Quantity</th>
-			<th align="center">Total</th>
-			<th align="center">Delete</th>
+			<th>Task Name</th>
+			<th>Type</th>
+			<th>Min. Price</th>
+			<th>Quantity</th>
+			<th>Total</th>
+			<th></th>
 		</tr>
 	</thead>
 
@@ -15,19 +16,25 @@
 		<% @cart_items.each do |cart_item| %>
 		<tr>
 			<td class="span2"><%= cart_item.product.name%></td>
-			<td class="span2"><%= cart_item.price %></td>
-			<td class="span2" align="center"> <%= form_for(cart_item, remote:true) do |f| %><%= f.text_field :quantity, class: "span8"%><% end %></td>
-			<td class="span2"> Rs<%= cart_item.total_price %></td>
-			<td class="span2"><%= link_to raw('<i class="icon-remove"></i>'), cart_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			<% @temp_product = cart_item.product %>
+			<td class="span2"><%= cart_item.product_variant.value%></td>
+			<td class="span2" align="center"><%= cart_item.price %></td>
+			<td class="span2" align="center"> <%= form_for(cart_item, remote:true) do |f| %><%= f.text_field :quantity, class: "span8 center"%><% end %></td>
+			<td class="span2" align="center"><del>&#2352;</del>  <%= cart_item.total_price %></td>
+			<td class="span2" align="center"><%= link_to raw('<i class="icon-remove"></i>'), cart_item, url: cart_items_path(cart_item), method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
 		</tr>
 		<% end %>
 	</tbody>
 	<tr >
 		<td></td>
 		<td></td>
+		<strong>
+		<td><strong>Total</strong></td>
+		<td class="total_cell" ><strong><del>&#2352;</del> 	<%= @cart_items.to_a.sum(&:total_price) %></strong></td>
 		<td></td>
-		<td >Total</td>
-		<td class="total_cell" ><%= @cart_items.to_a.sum(&:total_price) %></td>
 	</tr>
 </table>
+<%else%>
+	<p class="center">Empty List. Visit Product page to select your products</p>
+<%end%>
 

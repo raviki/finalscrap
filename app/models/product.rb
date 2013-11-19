@@ -1,7 +1,9 @@
 class Product < ActiveRecord::Base
-  
   has_many :store_to_products
   has_many :stores,                 :through => :store_to_products
+  
+  has_many :product_variants
+  has_many :cart_items,             :through => :product_variants
   
   has_many :category_to_products
   has_many :categories,             :through => :category_to_products
@@ -9,14 +11,23 @@ class Product < ActiveRecord::Base
   has_many :wishlists
   has_many :customers,              :through => :wishlists
   
+  has_one :parent_product,   -> { where(id: self.parent) }
+  
+  has_many :product_to_tools
+  has_many :tools,                  :through => :product_to_tools
+  
+  has_many :parent_maps,   class_name: "ProductToTool", :foreign_key => "tool_id" 
+  has_many :parents,  :through => :parent_maps, :source => :product    
+  
+  
+  belongs_to :parent, class_name: "Product"
+  
   has_many :order_to_products
   has_many :orders,                 :through => :order_to_products
   
   validates :name,                  :presence => true,          :length => { :maximum => 165 }
   validates :image,                 :presence => true
   validates :description,           :presence => true,          :length => { :maximum => 300 }
-  validates :price,                 :presence => true,          :numericality => true
-  
  
   def toggle_active
     if self.active == true
@@ -27,6 +38,37 @@ class Product < ActiveRecord::Base
     self.save
   end
   
+  def to_param
+    "#{name}".parameterize
+  end
+    
+  def self.find(input)
+    if input.to_i != 0
+      super
+    else
+      if input.include? '-'
+        input = input.sub!('-', ' ')
+      end 
+      find_by_name(input)
+    end
+  end
+  
+  def self.standard_search(text)
+    if text.present?
+      keys=text.split(" ")
+      @query = ""
+      keys.each do |key|
+       if @query != ""
+          @query=@query+" or " 
+        end
+        @query=@query+"products.name LIKE '%#{key}%'"
+      end
+      grid = where(@query)
+    else
+      all
+    end
+  end
+  
   def updateViewCount
     self.views = self.views.to_i + 1;
     self.save
@@ -35,12 +77,14 @@ class Product < ActiveRecord::Base
   ## Auto generated code using java @ Ravi
   ## Begin 
 
-  def self.admin_grid(params = {}, active_state = nil)
+  def self.admin_grid(params = {}, active_state = nil, text = nil)
     grid = id_filter(params[:id]).
           name_filter(params[:name])
           price_filter(params[:price]).
           description_filter(params[:description]).
-          active_filter(active_state)
+          active_filter(active_state).
+          parent_filter(params[:parent]).
+          standard_search(text)
   end
 
   private
@@ -56,6 +100,14 @@ class Product < ActiveRecord::Base
     def self.id_filter(id)
       if id.present?
         where("products.id = ?", id)
+      else
+        all
+      end
+    end
+    
+    def self.parent_filter(id)
+      if id.present?
+        where("products.parent = ?", id)
       else
         all
       end

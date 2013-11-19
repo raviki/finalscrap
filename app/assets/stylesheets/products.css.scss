@@ -1,0 +1,490 @@
+html body div.container div.row-fluid div.span9
+{
+  border-radius: 0 8px 8px 0;
+}
+
+html body div.container div.row-fluid ul.thumbnails li div.thumbnail div.caption p.pricehilit{
+  text-align:right;
+  font-size:1em;
+}
+
+p.mrp{
+text-decoration:line-through;
+font-size:1em;
+}
+
+p.name{
+text-align: center;
+font-size: 1.25em;
+}
+
+html body div.container div.row-fluid ul.thumbnails li div.thumbnail a img
+{
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1em;
+  max-height: 12em;
+  max-width: 80%;
+}
+
+html body div.container div.row-fluid ul.thumbnails li
+{
+  font-family: "Open Sans";
+  margin-left: 1em;
+  margin-bottom: 1em;
+}
+
+html body div#wrap div#main.container div.row-fluid div.products-list ul.thumbnails li
+{
+  margin-left: 1%;
+}
+
+
+html body div.container div.row-fluid ul.thumbnails li div.center
+{
+  margin-top: 5px;
+}
+html body div#wrap div#main.container div.row-fluid div.products-list ul.thumbnails li.span3 div.thumbnail div.product-info,
+html body div.body-area div.container div.row-fluid ul.thumbnails li div.thumbnail div.product-info
+{
+  padding-top: 5px;
+}
+html body div.body-area div.container div.row-fluid ul.thumbnails li div.thumbnail div.product-info form
+{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-top: 5px;
+}
+
+html body div.body-area div.container div.row-fluid ul.thumbnails li div.thumbnail div.product-info b
+{
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+div.centerform{
+width: 50%; 
+margin: 0 auto;
+}
+
+
+html body div.container div.row-fluid ul.thumbnails li div.thumbnail div.caption
+{
+  margin-top:0;
+  margin-bottom:0;
+}
+
+
+
+html body div.container div.row-fluid ul.thumbnails li div.thumbnail 
+{
+  margin-top: 1em;
+  margin-right: 1em;
+  position: relative;
+  
+}
+
+html body div.container div.row-fluid ul.thumbnails li div.thumbnail 
+{
+  margin-top: 1em;
+  margin-right: 1em;
+  position: relative;
+  div.product-info
+  {
+    visibility: hidden;
+    display: none;
+  }    
+}
+
+
+html body div.container div.row-fluid ul.thumbnails li div.thumbnail:hover
+{
+    background-color: #CEECF5;    
+    z-index: 101;
+    border-radius: 4px 4px 0 0;
+    div.product-info
+    { 
+      background-color: #CEECF5;
+      display: block;      
+      visibility: visible;
+      left: 0;
+      margin-top:0.5em;
+      position: absolute;
+      border: 1px solid #DDDDDD;
+      border-radius: 0 0 4px 4px;
+      z-index: 200;
+      max-width: 100%;
+    }
+}
+html body div#wrap div#main.container div.row-fluid ul.thumbnails li div.thumbnail div.product-info form div.product-quantity,
+html body div#wrap div#main.container div.row-fluid ul.thumbnails li div.thumbnail div.product-info form div.product-size select
+{
+  max-width: 90%;
+  margin-left: 5%;
+}
+html body div#wrap div#main.container div.row-fluid ul.thumbnails li div.thumbnail div.product-info form div.product-quantity input#cart_item_quantity
+{
+  width: 38%;
+  margin:0;
+  padding-left:6px;
+  padding-right:6px;
+}
+html body div#wrap div#main.container div.row-fluid ul.thumbnails li div.thumbnail div.product-info form div.product-quantity input#addcart.btn
+{
+  width: 46%;
+  margin:0;
+  padding-left:6px;
+  padding-right:6px;
+}
+
+html body div#wrap div#main.container div.row-fluid div.span9 ul.thumbnails li div.thumbnail div.product-info form
+{
+  margin-bottom:0.5em;
+}
+
+html body div.container div.row-fluid ul.thumbnails li div.thumbnail div.caption p.pricehilit
+{
+  margin-top: 0;
+  margin-bottom:0;   
+}
+
+html body div.container div.row-fluid ul.thumbnails
+{
+  margin-bottom: 1em;
+  margin-right: 1em;
+  margin-top: 1em;
+  border-radius: 0 4px 4px 0;
+  padding-left:0.5em;
+}
+
+
+//Cart Item css
+
+html body div#myModal.modal div#modal-body.modal-body table.table tbody tr td,
+html body div#myModal.modal div#modal-body.modal-body table.table thead tr th
+{
+  text-align: center;
+}
+
+html body div#myModal.modal div#modal-body.modal-body
+{
+  background-color: #FFFFFF;
+}
+
+html body div#myModal.modal
+{
+  font-family: "Open Sans";
+}
+
+html body div#myModal.modal div#modal-body.modal-body table.table
+{
+  background-color: #E0F2F7;
+  box-shadow: 1px 1px 5px #b2b2b2;
+  -webkit-box-shadow: 1px 1px 5px #b2b2b2;
+  margin-bottom:0;
+}
+
+
+html body div#myModal.modal div.modal-header
+{
+  background-color: #E3E6E7;
+  border-radius: 8px 8px 0 0;
+}
+html body div#myModal.modal div.modal-footer
+{
+  background-color: #E3E6E7;
+  border-radius: 0 0 8px 8px;
+}
+
+html body div#myModal.modal div#modal-body.modal-body table.table tbody tr td.span2 form
+{
+  margin-bottom: 0; 
+}
+
+html body div#myModal.modal div#modal-body.modal-body table.table tbody tr td.span2 form input
+{
+  margin-bottom: 0;
+  width:100%;
+}
+
+html body div#myModal.modal div#modal-body.modal-body table.table tbody tr td.span2
+{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+
+html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info ul.size-buttons
+{
+  margin-right: 5px;
+  margin-left:5px;
+  margin-top:0;
+  margin-bottom:0;
+  font-size:0.8em;
+}
+
+
+html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info ul.size-buttons li p
+{
+  margin:0;
+  padding:0;
+}
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.span5 ul.size-buttons li p
+{
+  margin-left:0;
+  margin-right:0;
+  margin-bottom:0;
+  padding-top: 5px;
+}
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.span5 ul.size-buttons li,
+html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info ul.size-buttons li
+{
+  display: inline-block;
+  border-radius: 2px 2px 2px 2px;
+  border: 1px solid #B2B2B2;
+  margin-right: 2px;
+  margin-left:2px;
+  margin-top:3px;
+  margin-bottom:3px;
+  padding-left:2px;
+  padding-right:2px;
+  text-align: center; 
+}
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.span5 ul.size-buttons li:hover,
+html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info ul.size-buttons li:hover {
+  border-color: #000000;
+  color: #000000;
+  p
+  {
+    font-weight:bold;
+  }
+}
+
+html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info
+{
+  max-width: 100%;
+}
+
+html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info form b,
+html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info form select
+{
+  margin-left:1em;
+}
+
+html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info form div.product-size
+{
+  margin-top:1em;
+  margin-bottom:0;
+  max-width: 90%;
+}
+html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info form div.product-quantity
+{
+  margin-top:0.5em;
+  margin-bottom:0.5em;
+}
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.span5 ul.size-buttons li.selected,
+html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info ul.size-buttons li.selected {
+    background: none repeat scroll 0 0 #000000;
+    border-color: #000000;
+    color: #FFFFFF !important;
+}
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.span5 ul.size-buttons li,
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.span5 ul.size-buttons li:hover,
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.span5 ul.size-buttons li.selected
+{
+  padding-left: 5px;
+  padding-right:5px;
+  padding-top: 5px;
+  padding-bottom:5px;
+  border-radius: 3px 3px 3px 3px;
+  min-width: 12.5%;
+}
+
+
+// Product Show
+
+html body div#wrap div#main.container .row-fluid .product-show .container .span4
+{
+  padding-left: 1em;
+  padding-bottom: 1em;
+  padding-top: 1em;
+  padding-right: 1em;
+  min-height: 100%;
+  
+}
+
+
+
+html body div#wrap div#main.container .row-fluid .product-show .container .span7
+{
+  font-size: 1.1em;
+  margin-top:1em;
+  margin-left: 3em;
+}
+
+html body div#wrap div#main.container .row-fluid .product-show .container .span7 form#productaddcart input#cart_item_quantity.span6
+{
+  max-height: 1em;
+  width: 25%;
+  margin-left: 1.5em;
+}
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div table tbody tr td,
+html body div#wrap div#main.container .row-fluid .product-show .container .span7 p
+{
+    margin-left: 1.5em;
+}
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div table
+{
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+}
+html body div#wrap div#main.container .row-fluid .product-show .container div.span7 .size-buttons li hr.dotted,
+html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info ul.size-buttons li hr.dotted
+{
+  border: 1px dotted #ff0000; 
+  border-style: none none dotted; 
+  color: #fff; 
+  background-color: #fff; 
+  margin-top:0;
+  margin-bottom:0;
+}
+
+html body div#wrap div#main.container .row-fluid .product-show .container .span4
+{
+  margin-left:0;
+}
+
+html body div#wrap div#main.container .row-fluid .product-show .container .span4 .product-sidebar
+{
+  margin:0;
+}
+
+html body div#wrap div#main.container .row-fluid .product-show .container .span4 .product-sidebar .product-sidebar-each
+{
+  background-color: #EDF8FC;
+  margin-left:1em;
+  margin-right:1em;
+  margin-top: 5px;
+  margin-bottom:5px;
+  border-radius: 10px 10px 10px 10px;
+  border: 1px solid #B2B2B2;
+  box-shadow: 1px 1px 5px #b2b2b2;
+  -webkit-box-shadow: 1px 1px 5px #b2b2b2;
+  max-height:8em;
+  padding:3px;
+  padding-top:0;
+}
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.span4 ul.product-sidebar li.product-sidebar-each ul.product-sidebar-each-split li.center-vertical p,
+html body div#wrap div#main.container .row-fluid .product-show .container .span4 .product-sidebar .product-sidebar-each .product-sidebar-each-split
+{
+  margin:0;
+  padding:0;
+}
+
+html body div#wrap div#main.container .row-fluid .product-show .container .span4 .product-sidebar .product-sidebar-each .product-sidebar-each-split li
+{
+  display: inline-block;
+  margin-top:auto;
+  margin-bottom:auto;
+}
+
+html body div#wrap div#main.container .row-fluid .product-show .container .span4 .product-sidebar .product-sidebar-each .product-sidebar-each-split li img
+{
+  height: 6em;
+  width: 6em;
+  margin:1em;
+}
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar ul.product-tools li.product-tools-each ul.product-tools-each-split li
+{
+  max-width: 90%;
+  max-height: 100%;
+}
+
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar ul.product-tools li
+{
+  display: inline-block;
+  margin: 0.5em;
+}
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar ul.product-tools li.product-tools-each ul.product-tools-each-split li a img
+{
+  margin:0;
+}
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar ul.product-tools li.product-tools-each ul.product-tools-each-split li.center-vertical
+{
+  width:100%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  max-height: 6em;
+  font-size:1em;
+  padding:0;
+}
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar ul.product-tools li.product-tools-each ul.product-tools-each-split li.center-vertical form div.product-show-quantity input
+{
+  padding:0;
+  min-width:45%;
+  font-size: 1.1em;
+}
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar,
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar ul.product-tools li.product-tools-each ul.product-tools-each-split
+{
+  border: 1px solid #B2B2B2;
+  border-radius: 2px 2px 2px 2px;
+  margin:0;
+}
+
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar,
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.center,
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-how2fix-bar
+{
+  margin-bottom: 2em;
+}
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar ul.product-tools li.product-tools-each ul.product-tools-each-split li.center-vertical form div.product-show-quantity
+{
+  margin:0;
+  width:100%;
+}
+
+
+html body div#wrap div#main.container div.row-fluid div.product-show div.container div.product-tools-bar ul.product-tools
+{
+  margin-top: 10px;
+  margin-left:10px;
+}
+
+html body div#wrap div#main.container div.row-fluid div.span10 ul.thumbnails li div.thumbnail div.product-info form select#cart_item_product_id
+{
+  max-width: 60%;
+}
+
+html body div#wrap div#main.container div.row-fluid div.request-form
+{
+  background-color: #CEECF5;
+  border-radius: 8px 8px 8px 8px;
+  margin:2em 0.5em 2em 0;
+  padding:0.5em  0.5em 2em 0.5em;
+}
+
+html body div#wrap div#main.container div.row-fluid div.request-form div.request-title
+{
+  margin: 0.5em 0.5em 1.5em 0.5em;
+}
+
+html body div#wrap div#main.container div.row-fluid div.request-form form input,
+html body div#wrap div#main.container div.row-fluid div.request-form form textarea
+{
+  min-width: 100%;
+  max-width: 100%;
+}

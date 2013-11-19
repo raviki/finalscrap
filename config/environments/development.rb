@@ -1,3 +1,5 @@
+
+
 Website::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -8,6 +10,8 @@ Website::Application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
+  
+  require "omniauth"
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true

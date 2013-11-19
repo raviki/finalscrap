@@ -1,5 +1,6 @@
 class Admin::Customers::CustomerLeadsController < AdminController
   before_action :set_customer_lead, only: [:show, :edit, :update, :destroy]
+  after_action :log, only: [:update, :destroy]
 
   # GET /customer_leads
   # GET /customer_leads.json

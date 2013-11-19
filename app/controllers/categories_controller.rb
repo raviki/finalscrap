@@ -4,13 +4,45 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
+    if params[:key].present?
+      if params[:select].present?
+        redirect_to :action => "show", :id => params[:select], :key => params[:key]
+      else
+        redirect_to :action => "show", :id => "all" , :key => params[:key]
+      end
+    end
+    @root_url = "yes"
     @categories = Category.admin_grid(params,true).order(sort_column + " " + sort_direction).
                                           paginate(:page => pagination_page, :per_page => pagination_rows)
-  end
+   end
 
   # GET /categories/1
   # GET /categories/1.json
-  def show
+  def show   
+    if params[:key].present?
+      add_breadcrumb "Search", category_path
+      if @category       
+        @products = @category.activeProducts.standard_search(params[:key])
+      else
+        @temp_category = Category.find_by_name(params[:key])
+        if @temp_category
+          redirect_to @temp_category
+        end
+        @products = Product.standard_search(params[:key])
+      end
+    else
+      if @category
+        add_breadcrumb @category.name, @category
+        @show_request = true
+        if params[:tools]
+          @products = @category.tools
+        else
+          @products = @category.activeProducts
+        end
+      end
+    end
+    
+    @categories = Category.all
   end
 
   # GET /categories/new

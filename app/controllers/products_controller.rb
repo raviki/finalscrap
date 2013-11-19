@@ -1,18 +1,50 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  
 
   # GET /products
   # GET /products.json
-  def index
-    @products = Product.admin_grid(params,true).order(sort_column + " " + sort_direction).
-                                              paginate(:page => pagination_page, :per_page => pagination_rows)
+  def index 
+    add_breadcrumb "index", index_path
+    if params[:id].present?
+      @category = Category.find(params[:id]) 
+      if @category
+        @products = @category.activeProducts  
+      else 
+        @product = Product.find(params[:id]) 
+        if @product 
+          redirect_to @product  
+        end
+      end 
+    end
+       
+    if params[:select].present?
+      @category = Category.find(params[:select])
+      if @category
+        @products = @category.activeProducts.standard_search(params[:key])
+      end
+    end
+    if !@products        
+        @products = Product.admin_grid(params,true,params[:key]).order(sort_column + " " + sort_direction).
+                                             paginate(:page => pagination_page, :per_page => pagination_rows)
+      @cart_items = current_cart.cart_items
+    end
+    @categories = Category.all
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
-    @product = Product.find(params[:id])
+    add_breadcrumb @category.name, @category
+    add_breadcrumb @product.name, category_product_path
+    
+    if @product.parents.size > 0
+      
+    end
+    
     @product.updateViewCount
+    @cart_items = current_cart.cart_items
+    @tools = Product.all
   end
 
   # GET /products/new
@@ -68,6 +100,7 @@ class ProductsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
+      @category = Category.find(params[:category_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

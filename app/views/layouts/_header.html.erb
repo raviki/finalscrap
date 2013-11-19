@@ -1,52 +1,48 @@
-<header>
+
 	<script>
    $(document).ready(function() {
    $('.selectpicker').selectpicker();
 });
 </script>
-       
-	<br>
-	<div class="container">
-		<ul class="inline">
-			<li class="pull-left">
-				100% Customer Satisfaction
-			</li>
-			<li class="pull-right">
-				On Time On Demand Service
-			</li>
-			<br>
-		</ul>
-	</div>
+<script type="text/javascript" charset="utf-8">
+		$(function() {
+        $("#addcart").bind("ajax:complete",function() {	
+          $("#myModal").modal();
+          return false;
+        })	
+      })
+</script>
+
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container">
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
-				<a class="brand" href="#">Title</a>
+				<%= link_to image_tag("logo.jpg" ),root_url%>
 				<div class="nav-collapse collapse">
-					<ul class="nav">
+					<div class="search-bar">
+						<ul class="nav">
 						<li>
-							<form class="navbar-search">
-								<div class="input-prepend input-append offset2">
-									<%=	select(@categories,"id", Category.all.collect {|p| [ p.name, p.id ] }, { prompt:"All" },{class:"selectpicker span2", id: "cat",name:"select"})%>
-									<input type="text" class=" span4 search-query">
-    								<button type="submit" class="btn">Search</button>
+							<%= form_tag(categories_path, :method => 'get', :class => 'navbar-search span5') do %>
+								<div class="input-prepend input-append">																		
+									<%=	select(@categories,"id", Category.all.collect {|p| [ p.name, p.name ] }, { prompt:"All" },{class:"btn dropdown-toggle"})%>									
+									<%= text_field_tag :key, params[:key], :class => " search-query" %>
+									<%= submit_tag "Search", :name => nil, :class => "btn btn-info" %>
 								</div>
-							</form>
-						</li>
+							<% end %>
+						</li>						
 						</ul>
+					</div>
 						<ul class="nav pull-right">
-							<li>
-								<a href="#">Link</a>
-							</li>
-							<li class="divider-vertical"></li>
+							<li><%= link_to "Task ", carts_path, :remote => true, :method=>:get , :id => "addcart" %></li>
+
 							<% if signed_in? %>
             <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				Hello <%= @user.name %> <b class="caret"></b>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">	
+				Hello <%= @user.first_name %> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to "Account", '#' %></li>
-                <li><%= link_to "Orders", '#' %></li>
+                <li><%= link_to "Account", accounts_index_path %></li>
+                <li><%= link_to "Orders", orders_path %></li>
                 <li class="divider"></li>
                 <li>
                   <%= link_to "Sign out", log_out_path%>
@@ -56,10 +52,10 @@
           <% else %>
             <li><%= link_to "Sign in", sessions_path %></li>
           <% end %>	
-          					</ul>
+          		</ul>
 				</div><!-- /.nav-collapse -->
 			</div>
 		</div><!-- /navbar-inner -->
 	</div><!-- /navbar -->
-	</div>
-</header>
+	
+

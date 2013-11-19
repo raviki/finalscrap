@@ -1,0 +1,292 @@
+html body div#wrap .container div.row-fluid
+{
+	border-radius: 8px 8px 8px 8px;
+	box-shadow: 1px 1px 5px #b2b2b2;
+    -webkit-box-shadow: 1px 1px 5px #b2b2b2;
+     margin-top: 0.25em;
+     margin-bottom: 1em;  
+     margin-left: 1.5em;
+     margin-right:0;
+     max-width: 96%;
+     min-height: 100%;   
+     z-index: 101;	
+}   
+
+html body div#wrap div.breadcrumbs
+{
+	margin-left:3.5em;
+	margin-top:1em;
+}
+
+
+html body div#wrap div#main.container
+{
+	max-width: 100%;
+	height:100%;
+}
+
+html body div#wrap div#main.container div.container
+{
+	margin-left:1em;
+	margin-right: 3em;
+	margin-top:2em;
+	max-width:98%;
+}
+
+html body{
+	background: url("/assets/gray-backgrond.jpg") repeat scroll 0 0 rgba(0, 0, 0, 0);
+	font-family: "Open Sans";
+}
+
+html body div#wrap div.welcome-page,
+html body div#wrap div.welcome-page div.first-split
+{
+	 margin-left:0;
+	 margin-right:0;
+	 width:100%;
+}
+
+html body div#wrap div.welcome-page div.first-split
+{
+	background-color: #27292B;
+	margin-top:0.25em;
+	min-height: 325px;
+	width:100%;	
+}
+
+html body div#wrap div.welcome-page div.second-split
+{
+	background-color: #FFFFFF;
+	min-height: 250px;	
+	width:100%;		
+}
+
+html body div#wrap div.welcome-page div.second-split div.message-box
+{
+	margin-left: 5em;
+	margin-right:5em;
+	margin-top:2.5em;
+	margin-bottom: 2.5em;
+	background: url("/assets/task-background.jpg") no-repeat scroll left center rgba(0, 0, 0, 0);
+	border: 1px solid #DADADA;
+	height: 250px;
+}
+
+html body div#wrap div.welcome-page div.second-split div.message-box div.thumbs-up-logo img
+{
+	margin:50px 65px 80px 65px;
+	width:120px;
+	height:120px;
+}
+html body div#wrap div.welcome-page div.second-split div.message-box div.value-message
+{
+	margin-top:1em;
+	color:#2284A1;
+}
+
+html body div#wrap div.welcome-page div.first-split div.span9 div.span1 img
+{
+	margin-top:-0.5em;
+	margin-left:1.5em;
+}
+
+html body div#wrap div.welcome-page div.first-split
+{
+	min-height: 350px;	
+}
+
+html body div#wrap div.welcome-page div.first-split div.content-block div.first-block,
+html body div#wrap div.welcome-page div.first-split div.content-block div.second-block,
+html body div#wrap div.welcome-page div.first-split div.first-split-submenu
+{
+	min-height: 225px;
+
+}
+
+html body div#wrap div.welcome-page div.first-split div.content-block div.tick-logo div.span1 img
+{
+	margin-top:-5px;
+}
+
+html body div#wrap div.welcome-page div.first-split div.content-block div.first-block div.message-block div.logo-images
+{
+	margin-top:1em;
+}
+
+html body div#wrap div.welcome-page div.first-split div.content-block div.warranty-message
+{
+	margin-left: 3.5em;	
+}
+
+html body div#wrap div.welcome-page div.first-split div.content-block div.warranty-message h4
+{
+	margin-top: 5em;
+}
+html body div#wrap div.welcome-page div.first-split div.content-block div.warranty-message h4.color1
+{
+	color: #088A29;
+}
+
+html body div#wrap div.welcome-page div.first-split div.content-block div.warranty-message span.color2
+{
+	color: #FFFFFF;
+}
+
+html body div#wrap div.welcome-page div.first-split div.content-block div.first-block div.message-block
+{
+	margin-left:10em;	
+}
+
+html body div#wrap div.welcome-page div.first-split div.content-block div.first-block div.message-block p
+{
+	color: #F2F2F2;	
+}
+html body div#wrap div.welcome-page div.first-split div.content-block div.first-block div.message-block h2
+{
+	color: #F2F2F2;	
+	margin-top: 3em;
+}
+html body div#wrap div.welcome-page div.first-split div.content-block div.logo-images img.span1
+{
+	width: 70px;
+	height:70px;
+}
+html body div#wrap div.welcome-page div.first-split div.span3
+{
+	margin-left: 3.5em;
+}
+
+html body div#wrap div#main.container div.span9
+{
+	margin-left: 0.5em;
+}
+
+html body div#wrap div.welcome-page div.span3 ul.nav,
+html body div#wrap div#main.container div.row-fluid div.category-submenu div.bs-docs-sidebar ul.nav
+{
+    border-top: 1px solid #E0E0E0;
+    float: left;
+    list-style: none outside none;
+    width: 100%;
+    z-index: 2;
+    margin-top:1em;
+
+}
+
+html body div#wrap div.welcome-page div.span3 ul.nav li.dropdown-submenu a.dropdown-toggle,
+html body div#wrap div#main.container div.row-fluid div.category-submenu div.bs-docs-sidebar ul.nav li.dropdown-submenu a.dropdown-toggle
+{
+	margin-left:0;
+    margin-right:0;
+}
+
+html body div#wrap div.welcome-page div.span3 ul.nav li.dropdown-submenu,
+html body div#wrap div#main.container div.row-fluid div.category-submenu div.bs-docs-sidebar ul.nav li.dropdown-submenu
+{
+    border-bottom: 1px solid #E0E0E0;
+    line-height: 30px;
+    position: relative;
+}
+
+
+html body div#wrap div#main.container div.row-fluid div.category-submenu div.bs-docs-sidebar,
+html body div#wrap div.welcome-page div.first-split div.span3 div.bs-docs-sidebar
+{
+	border-radius: 0 0 0 0;
+}
+html body div#wrap div#main.container div.row-fluid div.category-submenu div.bs-docs-sidebar ul.nav,
+html body div#wrap div.welcome-page div.first-split div.span3 div.bs-docs-sidebar ul.nav
+{
+	padding-left:0;
+	padding-right:0;
+	margin-bottom:1em;
+	border-radius: 0 0 0 0;
+}
+
+html body div#wrap div.welcome-page div.span3 ul.nav li ul li,
+html body div#wrap div#main.container div.row-fluid div.bs-docs-sidebar ul.nav li ul li {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #E8E8E7;
+    border-image: none;
+    border-style: solid;
+    border-width: 0 0 1px;
+    margin: 0 8px 0 0;    
+}
+
+
+html body div#wrap div.welcome-page div.span3 ul.nav li.dropdown-submenu ul,
+html body div#wrap div#main.container div.row-fluid div.bs-docs-sidebar ul.nav li.dropdown-submenu ul.dropdown-menu
+{
+	margin-top:0;
+}
+html body div#wrap div#main.container div.row-fluid div.category-submenu div.bs-docs-sidebar ul.nav li.dropdown-submenu ul.dropdown-menu,
+html body div#wrap div.welcome-page div.first-split div.bs-docs-sidebar ul.nav li.dropdown-submenu ul.dropdown-menu
+{
+	border-radius: 0 8px 8px 0;
+	margin-top:-2px;
+}
+
+html body div#wrap div.welcome-page div.span3 ul.nav li.dropdown-submenu,
+html body div#wrap div#main.container div.row-fluid div.span2 div.bs-docs-sidebar ul.nav li.dropdown-submenu
+{
+	border-radius: 0 0 0 0;
+}
+
+html body div#wrap div#main.container div.row-fluid div.category-submenu
+{
+	margin-left: 0;
+	padding-left:1em;
+	padding-right:1em;
+}
+.flash_messages {
+  margin-top: 1em;
+}
+
+.alert-box {
+    background-color: #2BA6CB;
+    border-color: #2284A1;
+    border-style: solid;
+    border-width: 1px;
+    color: #FFFFFF;
+    display: block;
+    font-size: 0.875em;
+    font-weight: bold;
+    margin-left: 3.5em;
+    margin-right:3.5em;
+    margin-bottom:1em;
+    padding: 0.6875em 1.3125em 0.75em 0.6875em;
+}
+
+
+html body div#wrap div.welcome-page div.first-split div.request-form
+{
+	align:right;
+	
+}
+html body div#wrap div.welcome-page div.first-split div.request-form form textarea,
+html body div#wrap div.welcome-page div.first-split div.request-form form input,
+html body div#wrap div.welcome-page div.first-split div.request-form form select
+{
+	margin-bottom:0.25em;
+	max-width:100%;
+}
+html body div#wrap div.welcome-page div.first-split div.request-form form input#mobile
+{
+	width:47%;
+}
+html body div#wrap div.welcome-page div.first-split div.request-form form select
+{
+	width:49%;
+}
+html body div#wrap div.welcome-page div.first-split div.request-form form input.btn
+
+{
+	width:100%;
+	font-size:1.2em;
+	height:2em;
+}
+
+

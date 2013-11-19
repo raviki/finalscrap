@@ -1,0 +1,8 @@
+<div class="request-form span5">			
+		<%=form_for(:order_request,url: order_requests_path, :action => :create) do |f|%>
+		 	<%= text_area_tag 'request', nil, :class=>"span5",:placeholder => "Tell us Your Need"%>
+			<%= text_field_tag 'mobile', nil, :class=>"span2",:placeholder => "Mobile Number" %>
+			<%=	select("","category_id", Category.all.collect {|p| [ p.name, p.name ] }, { prompt:"Select Type" },{class:"btn  span3 dropdown-toggle"})%>
+  			<%= f.submit "Request a Callback", :class => "btn span4 btn-info" %>
+  		<% end %>
+</div>

@@ -9,23 +9,13 @@
     <%= text_field_tag :id, params[:id] %>
 
     <label>First Name</label>
-    <%= text_field_tag :first_name, params[:first_name] %>
+    <%= text_field_tag :name, params[:name] %>
 
     <label>Contact No</label>
-    <%= text_field_tag :contact_no, params[:contact_no] %>
+    <%= text_field_tag :email, params[:email] %>
 
     <label>Pin</label>
-    <%= text_field_tag :pin, params[:pin] %>
-
-    <label>Wishlist</label>
-    <%= check_box_tag :wishlist, params[:wishlist] %>
-
-    <label>Customer Group Id</label>
-    <%= text_field_tag :customer_group_id, params[:customer_group_id] %>
-
-    <label>Customer Lead Id</label>
-    <%= text_field_tag :customer_lead_id, params[:customer_lead_id] %>
-
+    <%= text_field_tag :provider, params[:provider] %>
     
     <div style='text-align:left'>
         <%= submit_tag "Search", :name => nil, :class => "button small blue-button" %>

@@ -16,6 +16,11 @@
 </p>
 
 <p>
+  <strong>Mobile number:</strong>
+  <%= @customer_management.mobile_number %>
+</p>
+
+<p>
   <strong>Customer:</strong>
   <%= @customer_management.customer_id %>
 </p>
@@ -28,6 +33,36 @@
 <p>
   <strong>Password digest:</strong>
   <%= @customer_management.password_digest %>
+</p>
+
+<p>
+  <strong>Provider:</strong>
+  <%= @customer_management.provider %>
+</p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @customer_management.uid %>
+</p>
+
+<p>
+  <strong>Oauth token:</strong>
+  <%= @customer_management.oauth_token %>
+</p>
+
+<p>
+  <strong>Oauth expires at:</strong>
+  <%= @customer_management.oauth_expires_at %>
+</p>
+
+<p>
+  <strong>Password reset token:</strong>
+  <%= @customer_management.password_reset_token %>
+</p>
+
+<p>
+  <strong>Password reset sent at:</strong>
+  <%= @customer_management.password_reset_sent_at %>
 </p>
 
 <%= link_to 'Edit', edit_customer_management_path(@customer_management) %> |

@@ -1,0 +1,33 @@
+ <table>
+  <thead>
+    <tr>
+      <th>Contact no</th>
+      <th>Add line1</th>
+      <th>Add line2</th>
+      <th>City</th>
+      <th>Pin</th>
+      <th>Customer group</th>
+      <th>Customer lead</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+ 	<tr>
+        <td><%= item.contact_no %></td>
+        <td><%= item.add_line1 %></td>
+        <td><%= item.add_line2 %></td>
+        <td><%= item.city %></td>
+        <td><%= item.pin %></td>
+        <td><%= item.customer_group_id %></td>
+        <td><%= item.customer_lead_id %></td>
+        
+        <% if defined? customer_group_page %>
+        	<td><%= link_to 'Detach', :controller => admin_customers_customers_path, :id => item.id, :action => "update_customer_group_id", :customer_group_id => 0, :method => :put %></td>
+        <% elsif defined? customer_lead_page %>
+        	<td><%= link_to 'Detach', :controller => admin_customers_customers_path, :id => item.id, :action => "update_customer_lead_id", :customer_lead_id => 0, :method => :put %></td>
+        <% else %>
+                <td><%= link_to 'Edit',  edit_admin_customers_customer_info_path(item) %></td>
+        <% end %>
+     </tr>
+   </tbody>
+  </table>

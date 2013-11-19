@@ -5,6 +5,7 @@ class CartsController < ApplicationController
   # GET /carts.json
   def index
     @carts = Cart.all
+    update_cart_items
   end
 
   # GET /carts/1
@@ -44,6 +45,7 @@ class CartsController < ApplicationController
       if @cart.update(cart_params)
         format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }
         format.json { head :no_content }
+        format.js{}
       else
         format.html { render action: 'edit' }
         format.json { render json: @cart.errors, status: :unprocessable_entity }
@@ -69,6 +71,6 @@ class CartsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_params
-      params.require(:cart).permit(:customer_id)
+      params.require(:cart).permit(:customer_id, :address_id)
     end
 end

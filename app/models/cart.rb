@@ -1,6 +1,8 @@
 class Cart < ActiveRecord::Base
   has_many :cart_items, :dependent => :destroy
   belongs_to :customer_managements
+  belongs_to :address
+  
   def add_products(params)
     
     puts "Helloooooooo addding to cart"

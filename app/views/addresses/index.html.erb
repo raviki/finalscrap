@@ -1,11 +1,10 @@
-<div class="span5">
-
-	<%= form_for(:address,url: addresses_path, remote:true, :html => {id: "addcart"}) do |f| %>
-	<% if @address.errors.any? %>
+<div class="span4">
+	<%= form_for(:address, url: addresses_path, :html => {id: "addcart"}) do |f| %>
+	<% if @user.addresses.size > 0 and @addresses.errors.any? %>
 	<div id="error_explanation" class="alert alert-error">
 		<h4>Please fix the below errors</h2>
 		<ul>
-			<% @address.errors.full_messages.each do |msg| %>
+			<% @user.addresses.errors.full_messages.each do |msg| %>
 			<li>
 				<%= msg %>
 			</li>
@@ -14,10 +13,11 @@
 	</div>
 	<% end %>
 
-	<%if signed_in? %>
+	<% if signed_in? %>
 	<%= hidden_field_tag "user_id",@user.id%>
 	<%= f.hidden_field("user_id",:value => @user.id)%>
-	<%end%>
+	<% end %>
+	<%= hidden_field_tag "just_add",true%>
 	<table width="20%">
 		<tr>
 		<tr>
@@ -25,7 +25,7 @@
 			<td width="85%"> <%= f.text_field :name %> </td>
 		</tr>
 		<td width="15%"> <%= f.label :"Address*" %></td>
-		<td width="85%"> <%= f.text_area :line1 %> </td>
+		<td width="85%"> <%= f.text_area :address %> </td>
 		</tr>
 
 		<tr>
@@ -48,23 +48,18 @@
 		<% end %>
 	</table>
 </div>
-<div class="span6">
+<div class="span5">
 	<%@user.addresses.each do |address| %>
 	<table class="span3">
 		<tr>
-			<td class="span2"><%= address.name%></td>
-		</tr>
-		<tr>
-			<td class="span4"><%= address.line1%></td>
-		</tr>
-		<tr>
-			<td class="span2"><%= address.city%></td>
-		</tr>
-		<tr>
-			<td class="span2"><%= address.pin%></td>
-		</tr>
-		<tr>
+			<td class="span2"><b><%= address.name%></b></td>
 			<td class="span1"><%= link_to raw('<i class="icon-remove"></i>'), address_path(address.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		</tr>
+		<tr>
+			<td class="span4"><%= address.address%></td>
+		</tr>
+		<tr>
+			<td class="span2"><%= address.city %>, <%= address.pin %></td>
 		</tr>
 	</table>
 	<% end %>

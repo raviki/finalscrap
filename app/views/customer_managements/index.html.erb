@@ -9,6 +9,12 @@
       <th>Customer</th>
       <th>Remember token</th>
       <th>Password digest</th>
+      <th>Provider</th>
+      <th>Uid</th>
+      <th>Oauth token</th>
+      <th>Oauth expires at</th>
+      <th>Password reset token</th>
+      <th>Password reset sent at</th>
       <th></th>
       <th></th>
       <th></th>
@@ -24,6 +30,12 @@
         <td><%= customer_management.customer_id %></td>
         <td><%= customer_management.remember_token %></td>
         <td><%= customer_management.password_digest %></td>
+        <td><%= customer_management.provider %></td>
+        <td><%= customer_management.uid %></td>
+        <td><%= customer_management.oauth_token %></td>
+        <td><%= customer_management.oauth_expires_at %></td>
+        <td><%= customer_management.password_reset_token %></td>
+        <td><%= customer_management.password_reset_sent_at %></td>
         <td><%= link_to 'Show', customer_management %></td>
         <td><%= link_to 'Edit', edit_customer_management_path(customer_management) %></td>
         <td><%= link_to 'Destroy', customer_management, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -1,10 +1,11 @@
 class Admin::Fulfillments::OrdersController < AdminController
   before_action :set_order, only: [:show, :edit, :update, :destroy, :assign_store]
+  after_action :log, only: [:update, :destroy, :assign_store]
 
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.admin_grid(params).order(sort_column + " " + sort_direction).
+    @orders = Order.admin_grid(params,params[:customer_id],params[:active]).order(sort_column + " " + sort_direction).
                                           paginate(:page => pagination_page, :per_page => pagination_rows)
     if params[:show_search].present?
       @show_search = true
@@ -19,15 +20,12 @@ class Admin::Fulfillments::OrdersController < AdminController
     redirect_back_or(admin_fulfillments_orders_url)
   end
   
-  def assign_store
-    
+  def assign_store    
     if params[:select].present?      
       params[:select].each do |productId|
         if StoreToProduct.where(:store_id => params[:store][:store_id], :product_id => productId).size > 0
           @order_to_product = OrderToProduct.where(:order_id => @order.id, :product_id => productId).first_or_create
           @order_to_product.update_attributes(:store_id => params[:store][:store_id])
-          puts "==== #{params[:store][:store_id]} and #{productId}"
-          #@order_to_product.updateShopId(params[:store][:store_id])
         else
           @error = "Store #{params[:store][:store_id]} does not surve Product #{productId}\n"
         end
@@ -47,18 +45,18 @@ class Admin::Fulfillments::OrdersController < AdminController
 
   def create_order
     store_location()
-    @wishlists = Wishlist.where(customer_id: params[:customer_id])
     @customer = Customer.where(:id => params[:customer_id]).first
-    if @wishlists.length > 0 
+    if @customer.cart_items.length > 0 
       @order = Order.find_or_create_by_customer_id(params[:customer_id])
-      @wishlists.each do |wishlist|      
-        @order_to_product = OrderToProduct.where(:product_id => wishlist.product_id, :order_id => @order.id).first_or_create
-        wishlist.delete       
+      @customer.cart_items.each do |cart_item|      
+        @order_to_product = OrderToProduct.where(:product_id => cart_item.product_id, :order_id => @order.id).first_or_create
+        cart_item.delete       
       end
+      @customer.cart.delete
       @order.save
       redirect_to action: 'show', id: @order.id
     else
-      redirect_back_or(admin_customers_customers_url(@customer), notice: 'Empty Wishlist.')
+      redirect_back_or(admin_customers_customers_url(@customer), notice: 'Empty Cart.')
     end
   end
   

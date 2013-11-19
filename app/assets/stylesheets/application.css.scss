@@ -9,10 +9,28 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
  //= require bootstrap-select
  **/
  
  @import "bootstrap";
  @import "bootstrap-responsive";
  @import "bootstrap-select";
+ @import "checkout.css";
+ @import "footer.css";
+ @import "input.css"; 
+ @import "products.css";
+ @import "body.css";
+ @import "header.css";
+ @import "accounts.css";
+ @import "sessions.css";
+
+select
+{
+   -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: "";
+}
+ 
+ 
+ 

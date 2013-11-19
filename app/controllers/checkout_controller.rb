@@ -1,9 +1,11 @@
 class CheckoutController < ApplicationController
 
   def index
+    require_user()
+    
     @cart = current_cart
     @cart_items= CartItem.all
-     @address = Address.new
+    @address = Address.new
   end
   def new
   end

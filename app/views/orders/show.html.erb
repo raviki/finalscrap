@@ -1,44 +1,84 @@
-<p id="notice"><%= notice %></p>
+<div class="center">
+<div class="span1"></div>
+<div class="span3"><h4>Appointment Details</h4></div>
 
-<p>
-  <strong>Customer:</strong>
-  <%= @order.customer_id %>
-</p>
+<table>
+ <tbody>
+ 	 <tr>
+    	<td class="span2" style="text-align:right;">Order Number : </td>
+		<td class="span2"><%= @order.id %></td>
+ 	</tr>
+ 	<tr>
+ 	    <td class="span2" style="text-align:right;">Appointment Date : </td>
+		<td class="span2"><%= @order.appointment_date  %></td>
+ 	</tr>
+ 	 <tr>
+ 	    <td class="span2" style="text-align:right; vertical-align: top;">Address : </td>
+ 	    <% if @order.address %>
+			<td class="span2">
+				<%= @order.address.name %><br><%= @order.address.address %><br><%= @order.address.city %>, <%= @order.address.pin %></td>
+		<% end %>
+ 	</tr>
+  	<tr>
+ 	    <td class="span2" style="text-align:right;">Contact Number : </td>
+ 	    <% if @order.address %>
+			<td class="span2"><%= @order.address.phone %></td>
+		<% end %>
+ 	</tr>
+ 	 <tr>
+ 	    <td class="span2" style="text-align:right;">Additional Information : </td>
+		<td class="span2"></td>
+ 	</tr>
 
-<p>
-  <strong>Voucher:</strong>
-  <%= @order.voucher_id %>
-</p>
+ </tbody>
+</table>
 
-<p>
-  <strong>Payment:</strong>
-  <%= @order.payment_id %>
-</p>
+<br>
+<br>
 
-<p>
-  <strong>Discount:</strong>
-  <%= @order.discount %>
-</p>
+<% total_value = 0 %>
 
-<p>
-  <strong>Discount message:</strong>
-  <%= @order.discount_message %>
-</p>
+<div class="span1"></div>
+<div class="order-cart center span10">
+<table class="table table-hover" >
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Value</th>
+      <th>Total</th>
+      <th>Workman Name</th>
+      <th>Workman Number</th>     
+    </tr>
+  </thead>
 
-<p>
-  <strong>Appointment date:</strong>
-  <%= @order.appointment_date %>
-</p>
 
-<p>
-  <strong>Duration inhrs:</strong>
-  <%= @order.duration_inHrs %>
-</p>
+  <tbody>
+    <% @order.order_to_products.each do |order_to_product| %>
+      <tr>
+      	<% @order2product = order_to_product %>
+        <td><%= @order2product.product.name %></td>
+        <td><%= @order2product.price %></td>  
+        <td><%= order_to_product.quantity %></td>
+        <td><%= @order2product.price * order_to_product.quantity %></td>
+        <td><%= @order2product.store.contact_name unless !@order2product.store %></td>
+        <td><%= @order2product.store.contact_no unless !@order2product.store %></td>
+        <% total_value += (@order2product.price * order_to_product.quantity) %>
+        
+        </tr>
+    <% end %>
+    <tr>
+    	<td></td>
+    	<td></td>
+    	<td>Total</td>
+    	<td><%= total_value %></td>
+    	<td></td>
+    	<td></td>
+   	</tr>
+  </tbody>
+</table>
+</div>
 
-<p>
-  <strong>Active:</strong>
-  <%= @order.active %>
-</p>
+</div>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+

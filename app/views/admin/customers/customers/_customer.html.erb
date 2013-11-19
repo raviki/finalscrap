@@ -1,21 +1,13 @@
  	<tr>
       	<td><%= link_to customer.id,  admin_customers_customer_path(customer)  %></td>
-        <td><%= customer.first_name %></td>
-        <td><%= customer.second_name %></td>
-        <td><%= customer.contact_no %></td>
-        <td><%= customer.add_line1 %></td>
-        <td><%= customer.add_line2 %></td>
-        <td><%= customer.city %></td>
-        <td><%= customer.pin %></td>
-        <td><%= customer.wishlist %></td>
-        <td><%= customer.customer_group_id %></td>
-        <td><%= customer.customer_lead_id %></td>
-        
+        <td><%= customer.name %></td>
+        <td><%= customer.email %></td>
+        <td><%= customer.mobile_number %></td>
+        <td><%= customer.provider %></td>
+               
         <% if defined? customer_group_page %>
         	<td><%= link_to 'Detach', :controller => admin_customers_customers_path, :id => customer.id, :action => "update_customer_group_id", :customer_group_id => 0, :method => :put %></td>
         <% elsif defined? customer_lead_page %>
         	<td><%= link_to 'Detach', :controller => admin_customers_customers_path, :id => customer.id, :action => "update_customer_lead_id", :customer_lead_id => 0, :method => :put %></td>
-        <% else %>
-                <td><%= link_to 'Edit', edit_admin_customers_customer_path(customer) %></td>
         <% end %>
       </tr>

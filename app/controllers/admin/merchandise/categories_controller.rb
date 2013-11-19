@@ -1,5 +1,6 @@
 class Admin::Merchandise::CategoriesController < AdminController
-  before_action :set_category, only: [:show, :edit, :update, :destroy, :new_product_map, :delete_product_map]
+  before_action :set_category, only: [:show, :edit, :update, :destroy, :new_product_map, :delete_product_map, :toggle_active]
+  after_action :log, only: [:update, :destroy, :new_product_map, :delete_product_map, :toggle_active]
 
   # GET /categories
   # GET /categories.json
@@ -10,7 +11,6 @@ class Admin::Merchandise::CategoriesController < AdminController
   
    def toggle_active    
     store_location()
-    @category = Category.find(params[:id])
     @category.toggle_active
     @category.save
     redirect_back_or(admin_merchandise_categories_url)
@@ -100,7 +100,10 @@ class Admin::Merchandise::CategoriesController < AdminController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @category = Category.find(params[:id])
+      @category = Category.find_by_name(params[:id])
+      if !@category
+         @category = Category.find(params[:id])
+      end   
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,8 +1,9 @@
-class Category < ActiveRecord::Base
- 
+class Category < ActiveRecord::Base  
   has_many :category_to_products
   has_many :products,             :through => :category_to_products
-  has_many :activeProduct,   -> { where(active: true) },    :source => :product,   :class_name => "Product",  :through => :category_to_products
+  has_many :activeProducts,   -> { where(active: true) },    :source => :product,   :class_name => "Product",  :through => :category_to_products
+  
+  has_many :tools,                :through => :products
   
   validates :image, :presence => true
   validates :description, :length => {:maximum =>300}, :presence => true
@@ -15,15 +16,39 @@ class Category < ActiveRecord::Base
     end
   end
   
-  def standard_search(text)
-    keys=text.split(text)
-    keys.each do |key|
-      if !@query
-        @query=@query+" or " 
-      end
-      @query=@query+"categories.name LIKE %#{key}%"
+  def self.find(input)
+    puts "------#{input.sub!('-', ' ')}"
+    
+    
+    if input.to_i != 0
+      super
+    else
+      if input.include? '-'
+        input = input.sub!('-', ' ')
+      end 
+      puts "------#{input}"
+      find_by_name(input)
     end
-    grid = where(@query)
+  end
+  
+  def to_param
+    "#{name}".parameterize
+  end
+  
+  def self.standard_search(text)
+    if text.present?
+      keys=text.split(" ")
+      @query = ""
+      keys.each do |key|
+       if @query != ""
+          @query=@query+" or " 
+        end
+        @query=@query+"categories.name LIKE '%#{key}%'"
+      end
+      grid = where(@query)
+    else
+      all
+    end
   end
   
   ## Auto generated code using java @ Ravi
@@ -37,9 +62,7 @@ class Category < ActiveRecord::Base
           active_filter(active_state)
   end
 
-
   private
-
 
     def self.id_filter(id)
       if id.present?
@@ -74,12 +97,9 @@ class Category < ActiveRecord::Base
     end
 
     def self.active_filter(active)
-      puts "---------active filter"
       if active.present? and active
-        puts "---------active filter yes"
         where("categories.active")
       else
-        puts "---------active filter no"
         all
       end
     end
