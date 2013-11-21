@@ -22,7 +22,7 @@
 		})
 	})
 </script>
-<div class="container">
+<div class="checkout-page container">
 	<div class="center">
 	<ul id="myTab" class="nav nav-tabs offset3">
 		<li class="active">
@@ -72,7 +72,7 @@
 				<%= hidden_field_tag "user_id",@user.id%>
 				<%= f.hidden_field("user_id",:value => @user.id)%>
 				<%end%>
-				<table width="20%">
+				<table class="span4" style="margin:0;">
 					<tr>
 					<tr>
 						<td width="15%"> <%= f.label :name %> </td>

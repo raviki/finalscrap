@@ -13,22 +13,30 @@
       })
 </script>
 
-	<div class="navbar">
-		<div class="navbar-inner">
-			<div class="container">
+	<div class="header-block navbar">
+		<div class="header-bar navbar-inner container">
+			
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
-				<%= link_to image_tag("logo.jpg" ),root_url%>
+				<%= link_to image_tag("logo.jpg", :class => "header-logo"),root_url%>
 				<div class="nav-collapse collapse">
 					<div class="search-bar">
 						<ul class="nav">
 						<li>
-							<%= form_tag(categories_path, :method => 'get', :class => 'navbar-search span5') do %>
-								<div class="input-prepend input-append">																		
-									<%=	select(@categories,"id", Category.all.collect {|p| [ p.name, p.name ] }, { prompt:"All" },{class:"btn dropdown-toggle"})%>									
-									<%= text_field_tag :key, params[:key], :class => " search-query" %>
-									<%= submit_tag "Search", :name => nil, :class => "btn btn-info" %>
+							<%= form_tag(categories_path, :method => 'get', :class => 'navbar-search') do %>
+								<div class="input-prepend  span6 visible-desktop input-append">																				
+									<%=	select(@categories,"id", Category.all.collect {|p| [ p.name, p.name ] }, { prompt:"All" },{class:"search-select btn  dropdown-toggle"})%>											
+									<%= text_field_tag :key, params[:key], :class => "search-query" %>
+									<%= submit_tag "Search", :name => nil, :class => "search-submit btn btn-info" %>								
+								</div>
+								
+								<div class="visible-phone hidden-desktop">
+									<%=	select(@categories,"id", Category.all.collect {|p| [ p.name, p.id ] }, { prompt:"All" },{class:"btn btn-block"})%>
+									<input type="text">
+									<button type="submit" class="btn btn-block">Search</button>
 								</div>
 							<% end %>
+							
+							
 						</li>						
 						</ul>
 					</div>
@@ -37,7 +45,7 @@
 
 							<% if signed_in? %>
             <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">	
+              <a id="sign-btn" href="#" class="dropdown-toggle" data-toggle="dropdown">	
 				Hello <%= @user.first_name %> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
@@ -50,11 +58,11 @@
               </ul>
             </li>
           <% else %>
-            <li><%= link_to "Sign in", sessions_path %></li>
+            <li><%= link_to "Sign in", sessions_path, :id => "sign-btn" %></li>
           <% end %>	
           		</ul>
 				</div><!-- /.nav-collapse -->
-			</div>
+			
 		</div><!-- /navbar-inner -->
 	</div><!-- /navbar -->
 	

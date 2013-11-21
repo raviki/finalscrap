@@ -1,36 +1,31 @@
-html body div#wrap div#main.container div.login-new div form#new_customer_management.form-horizontal div.control-group
+.login-new div.control-group
 {
   margin-bottom:0;
 }
 
-html body div#wrap .container .login-new .form-horizontal .control-group .center .text-Box,
-html body div#wrap .container .login-new .form-horizontal .control-group .center input,
-html body div#wrap div#main.container div.login-new div.control-group div.center form.button_to div input.btn
+.login-new .text-Box,
+.login-new .btn
 {
-  min-width: 100%;
-  max-width:100%;
+  padding:0 0 0 1%;
+  width: 100%;
   height: 2em;
   font-size: 1.5em;
   margin-bottom: 0.5em;
-  padding:0;
 }
 
-html body div#wrap .container .login-new .form-horizontal .control-group .center .text-Box,
-html body div#wrap div#main.container div.login-new div form#new_customer_management.form-horizontal div.control-group div.center input.btn
-{
-  padding-left:1em;
+@media (max-width: 769px) {
+  .login-new .text-Box,
+  .login-new .btn
+  {
+    width:80%;
+  }
 }
 
-html body div#wrap .container .login-new .form-horizontal .control-group .center input.btn
+.login-new .btn
 {
-  margin-left:0.5em;
+  margin-left:0.5%;
 }
 
-html body div#wrap div#main.container div.login-new div form#new_customer_management.form-horizontal div.control-group div.center
-{
-  min-width: 100%;
-  margin:0;
-}
 
 
 

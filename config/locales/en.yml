@@ -23,6 +23,7 @@ en:
   company:              'Ever Task'
   company_phone:        '+91 9676070600'
   admin_email:          'p11ravikishorr@iimahd.ernet.in'
+  mobile_feature:       'no'
 
   date:
     formats:

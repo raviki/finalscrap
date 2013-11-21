@@ -47,7 +47,7 @@ class Product < ActiveRecord::Base
       super
     else
       if input.include? '-'
-        input = input.sub!('-', ' ')
+        input = input.gsub!('-', ' ')
       end 
       find_by_name(input)
     end

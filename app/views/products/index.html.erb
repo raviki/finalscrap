@@ -1,11 +1,11 @@
-<div class="row-fluid">
+<div class="product-list-page row-fluid">
 	<div class="span12">
 		<% if @category %>
 			<h4 class="center"> <%= @category.name %> </h4> 
 		<% end %>
 	</div>
 	<% if !@category %>
-		<div class="category-submenu span3">		
+		<div class="category-submenu span3" style="margin-left:0;">		
 		<% if @categories.size > 0 %>
  			<div class="bs-docs-sidebar">
     			<%= render :partial => 'shared/items_sidebar' %>
@@ -26,18 +26,19 @@
 			  <% end %>	
 			<% end %>
 			<% if @category %>
-			<li class="span3">				
-				<div class="thumbnail">
-					
+			
+			<li class="product-each span3 thumbnail">				
+				
+				<%= link_to(category_product_path(@category,product)) do %>		
 					<div class="center">
-					<%= link_to image_tag(product.image,:height => "200px", :width => "200px" ),category_product_path(@category,product)%>					
+					<%= image_tag(product.image,:class => "product-image" ) %>					
 					</div>
 					<div class="caption">
 						<%= simple_format(product.name,:class=>:name)%>
 						<% @item = product %>
 						<%= simple_format("<del>&#2352;</del> #{@item.product_variants.first.price}",:class =>:pricehilit)%>
 					</div>
-								
+				<% end %>			
 					<div class="product-info">
 						<%=form_for(:cart_item,url: cart_items_path, :action => :create) do |f|%>
 			
@@ -57,12 +58,12 @@
 							<div class="product-quantity center form-horizontal">
 								<%=form_for(:cart_item,url: cart_items_path, :action => :create) do |f|%>				
 									<%= f.text_field :quantity,:placeholder => "Quantity"%>
-									<%= f.submit "Quick Add", {class: "btn btn-info", id:"addcart"}%>
+									<%= f.submit "Add", {class: "btn btn-info", id:"addcart"}%>
 								<% end %>
 							</div>
 						<%end%>
 					</div>
-				</div>
+				
 			</li>
 			<% end %>
 			<%end%>								

@@ -3,8 +3,8 @@
 		margin-left: 10%;
 }
 
-.container .bs-docs-sidebar .row-fluid .text-box input,
-.container .form-horizontal .bs-docs-sidebar .row-fluid .btn
+.login-page .text-box input,
+.login-page .btn
 {
 	width: 65%;
 	height: 2em;
@@ -17,12 +17,13 @@
 
 
 
-.container .form-horizontal .bs-docs-sidebar .row-fluid .checkbox
+.login-page  label.checkbox
 {
 	margin-right: 17.5%;
 	margin-left: 17.5%;	
 	margin-bottom: 4%;
 	text-align: left;
+	width: 50%;
 }
 
 .center
@@ -53,42 +54,46 @@
          margin-left:12.5%;
 }
 
-
-html body div#wrap .container .control-group .center .btn
-{
-	width: 45%;
-	height: 2em;
-	font-size: 1.5em;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 0.25em
-	padding:0;
-}
-
-html body div#wrap .container .login-new
+.login-new
 {
 	padding-bottom: 4em; 
 }
 
-
-
-.container .center .form-horizontal input
+.password-reset-page  input.submit-input
 {
 	height: 2em;
-	font-size: 1.25em;
-	width: 35%;
+	margin-bottom:0.5em;
+	margin-left:0.5em;
+	width: 100%;
 }
 
-.container .form-horizontal .bs-docs-sidebar .row-fluid .checkbox
+.password-reset-page input#email.email-input, 
+.password-reset-page  input#mobile.mobile-input
 {
-	width: 50%;
+	height: 2em;
+	margin-bottom:0.5em;
+	width: 100%;
 }
 
-.body-area .container .form-horizontal .bs-docs-sidebar .row-fluid .text-box
+.password-reset-page .form-horizontal
 {
-	margin-top: 1em;
+	margin-left:25%;
 }
+
+@media (max-width: 769px) {
+	.password-reset-page  input.submit-input,
+	.password-reset-page input#email.email-input, 
+	.password-reset-page  input#mobile.mobile-input
+	{
+		max-width:90%;
+	}
+	.password-reset-page .form-horizontal
+	{
+		margin-left:0;
+	}
 	
+}
+
 
 
 

@@ -1,9 +1,9 @@
-html body div#wrap div.navbar
+div.header-block
 {
   margin-left: 3em;
   margin-right: 3em;
   font-family: "Open Sans";
-  color: #FFFFFF;
+  color: #FAFAFA;
   margin-top:1em; 
   margin-bottom:0;
   border-radius: 8px 8px 8px 8px;
@@ -11,14 +11,139 @@ html body div#wrap div.navbar
   -webkit-box-shadow: 1px 1px 1px #b2b2b2;
 }
 
+@media (max-width: 767px) {
+  div.header-block
+  {
+    margin-left:0;
+    margin-right:0;
+  }
+}
 
-html body div#wrap div.navbar div.navbar-inner div.container,
-html body div#wrap div.navbar div.navbar-inner,
-html body div#wrap div.navbar 
+.header-bar
 {
 	background-color: #FAFAFA;
+	padding-left: 0;
+  padding-right: 0;
+  border-right: 0;
+  border-left: 0;
+  font-family: "Open Sans";
 		
 }
+
+.header-bar .header-logo
+{
+  position: absolute;
+  margin-left:1em;
+  width: 10em;
+  max-height: 3em;
+  margin-top:0.25em;
+}
+
+@media (max-width: 979px) 
+{  
+  .header-bar .header-logo
+  {
+    max-height:2em;
+   
+  }
+}
+
+.header-bar .search-bar
+{
+    margin-left: 20%;
+}
+
+@media (max-width: 979px) 
+{
+  .header-bar .search-bar
+  {
+    margin-top: 2em;
+    margin-left:0;
+  }
+  
+  .header-block div.header-bar form.navbar-search
+  {
+    padding-left:0;
+    padding-right:0;
+    margin-left:5%;
+    margin-right:5%;
+    width:90%;
+  }
+  
+}
+
+.header-bar .search-bar ul.nav
+{
+  padding-top: 0;
+  margin-right:1em;
+}
+
+.header-bar .search-bar form.navbar-search
+{
+  margin-top:auto;
+  margin-bottom:auto;
+  padding-top:5px; 
+  border:0;
+  width:100%;
+}
+
+.header-bar .navbar-search div.input-prepend
+{
+  margin-top:5px;
+  margin-bottom:10px;
+}
+
+.header-bar .navbar-search .search-select
+{
+  border-radius: 5px 0 0 5px;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  width:25%;
+}
+
+.header-bar .search-bar .search-query
+{
+  width:50%;
+}
+
+.header-bar .search-bar input.search-submit
+{
+  margin-top:1px;
+  border-radius: 0 5px 5px 0;
+  margin-left: 0;
+  width:25%;
+}
+
+.header-bar #div.visible-phone.textarea,
+.header-bar input[type="text"],
+.header-bar .uneditable-input {
+  width: 100%;
+  padding-left:0px;
+  padding-right:0px;
+  background-color: white;
+  border: 1px solid #cccccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+  transition: border linear 0.2s, box-shadow linear 0.2s; 
+  margin-top:0;
+  margin-bottom:0;
+}
+
+.header-bar .nav-collapse .btn {
+    margin-top:0;
+    padding: 4px 10px 4px;
+    font-weight: normal;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+}
+
 
 html body div#wrapr div.container .inline
 {
@@ -26,95 +151,19 @@ html body div#wrapr div.container .inline
   padding-right:2.5em;
 }
 
-html body div#wrap div.navbar div.navbar-inner div.container a.brand
-{
-	margin-left:1em;
-	margin-top:5px;
-}
 
-html body div#wrap div.navbar div.navbar-inner
-{
-	padding-left: 0;
-	padding-right: 0;
-	border-right: 0;
-	border-left: 0;
-	font-family: "Open Sans";
-}
-
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse .nav
-{
-	padding-top: 0;
-	margin-right:1em;
-}
-
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse ul.nav li a,
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li.divider-vertical,
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li#fat-menu.dropdown a.dropdown-toggle
-{
-	margin-top:5px;
-	margin-left: 5px;
-	margin-right: 5px;
-}
-  
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li a#addcart
-{
-  background: url("/assets/cart.png") no-repeat scroll right center rgba(0, 0, 0, 0);
-}
-
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li form.navbar-search div.input-prepend input.btn
-{
-  margin-top:1px;
-  border-radius: 0 5px 5px 0;
-  margin-left: 0;
-}
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li form.navbar-search div.input-prepend .btn
-{
-	border-radius: 5px 0 0 5px;
-	margin-left: 0;
-	margin-right: 0;
-	padding-left: 0;
-	padding-right: 0;
-	width: 30%;
-	
-}
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li form.navbar-search div.input-prepend input#key.search-query
-{
-  width: 100%;   
-}
-
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li form.navbar-search div.input-prepend
+.header-bar #addcart,
+.header-bar #sign-btn
 {
   margin-top:5px;
-  margin-bottom:10px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar
-{
-    margin-left: 23%;
-}
-
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li form.navbar-search
-{
-	margin-top:auto;
-	margin-bottom:auto;
-	padding-top:5px;
   
-}
 
 
-html body div#wrap div.navbar div.navbar-inner div.container div.nav-collapse div.search-bar ul.nav li form.navbar-search div.input-prepend .btn-group 
-{
-	margin-top:auto;
-	margin-bottom: auto;
-}
 
-html body div#wrap div.navbar div.navbar-inner div.container img
-{
-  position: absolute;
-  margin-left:2.5em;
-  width: 10em;
-  max-height: 3em;
-  margin-top:0.25em;
-}
+
 
 
 

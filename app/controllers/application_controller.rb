@@ -57,28 +57,35 @@ class ApplicationController < ActionController::Base
     session[:return_to] = nil
   end
 
-  def current_cart
-    if cookies[:cart_customer_id]      
+ def current_cart
+    if cookies[:cart_customer_id]
       @cart = Cart.find_by(:customer_id => cookies[:cart_customer_id])
     end
     @current_user = current_user
     if @current_user
       if @cart
         if @cart.customer_id != @current_user.id
-          @cart.update(:customer_id => @current_user.id)
+          @user_cart = Cart.find_by_customer_id(@current_user.id)
+          if @user_cart
+            CartItem.where(:cart_id => @cart.id).update_all({:cart_id => @user_cart.id})
+            @cart.delete
+            @cart = @user_cart
+          else
+            @cart.update(:customer_id => @current_user.id)
+          end
           cookies.delete :cart_customer_id
         end
       else
         @cart = Cart.find_or_create_by_customer_id(@current_user.id)
       end
-      
+
     else
       unless @cart
         @cart = Cart.create(:customer_id => rand(1990))
+        cookies.permanent[:cart_customer_id] = @cart.customer_id
       end
-      cookies.permanent[:cart_customer_id] = @cart.customer_id
     end
-      
+
     return @cart
   end
   
@@ -88,7 +95,6 @@ class ApplicationController < ActionController::Base
     if cookies[:remember_token]
       encrypted_token  = Digest::SHA1.hexdigest(rem_token_cookie.to_s)
       @current_user ||= CustomerManagement.find_by(:remember_token => :encrypted_token)
-      puts " CUrrent user:#{@current_user}"
       return @current_user
     else
       if session[:customer_id]

@@ -25,18 +25,14 @@
           		<%= raw "<div data-alert class='alert-box alert'> #{alert} <a href='' class='close'>&times;</a>"  if alert %>
         	</div>
       		<% end %>
-      		<div class="breadcrumbs container">
-      			
-      			<div class="span9" style="margin-left:0;">
-					<%= render_breadcrumbs :separator => ' / ' %>
-				</div>
-				<div class="span3" style="margin-left:0;text-align:right;">
-					<p style="padding-right:3.5em;">Contact Us: <%= link_to contact_number, "tel:"+contact_number %>	
-					</p>
-				</div>
+      		<div class="breadcrumbs" style="min-height:1em;">     	
+      			<ul class="inline">	
+      				<li class="pull-left"><%= render_breadcrumbs :separator => ' / ' %></li>	
+					<li class="pull-right">Contact Us: <%= link_to contact_number, "tel:"+contact_number %></li>
+				</ul>
 			</div>
 			<% if @root_url.present? %>
-			<div class="welcome-page container clear-top">
+			<div class="welcome-page clear-top">
 			<% else %>
 			<div id="main" class="container clear-top">
 			<% end %>	
