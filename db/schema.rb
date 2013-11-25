@@ -175,7 +175,7 @@ ActiveRecord::Schema.define(version: 20131118050310) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "video"
-    t.text     "how2fix"
+    t.longtext     "how2fix"
   end
 
   create_table "searches", force: true do |t|

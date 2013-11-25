@@ -1,0 +1,2 @@
+module Plus::InprogressHelper
+end

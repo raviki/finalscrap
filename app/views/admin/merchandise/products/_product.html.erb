@@ -6,8 +6,10 @@
         <% if defined? store_page %>
         	<td><%= @store.store_to_products.find_by_store_id_and_product_id(@store.id, product.id).price %></td>
         <% end %>
-        <td><%= product.description %></td>        
-        <td><%= product.how2fix %></td>
+        <td><%= product.description %></td>
+        <% if defined? product_show %>       
+        	<td><%= product.how2fix %></td>
+        <% end %>
         <td><%= product.meta_description %></td>
         <td><%= product.meta_keyword %></td>
         <td><%= product.views %></td>
