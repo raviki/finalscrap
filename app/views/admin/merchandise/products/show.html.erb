@@ -2,7 +2,7 @@
 <table>
 	<%= render 'admin/merchandise/products/table_header' %>
 	<tbody>
-      <%= render :partial => 'admin/merchandise/products/product', :object => @product %>
+      <%= render :partial => 'admin/merchandise/products/product', :object => @product, :locals => { :product_show => 'yes' } %>
 	</tbody>
 </table>
 

@@ -1,5 +1,9 @@
 Website::Application.routes.draw do
 
+  namespace :plus do
+    resources :inprogress, :only => [:index]
+  end 
+  
   resources :order_requests
   
   root to: "categories#index"
@@ -98,13 +102,15 @@ Website::Application.routes.draw do
     end
     
     namespace :fulfillments do
-      resources :orders
+      resources :orders 
        get "orders/:id/create_order" => "orders#create_order"
        get "orders/:id/toggle_active" => "orders#toggle_active"
        get "orders/:id/assign_store" => "orders#assign_store"
     end
     
     get "help" => "help#index"
+    resources :dbupload, :only => [:index] 
+   
   end 
   
   get ":id" => "categories#show"

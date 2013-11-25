@@ -7,9 +7,8 @@ class Cart < ActiveRecord::Base
     
     puts "Helloooooooo addding to cart"
     params.each_pair {|key,value| puts "#{key} = #{value}"}
-    
-    
-    current_item = CartItem.find_by(:product_id => params[:product_id])
+      
+    current_item = CartItem.find_by_product_id_and_cart_id(params[:product_id],params[:cart_id])
     
     puts "Currrent item #{current_item}"
     
@@ -20,4 +19,5 @@ class Cart < ActiveRecord::Base
     end
     return current_item
   end
+  
 end

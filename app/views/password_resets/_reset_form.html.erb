@@ -1,0 +1,11 @@
+	<%= text_field_tag :email, params[:email], :placeholder => "Email Address" , :class => "email-input" %> 
+  	<%= submit_tag "Reset Password", :class => 'submit-input btn btn-info'%>
+  	
+  	<% if is_mobile_feature_present  %>
+		<div class="center">  
+			<p>OR</p>	
+		</div>
+	    <%= text_field_tag :mobile, params[:mobile], :placeholder => "Mobile Number" , :class => "mobile-input" %> 
+  		<%= submit_tag "Send Password", :class => 'submit-input btn btn-info'%>
+  	
+	<% end %>

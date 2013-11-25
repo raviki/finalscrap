@@ -14,7 +14,9 @@
       	<th>Store Price</th>
       <% end %>
       <th>Description</th>
-      <th>How to Fix</th>
+      <% if defined? product_show %> 
+      	<th>How to Fix</th>
+      <% end %>
       <th>Meta description</th>
       <th>Meta keyword</th>
       <th>Views</th>

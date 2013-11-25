@@ -8,11 +8,7 @@ height:100%;
 min-height: 100%;
 }
 
-#main
-{
-overflow:auto;
-padding-bottom:60px; /* this needs to be bigger than footer height*/
-}
+
 
 .footer {
     background-color: #909DA1;;
@@ -52,7 +48,6 @@ padding-bottom:60px; /* this needs to be bigger than footer height*/
 }
 .footer .row {
     margin: 0 auto;
-    width: 1128px;
   }
 }
 

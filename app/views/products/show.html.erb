@@ -1,110 +1,103 @@
 <script type="text/javascript" charset="utf-8">
-      $(function() {
-        $("#productaddcart").bind("ajax:complete",function() {
-        	
-          $("#myModal").modal();
-          return false;
-        })	
-      })
-</script>
-    
-<div class="row-fluid">
-	<div class="product-show">
-		<div class="container">
-			<div class="span4">
-				<div class="center center-vertical">
-					<%= image_tag(@product.image)%>
-				</div>
-			</div>
-			<div>
-			<table>
- 			<tbody>
- 	 		<tr>
-    			<td class="span2"><h3><%= @product.name%> </h3></td>
-			</tr>
-			<tr>
-				<td class="span2" style="text-align=top;"><b>Description:</b></td>
-				<td class="span4"><p> <%= simple_format(@product.description) %></p></td>
-			</tr>
-			<%=form_for(:cart_item,url: cart_items_path, remote:true, :html => {id: "productaddcart"}) do |f|%>
-				
-			<tr>
-				<% if @product.product_variants.size > 1 %>
-					<td class="span2"><b>Sizes:</b></td>
-					<td class="span4">			
-						<%= select_tag "cart_item[product_id]", options_from_collection_for_select(@product.product_variants, "id", "display_name"), :class => "dropdown-toggle" %>		
-					</td>
-				<% else %>
-					<td class="span2"><b>Price:</b></td>
-					<td class="span4">
-				 		<p><FONT SIZE="3.5em>"><del>&#2352;</del></FONT SIZE></FONT> <%= @product.product_variants.first.price%> </p>
-				 		<%= f.hidden_field :product_id, value:@product.product_variants.first.id%>
-				 	</td
-				<% end %>
-				
-			</tr>	
-			<tr>								
-					<td class="span2"><b>Quantity:</b></td>
-					<td class="span4">
-					
-						<div class="form-horizontal">
-							<%= f.text_field :quantity, :class=>"span6"%>	
-							<%= f.submit "Add to Cart", {class: "btn btn-info", id:"productaddcart"}%>
-						</div>
-					</td>
-				</tr>
-				<%end%>
-						
-			</tbody>
-			</table>
-				<!-- Button to trigger modal -->
-				<!--a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>--> 
- 
-			</div>
-			<% if @product.tools.size > 0 %>
-			<h5 style="margin-left:1em;">Tools Needed</h5>
-			<div class ="product-tools-bar span12">
-				<ul class="product-tools">
-					<% @product.tools.each do |tool| %>
-						<li class="product-tools-each span2">
-							<ul class="product-tools-each-split">
-							
-							<li><%= link_to image_tag(tool.image),category_product_path(@category,tool)%></li>							</li>
-							<li class="center-vertical center">
+	$(function() {
+		$("#productaddcart").bind("ajax:complete", function() {
 
+			$("#myModal").modal();
+			return false;
+		})
+	})
+</script>
+
+<div class="product-show row-fluid container">
+	<div class="product-show-inner container-fluid">
+		<div class="product-info">
+			<div class="product-image span4 center center-vertical">
+				<%= image_tag(@product.image)%>
+			</div>
+
+			<div class="product-details span8">
+				<h3><%= @product.name%></h3>
+				<table>
+					<tbody>
+						<tr>
+							<td class="span2" style="text-align=top;"><b>Description:</b></td>
+							<td class=" product-details-value span4"> <%= simple_format(@product.description) %> </td>
+						</tr>
+
+						<%=form_for(:cart_item,url: cart_items_path, remote:true, :html => {id: "productaddcart"}) do |f|%>
+						<% if @product.product_variants.size > 1 %>
+						<tr>
+							<td class="span2"><b>Sizes:</b></td>
+							<td class="product-details-value span4"> <%= select_tag "cart_item[product_id]", options_from_collection_for_select(@product.product_variants, "id", "display_name"), :class => "dropdown-toggle" %> </td>
+						</tr>
+						<% else %>
+						<tr>
+							<td class="span2"><b>Price:</b></td>
+							<td class="product-details-value span4">
+							<p>
+								<FONT SIZE="3.5em>"><del>&#2352;</del></FONT SIZE></FONT> <%= @product.product_variants.first.price%>
+							</p> <%= f.hidden_field :product_id, value:@product.product_variants.first.id%> </td>
+						</tr>
+						<% end %>
+
+						<tr>
+							<td class="span2"><b>Quantity:</b></td>
+							<td class="product-details-value span4">
+							<div class="form-horizontal">
+								<%= f.text_field :quantity, :class=>"product-details-quantity"%>
+								<%= f.submit "Add to Cart", {class: "product-details-quantity btn btn-info", id:"productaddcart"}%>
+							</div></td>
+						</tr>
+						<%end%>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- Button to trigger modal -->
+		<!--a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>-->
+
+		<% if @product.tools.size > 0 %>
+		<h5>Tools Needed</h5>
+		<div class ="product-tools-bar span12">
+			<ul class="product-tools">
+				<% @product.tools.each do |tool| %>
+					<%= link_to(category_product_path(@category,tool)) do %>
+					<li class="product-tools-each span2">
+						<ul class="product-tools-each-split">
+							<li><%= image_tag(tool.image) %></li>
+							<li class="product-info center-vertical center">
 								<p class="text-align:center;"><%= tool.name%></p>
 								<%= simple_format("<del>&#2352;</del> #{tool.product_variants.first.price}")%>
-								
+					<% end %>
 								<%=form_for(:cart_item,url: cart_items_path, :action => :create) do |f|%>
-								<div class="product-show-quantity span6 center form-horizontal">
-									<%= hidden_field_tag "cart_item[product_id]", tool.product_variants.first.id%>
-									<%= f.text_field :quantity, :class=>"product-show-quantity-input span4",:placeholder => "#"%>
-									<%= f.submit "Add", {class: "btn btn-info", id:"addcart"}%>
-								</div>
+									<div class="product-show-quantity span6 center form-horizontal">
+										<%= hidden_field_tag "cart_item[product_id]", tool.product_variants.first.id%>
+										<%= f.text_field :quantity, :class=>"product-quanity-input product-show-quantity-input span4",:placeholder => "#"%>
+										<%= f.submit "Add", {class: "product-quanity-input btn btn-info", id:"addcart"}%>
+									</div>
 								<%end%>
 							</li>
-							<li>							
-							</li>
 						</ul>
-						</li>
-					<% end %>
-				</ul>					
-			</div>
-			<% end %>
-			<div class="span12"></div>
-			<% if @product.video  && @product.video != "" %>
-				<h5 style="margin-left:1em;">Way to Fix</h5>
-				<div class="center">
-				<iframe width="560" height="349" src="http://www.youtube.com/embed/<%= @product.video %>"></iframe>
-				</div>					
-			<% end %>	
-			
-			<% if @product.how2fix &&  @product.how2fix != "" %>
-				<h5 style="margin-left:1em;">Steps to Fix</h5>
-				<div class ="product-how2fix-bar span11">
-					<p><%= simple_format(@product.how2fix) %></p>	
-				</div>						
-			<% end %>		
+					</li>
+				<% end %>
+			</ul>
 		</div>
+		<% end %>
+		<div class="nextline-divider span12"></div>
+		<% if @product.video  && @product.video != "" %>
+		<h5>Way to Fix</h5>
+		<div class="center">
+			<iframe class="product-video" src="http://www.youtube.com/embed/<%= @product.video %>"></iframe>
+		</div>
+		<% end %>
+
+		<% if @product.how2fix &&  @product.how2fix != "" %>
+		<h5>Steps to Fix</h5>
+		<div class ="product-how2fix-bar span11">
+			<p style="text-align: justify;"><br>
+				<%= simple_format(@product.how2fix) %>
+			</p>
+		</div>
+		<% end %>
 	</div>
 </div>

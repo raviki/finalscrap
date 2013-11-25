@@ -16,17 +16,13 @@ class Category < ActiveRecord::Base
     end
   end
   
-  def self.find(input)
-    puts "------#{input.sub!('-', ' ')}"
-    
-    
+  def self.find(input)    
     if input.to_i != 0
       super
     else
       if input.include? '-'
-        input = input.sub!('-', ' ')
+        input = input.gsub!('-', ' ')
       end 
-      puts "------#{input}"
       find_by_name(input)
     end
   end

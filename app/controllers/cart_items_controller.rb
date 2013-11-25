@@ -30,7 +30,7 @@ class CartItemsController < ApplicationController
       params[:cart_item][:quantity] = "0"
     end   
     
-    @cart_item = @cart.add_products({:product_id => @product.id, :price => @product.price,:quantity => params[:cart_item][:quantity],:cart_id => @cart.customer_id})
+    @cart_item = @cart.add_products({:product_id => @product.id, :price => @product.price,:quantity => params[:cart_item][:quantity],:cart_id => @cart.id})
    
     respond_to do |format|
       if @cart_item.save 

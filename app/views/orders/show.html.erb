@@ -1,4 +1,4 @@
-<div class="center">
+<div class="order-page center">
 <div class="span1"></div>
 <div class="span3"><h4>Appointment Details</h4></div>
 
@@ -44,7 +44,7 @@
   <thead>
     <tr>
       <th>Product</th>
-      <th>Price</th>
+      <th class="hidden-phone">Price</th>
       <th>Value</th>
       <th>Total</th>
       <th>Workman Name</th>
@@ -58,7 +58,7 @@
       <tr>
       	<% @order2product = order_to_product %>
         <td><%= @order2product.product.name %></td>
-        <td><%= @order2product.price %></td>  
+        <td class="hidden-phone"><%= @order2product.price %></td>  
         <td><%= order_to_product.quantity %></td>
         <td><%= @order2product.price * order_to_product.quantity %></td>
         <td><%= @order2product.store.contact_name unless !@order2product.store %></td>
@@ -69,7 +69,7 @@
     <% end %>
     <tr>
     	<td></td>
-    	<td></td>
+    	<td class="hidden-phone"></td>
     	<td>Total</td>
     	<td><%= total_value %></td>
     	<td></td>

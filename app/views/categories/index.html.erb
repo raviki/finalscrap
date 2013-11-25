@@ -1,6 +1,14 @@
 
  	
- 	<div class="first-split container span12">
+			
+ 	<div class="first-split container-fluid span12">
+ 		<div class="second-block visible-desktop">
+    		<div class="span11"></div>
+   			<div class="tick-logo ">
+    			<div class="span1"><%= image_tag("green-tick.jpg")%></div>
+  			</div>
+		</div>
+		<h5 class="visible-phone">One Place Solution for All Your Tasks. </h5>	
 		<div class="first-split-submenu span3">
  		<% if @categories.size > 0 %>
  		<div class="bs-docs-sidebar">
@@ -11,51 +19,53 @@
     	
     	
     	<div class="content-block">
-    		<div class="first-block span8">
-    		  <div class="message-block ">	
-    		  	<h2>One Place Solution for All Your Tasks. </h2>
-    		  	<p style="text-align:left;">
+    		<div class="first-block span9">
+    		  <div class="message-block">	
+    		  	<h2 class="visible-desktop">One Place Solution for All Your Tasks. </h2>
+    		  	<h3 class="visible-tablet">One Place Solution for All Your Tasks. </h3>
+    		  	
+    		  	<p class="visible-desktop" style="text-align:left;">
 				A safe, reliable Work Force.
 				<span style="float:right;">100% Satisfaction Guaranteed.</span>
 				</p>
-
-	
-    		  </div>   		
-    		</div>
-    		<div class="second-block span1">
-    			<div class="span1"></div>
-    			<div class="tick-logo">
-    				<div class="span1"><%= image_tag("green-tick.jpg")%></div>
+    		  </div>  
+    		  <div class="span1"></div>
+    		  <div class="warranty-message span8">
+    		  	<h5 class="color1 visible-phone">Six Months  <span class="color2">Service Warranty on </span> ALL TASKS</h5>
+				<div class="logo-images span8">
+					<%= image_tag("computer.jpg")%>
+    		  		<%= image_tag("phone.png")%>  		  		
+    				<%= image_tag("tap-1.png")%>   			
+    				<%= image_tag("hammer-1.png")%>
+    				<%= image_tag("refurb-1.png")%>
+    				<%= image_tag("plug-1.png")%>
     			</div>
-			</div>
-		   <div class="down-block span12">
-			<div class="warranty-message span5">
-				<div class="logo-images span5">
-    		  		<%= image_tag("phone.png", :class => "span1")%>
-    				<%= image_tag("tap-1.png", :class => "span1")%>   			
-    				<%= image_tag("hammer-1.png", :class => "span1")%>
-    				<%= image_tag("refurb-1.png", :class => "span1")%>
-    				<%= image_tag("plug-1.png", :class => "span1")%>
-    			</div>
-    			<h4 class="color1">Six Months  <span class="color2">Service Warranty on </span> ALL TASKS</h4>
-    		</div>
+    			<h4 class="color1 visible-desktop visible-tablet">Six Months  <span class="color2">Service Warranty on </span> ALL TASKS</h4>
     			
-    		<div class="request-block offset6">
-    				<%= render 'order_requests/welcome_page' %>
+    		</div> 
+    		  		
     		</div>
-    	  </div>
+    		
     	</div>   	
  	</div>
  	
  	<div class="second-split container span12">
  		<div class="message-box">
- 			<div class="thumbs-up-logo span3">
+ 			<div class="thumbs-up-logo visible-desktop span2">
  				<%= image_tag("thumbs-up.png")%>	
  			</div>
- 			<div class="value-message span8">
- 				<h4>Our Value & Promise</h4>
- 				<p></p>
- 			</div> 			
+ 			<div class="span8 visible-desktop" style="min-height:2em;"></div>
+ 			<div class="span12 visible-tablet" style="min-height:2em;"></div>
+ 			<div class="value-message visible-desktop  visible-tablet span4">
+ 				<h3>Our Value & Promise</h3>
+ 				<p>On Time Service</p> 
+ 				<p>Reasonable Prices</p>
+ 				<p>We stand for Our Quality of Work</p>
+ 			</div> 
+ 			
+ 			<div class="request-block">
+    				<%= render 'order_requests/welcome_page' %>
+    		</div>			
  		</div>
 	</div>
  	
