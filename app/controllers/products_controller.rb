@@ -35,16 +35,20 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    add_breadcrumb @category.name, @category
-    add_breadcrumb @product.name, category_product_path
-    
-    if @product.parents.size > 0
-      
+    if !(@category && @product)
+      store_location()
+      redirect_back_or(root_url, notice: 'Page Not Found: Category = '+params[:category_id]+' & Product='+params[:id]+' ')
+    else
+      add_breadcrumb @category.name, @category
+      add_breadcrumb @product.name, category_product_path
+
+      if @product.parents.size > 0
+
+      end
+      @product.updateViewCount
+      @cart_items = current_cart.cart_items
+      @tools = Product.all
     end
-    
-    @product.updateViewCount
-    @cart_items = current_cart.cart_items
-    @tools = Product.all
   end
 
   # GET /products/new

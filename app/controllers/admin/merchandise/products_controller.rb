@@ -17,6 +17,7 @@ class Admin::Merchandise::ProductsController < AdminController
   # GET /products/1
   # GET /products/1.json
   def show
+    # to add tools to product
     if params[:select].present? 
       @new_parent = Product.find(params[:select])
       if @new_parent

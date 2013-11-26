@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20131118050310) do
   create_table "category_to_products", force: true do |t|
     t.integer  "product_id"
     t.integer  "category_id"
+    t.string    "sub_menu"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -166,6 +167,7 @@ ActiveRecord::Schema.define(version: 20131118050310) do
 
   create_table "products", force: true do |t|
     t.text     "name"
+    t.integer   "parent"
     t.string   "image"
     t.text     "description"
     t.text     "meta_description"
@@ -176,6 +178,7 @@ ActiveRecord::Schema.define(version: 20131118050310) do
     t.datetime "updated_at"
     t.string   "video"
     t.text     "how2fix"
+    t.string   "menu_parent"
   end
 
   create_table "searches", force: true do |t|

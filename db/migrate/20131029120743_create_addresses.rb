@@ -5,8 +5,9 @@ class CreateAddresses < ActiveRecord::Migration
       t.text :address
       t.string :city
       t.integer :pin
-      t.integer :phone
+      t.string :phone
       t.string :email
+      t.integer :user_id
 
       t.timestamps
     end

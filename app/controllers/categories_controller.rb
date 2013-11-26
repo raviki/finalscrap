@@ -39,7 +39,10 @@ class CategoriesController < ApplicationController
         else
           @products = @category.activeProducts
         end
-      end
+      else
+        store_location()
+        redirect_back_or(root_url, notice: 'Page Not Found: Category = '+params[:id]) 
+      end  
     end
     
     @categories = Category.all

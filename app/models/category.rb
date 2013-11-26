@@ -1,12 +1,11 @@
 class Category < ActiveRecord::Base  
   has_many :category_to_products
   has_many :products,             :through => :category_to_products
-  has_many :activeProducts,   -> { where(active: true) },    :source => :product,   :class_name => "Product",  :through => :category_to_products
+  has_many :activeProducts,   -> { where(active: true) },    :source => :product,  :class_name => "Product",  :through => :category_to_products
   
   has_many :tools,                :through => :products
   
-  validates :image, :presence => true
-  validates :description, :length => {:maximum =>300}, :presence => true
+  validates :description, :length => {:maximum =>300}
   
   def toggle_active
     if self.active == true
@@ -45,7 +44,7 @@ class Category < ActiveRecord::Base
     else
       all
     end
-  end
+  end 
   
   ## Auto generated code using java @ Ravi
   ## Begin

@@ -4,7 +4,8 @@ class CreateCartItems < ActiveRecord::Migration
       t.integer :product_id
       t.decimal :price
       t.integer :quantity
-
+      t.string  :units
+      
       t.timestamps
     end
   end

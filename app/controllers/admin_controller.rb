@@ -42,9 +42,7 @@ class AdminController < ApplicationController
         redirect_to sessions_path, notice: "Please login with admin login Id"
       end 
     else 
-        puts "verify_admin -------------5"
-       session[:return_to] = request.url
-       redirect_to sessions_path          
+       puts "verify_admin -------------5"    
     end
   end
   
