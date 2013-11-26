@@ -26,11 +26,26 @@ class AdminController < ApplicationController
   end
   
   def verify_admin
-    if !signed_in?
+    if !signed_in? 
+     
+       puts "verify_admin -------------1"
        session[:return_to] = request.url
        redirect_to sessions_path 
+    elsif false && current_user.customer_group 
+      puts "verify_admin -------------2"
+      if current_user.customer_group.permission_level > 8
+        puts "verify_admin -------------3"
+        flash[:notice] = "Welcome Admin"
+      else
+        puts "verify_admin -------------4"
+        session[:return_to] = request.url
+        redirect_to sessions_path, notice: "Please login with admin login Id"
+      end 
+    else 
+        puts "verify_admin -------------5"
+       session[:return_to] = request.url
+       redirect_to sessions_path          
     end
-     
   end
   
  # redirect_to sessions_path
