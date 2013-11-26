@@ -17,7 +17,9 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'will_paginate', '~> 3.0.4'
 gem 'mysql2'
-gem 'pg'
+group :production do
+  gem 'pg'
+end
 gem "bcrypt-ruby", :require => "bcrypt"
 gem "omniauth", "~> 1.1.1"
 gem "omniauth-facebook", "~> 1.4.1"
