@@ -21,9 +21,10 @@ class Admin::DbuploadController < AdminController
           end
         end
         if @product  || (row['Size'] && row['Size'] != "")
-          @productVariant = ProductVariant.create(:product_id =>  @product? @product.id: @pre_product.id,
-                              :value => row['Size'],
-                              :price => row['price'].to_f > 0?  row['price'] : 0)
+          @productVariant = ProductVariant.find_or_create_by(:product_id =>  @product? @product.id: @pre_product.id,
+                              :value => row['Size'])
+                             
+          @productVariant.update_attributes(:price => row['price'].to_f > 0?  row['price'] : 0)
           @productVariant.save
         end
         @product = nil
