@@ -43,7 +43,6 @@ group :doc do
 
 gem 'bootstrap-sass', '2.3.2.2'
 
-gem 'bootstrap-select-rails', '1.3.0.1'
 # Use ActiveModel has_secure_password
  
  gem 'bcrypt-ruby',:require => "bcrypt"

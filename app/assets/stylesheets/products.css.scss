@@ -71,6 +71,9 @@
   text-align: center;
   font-size:1.1em;
   margin:0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .product-list-page .product-each .caption p.pricehilit
