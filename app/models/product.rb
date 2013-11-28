@@ -49,7 +49,7 @@ class Product < ActiveRecord::Base
       if input.include? '-'
         input = input.gsub!('-', ' ')
       end 
-      find_by_name(input)
+      where("products.name ILIKE ?","#{input}").take
     end
   end
   

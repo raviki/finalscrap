@@ -70,7 +70,6 @@ GEM
     minitest (4.7.5)
     multi_json (1.8.0)
     multipart-post (1.2.0)
-    mysql2 (0.3.13)
     oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -88,7 +87,7 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
-    pg (0.16.0)
+    pg (0.17.0)
     polyglot (0.3.3)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -153,7 +152,6 @@ DEPENDENCIES
   compass
   jbuilder (~> 1.2)
   jquery-rails
-  mysql2
   omniauth (~> 1.1.1)
   omniauth-facebook (~> 1.4.1)
   omniauth-google-oauth2

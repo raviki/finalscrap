@@ -15,14 +15,14 @@ class Category < ActiveRecord::Base
     end
   end
   
-  def self.find(input)    
+  def self.find(input) 
     if input.to_i != 0
       super
     else
       if input.include? '-'
         input = input.gsub!('-', ' ')
       end 
-      find_by_name(input)
+      where("categories.name ILIKE ?","#{input}").take     
     end
   end
   

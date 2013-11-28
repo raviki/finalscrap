@@ -16,7 +16,6 @@ gem 'coffee-rails', '~> 4.0.0'
 #added start
 
 gem 'will_paginate', '~> 3.0.4'
-gem 'mysql2'
 gem 'pg'
 
 gem "bcrypt-ruby", :require => "bcrypt"

@@ -2,9 +2,9 @@ mysql:
  hostname: localhost
  port: 3306
  socket: /tmp/mysql.sock
- username: mysql2psql
+ username: root
  password: 
- database: mysql2psql_test
+ database: db/development.mysql2
 
 destination:
  # if file is given, output goes to file, else postgres

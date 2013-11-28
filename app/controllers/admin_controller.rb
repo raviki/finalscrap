@@ -7,7 +7,7 @@ class AdminController < ApplicationController
   end
   
   def log
-    Activity.log_activity(self.class, @user.id, @user.name, params[:id], params[:action],params)
+    Activity.log_activity(self.class, @user.id, @user.name, params[:id], params[:action],params.to_s)
   end
   
   
