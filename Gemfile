@@ -49,6 +49,9 @@ gem 'bootstrap-sass', '2.3.2.2'
  gem 'bcrypt-ruby',:require => "bcrypt"
  
  gem 'compass'
+ 
+ gem 'rails_12factor', group: :production
+ 
 end
 # Use unicorn as the app server
 # gem 'unicorn'
