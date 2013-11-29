@@ -35,3 +35,27 @@ Checking current, bin, and data directories                 check for "/usr/loca
 
 You must identify the directory where the old cluster binaries reside.
 Please use the -b command-line option or the PGBINOLD environment variable.
+Running in verbose mode
+
+-----------------------------------------------------------------
+  pg_upgrade run on Fri Nov 29 11:53:01 2013
+-----------------------------------------------------------------
+
+Performing Consistency Checks
+-----------------------------
+Checking current, bin, and data directories                 check for "/usr/local/Cellar/postgresql/9.3.0/bin" failed: No such file or directory
+
+
+-----------------------------------------------------------------
+  pg_upgrade run on Fri Nov 29 12:25:12 2013
+-----------------------------------------------------------------
+
+You must identify the directory where the new cluster binaries reside.
+Please use the -B command-line option or the PGBINNEW environment variable.
+
+-----------------------------------------------------------------
+  pg_upgrade run on Fri Nov 29 12:25:22 2013
+-----------------------------------------------------------------
+
+You must identify the directory where the new cluster binaries reside.
+Please use the -B command-line option or the PGBINNEW environment variable.
