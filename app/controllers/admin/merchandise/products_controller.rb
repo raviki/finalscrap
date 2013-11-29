@@ -118,7 +118,7 @@ class Admin::Merchandise::ProductsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :image, :video, :how2fix, :description, :meta_description, :meta_keyword,  :views, :active,:tool_id, :new_parent_map => ['product_id', 'select'])
+      params.require(:product).permit(:name, :image, :nature, :video, :how2fix, :description, :meta_description, :meta_keyword,  :views, :active,:tool_id, :new_parent_map => ['product_id', 'select'])
     end
     
     def sort_column
