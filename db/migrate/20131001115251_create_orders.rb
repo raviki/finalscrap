@@ -4,6 +4,7 @@ class CreateOrders < ActiveRecord::Migration
       t.integer :customer_id
       t.integer :voucher_id
       t.integer :payment_id
+      t.integer :address_id
       t.decimal :discount
       t.text :discount_message
       t.time :appointment_date

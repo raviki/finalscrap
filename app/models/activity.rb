@@ -2,12 +2,12 @@ class Activity < ActiveRecord::Base
 
 def self.log_activity(model, user_id, user_name, belongsTo, action, params)
  log = Activity.new
- log.model = model
+ log.model = model.to_s
  log.user_id = user_id
  log.user_name = user_name
  log.belongsTo = belongsTo
  log.action_performed = action
- log.data = params
+ log.data = params.to_s
  log.save
 end 
 

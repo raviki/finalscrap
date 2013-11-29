@@ -6,13 +6,13 @@ class Admin::DbuploadController < AdminController
       CSV.foreach(params[:export_file], :headers => true , :encoding => 'ISO-8859-1') do |row|
 
         if row['name'] && row['name'] != ""
-          puts "------#{row['name']}"
-          @product = Product.find_or_create_by(name: row['name'].gsub(/<\/?[^>]*>/, ''))
+          @product = Product.find_or_create_by(name: row['name'].gsub(/<\/?[^>]*>/, '').strip)
           @product.update_attributes( :image  =>  row['image'],
           :description => row['description'],
           :meta_description=> row['meta_description'],
           :active => row['active'],
           :video => row['video'],
+          :menu_parent => row['menu_parent'],
           :how2fix => row['how2fix'])
           @product.save
           @pre_product = @product 

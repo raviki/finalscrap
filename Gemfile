@@ -16,10 +16,8 @@ gem 'coffee-rails', '~> 4.0.0'
 #added start
 
 gem 'will_paginate', '~> 3.0.4'
-gem 'mysql2'
-group :production do
-  gem 'pg'
-end
+gem 'pg'
+
 gem "bcrypt-ruby", :require => "bcrypt"
 gem "omniauth", "~> 1.1.1"
 gem "omniauth-facebook", "~> 1.4.1"
@@ -51,6 +49,9 @@ gem 'bootstrap-sass', '2.3.2.2'
  gem 'bcrypt-ruby',:require => "bcrypt"
  
  gem 'compass'
+ 
+ gem 'rails_12factor', group: :production
+ 
 end
 # Use unicorn as the app server
 # gem 'unicorn'

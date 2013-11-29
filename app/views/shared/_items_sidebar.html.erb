@@ -4,12 +4,33 @@
  				<% @temp_category = c %>				
  				<%= link_to c.name, category_path(c), :class => "dropdown-toggle", :data => { :toggle => "dropdown" } %>
  				<% if @temp_category.activeProducts.size > 0 %>
- 					<ul class="dropdown-menu"> 						
- 						<% @temp_category.activeProducts.order("views  desc").each do |product| %>
- 							<li><%= link_to product.name,  category_product_path(@temp_category,product) %></li>
- 						<% end%> 
- 						<li><%= link_to("Tools & Spares", category_path(c, :tools => true)) %></li>					
- 					</ul>	
+					<ul class="dropdown-menu"> 
+					
+ 					<% @pre_menu = "some_defualt" %>
+ 					<% level = 0 %>
+ 					<% @temp_category.activeProducts.order("menu_parent  desc").each do |product| %>
+ 						<% if product.menu_parent != @pre_menu && @pre_menu != "some_defualt" && level == 1 %>
+ 							</ul>
+ 								</li>
+ 							<% level = 0 %>
+ 						<% end %>
+ 						
+ 						<% if product.menu_parent != @pre_menu && product.menu_parent %>
+ 							<% level = 1 %>
+							<li class="dropdown-submenu"> <%= link_to(product.menu_parent) %> 
+								<ul class="dropdown-menu"> 
+ 						<% end %>
+ 						<li><%= link_to product.name,  category_product_path(@temp_category,product) %></li>
+ 						 						
+ 						<% @pre_menu = product.menu_parent %>
+ 					<% end %>
+ 					<% if level == 1 %>
+ 					    </ul>
+ 						   </li>
+ 					<% end %>
+ 					<li><%= link_to("Tools & Spares", category_path(c, :tools => true)) %></li>	
+ 					
+ 					</ul>		
  				<% end %>		
  			</li> 							
  		<% end %> 		

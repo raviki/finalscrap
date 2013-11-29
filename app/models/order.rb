@@ -111,7 +111,7 @@ class Order < ActiveRecord::Base
         if active
           where("orders.active")
         else
-          where("!orders.active")
+          where("orders.active = false")
         end 
       else
         all

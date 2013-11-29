@@ -1,5 +1,5 @@
 	<tr>
-      	<td><%= link_to product.id,  admin_merchandise_product_path(product) %></td>
+      	<td><%= link_to product.id,  admin_merchandise_product_path(product.id) %></td>
         <td><%= product.name %></td>
         <td><%= product.image %></td>
         <td><%= product.video %></td>
@@ -14,6 +14,7 @@
         <td><%= product.meta_keyword %></td>
         <td><%= product.views %></td>
         <td><%= product.active %></td>
+        
 
         <% if defined? order_page %>
         	<% storeId = @order.order_to_products.find_by_order_id_and_product_id(@order.id, product.id).store_id  %>
@@ -35,6 +36,7 @@
  		<% elsif defined? store_page %>
         		<td><%= link_to 'Detach', :controller => admin_partners_stores_path, :id => @store.id, :product_id => product.id, :action => "delete_product_map", :method => :put %></td>				
         <% else %>
+        	<td><%= product.menu_parent %></td>
         	<td><%= link_to 'Edit', edit_admin_merchandise_product_path(product) %></td>      		
         	<td><%= link_to (product.active)? 'Deactivate': 'Activate', :controller => admin_merchandise_products_path, :id => product.id, :action => "toggle_active", :method => :put %>	
  		<% end %>

@@ -48,7 +48,10 @@ class Admin::Merchandise::CategoriesController < AdminController
   
   def delete_product_map
     if params[:product_id].present?
-      CategoryToProduct.where(:category_id => @category.id, :product_id => params[:product_id]).first.destroy
+      @categoryToProduct = CategoryToProduct.where(:category_id => @category.id, :product_id => params[:product_id])
+      if @categoryToProduct.first
+        @categoryToProduct.first.destroy
+      end
     end
     redirect_to action: "show"
   end
@@ -60,10 +63,12 @@ class Admin::Merchandise::CategoriesController < AdminController
   # POST /categories
   # POST /categories.json
   def create
+    trim_name = category_params[:name].strip
     @category = Category.new(category_params)
 
     respond_to do |format|
       if @category.save
+        @category.update_attributes(:name => trim_name)
         format.html { redirect_to admin_merchandise_categories_url, notice: 'Category was successfully created.' }
         format.json { render action: 'show', status: :created, location: admin_merchandise_categories_url }
       else
@@ -100,10 +105,7 @@ class Admin::Merchandise::CategoriesController < AdminController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @category = Category.find_by_name(params[:id])
-      if !@category
-         @category = Category.find(params[:id])
-      end   
+      @category = Category.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

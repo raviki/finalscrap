@@ -1,5 +1,6 @@
 	<tr>
-      	<td><%= link_to category.id,  admin_merchandise_category_path(category) %></td>
+      	<td><%= link_to category.id,  admin_merchandise_category_path(category.id) %></td>
+      	<% puts "inside 2"%>
         <td><%= category.name %></td>
         <td><%= category.image %></td>
         <td><%= category.description %></td>

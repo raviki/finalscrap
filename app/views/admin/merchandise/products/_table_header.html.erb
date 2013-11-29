@@ -29,9 +29,10 @@
       	<th>select to update</th>
       <% elsif defined? select_page %>
       	<th>Select</th>
-      <% elsif defined? category_page || defined? store_page %>
+      <% elsif (defined? category_page) || (defined? store_page) %>
       		<th></th>     	
       <% else %>
+     	<th>Dropdown Menu Parent</th>
       	<th></th>
       	<th></th>
       <% end %>

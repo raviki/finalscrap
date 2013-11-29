@@ -17,6 +17,7 @@ class Admin::Merchandise::ProductsController < AdminController
   # GET /products/1
   # GET /products/1.json
   def show
+    # to add tools to product
     if params[:select].present? 
       @new_parent = Product.find(params[:select])
       if @new_parent
@@ -69,10 +70,12 @@ class Admin::Merchandise::ProductsController < AdminController
   # POST /products
   # POST /products.json
   def create
+    trim_name = product_params[:name].strip
     @product = Product.new(product_params)
 
     respond_to do |format|
       if @product.save
+        @product.update_attributes(:name => trim_name)
         ProductVariant.create(:product_id => @product.id, :price => 0)
         format.html { redirect_back_or(admin_merchandise_products_url, notice: 'Product was successfully created.') }
         format.json { render action: 'show', status: :created, location: @product }
@@ -110,10 +113,7 @@ class Admin::Merchandise::ProductsController < AdminController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find_by_name(params[:id])
-      if !@product
-         @product = Product.find(params[:id])
-      end
+      @product = Product.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

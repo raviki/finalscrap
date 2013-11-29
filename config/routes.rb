@@ -61,6 +61,8 @@ Website::Application.routes.draw do
   resources :sessions
   
   namespace :admin do
+    
+    root to: "fulfillments/orders#index"
     namespace :merchandise do
       resources :products
       resource  :product_variants
