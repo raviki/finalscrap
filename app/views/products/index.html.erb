@@ -68,6 +68,7 @@
 			<% end %>
 			<%end%>								
 		</ul>
+		<%= will_paginate @products %>
 	</div>
 	<% if @show_request == true  %>
 		<%= render :template => 'order_requests/new' %>

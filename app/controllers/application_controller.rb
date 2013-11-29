@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def pagination_rows
-    params[:rows] ||= 10
+    params[:rows] ||= 16
     params[:rows].to_i
   end
 
@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
     if @current_user
       if @cart
         if @cart.customer_id != @current_user.id
-          @user_cart = Cart.find_by_customer_id(@current_user.id)
+          @user_cart = Cart.find_by(:customer_id => @current_user.id)
           if @user_cart
             CartItem.where(:cart_id => @cart.id).update_all({:cart_id => @user_cart.id})
             @cart.delete
@@ -76,7 +76,7 @@ class ApplicationController < ActionController::Base
           cookies.delete :cart_customer_id
         end
       else
-        @cart = Cart.find_or_create_by_customer_id(@current_user.id)
+        @cart = Cart.find_or_create_by(:customer_id => @current_user.id)
       end
 
     else
@@ -108,7 +108,7 @@ class ApplicationController < ActionController::Base
 
   def update_cart_items
     @cart = current_cart
-    @cart_items = @cart.cart_items.all
+    @cart_items = @cart.cart_items
   end
 
 end

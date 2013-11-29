@@ -47,7 +47,6 @@ class ProductsController < ApplicationController
       end
       @product.updateViewCount
       @cart_items = current_cart.cart_items
-      @tools = Product.all
     end
   end
 
@@ -109,7 +108,7 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :image, :type, :price, :description, :meta_description, :meta_keyword, :views, :active)
+      params.require(:product).permit(:name, :image, :nature, :price, :description, :meta_description, :meta_keyword, :views, :active)
     end
     
     def sort_column

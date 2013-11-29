@@ -23,7 +23,7 @@
 <table>
 	<%= render :partial => 'admin/merchandise/products/table_header', :locals => { :store_page => 'yes' }  %>
 	<tbody>
-      <%= render :partial => 'admin/merchandise/products/product', :locals => { :store_page=> 'yes' }, :collection => @store.products.all %>
+      <%= render :partial => 'admin/merchandise/products/product', :locals => { :store_page=> 'yes' }, :collection => @store.products %>
 	</tbody>
 </table>
 
