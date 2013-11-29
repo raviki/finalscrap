@@ -17,6 +17,10 @@
     <%= f.text_area :name %>
   </div>
   <div class="field">
+    <%= f.label :nature %><br>
+    <%= f.select(:nature,options_for_select([ProductNature(:TASK), ProductNature(:TOOL), ProductNature(:TASKnREADY),ProductNature(:TASKwBRAND)],ProductNature(:TASKnREADY))) %>
+  </div>
+  <div class="field">
     <%= f.label :menu_parent %><br>
     <%= f.text_field :menu_parent %>
   </div>

@@ -11,7 +11,9 @@ class Admin::DbuploadController < AdminController
           :description => row['description'],
           :meta_description=> row['meta_description'],
           :active => row['active'],
+          :nature => row['nature'],
           :video => row['video'],
+          :variant_name => row['variant_name'],
           :menu_parent => row['menu_parent'],
           :how2fix => row['how2fix'])
           @product.save
@@ -20,9 +22,9 @@ class Admin::DbuploadController < AdminController
              @insert_error = @insert_error+row['name']+" "
           end
         end
-        if @product  || (row['Size'] && row['Size'] != "")
+        if @product  || (row['value'] && row['value'] != "")
           @productVariant = ProductVariant.find_or_create_by(:product_id =>  @product? @product.id: @pre_product.id,
-                              :value => row['Size'])
+                              :value => row['value'])
                              
           @productVariant.update_attributes(:price => row['price'].to_f > 0?  row['price'] : 0)
           @productVariant.save

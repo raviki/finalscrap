@@ -1,6 +1,6 @@
 <h4 style='text-align:center'>Product Information</h4>
 <table>
-	<%= render 'admin/merchandise/products/table_header' %>
+	<%= render 'admin/merchandise/products/table_header', :locals => { :product_show => 'yes' } %>
 	<tbody>
       <%= render :partial => 'admin/merchandise/products/product', :object => @product, :locals => { :product_show => 'yes' } %>
 	</tbody>

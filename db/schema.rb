@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131129084418) do
+ActiveRecord::Schema.define(version: 20131129105706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -179,6 +179,9 @@ ActiveRecord::Schema.define(version: 20131129084418) do
     t.string   "menu_parent"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "price"
+    t.string   "nature"
+    t.string   "variant_name"
   end
 
   create_table "searches", force: true do |t|
