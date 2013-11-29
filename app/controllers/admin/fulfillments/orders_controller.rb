@@ -39,7 +39,7 @@ class Admin::Fulfillments::OrdersController < AdminController
   def show
     if params[:assgn_products].present?
       @assgn_products = true
-      @products = @order.products.all
+      @products = @order.products
     end
   end
 

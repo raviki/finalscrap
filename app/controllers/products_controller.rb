@@ -47,7 +47,6 @@ class ProductsController < ApplicationController
       end
       @product.updateViewCount
       @cart_items = current_cart.cart_items
-      @tools = Product.all
     end
   end
 

@@ -1,6 +1,6 @@
 <h4 style='text-align:center'>Product Information</h4>
 <table>
-	<%= render 'admin/merchandise/products/table_header', :locals => { :product_show => 'yes' } %>
+	<%= render :partial => 'admin/merchandise/products/table_header', :locals => { :product_show => 'yes' } %>
 	<tbody>
       <%= render :partial => 'admin/merchandise/products/product', :object => @product, :locals => { :product_show => 'yes' } %>
 	</tbody>
@@ -45,7 +45,7 @@
 <table>
 	<%= render :partial => 'admin/merchandise/categories/table_header', :locals => { :product_detail_page => 'yes' } %>
 	<tbody>
-      <%= render :partial => 'admin/merchandise/categories/category', :collection => @product.categories.all , :locals => { :product_detail_page => 'yes' } %>
+      <%= render :partial => 'admin/merchandise/categories/category', :collection => @product.categories , :locals => { :product_detail_page => 'yes' } %>
 	</tbody>
 </table>
 
@@ -53,7 +53,7 @@
 <table>
 	<%= render :partial => 'admin/partners/stores/table_header', :locals => { :product_detail_page => 'yes' } %>
 	<tbody>
-      <%= render :partial => 'admin/partners/stores/store', :collection => @product.stores.all , :locals => { :product_detail_page => 'yes' } %>
+      <%= render :partial => 'admin/partners/stores/store', :collection => @product.stores , :locals => { :product_detail_page => 'yes' } %>
 	</tbody>
 </table>
 
@@ -61,7 +61,7 @@
 <table>
 	<%= render :partial => 'admin/fulfillments/orders/table_header', :locals => { :product_detail_page => 'yes' } %>
 	<tbody>
-      <%= render :partial => 'admin/fulfillments/orders/order', :collection => @product.orders.all , :locals => { :product_detail_page => 'yes' } %>
+      <%= render :partial => 'admin/fulfillments/orders/order', :collection => @product.orders , :locals => { :product_detail_page => 'yes' } %>
 	</tbody>
 </table>
 

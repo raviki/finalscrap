@@ -7,19 +7,17 @@
       		<th>Id</th>
       		<th>Name</th>
       	<% end %>
-      <th>Type</th>	
+      	
       <th>Image</th>
       <th>Video</th>
       <% if defined? store_page %>
       	<th>Store Price</th>
       <% end %>
       <th>Description</th>
-      
       <% if defined? product_show %> 
       	<th>Variants Title</th>
       	<th>How to Fix</th>
       <% end %>
-      
       <th>Meta description</th>
       <th>Meta keyword</th>
       <th>Views</th>
@@ -32,10 +30,9 @@
       	<th>select to update</th>
       <% elsif defined? select_page %>
       	<th>Select</th>
-      <% elsif (defined? category_page) || (defined? store_page) %>
+      <% elsif defined? category_page || defined? store_page %>
       		<th></th>     	
       <% else %>
-     	<th>Dropdown Menu Parent</th>
       	<th></th>
       	<th></th>
       <% end %>

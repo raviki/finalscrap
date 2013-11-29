@@ -28,7 +28,7 @@
 <table>
 	<%= render 'admin/fulfillments/orders/table_header', :locals => { :customer_page_id => 'yes' }  %>
 	<tbody>
-      <%= render :partial => 'admin/fulfillments/orders/order', :collection => @customer.orders.all , :locals => { :customer_page_id => 'yes' } %>
+      <%= render :partial => 'admin/fulfillments/orders/order', :collection => @customer.orders , :locals => { :customer_page_id => 'yes' } %>
 	</tbody>
 </table>
 <% end %>
@@ -38,7 +38,7 @@
 <table>
 	<%= render :partial => 'admin/merchandise/products/table_header', :locals =>  { :customer_page_id => @customer.id } %>
 	<tbody>
-      <%= render :partial => 'admin/merchandise/products/product', :locals => { :customer_page_id => @customer.id }, :collection => @customer.products.all %>
+      <%= render :partial => 'admin/merchandise/products/product', :locals => { :customer_page_id => @customer.id }, :collection => @customer.products %>
 	</tbody>
 </table>
 <%= link_to 'Add to List', admin_customers_customers_url, :class => 'button small blue-button' %>
@@ -61,7 +61,7 @@
 	<%= render :partial => 'admin/deals/vouchers/table_header' , :locals => { :customer_page_id => @customer.id } %>
 	<tbody>
 	
-      <%= render :partial => 'admin/deals/vouchers/voucher', :collection => @customer.vouchers.all , :locals => { :customer_page_id =>  @customer.id }%>	
+      <%= render :partial => 'admin/deals/vouchers/voucher', :collection => @customer.vouchers , :locals => { :customer_page_id =>  @customer.id }%>	
 	</tbody>
 </table>
 <% end %>	

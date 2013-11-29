@@ -20,7 +20,8 @@
   font-family: "Open Sans";
   margin: 1% 1.5% 1% 0;
   position: relative;
-  padding:0;
+  padding: 1% 1% 0 1% ;
+  border:5px solid #DDDDDD;
   div.product-info
   {
     visibility: hidden;
@@ -33,6 +34,7 @@
     background-color: #CEECF5;    
     z-index: 101;
     border-radius: 4px 4px 0 0;
+    border: 5px solid #CEECF5;
     .product-info
     { 
       background-color: #CEECF5;
@@ -390,4 +392,9 @@ table.cart-items-list-popup
 .product-list-page .request-form form textarea
 {
   width: 100%;
+}
+
+.product-list-page .request-form textarea#request
+{
+  min-height: 7em;
 }

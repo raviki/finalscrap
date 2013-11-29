@@ -22,22 +22,24 @@ class CategoriesController < ApplicationController
     if params[:key].present?
       add_breadcrumb "Search", category_path
       if @category       
-        @products = @category.activeProducts.standard_search(params[:key])
+        @products = @category.activeProducts.standard_search(params[:key]).
+                                    paginate(:page => pagination_page, :per_page => pagination_rows)
+
       else
         @temp_category = Category.find_by_name(params[:key])
         if @temp_category
           redirect_to @temp_category
         end
-        @products = Product.standard_search(params[:key])
+        @products = Product.standard_search(params[:key]).paginate(:page => pagination_page, :per_page => pagination_rows)
       end
     else
       if @category
         add_breadcrumb @category.name, @category
         @show_request = true
         if params[:tools]
-          @products = @category.tools
+          @products = @category.tools.paginate(:page => pagination_page, :per_page => pagination_rows)
         else
-          @products = @category.activeProducts
+          @products = @category.activeProducts.paginate(:page => pagination_page, :per_page => pagination_rows)
         end
       else
         store_location()

@@ -10,7 +10,7 @@
 <table>
 	<%= render :partial => 'admin/customers/customers/table_header', :locals => { :customer_group_page => 'yes' }  %>
 	<tbody>
-      <%= render :partial => 'admin/customers/customers/customer', :locals => { :customer_group_page => 'yes' }, :collection => @customer_group.customer_managements.all %>
+      <%= render :partial => 'admin/customers/customers/customer', :locals => { :customer_group_page => 'yes' }, :collection => @customer_group.customer_managements %>
 	</tbody>
 </table>
 
@@ -18,7 +18,7 @@
 <table>
 	<%= render :partial => 'admin/deals/vouchers/table_header', :locals => { :customer_group_page => 'yes' }  %>
 	<tbody>
-      <%= render :partial => 'admin/deals/vouchers/voucher', :locals => { :customer_group_page => 'yes' }, :collection => @customer_group.vouchers.all %>
+      <%= render :partial => 'admin/deals/vouchers/voucher', :locals => { :customer_group_page => 'yes' }, :collection => @customer_group.vouchers %>
 	</tbody>
 </table>
 

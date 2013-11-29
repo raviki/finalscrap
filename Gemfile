@@ -23,6 +23,7 @@ gem "omniauth", "~> 1.1.1"
 gem "omniauth-facebook", "~> 1.4.1"
 gem 'omniauth-google-oauth2'
 gem "breadcrumbs_on_rails"
+gem 'thin'
 # end 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

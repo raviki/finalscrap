@@ -10,7 +10,7 @@
 <table>
 	<%= render :partial => 'admin/merchandise/products/table_header', :locals => { :category_page => 'yes' }  %>
 	<tbody>
-      <%= render :partial => 'admin/merchandise/products/product', :locals => { :category_page => 'yes' }, :collection => @category.products.all %>
+      <%= render :partial => 'admin/merchandise/products/product', :locals => { :category_page => 'yes' }, :collection => @category.products %>
 	</tbody>
 </table>
 
