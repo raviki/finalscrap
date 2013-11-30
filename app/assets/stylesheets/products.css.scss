@@ -198,7 +198,8 @@ table.cart-items-list-popup
 @media (max-width: 420px) {
   .product-show .product-info .product-image img
   {  
-    height:50%;
+    width:100%;
+    height: auto;
   }
 }
 .product-show div.product-details
