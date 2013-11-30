@@ -33,6 +33,10 @@
     margin-left:0;
     margin-right:0;
   }
+  .breadcrumbs ul li
+  {
+  	height:20px;
+  }
 }
 
 #main
