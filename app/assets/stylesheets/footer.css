@@ -1,6 +1,7 @@
 html,body
 {
 height:100%;
+
 }
 
 #wrap
@@ -9,16 +10,16 @@ min-height: 100%;
 }
 
 
-
 .footer {
     background-color: #909DA1;;
-    clear: both;
-    position: relative;
-	height: 50px;
+    position: fixed;
+    bottom:0;
+    left:0;
+	right:0;
+	height: 44px;
+	opacity:0.9;
 	clear:both;
 	padding-top:0;
-    left: 0;
-    right: 0;
 	font-family: "Helvetica,​sans-serif";
 	color: #FFFFFF;
 	margin-left: 0;
@@ -72,7 +73,7 @@ min-height: 100%;
     display: inline-block;
     margin-left: 1em;
     margin-bottom: 0;
-    padding: 12px 0 15px;
+    padding: 12px 0 12px;
 }
 
 .footer .row.first .section .link:first-child .text {

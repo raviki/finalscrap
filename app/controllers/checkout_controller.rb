@@ -4,7 +4,7 @@ class CheckoutController < ApplicationController
     require_user()
     
     @cart = current_cart
-    @cart_items= CartItem.all
+    @cart_items= @cart.cart_items
     @address = Address.new
   end
   def new
