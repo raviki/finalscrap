@@ -37,6 +37,9 @@
 <%=form_for(:product_variant, url: product_variants_path, :action => :create) do |f|%>
 <%= f.number_field :value,  :placeholder => "Units"%>
 <%= f.number_field :price,  :placeholder => "Price"%>
+<% if @product.nature == ProductNature(:TASKwBRAND) %>
+	<%= f.number_field :brand,  :placeholder => "Brand"%>
+<% end %>
 <%= hidden_field_tag :product_id, @product.id %>
 <%= f.submit "Add Variants", {class: "btn btn-info"}%>
 <%end%>
