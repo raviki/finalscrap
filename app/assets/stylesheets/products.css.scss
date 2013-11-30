@@ -110,17 +110,9 @@ font-size:1em;
   margin-bottom: 5px;
 }
 
-.product-list-page .product-info input#cart_item_quantity
-{
-  width: 40%;
-  margin: 0 1% 0 0;
-  padding-left:3%;
-  padding-right:3%;
-}
-
 .product-list-page .product-info input#addcart.btn
 {
-  width: 47%;
+  width: 100%;
   margin:0;
   padding-left:3%;
   padding-right:3%;
@@ -241,6 +233,10 @@ table.cart-items-list-popup
 .product-show .product-details table  tr td p
 {
   margin:0; 
+}
+.product-show .product-details  #productaddcart
+{
+  width:100%;
 }
 
 .product-show div.product-tools-bar

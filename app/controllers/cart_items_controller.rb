@@ -27,7 +27,7 @@ class CartItemsController < ApplicationController
     @cart = current_cart
     @product = ProductVariant.find(params[:cart_item][:product_id])    
     if !(params[:cart_item][:quantity].to_i > 0)
-      params[:cart_item][:quantity] = "0"
+      params[:cart_item][:quantity] = "1"
     end   
     
     @cart_item = @cart.add_products({:product_id => @product.id, :price => @product.price,:quantity => params[:cart_item][:quantity],:cart_id => @cart.id})
