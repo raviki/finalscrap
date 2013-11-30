@@ -53,11 +53,17 @@ min-height: 100%;
   }
 
 .footer .row .section:first-child {
-    margin-left: 0;
-    margin-bottom: 0;
+    margin-left: 3.5em;
+    margin-bottom: 0;   
     ul, ol {
     margin-bottom: 0px;
     padding: 0;    
+	}
+}
+
+@media (max-width: 767px) {
+	.footer .row .section:first-child {
+		margin-left:1em;
 	}
 }
 

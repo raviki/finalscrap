@@ -9,13 +9,13 @@
  					<% @pre_menu = "some_defualt" %>
  					<% level = 0 %>
  					<% @temp_category.activeProducts.order("menu_parent  desc").each do |product| %>
- 						<% if product.menu_parent != @pre_menu && @pre_menu != "some_defualt" && level == 1 %>
+ 						<% if product.menu_parent != @pre_menu && level == 1 %>
  							</ul>
  								</li>
  							<% level = 0 %>
  						<% end %>
  						
- 						<% if product.menu_parent != @pre_menu && product.menu_parent %>
+ 						<% if product.menu_parent != @pre_menu && product.menu_parent && product.menu_parent != "" && level == 0%>
  							<% level = 1 %>
 							<li class="dropdown-submenu"> <%= link_to(product.menu_parent) %> 
 								<ul class="dropdown-menu"> 

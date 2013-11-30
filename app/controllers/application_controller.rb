@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
     params[:rows] ||= 16
     params[:rows].to_i
   end
+  
+  def is_mobile_number(phone)
+    return ((phone =~ /^\d{10}$/) && (phone.to_i >= 999999999))
+  end
 
   
   def require_user

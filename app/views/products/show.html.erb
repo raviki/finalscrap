@@ -5,6 +5,11 @@
 			$("#myModal").modal();
 			return false;
 		})
+		$('#listing_brand_id').on('change', function(){
+    		var option = $(this).find(':selected');
+    		$('[data-show-for]').hide(); //And maybe reset?
+    		$('[data-show-for='+ option.text() +']').show()
+		});
 	})
 </script>
 
@@ -26,10 +31,32 @@
 
 						<%=form_for(:cart_item,url: cart_items_path, remote:true, :html => {id: "productaddcart"}) do |f|%>
 						<% if @product.product_variants.size > 1 %>
-						<tr>
-							<td class="span2"><b>Sizes:</b></td>
-							<td class="product-details-value span4"> <%= select_tag "cart_item[product_id]", options_from_collection_for_select(@product.product_variants, "id", "display_name"), :class => "dropdown-toggle" %> </td>
-						</tr>
+							<% if @product.nature == ProductNature(:TASKwBRAND) %>
+							  	<tr>
+									<td class="span2"><b>Brand:</b></td>
+									<td class="product-details-value span4">
+										<%=	select("listing_brand","id", @product.product_variants.select("brand").group(:brand).collect {|p| [ p.brand, p.brand ] }, { prompt: "Select a Brand" },class:"select optional")%>									
+			
+									</td>					  	
+							  	</tr>
+								
+ 								<tr>
+									<td class="span2"><b><%= @product.variant_name ? @product.variant_name : "Sizes" %>:</b></td>
+									<td class="product-details-value span4"> 
+										<% @product.product_variants.select("brand").group(:brand).each do |product_variant_group| %>
+											<div style="display: none;" data-show-for=<%= product_variant_group.brand%>>
+											<%= select_tag "cart_item[product_id]", options_from_collection_for_select(@product.product_variants.where(:brand => product_variant_group.brand), "id", "display_name"), :class => "dropdown-toggle" %>									
+											</div> 
+										<%end%> 
+									</td>
+								</tr>																	
+							<% else %>
+							<tr>
+								<td class="span2"><b><%= @product.variant_name ? @product.variant_name : "Sizes" %>:</b></td>
+								<td class="product-details-value span4"> <%= select_tag "cart_item[product_id]", options_from_collection_for_select(@product.product_variants, "id", "display_name"), :class => "dropdown-toggle" %> </td>
+							</tr>
+							<% end %>
+							
 						<% else %>
 						<tr>
 							<td class="span2"><b>Price:</b></td>
