@@ -57,8 +57,7 @@
 						
 							<div class="product-quantity center form-horizontal">
 								<%=form_for(:cart_item,url: cart_items_path, :action => :create) do |f|%>				
-									<%= f.text_field :quantity,:placeholder => "Quantity"%>
-									<%= f.submit "Add", {class: "btn btn-info", id:"addcart"}%>
+									<%= f.submit "Quick Add", {class: "btn btn-info", id:"addcart"}%>
 								<% end %>
 							</div>
 						<%end%>
