@@ -34,21 +34,24 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @customer = CustomerManagement.find(order_params[:customer_id])
-    if @customer.cart_items.length > 0 
-      @order = Order.find_or_create_by_customer_id_and_active(order_params[:customer_id],1)
-      @customer.cart_items.each do |cart_item|      
-        @order_to_product = OrderToProduct.where(:product_id => cart_item.product_id, :order_id => @order.id).first_or_create
-        @order_to_product.update_price_quantity(cart_item.price, cart_item.quantity)
-        cart_item.delete       
+    if @customer.cart.address_id
+      if @customer.cart_items.length > 0 
+        @order = Order.find_or_create_by(:customer_id => order_params[:customer_id],:active => true)
+        @customer.cart_items.each do |cart_item|      
+          @order_to_product = OrderToProduct.where(:product_id => cart_item.product_id, :order_id => @order.id).first_or_create
+          @order_to_product.update_price_quantity(cart_item.price, cart_item.quantity)
+          cart_item.delete       
+        end
+        @order.save
+        @order.update_columns(address_id: @customer.cart.address_id, customer_id: @customer.id, active: true)
+        @customer.cart.delete      
+        redirect_to action: 'show', id: @order.id
+      else
+        redirect_back_or(root_url, notice: 'Empty Cart.')
       end
-      @order.save
-      @order.update_columns(address_id: @customer.cart.address_id, customer_id: @customer.id, active: true)
-      @customer.cart.delete      
-      redirect_to action: 'show', id: @order.id
     else
-      redirect_back_or(root_url, notice: 'Empty Cart.')
-    end
-    
+      redirect_back_or(root_url, notice: 'Kindly select service address')
+    end 
   end
 
   # PATCH/PUT /orders/1
