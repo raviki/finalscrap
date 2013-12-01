@@ -10,6 +10,10 @@ class CategoriesController < ApplicationController
       else
         redirect_to :action => "show", :id => "all" , :key => params[:key]
       end
+    else 
+      if params[:select].present?
+        redirect_to :action => "show", :id => params[:select], :key => ""
+      end
     end
     @root_url = "yes"
     @categories = Category.admin_grid(params,true).order(sort_column + " " + sort_direction).
