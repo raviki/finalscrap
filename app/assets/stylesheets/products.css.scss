@@ -11,7 +11,7 @@
 
 .product-list-page
 {
-  background: url("/assets/product-list-bg.jpg") repeat scroll left center rgba(0, 0, 0, 0);
+  background-color: #A2AB58;
   color: #FFFFFF;
 }
 .product-list-page div.products-list
@@ -37,20 +37,20 @@
 
 .product-list-page li.product-each:hover
 {
-    background-color: #CEECF5;    
+    background-color: #67BCDB;    
     z-index: 101;
     border-radius: 4px 4px 0 0;
-    border: 5px solid #CEECF5;
+    border: 5px solid #DDDDDD;
     .product-info
     { 
-      background-color: #CEECF5;
+      background-color: #67BCDB;
       display: block;      
       visibility: visible;
       left: 0;
-      margin-top:0.1em;
+      margin-top:0;
       margin-left: -5px;
       position: absolute;
-      border: 5px solid #CEECF5;
+      border: 5px solid #DDDDDD;
       border-radius: 0 0 4px 4px;
       z-index: 200;
       max-width: 100%;
@@ -394,7 +394,7 @@ table.cart-items-list-popup
 
 .product-list-page div.request-form
 {
-  background-color: #CEECF5;
+  background-color: #67BCDB;
   border-radius: 8px 8px 8px 8px;
   margin:2em 0.5em 2em 0;
   padding:0.5em  0.5em 2em 0.5em;
