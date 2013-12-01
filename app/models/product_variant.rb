@@ -6,6 +6,10 @@ class ProductVariant < ActiveRecord::Base
   validates :price,                 :presence => true,          :numericality => true
   
   def display_name
-    self.value + ": Rs. " + self.price.to_s
+    name = ""
+    if self.brand
+      name = name+"["+self.brand+"] "
+    end 
+   return name+self.value + " (Rs. " + self.price.to_s+")"
   end
 end

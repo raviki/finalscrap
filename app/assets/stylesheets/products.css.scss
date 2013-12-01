@@ -8,6 +8,12 @@
     min-width:99%;
   } 
 }
+
+.product-list-page
+{
+  background: url("/assets/product-list-bg.jpg") repeat scroll left center rgba(0, 0, 0, 0);
+  color: #FFFFFF;
+}
 .product-list-page div.products-list
 {
   margin:0;
@@ -21,7 +27,7 @@
   margin: 1% 1.5% 1% 0;
   position: relative;
   padding: 1% 1% 0 1% ;
-  border:5px solid #DDDDDD;
+  border: 5px solid #DDDDDD;
   div.product-info
   {
     visibility: hidden;
@@ -42,12 +48,19 @@
       visibility: visible;
       left: 0;
       margin-top:0.1em;
+      margin-left: -5px;
       position: absolute;
-      border: 1px solid #DDDDDD;
+      border: 5px solid #CEECF5;
       border-radius: 0 0 4px 4px;
       z-index: 200;
       max-width: 100%;
       padding-top: 5px;
+      
+    }
+    .caption p.name,
+    .caption p.pricehilit
+    {
+      color: #000000;
     }
 }
 
@@ -68,14 +81,19 @@
   }
 }
 
+.product-list-page .product-each
+{
+  color: #FFFFFF;
+}
+
 .product-list-page .product-each .caption p.name
 {
   text-align: center;
-  font-size:1.1em;
   margin:0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #FFFFFF;
 }
 
 .product-list-page .product-each .caption p.pricehilit
@@ -83,6 +101,7 @@
   text-align:right;
   font-size:1em; 
   margin:0;
+  color: #FFFFFF;
 }
 
 p.mrp{
@@ -102,6 +121,7 @@ font-size:1em;
   width: 90%;
   margin-left: 5%;
   margin-right:5%;
+  color: #000000;
 }
 
 .product-list-page .product-info form
@@ -377,6 +397,7 @@ table.cart-items-list-popup
   border-radius: 8px 8px 8px 8px;
   margin:2em 0.5em 2em 0;
   padding:0.5em  0.5em 2em 0.5em;
+  color: #000000;
 }
 
 .product-list-page .request-form div.request-title

@@ -18,7 +18,7 @@
   </div>
   <div class="field">
     <%= f.label :nature %><br>
-    <%= f.select(:nature,options_for_select([ProductNature(:TASK), ProductNature(:TOOL), ProductNature(:TASKnREADY),ProductNature(:TASKwBRAND)],ProductNature(:TASKnREADY))) %>
+    <%= f.select(:nature,options_for_select([ProductNature(:TASK), ProductNature(:TOOL), ProductNature(:TASKnREADY),ProductNature(:TASKwBRAND)], @product? @product.nature : ProductNature(:TASKnREADY))) %>
   </div>
   <div class="field">
     <%= f.label :menu_parent %><br>
