@@ -1,8 +1,12 @@
-.product-list-page .category-submenu,
-.welcome-page .first-split .first-split-submenu
+.product-list-page .category-submenu
 {  
   padding-left:1em;
   padding-right:1em;
+}
+
+.welcome-page .first-split .first-split-submenu
+{  
+  padding-left:1em;
 }
 
 .product-list-page .category-submenu
@@ -18,19 +22,26 @@
   border-radius: 0 0 0 0;
 }
 
-.product-list-page .category-submenu ul.nav,
 .welcome-page .first-split .first-split-submenu .bs-docs-sidebar  ul.nav
 {
-    border-top: 1px solid #E0E0E0;
-    float: left;
-    list-style: none outside none;
-    width: 100%;
-    z-index: 2;
-    margin-top:1em;
-    padding-left:0;
+  border-top: 1px solid #E0E0E0;
+  float: left;
+  list-style: none outside none;
+  width: 100%;
+  z-index: 2;
+  padding-left:0;
   padding-right:0;
   margin-bottom:1em;
   border-radius: 0 0 0 0;
+}
+
+@media (max-width: 979px) 
+{
+  .welcome-page .first-split .first-split-submenu 
+  {
+    margin-top: 1em;
+    padding-right: 1em;
+  }
 }
 
 .product-list-page .category-submenu .dropdown-submenu, 
@@ -69,4 +80,9 @@
 {
   margin-left:0;
   margin-right:0;
+}
+
+.welcome-page .first-split .first-split-submenu .dropdown-toggle
+{
+  background-color: #FFFFFF;
 }

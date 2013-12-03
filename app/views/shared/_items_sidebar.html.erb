@@ -20,7 +20,7 @@
 							<li class="dropdown-submenu"> <%= link_to(product.menu_parent) %> 
 								<ul class="dropdown-menu"> 
  						<% end %>
- 						<li><%= link_to product.name,  category_product_path(@temp_category,product) %></li>
+ 						<li><%= link_to product.name,  category_product_path(@temp_category,product), :class => "product_submenu_final" %></li>
  						 						
  						<% @pre_menu = product.menu_parent %>
  					<% end %>
@@ -28,7 +28,7 @@
  					    </ul>
  						   </li>
  					<% end %>
- 					<li><%= link_to("Tools & Spares", category_path(c, :tools => true)) %></li>	
+ 					<li><%= link_to("Tools & Spares", category_path(c, :tools => true), :class => "product_submenu_final") %></li>	
  					
  					</ul>		
  				<% end %>		

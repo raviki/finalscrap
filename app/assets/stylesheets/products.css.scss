@@ -11,9 +11,23 @@
 
 .product-list-page
 {
-  background-color: #A2AB58;
-  color: #FFFFFF;
+  background-color: #FFFFFF;
 }
+
+.product-list-page .category-submenu ul.nav
+{
+  border-top: 1px solid #E0E0E0;
+  float: left;
+  list-style: none outside none;
+  width: 100%;
+  z-index: 2;
+  margin-top:1em;
+  padding-left:0;
+  padding-right:0;
+  margin-bottom:1em;
+  border-radius: 0 0 0 0;
+}
+
 .product-list-page div.products-list
 {
   margin:0;
@@ -57,11 +71,6 @@
       padding-top: 5px;
       
     }
-    .caption p.name,
-    .caption p.pricehilit
-    {
-      color: #000000;
-    }
 }
 
 .product-list-page .product-image
@@ -81,10 +90,6 @@
   }
 }
 
-.product-list-page .product-each
-{
-  color: #FFFFFF;
-}
 
 .product-list-page .product-each .caption p.name
 {
@@ -93,7 +98,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: #FFFFFF;
 }
 
 .product-list-page .product-each .caption p.pricehilit
@@ -101,7 +105,6 @@
   text-align:right;
   font-size:1em; 
   margin:0;
-  color: #FFFFFF;
 }
 
 p.mrp{
@@ -192,6 +195,10 @@ table.cart-items-list-popup
 }
 
 // Product Show
+.product-show 
+{
+  background-color: #FFFFFF;
+}
 
 .product-show div.product-show-inner
 {
@@ -398,7 +405,6 @@ table.cart-items-list-popup
   border-radius: 8px 8px 8px 8px;
   margin:2em 0.5em 2em 0;
   padding:0.5em  0.5em 2em 0.5em;
-  color: #000000;
 }
 
 .product-list-page .request-form div.request-title

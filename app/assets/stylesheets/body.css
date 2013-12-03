@@ -69,14 +69,20 @@ html body{
 
 .welcome-page .first-split
 {
-	padding:0;
-	margin-left:0;
-	margin-right:0;
+	padding:5px 0 5px 0;
+	margin: 5px 0 0 0;
 	width:100%;
-	background-color: #27292B;
+	background-color: #67BCDB;
 	margin-top:0.25em;
 	min-height: 250px;
 	width:100%;	
+}
+
+.welcome-page .first-split .border-line
+{
+  border-top: 5px solid #FFFFFF;
+  border-bottom: 5px solid #FFFFFF;
+  padding: 0;	
 }
 
 .welcome-page .first-split .content-block .first-block
@@ -86,7 +92,7 @@ html body{
 
 .welcome-page .first-split .tick-logo img
 {
-	margin-top:-5px;
+	margin-top:-15px;
 	margin-left:1.5em;
 }
 
