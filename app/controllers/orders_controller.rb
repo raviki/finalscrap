@@ -7,10 +7,11 @@ class OrdersController < ApplicationController
     require_user()
     add_breadcrumb "Orders", orders_path
     
-    @order = Order.find_by_customer_id_and_active(current_user.id,true)                                     
-    @past_orders = Order.admin_grid(params,current_user.id,true, false).order(sort_column + " " + sort_direction).
+    if current_user
+      @order = Order.find_by_customer_id_and_active(current_user.id,true)                                     
+      @past_orders = Order.admin_grid(params,current_user.id,true, false).order(sort_column + " " + sort_direction).
                                           paginate(:page => pagination_page, :per_page => pagination_rows)
-
+    end 
   end
 
   # GET /orders/1

@@ -12,7 +12,7 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="SNAvLDXXufCJnVIHIySUqG778NxEY0hB9yrLmL_ioQ4" />
+    <meta name="google-site-verification" content="SNAvLDXXufCJnVIHIySUqG778NxEY0hB9yrLmL_ioQ4" />	
   </head>
 
   	<body style="background-color:#FAFAFA">
@@ -28,6 +28,15 @@
 					fjs.parentNode.insertBefore(js, fjs);
 				}(document, 'script', 'facebook-jssdk'));
 		</script>
+		
+		<script>(function(d, s, id) {
+  			var js, fjs = d.getElementsByTagName(s)[0];
+  			if (d.getElementById(id)) return;
+  			js = d.createElement(s); js.id = id;
+  			js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=200686890113774";
+  			fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		x</script>
 
    		<div id="wrap">			
 			<% if !(defined? @no_header) %>

@@ -26,8 +26,7 @@ class AdminController < ApplicationController
   end
   
   def verify_admin
-    if !signed_in? 
-     
+    if !signed_in?    
        puts "verify_admin -------------1"
        session[:return_to] = request.url
        redirect_to sessions_path 
