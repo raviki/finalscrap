@@ -5,17 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   include SessionsHelper
   add_breadcrumb "Home", :root_path
-  
-  before_filter :ensure_domain
 
-   def ensure_domain 
-    url = request.url
-    if url.include?('polar-spire-7612.heroku.com')
-        redirect_to url.gsup('polar-spire-7612.heroku.com', 'polar-spire-7612.com')
-    elsif url.include?('www.evertask.in')
-        redirect_to url.gsup('www.evertask.com', 'evertask.com')        
-    end    
-   end
   
   private
   def pagination_page
