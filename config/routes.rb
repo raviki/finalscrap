@@ -4,7 +4,8 @@ Website::Application.routes.draw do
     resources :inprogress, :only => [:index]
   end 
   
-  resources :order_requests
+  get '/robots.txt' => 'home#robots'
+ 
   
   root to: "categories#index"
  
@@ -13,18 +14,9 @@ Website::Application.routes.draw do
   resources :product_variants
 
   get "accounts/index"
-
-  get "checkout/index"
-  get "checkout/create"
-  resources :addresses
-
-  resources :cart_items
   
   get "customer_infos/edit"
   get "customer_info/edit"
-  get "activity_logs/index"
-  get "activity_log/index"
-  resources :activities
 
   get "password_resets/new"
   get "log_out" => "sessions#destroy", :as => "log_out"
@@ -32,33 +24,26 @@ Website::Application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   
-  resources :cart_items
+  resources :cart_items, :only => [:index]
 
-  resources :carts
-
-  resources :searches
-
+  resources :carts, :only => [:index, :show]
+  
+  resources :sessions, :only => [:new, :create, :index]
+  
   resources :vouchers
 
-  resources :orders
+  resources :checkout,  :only => [:new, :create, :index]
+  
+  resources :order_requests, :only => [:index]
+  
+  resources :orders, :only => [:index, :show]
 
-  resources :stores
-
-  resources :customer_leads
-
-  resources :customer_groups
-
-  resources :customer_managements
+  resources :customer_managements,  :only => [:new, :create, :show]
 
   resources :customers
   
   resources :password_resets
-
-  namespace :users do
-    resources :managements
-  end
   
-  resources :sessions
   
   namespace :admin do
     

@@ -1,0 +1,5 @@
+User-Agent: *
+Disallow: /carts/
+Disallow: /cart-items/
+Disallow: /addresses/
+Disallow: /vouchers/

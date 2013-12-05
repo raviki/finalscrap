@@ -16,6 +16,7 @@ class UserMailer < ActionMailer::Base
     @request = params[:request]
     @category_name = name
     @user = user
+   
     mail :to => I18n.t(:admin_email), :subject => "Order Request - "+@category_name
   end
 end

@@ -6,7 +6,11 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   add_breadcrumb "Home", :root_path
 
-  
+  def robots                                                                                                                                      
+  robots = File.read(Rails.root + "config/robots.#{Rails.env}.txt")
+  render :text => robots, :layout => false, :content_type => "text/plain"
+  end
+
   private
   def pagination_page
     params[:page] ||= 1
