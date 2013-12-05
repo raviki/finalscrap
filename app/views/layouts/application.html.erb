@@ -17,26 +17,14 @@
 
   	<body style="background-color:#FAFAFA">
   		<div id="fb-root"></div>
-		<script>
-			( function(d, s, id) {
-					var js, fjs = d.getElementsByTagName(s)[0];
-					if (d.getElementById(id))
-						return;
-					js = d.createElement(s);
-					js.id = id;
-					js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=200686890113774";
-					fjs.parentNode.insertBefore(js, fjs);
-				}(document, 'script', 'facebook-jssdk'));
-		</script>
-		
 		<script>(function(d, s, id) {
   			var js, fjs = d.getElementsByTagName(s)[0];
   			if (d.getElementById(id)) return;
   			js = d.createElement(s); js.id = id;
-  			js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=200686890113774";
+  			js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1392975447615094";
   			fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
-		x</script>
+		</script>
 
    		<div id="wrap">			
 			<% if !(defined? @no_header) %>
@@ -50,15 +38,19 @@
         	</div>
       		<% end %>
       		
+      		<% if !@info_url.present?  %>
       		<div class="breadcrumbs" style="min-height:1em;">     	
       			<ul class="inline">	
       				<li class="pull-left"><%= render_breadcrumbs :separator => ' / ' %></li>	
 					<li class="pull-right"><h6 style="margin:0 0 5px 0;">Contact Us: <%= link_to contact_number, "tel:"+contact_number %></h6></li>
 				</ul>
 			</div>
+			<% end %>
 			
 			<% if @root_url.present? %>
 			<div class="welcome-page clear-top">
+			<%elsif @info_url.present?  %>
+			<div class="info-page container clear-top">
 			<% else %>
 			<div id="main" class="container clear-top">
 			<% end %>	

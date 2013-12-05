@@ -33,9 +33,13 @@ Website::Application.routes.draw do
   
   resources :order_requests, :only => [:create]
   
+  
   namespace :plus do
     resources :inprogress, :only => [:index]
   end 
+  
+  resources :terms_and_conditions, :only => [:index]
+  
   
   namespace :admin do   
     root to: "fulfillments/orders#index"
