@@ -27,7 +27,6 @@
       <%= render :partial => 'admin/merchandise/products/product', :collection => @product.tools, :locals => { :product_page => 'yes',  :tools_display => 'yes' }  %>
 	</tbody>
 </table>
-<%= will_paginate @products %>
 <% end %>
 
 <% if @product.product_variants.size > 0 %>

@@ -1,0 +1,17 @@
+User-Agent: *
+Disallow: /carts/
+Disallow: /cart-items/
+Disallow: /addresses/
+Disallow: /vouchers/
+Disallow: /addresses/
+Disallow: /password_resets/
+Disallow: /sessions/
+Disallow: /checkout/
+Disallow: /order_requests/
+Disallow: /orders/
+Disallow: /customer_managements/
+Disallow: /customers/
+Disallow: /product_variants/
+Disallow: /addresses/
+Disallow: /password_resets/
+Disallow: /order_requests/

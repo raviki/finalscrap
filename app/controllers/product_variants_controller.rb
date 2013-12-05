@@ -1,4 +1,4 @@
-class ProductVariantsController < ApplicationController
+class ProductVariantsController < AdminController
   before_action :set_product_variant, only: [:show, :edit, :update, :destroy]
 
   # GET /product_variants
@@ -20,6 +20,7 @@ class ProductVariantsController < ApplicationController
   # GET /product_variants/1/edit
   def edit
     store_location()
+    
   end
 
   # POST /product_variants
@@ -27,8 +28,7 @@ class ProductVariantsController < ApplicationController
   def create
     store_location()
     
-    puts "entered the dragon #{params[:product_id]}"
-    @product_variant = ProductVariant.new(product_variant_params)
+      @product_variant = ProductVariant.new(product_variant_params)
     
     respond_to do |format|
       if @product_variant.save

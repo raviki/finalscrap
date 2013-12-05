@@ -9,7 +9,7 @@
         <td><%= order.duration_inHrs %></td>
         <td><%= order.active %></td>
         <% if !(defined? product_detail_page) %>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
+        <td><%= link_to 'Edit', edit_admin_fulfillments_order_path(order) %></td>
         <td><%= link_to  (order.active)? 'Deactivate': 'Activate', :controller => admin_fulfillments_orders_path, :id => order.id, :action => "toggle_active", :method => :put %> 	
       	<% end %>
       </tr>

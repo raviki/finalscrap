@@ -1,36 +1,19 @@
 Website::Application.routes.draw do
-
-  namespace :plus do
-    resources :inprogress, :only => [:index]
-  end 
   
   get '/robots.txt' => 'home#robots'
- 
-  
   root to: "categories#index"
- 
-  get "product_variants/edit"
-  get "product_variants/new"
-  resources :product_variants
-
-  get "accounts/index"
-  
-  get "customer_infos/edit"
-  get "customer_info/edit"
-
+  get "accounts/index" 
   get "password_resets/new"
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "random" => "products#new_parent_map", :as => "random"
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   
-  resources :cart_items, :only => [:index]
+  resources :cart_items, :only => [:index, :create, :show]
 
   resources :carts, :only => [:index, :show]
   
   resources :sessions, :only => [:new, :create, :index]
-  
-  resources :vouchers
 
   resources :checkout,  :only => [:new, :create, :index]
   
@@ -42,11 +25,19 @@ Website::Application.routes.draw do
 
   resources :customers
   
+  resources :product_variants
+  
+  resources :addresses, :only => [:index, :show]
+  
   resources :password_resets
   
+  resources :order_requests, :only => [:create]
   
-  namespace :admin do
-    
+  namespace :plus do
+    resources :inprogress, :only => [:index]
+  end 
+  
+  namespace :admin do   
     root to: "fulfillments/orders#index"
     namespace :merchandise do
       resources :products
@@ -103,9 +94,7 @@ Website::Application.routes.draw do
   get ":id" => "categories#show"
   resources :categories , :path => '' do
     resources :products, :path=>''  
-  end
-  
-  
+  end 
   resources :products
 
 end
