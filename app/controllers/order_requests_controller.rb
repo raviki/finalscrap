@@ -6,7 +6,7 @@ class OrderRequestsController < ApplicationController
         @category = Category.find(params[:category_id])
         if @category
             UserMailer.order_request(params, @category.name, current_user).deliver
-            redirect_back_or(root_url, notice: 'We have recieved your request. We will get back to you within 24 Hrs. ')   
+            redirect_back_or(root_url, notice: 'We have received your request. We will get back to you within 24 Hrs. ')   
         else 
             redirect_back_or(root_url, notice: 'Please Enter Task Type. ')
         end        

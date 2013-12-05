@@ -21,5 +21,7 @@ module Website
     # config.i18n.default_locale = :de
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     
+    config.action_mailer.default_url_options = { host: 'http://webmail.evertask.in' }
+    
   end
 end

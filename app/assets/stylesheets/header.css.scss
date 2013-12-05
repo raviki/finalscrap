@@ -1,31 +1,18 @@
 div.header-block
 {
-  margin-left: 3em;
-  margin-right: 3em;
+
   font-family: "Open Sans";
   color: #FAFAFA;
-  margin-top:1em; 
-  margin-bottom:0;
-  border-radius: 8px 8px 8px 8px;
+  
+
   box-shadow: 1px 1px 1px #b2b2b2;
   -webkit-box-shadow: 1px 1px 1px #b2b2b2;
 }
 
-@media (max-width: 767px) {
-  div.header-block
-  {
-    margin-left:0;
-    margin-right:0;
-  }
-}
-
 .header-bar
 {
-	background-color: #FAFAFA;
-	padding-left: 0;
-  padding-right: 0;
-  border-right: 0;
-  border-left: 0;
+	background-color: #FFFFFF;
+  padding: 0.5em 0 0.5em 0;
   font-family: "Open Sans";
 		
 }
