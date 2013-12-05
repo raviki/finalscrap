@@ -16,6 +16,7 @@ Website::Application.initialize!
    :user_name => "customercare@evertask.in",
    :password => "Evertask2013",
    :authentication  =>"plain",
-   :enable_starttls_auto =>true
+   :openssl_verify_mode => 'none',
+   :enable_starttls_auto =>false
   }
  
