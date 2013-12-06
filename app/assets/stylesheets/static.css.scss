@@ -1,18 +1,48 @@
 div.info-page
 {
+  overflow:auto;
   margin: 0 3.5em 60px 3.5em;
   background-color: white;
   padding-bottom:60px;
-  width:auto;
-  
+  width: auto;
+  min-height:100%;
 }
+
+@media (max-width: 767px) {
+  div.info-page
+  { 
+    margin-left:0;
+    margin-right:0;
+  }
+}
+
 
 .terms-page
 {
-  margin: 3em 6em 0 6em;
+  margin: 6em 6em 0 6em;
 }
+
 
 .info-page .terms-page ol li
 {
   margin-bottom: 1em;
 }
+
+.price-terms-page
+{
+  margin: 6em 6em 0 6em; 
+}
+
+.price-terms-page p
+{
+  margin-bottom: 1em;
+}
+
+@media (max-width: 767px) {
+  .price-terms-page,
+  .terms-page
+  { 
+    margin: 6em 2em 0 2em; 
+  }
+}
+
