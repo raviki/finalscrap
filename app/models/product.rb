@@ -27,7 +27,8 @@ class Product < ActiveRecord::Base
   
   validates :name,                  :presence => true,          :length => { :maximum => 165 }
   validates :image,                 :presence => true
-  validates :description,           :presence => true,          :length => { :maximum => 300 }
+  validates :description,           :presence => true
+  before_save :create_permalink
  
   def toggle_active
     if self.active == true
@@ -39,17 +40,14 @@ class Product < ActiveRecord::Base
   end
   
   def to_param
-    "#{name}".parameterize
+    permalink
   end
     
   def self.find(input)
     if input.to_i != 0
       super
     else
-      if input.include? '-'
-        input = input.gsub!('-', ' ')
-      end 
-      where("products.name ILIKE ?","#{input}").take
+      find_by_permalink(input)
     end
   end
   
@@ -88,6 +86,10 @@ class Product < ActiveRecord::Base
   end
 
   private
+     
+   def create_permalink
+    self.permalink = name.downcase.parameterize
+   end
 
    def self.active_filter(active_state)
       if active_state.present? || active_state

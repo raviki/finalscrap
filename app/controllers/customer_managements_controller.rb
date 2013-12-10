@@ -55,7 +55,7 @@ class CustomerManagementsController < ApplicationController
         end
       end
     end
-    if flag ==true 
+    if flag == true 
         respond_to do |format|
         if @customer_management.update(customer_management_params)
           format.html { redirect_to :back, notice: 'Customer management was successfully updated.' }

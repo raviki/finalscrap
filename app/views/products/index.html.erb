@@ -36,7 +36,11 @@
 					<div class="caption">
 						<%= simple_format(product.name,:class=>:name)%>
 						<% @item = product %>
-						<%= simple_format("<del>&#2352;</del> #{@item.product_variants.first.price}",:class =>:pricehilit)%>
+						<% if @item.product_variants.first.price.to_i > 0  || @item.nature != ProductNature(:TASK)%>
+							<%= simple_format("<del>&#2352;</del> #{@item.product_variants.first.price}",:class =>:pricehilit)%>
+						<% else %>
+							<p class="pricehilit">On Site</p>
+						<% end %>
 					</div>
 				<% end %>			
 					<div class="product-info">

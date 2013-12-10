@@ -43,7 +43,7 @@ class CategoriesController < ApplicationController
         if params[:tools]
           @products = @category.tools.paginate(:page => pagination_page, :per_page => pagination_rows)
         else
-          @products = @category.activeProducts.paginate(:page => pagination_page, :per_page => pagination_rows)
+          @products = @category.activeProducts.order( "id  asc").paginate(:page => pagination_page, :per_page => pagination_rows)
         end
       else
         store_location()

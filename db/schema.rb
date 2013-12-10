@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131130043244) do
+ActiveRecord::Schema.define(version: 20131207175112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "adminpack"
 
   create_table "activities", force: true do |t|
     t.text     "model"
@@ -162,8 +163,8 @@ ActiveRecord::Schema.define(version: 20131130043244) do
     t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "price"
     t.string   "brand"
+    t.decimal  "price"
   end
 
   create_table "products", force: true do |t|
@@ -183,6 +184,7 @@ ActiveRecord::Schema.define(version: 20131130043244) do
     t.string   "price"
     t.string   "nature"
     t.string   "variant_name"
+    t.string   "permalink"
   end
 
   create_table "searches", force: true do |t|

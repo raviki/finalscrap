@@ -57,7 +57,7 @@
 								
 								<td class="product-details-value span6"> 
 									<b><%= @product.variant_name ? @product.variant_name : "Sizes" %>:</b>
-									<%= select_tag "cart_item[product_id]", options_from_collection_for_select(@product.product_variants, "id", "display_name"), :class => "dropdown-toggle" %> 
+									<%= select_tag "cart_item[product_id]", options_from_collection_for_select(@product.product_variants.order("id  asc"), "id", "display_name"), :class => "dropdown-toggle" %> 
 								</td>
 							</tr>
 							<% end %>
@@ -66,7 +66,12 @@
 						<tr>
 							<td class="product-details-value span6">
 							<p>
-								<FONT SIZE="3.5em>"><del>&#2352;</del></FONT SIZE></FONT> <%= @product.product_variants.first.price%>
+								<% puts "----@product.product_variants.first.price --#{@product.product_variants.first.price}"%>
+								<% if @product.product_variants.first.price.to_i > 0 %>
+									<FONT SIZE="3.5em;"><del>&#2352;</del></FONT SIZE></FONT> <%= @product.product_variants.first.price%>
+								<% else %>
+									Price - Upon Inspection
+								<% end %>
 							</p> <%= f.hidden_field :product_id, value:@product.product_variants.first.id%> </td>
 						</tr>
 						<% end %>
@@ -123,7 +128,7 @@
 		<% if @product.how2fix &&  @product.how2fix != "" %>
 		<h5 class="span12">Steps to Fix</h5>
 		<div class ="product-how2fix-bar span11">
-			<p style="text-align: justify;"><br>
+			<p style="text-align: justify;">
 				<%= simple_format(@product.how2fix) %>
 			</p>
 		</div>

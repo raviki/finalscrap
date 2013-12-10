@@ -8,7 +8,7 @@
 					
  					<% @pre_menu = "some_defualt" %>
  					<% level = 0 %>
- 					<% @temp_category.activeProducts.order("menu_parent  desc").each do |product| %>
+ 					<% @temp_category.activeProducts.order("menu_parent  asc").each do |product| %>
  						<% if product.menu_parent != @pre_menu && level == 1 %>
  							</ul>
  								</li>

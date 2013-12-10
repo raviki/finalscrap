@@ -11,7 +11,7 @@
 	
 	<%= form_tag(admin_merchandise_product_path(@product), :method => 'get', :class => 'navbar-search') do %>
 			<div class="input-prepend input-append">																		
-			<%=	select(@products,"id", Product.all.collect {|p| [ p.name, p.name ] }, { prompt:"All" },{class:"selectpicker span1", id: "cat",name:"select"})%>									
+			<%=	select(@products,"id", Product.where(:nature => ProductNature(:TOOL)).collect {|p| [ p.name, p.permalink ] }, { prompt:"Select" },{class:"selectpicker span1", id: "cat",name:"select"})%>									
 			<%= submit_tag "Link", :name => nil, :class => "btn btn-info" %>
 			</div>
 	<% end %>
