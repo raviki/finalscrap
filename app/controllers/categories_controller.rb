@@ -25,7 +25,8 @@ class CategoriesController < ApplicationController
   def show   
     if params[:key].present?
       add_breadcrumb "Search", category_path
-      if @category       
+      if @category   
+        @show_request = true    
         @products = @category.activeProducts.standard_search(params[:key]).
                                     paginate(:page => pagination_page, :per_page => pagination_rows)
 

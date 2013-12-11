@@ -59,7 +59,7 @@ class Product < ActiveRecord::Base
        if @query != ""
           @query=@query+" or " 
         end
-        @query=@query+"products.name LIKE '%#{key}%'"
+        @query=@query+"LOWER(products.name) LIKE '%#{key.downcase}%'"
       end
       grid = where(@query)
     else

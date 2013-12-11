@@ -4,12 +4,14 @@ class CartItemsController < ApplicationController
   # GET /cart_items.json
   def index
     update_cart_items
+    redirect_to root_url
   end
 
   # GET /cart_items/1
   # GET /cart_items/1.json
   def show
     update_cart_items
+    redirect_to root_url
   end
 
   # GET /cart_items/new

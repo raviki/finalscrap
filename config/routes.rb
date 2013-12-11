@@ -11,7 +11,7 @@ Website::Application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   
-  resources :cart_items, :only => [:index, :create, :show]
+  resources :cart_items, :only => [:index, :create, :show, :update, :destroy]
 
   resources :carts, :only => [:index, :show]
   
@@ -21,7 +21,7 @@ Website::Application.routes.draw do
   
   resources :order_requests, :only => [:index]
   
-  resources :orders, :only => [:index, :show]
+  resources :orders, :only => [:index, :show, :create]
 
   resources :customer_managements,  :only => [:new, :create, :show]
 
