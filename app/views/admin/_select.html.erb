@@ -29,3 +29,20 @@
 </div>
 
 <% end %>
+
+ <% if defined? add_products2checklist %>
+ <% if @products.size > 10 %>
+	<div class="longtable">
+<% else %>
+	<div>
+<% end %>
+ 	<table>
+		<%= render :partial => 'admin/merchandise/products/table_header', :locals => { :add_products2checklist => 'yes' }  %>
+		<tbody>
+   		   <%= render :partial => 'admin/merchandise/products/product', :locals => { :add_products2checklist => 'yes' }, :collection => @products %>
+		</tbody>
+	</table>
+</div>
+
+<% end %>
+

@@ -7,15 +7,18 @@
         <% if defined? store_page %>
         	<td><%= @store.store_to_products.find_by_store_id_and_product_id(@store.id, product.id).price %></td>
         <% end %>
-        <td><%= product.description %></td>
-        <% if defined? product_show %>  
+        
+        <% if defined? product_show %> 
+        	<td><%= product.description %></td> 
             <td><%= product.variant_name %></td>
         	<td><%= product.how2fix %></td>
-        <% end %>
         
-        <td><%= product.meta_description %></td>
-        <td><%= product.meta_keyword %></td>
-        <td><%= product.views %></td>
+        
+       		<td><%= product.meta_description %></td>
+        	<td><%= product.meta_keyword %></td>
+        
+        	<td><%= product.views %></td>
+        <% end %>
         <td><%= product.active %></td>
         
 
@@ -33,7 +36,21 @@
             <% @storePrice = (@tempStroeProduct? @tempStroeProduct.price: "") %>
     
         	<td><%=  text_field_tag "price[]", @storePrice  %></td>
-        	<td><%= check_box_tag "select[]", product.id %></td>       	
+        	<td><%= check_box_tag "select[]", product.id %></td>  
+        	
+        <% elsif defined? add_products2checklist %>
+            <% @tempcartitem = @customer.cart_items.find_by(:product_id => product.id) %>
+            <% @quantity = (@tempcartitem? @tempcartitem.quantity: "") %>
+    		<td>
+    			<% if product.product_variants.size > 1%>
+    				<%= select_tag "cart_item[#{product.id}]", options_from_collection_for_select(product.product_variants.order("id  asc"), "id", "display_name"), :class => "dropdown-toggle" %>
+				<% else %>
+					default
+					<%= hidden_field_tag "cart_item[#{product.id}]", product.product_variants.first.id%>
+				<% end %>    		
+    		</td>													
+        	<td><%=  text_field_tag "quantity[#{product.id}]", @quantity  %></td>
+        	<td><%= check_box_tag "select[]", product.id %></td>  	     	
         <% elsif defined? category_page %>
         		<td><%= link_to 'Detach', :controller => admin_merchandise_categories_path, :id => @category.id, :product_id => product.id, :action => "delete_product_map", :method => :put %></td>
  		<% elsif defined? store_page %>

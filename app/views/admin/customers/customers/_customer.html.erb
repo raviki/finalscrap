@@ -4,6 +4,7 @@
         <td><%= customer.email %></td>
         <td><%= customer.mobile_number %></td>
         <td><%= customer.provider %></td>
+        <td><%= customer.remember_token.to_s %></td>
                
         <% if defined? customer_group_page %>
         	<td><%= link_to 'Detach', :controller => admin_customers_customers_path, :id => customer.id, :action => "update_customer_group_id", :customer_group_id => 0, :method => :put %></td>

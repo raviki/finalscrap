@@ -33,16 +33,28 @@
 </table>
 <% end %>
 
-<% if @customer.products.size > 0 %>
-<h5 style='text-align:right'>Cart Items</h5>
-<table>
-	<%= render :partial => 'admin/merchandise/products/table_header', :locals =>  { :customer_page_id => @customer.id } %>
-	<tbody>
-      <%= render :partial => 'admin/merchandise/products/product', :locals => { :customer_page_id => @customer.id }, :collection => @customer.products %>
-	</tbody>
-</table>
-<%= link_to 'Add to List', admin_customers_customers_url, :class => 'button small blue-button' %>
-<%= link_to 'Place an Order', :controller => admin_fulfillments_orders_path, :customer_id => @customer.id, :action => "create_order", :method => :put, :class => "button small blue-button" %>
+
+
+<% if @add_products_checklist %>
+	<h5 style='text-align:left'>Update Products</h5>
+	<%= form_for @customer, :url  => admin_customers_customer_path(@customer), :url => { :action => "add_products2checklist" },
+				:html => {:class => 'prepend-6', :method => "put"} do |f| %>
+				
+	<%= render :partial => 'admin/select', :locals => { :add_products2checklist => 'yes' }  %>	
+	<%= submit_tag "Confirm Update",
+                        :name => nil, :class => 'button small blue-button', :method =>  "add_products2checklist" %>
+                        
+	<% end %>
+<% else %>
+	<% if @customer.cart_items.size > 0 %>
+	<h5 style='text-align:right'>Cart Items</h5>
+	<% @cart_items = @customer.cart_items %>
+	<%= render :template => 'cart_items/index'  %>
+	<%= link_to 'Place an Order', :controller => admin_fulfillments_orders_path, :customer_id => @customer.customer.id, :action => "create_order", :method => :put, :class => "btn btn-info small", :style => 'text-align:right' %>
+	<% end %>
+	<br>
+	<%= link_to 'Add to List',:url =>  admin_customers_customers_path, :id => @customer.id, :add_products_checklist => "yes", :action => "show", :method => "get", :class => 'button small blue-button' %>
+	
 <% end %>
 
 

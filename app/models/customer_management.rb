@@ -18,21 +18,19 @@ has_many :vouchers,       :through => :customer_group
 include BCrypt
  validates :name, presence: true, length: { maximum: 50 }
  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
- validates :email, presence:   true,
-                    format:     { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
+ validates :email,  format:     { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }, :unless => lambda{ |user| user.email.blank? }
 validates :password, presence: true
 validates_confirmation_of :password, on: :create
 validates_presence_of :password_confirmation, :unless => lambda{ |user| user.password_confirmation.blank? } 
 before_save :encrypt
-
 
 has_many :addresses, foreign_key: "user_id"
 
  
 def new_remember_token
   @token = SecureRandom.urlsafe_base64
-  return @token  
+  return @token
   
 end
 

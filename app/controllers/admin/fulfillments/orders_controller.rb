@@ -45,8 +45,8 @@ class Admin::Fulfillments::OrdersController < AdminController
 
   def create_order
     store_location()
-    @customer = Customer.where(:id => params[:customer_id]).first
-    if @customer.cart_items.length > 0 
+    @customer = Customer.find(params[:customer_id])
+    if @customer && (@customer.cart_items.size > 0)
       @order = Order.find_or_create_by_customer_id(params[:customer_id])
       @customer.cart_items.each do |cart_item|      
         @order_to_product = OrderToProduct.where(:product_id => cart_item.product_id, :order_id => @order.id).first_or_create

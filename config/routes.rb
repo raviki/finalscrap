@@ -23,7 +23,7 @@ Website::Application.routes.draw do
   
   resources :orders, :only => [:index, :show, :create]
 
-  resources :customer_managements,  :only => [:new, :create, :show]
+  resources :customer_managements, :only => [:new, :create, :show]
 
   resources :customers
   
@@ -67,7 +67,8 @@ Website::Application.routes.draw do
        resources :customer_infos
        get "customers/:id/update_customer_group_id" => "customers#update_customer_group_id"
        get "customers/:id/update_customer_lead_id" => "customers#update_customer_lead_id"
-       get "customers/:id/add_customer_info" => "customers#add_customer_info"    
+       get "customers/:id/add_customer_info" => "customers#add_customer_info"
+       put "customers/:id/add_products2checklist" => "customers#add_products2checklist"   
     end
     
     namespace :partners do

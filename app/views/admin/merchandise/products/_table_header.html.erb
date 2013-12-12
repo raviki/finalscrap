@@ -14,21 +14,26 @@
       <% if defined? store_page %>
       	<th>Store Price</th>
       <% end %>
-      <th>Description</th>
       <% if defined? product_show %> 
+      	<th>Description</th>     
       	<th>Variants Title</th>
       	<th>How to Fix</th>
+      
+      	<th>Meta description</th>
+      	<th>Meta keyword</th>
+      	<th>Views</th>
       <% end %>
-      <th>Meta description</th>
-      <th>Meta keyword</th>
-      <th>Views</th>
       <th>Active</th>
       
       <% if defined? order_page %>
       	<th> Store Assigned</th>  
       <% elsif defined? update_product4store_page %>
         <th>Store Price</th>
-      	<th>select to update</th>
+      	<th>select to update</th>    	
+      <% elsif defined? add_products2checklist %>
+      	<th>Product Varient</th>
+        <th>Quantity</th>
+      	<th>select to update</th>	
       <% elsif defined? select_page %>
       	<th>Select</th>
       <% elsif defined? category_page || defined? store_page %>

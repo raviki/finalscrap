@@ -25,9 +25,20 @@ class CustomerManagementsController < ApplicationController
   # POST /customer_managements
   # POST /customer_managements.json
   def create
-    @customer_management = CustomerManagement.where(:email => customer_management_params[:email]).first
-    if @customer_management
-      redirect_back_or(sessions_path, notice: 'Account Email is already present.')
+    if customer_management_params[:email].present?
+      @customer_management_email = CustomerManagement.find_by(:email => customer_management_params[:email])  
+    end
+    
+    if customer_management_params[:mobile_number].present?
+      @customer_management_mobile = CustomerManagement.find_by(:mobile_number => customer_management_params[:mobile_number])  
+    end
+    
+    if !(customer_management_params[:email].present? || customer_management_params[:mobile_number].present?)
+      redirect_to sessions_path, notice: 'Please Enter Email/Mobile Number, which can be used as Login Id'
+    elsif @customer_management_email
+      redirect_back_or(sessions_path, notice: 'Account Email is already present. Reset Password to recieve instuctions to your mail id')
+    elsif @customer_management_mobile
+      redirect_back_or(sessions_path, notice: 'Mobile Number is already present. Reset Password to recieve passcode as SMS')
     else
       @customer_management = CustomerManagement.new(customer_management_params)
 

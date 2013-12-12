@@ -1,15 +1,12 @@
 class Admin::Customers::CustomersController < AdminController
-  before_action :set_customer, only: [:show, :edit, :update, :destroy, :add_to_cart, :create_order, :update_customer_lead_id, :update_customer_group_id,:add_customer_info]
-  after_action :log, only: [:update, :destroy, :add_to_cart, :create_order, :update_customer_lead_id, :update_customer_group_id, :add_customer_info]
+  before_action :set_customer, only: [:show, :edit, :update, :destroy, :add_to_cart, :create_order, :update_customer_lead_id, :update_customer_group_id,:add_products2checklist,:add_customer_info]
+  after_action :log, only: [:update, :destroy, :add_to_cart, :create_order, :update_customer_lead_id, :update_customer_group_id, :add_customer_info,:add_products2checklist]
 
   # GET /customers
   # GET /customers.json
   def index
     @customers = CustomerManagement.admin_grid(params).order(sort_column + " " + sort_direction).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
-    if params[:show_search].present?
-      @show_search = true
-    end
   end
 
   # GET /customers/1
@@ -17,6 +14,14 @@ class Admin::Customers::CustomersController < AdminController
   def show
     @customers = CustomerManagement.admin_grid(params).order(sort_column + " " + sort_direction).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
+                                              
+  if params[:add_products_checklist].present? 
+     @products = Product.order(sort_column + " " + sort_direction)
+     @add_products_checklist = true
+   end
+   
+   puts "-----@customers.@customers.id = #{@customer.customer_id}"
+   
   end
 
   # GET /customers/new
@@ -30,6 +35,25 @@ class Admin::Customers::CustomersController < AdminController
       @customer.update_columns(customer_id: @customer_info.id)
     end
     redirect_to action: "show"
+  end
+  
+  def add_products2checklist
+    @cart = Cart.find_or_create_by(:customer_id => @customer.id)
+    if params[:select].present?
+      params[:select].each do |productId|
+       if params[:quantity][productId].to_i > 0
+         @cart_item = CartItem.find_or_create_by(:cart_id => @cart.id, :product_id => params[:cart_item][productId])
+         @product_variant = ProductVariant.find(params[:cart_item][productId])
+         @cart_item.update_attributes(:quantity => params[:quantity][productId], :price => @product_variant.price)
+       else          
+          if @alert
+            @alert= "#{@alert} <br>"          
+          end
+          @alert = "#{@alert} Product:#{productId} Quanity has to be a number #{productId} Value: #{params[:quantity][productId.to_i-1]}"
+        end
+      end
+   end
+   redirect_to({action: "show"}, {alert: @alert})
   end
 
   # GET /customers/1/edit
@@ -51,6 +75,9 @@ class Admin::Customers::CustomersController < AdminController
 
     respond_to do |format|
       if @customer.save
+        @customer_info = Customer.new
+        @customer_info.save
+        @customer.update_attributes(:customer_id => @customer_info.id)
         format.html { redirect_to admin_customers_customers_url, notice: 'Customer was successfully created.' }
         format.json { render action: 'show', status: :created, location: @customer }
       else
@@ -63,7 +90,7 @@ class Admin::Customers::CustomersController < AdminController
   def update_customer_group_id
     store_location()
     if params[:customer_group_id].present?
-            if @customer.customer_id 
+      if @customer.customer_id 
         @customer_info = Customer.find(@customer.customer_id)
         if @customer_info.size > 0
           @customer.update_columns(customer_group_id: params[:customer_group_id])
