@@ -23,7 +23,7 @@ Website::Application.routes.draw do
   
   resources :orders, :only => [:index, :show, :create]
 
-  resources :customer_managements, :only => [:new, :create, :show]
+  resources :customer_managements
 
   resources :customers
   

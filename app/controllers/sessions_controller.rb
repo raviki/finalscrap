@@ -43,7 +43,7 @@ end
         cookies[:remember_token] = remember_token
       end
       encrypted_token = user.encrypt_token(remember_token)
-      user.update_columns(remember_token: :encrypted_token)
+      user.update_columns(remember_token: encrypted_token)
       redirect_back_or(categories_path, :success  => "Logged In!!")   
     else
       puts "2"
@@ -73,13 +73,9 @@ end
   end
 
 def destroy
-  puts "----:remember_token --- #{cookies[:remember_token]}"
   store_location()
- 
   cookies.delete(:remember_token)
-  
   session[:customer_id] = nil
-  puts "----:remember_token --- #{cookies[:remember_token]}"
   redirect_back_or(root_url, :success => "Logged Out!!")
   end
 

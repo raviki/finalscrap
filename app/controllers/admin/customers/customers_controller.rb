@@ -77,7 +77,7 @@ class Admin::Customers::CustomersController < AdminController
       if @customer.save
         @customer_info = Customer.new
         @customer_info.save
-        @customer.update_attributes(:customer_id => @customer_info.id)
+        @customer.update_columns(customer_id: @customer_info.id)
         format.html { redirect_to admin_customers_customers_url, notice: 'Customer was successfully created.' }
         format.json { render action: 'show', status: :created, location: @customer }
       else
