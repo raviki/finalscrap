@@ -32,8 +32,8 @@ class ApplicationController < ActionController::Base
       if cookies[:require_user_page]
         redirect_to root_url
       else
-        store_location("false")
-        redirect_to sessions_path 
+        store_location("false",true)
+        redirect_to login_path 
       end
       cookies.delete(:require_user_page) 
     else      
@@ -41,9 +41,9 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def store_location(next_page = nil)
-    if !session[:return_to].present?
-      disallowed_urls = [ sessions_path, log_out_url ]
+  def store_location(next_page = nil, proceed = false)
+    if !session[:return_to].present? || proceed
+      disallowed_urls = [ login_path, sessions_path, log_out_url ]
       disallowed_urls.map!{|url| url[/\/\w+$/]}
       if !next_page
         unless disallowed_urls.include?(request.env["HTTP_REFERER"])
@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
           session[:return_to] = request.url
         end
       end
-     end
+    end
   end
 
   def redirect_back_or(default, hsh = {})
@@ -66,7 +66,7 @@ class ApplicationController < ActionController::Base
     session[:return_to] = nil
   end
 
- def current_cart
+  def current_cart
     if cookies[:cart_customer_id]
       @cart = Cart.find_by(:customer_id => cookies[:cart_customer_id])
     end
@@ -96,14 +96,13 @@ class ApplicationController < ActionController::Base
     end
 
     return @cart
-  end
-  
+  end  
 
   def current_user
     rem_token_cookie = cookies[:remember_token]
     if cookies[:remember_token]
       encrypted_token  = Digest::SHA1.hexdigest(rem_token_cookie.to_s)
-      @current_user ||= CustomerManagement.find_by(:remember_token => :encrypted_token)
+      @current_user ||= CustomerManagement.find_by(:remember_token => encrypted_token)
       return @current_user
     else
       if session[:customer_id]

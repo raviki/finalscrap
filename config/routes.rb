@@ -7,6 +7,8 @@ Website::Application.routes.draw do
   get "accounts/index" 
   get "password_resets/new"
   get "log_out" => "sessions#destroy", :as => "log_out"
+  get "signup" => "customer_managements#new", :as => "signup"
+  get "login"  => "sessions#new", :as => "login"
   get "random" => "products#new_parent_map", :as => "random"
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
@@ -22,8 +24,8 @@ Website::Application.routes.draw do
   resources :order_requests, :only => [:index]
   
   resources :orders, :only => [:index, :show, :create]
-
-  resources :customer_managements
+  
+  resources :customer_managements, :only => [:new, :create, :show]
 
   resources :customers
   
