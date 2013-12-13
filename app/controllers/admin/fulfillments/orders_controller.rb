@@ -43,22 +43,24 @@ class Admin::Fulfillments::OrdersController < AdminController
     end
   end
 
-  def create_order
+  def create_order 
     store_location()
-    @customer = Customer.find(params[:customer_id])
-    if @customer && (@customer.cart_items.size > 0)
-      @order = Order.find_or_create_by_customer_id(params[:customer_id])
-      @customer.cart_items.each do |cart_item|      
-        @order_to_product = OrderToProduct.where(:product_id => cart_item.product_id, :order_id => @order.id).first_or_create
-        cart_item.delete       
+    @customer = CustomerManagement.find(params[:customer_id])
+      if @customer.cart_items.length > 0 
+        @order = Order.find_or_create_by(:customer_id => params[:customer_id],:active => true)
+        @customer.cart_items.each do |cart_item|      
+          @order_to_product = OrderToProduct.find_or_create_by(:product_id => cart_item.product_id, :order_id => @order.id)
+          @order_to_product.update_price_quantity(cart_item.price, cart_item.quantity)
+          cart_item.delete       
+        end
+        @order.save
+        @order.update_columns(address_id: @customer.cart.address_id, customer_id: @customer.id, active: true, additional_info: params[:additional_info])
+        @customer.cart.delete      
+        redirect_to action: 'show', id: @order.id
+      else
+        redirect_back_or(root_url, notice: 'Empty Cart.')
       end
-      @customer.cart.delete
-      @order.save
-      redirect_to action: 'show', id: @order.id
-    else
-      redirect_back_or(admin_customers_customers_url(@customer), notice: 'Empty Cart.')
-    end
-  end
+   end
   
   # GET /orders/new
   def new
@@ -117,7 +119,7 @@ class Admin::Fulfillments::OrdersController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:customer_id, :voucher_id, :payment_id, :discount, :discount_message, :appointment_date, :duration_inHrs, :active)
+      params.require(:order).permit(:customer_id, :voucher_id, :payment_id, :discount, :discount_message, :additional_info, :appointment_date, :duration_inHrs, :active)
     end
     
     def sort_column

@@ -8,9 +8,6 @@ class Product < ActiveRecord::Base
   has_many :category_to_products
   has_many :categories,             :through => :category_to_products
   
-  has_many :wishlists
-  has_many :customers,              :through => :wishlists
-  
   has_one :parent_product,   -> { where(id: self.parent) }
   
   has_many :product_to_tools

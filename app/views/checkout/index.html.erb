@@ -185,9 +185,13 @@
   				</ul>
   				<div class="tab-content">
   					<div class="tab-pane fade in active" id="cod">
-  						<p>Please reenter your password </p>
+  						
 
   					<%=form_for(:order,url: orders_path, :action => :create) do |f|%>
+  					<p>Additional Informations. </p>
+  					<%= f.text_area :additional_info %>
+  					
+  					<p>Please reenter your password </p>
   					<%= label_tag(:password, "Password:") %>
 		 			<%= password_field_tag(:password) %>
 		 			<%= f.hidden_field :customer_id, value:@user.id%>

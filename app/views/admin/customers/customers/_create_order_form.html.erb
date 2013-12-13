@@ -1,0 +1,87 @@
+		<script type="text/javascript" charset="utf-8">
+	$(function() {
+		$("#addcartaddress").bind("ajax:complete", function() {
+			alert("hellp[]")
+			 $("#Addselect").hide();
+			  $("#PlaceOrder").show();
+			return false;
+		})
+	})
+</script>
+
+<% if @customer.cart %>
+
+<div id="Addselect">
+			<div class="span4">
+
+				<%= form_for(:address,url: addresses_path, remote:true, :html => {id: "addcartaddress"}) do |f| %>
+
+				<%if signed_in? %>
+				<%= hidden_field_tag "user_id",@customer.id%>
+				<%= f.hidden_field("user_id",:value => @customer.id)%>
+				<%end%>
+				<table class="span4" style="margin:0;">
+					<tr>
+					<tr>
+						<td width="15%"> <%= f.label :name %> </td>
+						<td width="85%"> <%= f.text_field :name, :value => @customer.name%> </td>
+					</tr>
+					<td width="15%"> <%= f.label :"Address*" %></td>
+					<td width="85%"> <%= f.text_area :address%> </td>
+					</tr>
+
+					<tr>
+						<td width="15%"> <%= f.label :city %> </td>
+						<td width="85%"> <%= f.text_field :city %> </td>
+					</tr>
+
+					<tr>
+						<td width="15%"> <%= f.label :pin %> </td>
+						<td width="85%"> <%= f.text_field :pin %> </td>
+					</tr>
+					<tr>
+						<td width="15%"> <%= f.label :phone %></td>
+						<td width="85%"><%= f.text_field :phone, value: @customer.mobile_number %></td>
+
+					</tr>
+					<tr>
+						<td> <%= f.submit "Add Address",:class =>"btn btn-info"%> </td>
+					</tr>
+					<% end %>
+				</table>
+			</div>
+			<div class="span6">
+				<%@customer.addresses.each do |address| %>
+				<table class="span3">
+					<tr>
+						<td class="span3"><%= address.name%></td>
+					</tr>
+					<tr>
+						<td class="span4"><%= address.address%></td>
+					</tr>
+					<tr>
+						<td class="span4"><%= address.city%>, <%=address.pin%></td>
+					</tr>
+
+					<tr>
+						
+						<td class="span2"><%= form_for(@customer.cart,remote: true,:html =>{:id =>"addcartaddress"}) do |f|%>
+						<%= f.hidden_field("address_id",:value => address.id)%>
+						<%= f.submit "Select Address",:class =>"btn btn-link"%>
+						<%end%> </td>
+					</tr>
+				</table>
+				<% end %>
+			</div>
+</div>			
+<div id="PlaceOrder" style="display:none;">
+		<%= form_tag admin_fulfillments_path, :method => :get, :action => "create_order" do %>			
+					<%= text_area_tag :additional_info %>
+		 			<%= hidden_field_tag :customer_id, @customer.id%>
+  					<%= submit_tag "Place an Order" %>
+  		<% end %>
+
+</div>	
+<% else %>
+Emplay Cart
+<% end %>

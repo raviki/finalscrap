@@ -6,6 +6,16 @@
           $("#modal-body").html("<%=escape_javascript(render partial:"/admin/customers/customers/customer_info_form")%>");
           return false;
         });
+        $("#createorder").click(function() {
+          $("#myModal").modal();
+          $("#modal-body").html("<%=escape_javascript(render partial:"/admin/customers/customers/create_order_form")%>");
+          return false;
+        });
+        $("#updatecustomerinfo").click(function() {
+          $("#myModal").modal();
+          $("#modal-body").html("<%=escape_javascript(render partial:"/admin/customers/customers/update_customer_info")%>");
+          return false;
+        });
       })
     </script>
     
@@ -17,11 +27,8 @@
 	</tbody>
 </table>
 
-<% if !@customer.customer_id %>
-<%= link_to 'Add Customer Info', "#", :remote => true, :class => 'button small blue-button', :id => "addcustomerinfo" %>
-<% else %>
-<%= render :partial => 'admin/customers/customer_infos/table', :object => @customer.customer, :as => :item %>
-<% end %>
+<%= link_to 'Update Customer Info', "#", :remote => true, :class => 'button small blue-button', :id => "updatecustomerinfo" %>
+
 
 <% if @customer.orders.size > 0 %>
 <h5 style='text-align:right'>Listing Orders</h5>
@@ -50,7 +57,9 @@
 	<h5 style='text-align:right'>Cart Items</h5>
 	<% @cart_items = @customer.cart_items %>
 	<%= render :template => 'cart_items/index'  %>
-	<%= link_to 'Place an Order', :controller => admin_fulfillments_orders_path, :customer_id => @customer.customer.id, :action => "create_order", :method => :put, :class => "btn btn-info small", :style => 'text-align:right' %>
+	<% @address = Address.new %>
+	<%= link_to 'Place an Order', "#", :remote => true, :class => 'button small blue-button', :id => "createorder" %>
+
 	<% end %>
 	<br>
 	<%= link_to 'Add to List',:url =>  admin_customers_customers_path, :id => @customer.id, :add_products_checklist => "yes", :action => "show", :method => "get", :class => 'button small blue-button' %>

@@ -13,6 +13,10 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :address_id %><br>
+    <%= f.select(:address_id, options_from_collection_for_select(Address.where(:user_id => @order.customer_id), "id", "full_address"))%>
+  </div>
+  <div class="field">
     <%= f.label :voucher_id %><br>
     <%= f.number_field :voucher_id %>
   </div>

@@ -18,10 +18,8 @@ class Admin::Customers::CustomersController < AdminController
   if params[:add_products_checklist].present? 
      @products = Product.order(sort_column + " " + sort_direction)
      @add_products_checklist = true
-   end
-   
-   puts "-----@customers.@customers.id = #{@customer.customer_id}"
-   
+   end 
+   @order = Order.new
   end
 
   # GET /customers/new
@@ -90,12 +88,7 @@ class Admin::Customers::CustomersController < AdminController
   def update_customer_group_id
     store_location()
     if params[:customer_group_id].present?
-      if @customer.customer_id 
-        @customer_info = Customer.find(@customer.customer_id)
-        if @customer_info.size > 0
           @customer.update_columns(customer_group_id: params[:customer_group_id])
-        end
-      end
     end 
     redirect_back_or(admin_customers_customers_url)
   end
@@ -103,12 +96,7 @@ class Admin::Customers::CustomersController < AdminController
     def update_customer_lead_id
     store_location()
     if params[:customer_lead_id].present?
-      if @customer.customer_id 
-        @customer_info = Customer.find(@customer.customer_id)
-        if @customer_info.size > 0
-          @customer.update_columns(customer_lead_id: params[:customer_lead_id])
-        end
-      end
+      @customer.update_columns(customer_lead_id: params[:customer_lead_id])
     end 
     redirect_back_or(admin_customers_customers_url)
   end
@@ -146,7 +134,7 @@ class Admin::Customers::CustomersController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer_management).permit(:name, :password, :password_confirmation, :email, :customer_id, :remember_token, :password_digest, :provider, :uid, :oauth_token, :oauth_expires_at, :password_reset_token, :password_reset_sent_at, :contact_no, :add_line1, :add_line2, :city, :pin, :wishlist, :customer_group_id, :customer_lead_id)
+      params.require(:customer_management).permit(:name, :password, :password_confirmation, :email, :mobile_number, :customer_id, :remember_token, :password_digest, :provider, :uid, :oauth_token, :oauth_expires_at)
     end
     def sort_column
         CustomerManagement.column_names.include?(params[:sort]) ? params[:sort] : "id"

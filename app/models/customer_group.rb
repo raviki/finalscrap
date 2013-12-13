@@ -1,13 +1,15 @@
 class CustomerGroup < ActiveRecord::Base
   
-  has_many :customers
   has_many :vouchers
-  has_many :customer_managements, :through => :customers
+  has_many :customer_managements
   validates :description, :length => {:maximum =>300}, :presence => true
   
   ## Auto generated code using java @ Ravi
   ## Begin
 
+  def display_name
+    return "["+self.permission_level.to_s+"]"+self.description
+  end
 
   def self.admin_grid(params = {}, active_state = nil)
     grid = id_filter(params[:id]).

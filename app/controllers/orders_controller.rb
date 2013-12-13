@@ -44,7 +44,8 @@ class OrdersController < ApplicationController
           cart_item.delete       
         end
         @order.save
-        @order.update_columns(address_id: @customer.cart.address_id, customer_id: @customer.id, active: true)
+        puts "-------#{order_params[:additional_info]}"
+        @order.update_columns(address_id: @customer.cart.address_id, customer_id: @customer.id, active: true, additional_info: order_params[:additional_info])
         @customer.cart.delete      
         redirect_to action: 'show', id: @order.id
       else
@@ -87,7 +88,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:customer_id, :voucher_id, :payment_id, :discount, :discount_message, :appointment_date, :duration_inHrs, :active)
+      params.require(:order).permit(:customer_id, :voucher_id, :payment_id, :discount, :additional_info, :discount_message, :appointment_date, :duration_inHrs, :active)
     end
     
     def sort_column

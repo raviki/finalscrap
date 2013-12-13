@@ -1,0 +1,19 @@
+
+<%= form_for @customer, :url  => admin_customers_customer_path(@customer), :url => { :action => "update_customer_group_id" },
+				:html => {:class => 'prepend-6', :method => "get"} do |f| %>
+
+<%= select_tag(:customer_group_id, options_from_collection_for_select(CustomerGroup.all, "id", "display_name"))%>
+  
+<%= submit_tag "Confirm Group Id",
+                        :name => nil, :class => 'button small blue-button', :method =>  "update_customer_group_id" %> 
+<% end %>
+
+
+<%= form_for @customer, :url  => admin_customers_customer_path(@customer), :url => { :action => "update_customer_lead_id" },
+				:html => {:class => 'prepend-6', :method => "get"} do |f| %>
+
+<%= select_tag(:customer_lead_id, options_from_collection_for_select(CustomerLead.all, "id", "display_name"))%>
+  
+<%= submit_tag "Confirm Lead Id",
+                        :name => nil, :class => 'button small blue-button', :method =>  "update_customer_lead_id" %> 
+<% end %>

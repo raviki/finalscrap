@@ -15,7 +15,7 @@ Website::Application.routes.draw do
   
   resources :cart_items, :only => [:index, :create, :show, :update, :destroy]
 
-  resources :carts, :only => [:index, :show]
+  resources :carts, :only => [:index, :show, :update]
   
   resources :sessions, :only => [:new, :create, :index]
 
@@ -25,13 +25,13 @@ Website::Application.routes.draw do
   
   resources :orders, :only => [:index, :show, :create]
   
-  resources :customer_managements, :only => [:new, :create, :show]
+  resources :customer_managements, :only => [:new, :create, :show, :update]
 
   resources :customers
   
   resources :product_variants
   
-  resources :addresses, :only => [:index, :show]
+  resources :addresses, :only => [:index, :show, :create]
   
   resources :password_resets
   

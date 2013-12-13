@@ -4,7 +4,7 @@ class Order < ActiveRecord::Base
   has_many :order_to_products
   has_many :product_variants,       :through => :order_to_products
   has_many  :products,              :through => :product_variants
-  belongs_to :customer
+  belongs_to :customer_management
   belongs_to :payment
   belongs_to :address
   

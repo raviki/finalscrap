@@ -33,7 +33,7 @@ class Admin::Partners::StoresController < AdminController
   def update_product_map    
     if params[:select].present?
       params[:select].each do |productId|
-        if params[:price][productId.to_i-1].to_i > 0
+        if params[:price][productId.to_i-1].to_i > -1
           @store.update_product_map(productId,params[:price][productId.to_i-1].to_i)
         else
           if @alert

@@ -1,16 +1,15 @@
 class CustomerManagement < ActiveRecord::Base
 
-belongs_to :customer
 has_one :cart, :foreign_key => "customer_id"
 has_many :cart_items,      :through => :cart
 has_many :products,        :through => :cart_items
 
 has_many :addresses,       :foreign_key => "user_id"
 
-has_one :customer_group,  :through => :customer
-has_one :customer_lead,   :through => :customer
+belongs_to :customer_group, :foreign_key => "customer_id"
+belongs_to :customer_lead, :foreign_key => "customer_id"
 
-has_many :orders,         :through => :customer          
+has_many :orders, :foreign_key => "customer_id"                 
 has_many :vouchers,       :through => :customer_group
 
 
@@ -83,6 +82,7 @@ end
     grid = id_filter(params[:id]).
           name_filter(params[:name]).
           email_filter(params[:email]).
+          mobile_number_filter(params[:mobile_number]).
           customer_id_filter(params[:customer_id]).
           provider_filter(params[:provider])
   end
@@ -114,6 +114,14 @@ end
         all
       end
     end
+    
+    def self.mobile_number_filter(mobile_number)
+      if mobile_number.present?
+        where("customer_managements.mobile_number LIKE ?","%#{mobile_number}%")
+      else
+        all
+      end
+    end
 
     def self.customer_id_filter(customer_id)
       if customer_id.present?
@@ -134,8 +142,8 @@ end
   ## Auto generated code using java @ Ravi
   ## end
 
-def encrypt
-  self.password = BCrypt::Password.create(self.password, :cost => 15)
-end
+  def encrypt
+    self.password = BCrypt::Password.create(self.password, :cost => 15)
+  end
 
 end
