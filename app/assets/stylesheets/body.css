@@ -72,22 +72,18 @@ html body{
 	background-color: #2284A1;
 	color: #FFFFFF;	
 }
-.welcome-page .dna-message h3,
-.welcome-page .dna-message h4
+.welcome-page .dna-message h4,
+.welcome-page .dna-message h5
 {
 	margin-bottom: 0;
 	margin-left:3.5em;
-}
-
-.welcome-page .dna-message h4
-{
 	padding-top:0.5em;
 	padding-bottom:0.5em;
 }
 
 @media (max-width: 769px) {
-	.welcome-page .dna-message h3,
-	.welcome-page .dna-message h4
+	.welcome-page .dna-message h4,
+	.welcome-page .dna-message h5
 	{
 		margin-left:0;
 	}
@@ -108,6 +104,19 @@ html body{
 	width:100%;	
 }
 
+.welcome-page .first-split .border-line
+{
+	margin-left:3.5em;
+	background-color: #FFFFFF;
+}
+
+@media (max-width: 769px) {
+	.welcome-page .first-split .border-line
+	{
+		margin-left:0;
+	}
+}
+
 .welcome-page .first-split .first-block
 {
 	margin-bottom: 1em;
@@ -125,7 +134,7 @@ html body{
 	margin-top:1em;
 }
 
-.welcome-page .first-split .right-block .how_it_works .call-now-message,
+.welcome-page .first-split .how_it_works .call-now-message,
 .welcome-page .first-split .book-online-message
 {
 	background-color: #7F171F;
