@@ -3,6 +3,7 @@ module ApplicationHelper
     I18n.t(:company)
   end
   
+  
   def contact_number
     I18n.t(:company_phone)
   end 

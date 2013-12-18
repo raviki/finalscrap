@@ -1,0 +1,11 @@
+<div class="span1"></div>
+    				<table class="table  span3 table-hover">
+					<thead>
+						<tr><th class="center">Book Now</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>1. Choose Task</td></tr>
+						<tr><td>2. Share your Details</td></tr>
+						<tr><td>3. EverTask confirms order.</td></tr>
+					</tbody>
+					</table>

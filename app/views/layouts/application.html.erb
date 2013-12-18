@@ -2,7 +2,9 @@
 <html>
   <head>
 
-  	<title><%= site_name %></title>
+  	<title>
+    	<%= yield :title %> || <%= I18n.t(:title_default) %>
+  	</title>
     <%= stylesheet_link_tag "application", media: "screen", recursive: false,
                                            "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
@@ -13,6 +15,9 @@
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="SNAvLDXXufCJnVIHIySUqG778NxEY0hB9yrLmL_ioQ4" />	
+    
+    <%= render 'shared/metadata' %>
+    
   </head>
 
   	<body style="background-color:#FAFAFA">
@@ -42,7 +47,7 @@
       		<div class="breadcrumbs" style="min-height:1em;">     	
       			<ul class="inline">	
       				<li class="pull-left"><%= render_breadcrumbs :separator => ' / ' %></li>	
-					<li class="pull-right"><h6 style="margin:0 0 5px 0;">Contact Us: <%= link_to contact_number, "tel:"+contact_number %></h6></li>
+					<li class="pull-right"><h6 style="margin:0 0 5px 0;">Call Mr. Fixer: <%= link_to contact_number, "tel:"+contact_number %></h6></li>
 				</ul>
 			</div>
 			<% end %>

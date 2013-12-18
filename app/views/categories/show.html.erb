@@ -1,1 +1,10 @@
+<% content_for :metadata do %>
+  <meta name="keywords"     content="<%= @category.meta_keywords %>">
+  <meta name="description"  content="<%= @category.meta_description %>">
+<% end %>
+
+<% content_for :title do %>
+  <%= @category.title %>
+<% end %>
+
 <%= render :template => 'products/index' %>

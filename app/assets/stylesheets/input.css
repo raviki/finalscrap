@@ -43,6 +43,16 @@
 	margin-right: auto;
 }
 
+.left
+{
+	text-align: left;	
+}
+
+.right
+{
+	text-align: right;	
+}
+
 .center-vertical
 {
 	margin-top: auto;

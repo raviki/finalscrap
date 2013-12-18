@@ -110,7 +110,7 @@ class Admin::Merchandise::CategoriesController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:name, :image, :description, :active, :new_product_map => ['product_id', 'select'], :delete_product_map => ['id', 'product_id'])
+      params.require(:category).permit(:name, :image, :title, :meta_description, :meta_keywords, :description, :active, :new_product_map => ['product_id', 'select'], :delete_product_map => ['id', 'product_id'])
     end
     
      def sort_column
