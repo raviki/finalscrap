@@ -4,14 +4,12 @@ class CartItemsController < ApplicationController
   # GET /cart_items.json
   def index
     update_cart_items
-    redirect_to root_url
   end
 
   # GET /cart_items/1
   # GET /cart_items/1.json
   def show
     update_cart_items
-    redirect_to root_url
   end
 
   # GET /cart_items/new
@@ -54,7 +52,7 @@ class CartItemsController < ApplicationController
   def update
     respond_to do |format|
       if @cart_item.update(cart_item_params)
-        format.html { redirect_to @cart_item, notice: 'Cart item was successfully updated.' }
+        format.html { redirect_to @cart_item }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
