@@ -84,11 +84,15 @@ div.header-block
 .header-bar .navbar-search .search-select
 {
   border-radius: 5px 0 0 5px;
-  margin-left: 0;
-  margin-right: 0;
+  margin-left: auto;
+  margin-right: auto;
   padding-left: 0;
   padding-right: 0;
   width:auto;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 0.01px;
+  text-overflow: "";
 }
 
 .header-bar .search-bar .search-query
