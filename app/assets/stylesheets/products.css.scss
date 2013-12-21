@@ -282,6 +282,11 @@ table.cart-items-list-popup
   min-width:50%;
 }
 
+.product-show .product-info div.product-details  select#cart_item_product_id.dropdown-toggle
+{
+  width:auto;
+}
+
 .product-show div.product-tools-bar
 {
   border: 1px solid #B2B2B2;
