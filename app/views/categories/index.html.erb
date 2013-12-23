@@ -41,8 +41,20 @@
     		 	<div class="visible-desktop visible-tablet">
     		 		
     		 	</div>
+    		 	
+    		 	
   				<h5 class="color1 center visible-phone">Service Warranty on all Our Tasks…</h5>	
     			<h4 class="color1 center visible-desktop visible-tablet">Service Warranty on all Our Tasks…</h4> 
+    			<p class="center" style="color:#21B6A8;">Available For</p>
+    				<div class="logo-images span5 center">
+    					<% Category.all.each do |temp| %>
+    						<% if temp.image && temp.image != ""%>
+    						<%= link_to(category_path(temp)) do %>
+    							<%= image_tag(temp.image)%>
+    						<% end %>
+    						<% end %>
+    					<% end %>
+    				</div>
     		</div> 
     		</div>
     		<div class="right-block span4">
@@ -58,16 +70,7 @@
     				
     			</div>
     			<div class="right-block-logo span4">
-    				<p class="center" style="color:#21B6A8;">Available For</p>
-    				<div class="logo-images span4 center">
-    					<% Category.all.each do |temp| %>
-    						<% if temp.image && temp.image != ""%>
-    						<%= link_to(category_path(temp)) do %>
-    							<%= image_tag(temp.image)%>
-    						<% end %>
-    						<% end %>
-    					<% end %>
-    				</div>
+    				
     				
     			</div>
     		</div>
