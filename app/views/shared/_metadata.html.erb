@@ -1,6 +1,6 @@
 <% if content_for?(:metadata) %>
   <%= yield :metadata %>
 <% else %>
-  <meta name="keywords"     content="<%= I18n.t(:meta_keywords) %>">
-  <meta name="description"  content="<%= I18n.t(:meta_description) %>">
+  <meta name="keywords"     content="<%= meta_keywords_default %>">
+  <meta name="description"  content="<%= meta_description_default %>">
 <% end %>

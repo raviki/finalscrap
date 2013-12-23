@@ -13,6 +13,11 @@
 	})
 </script>
 
+<% content_for :metadata do %>
+  <meta name="keywords"     content="<%= @category.meta_keywords %>">
+  <meta name="description"  content="<%= @category.meta_description %>">
+<% end %>
+
 <div class="product-show row-fluid container">
 	<div class="product-show-inner container-fluid">
 		<div class="product-info">
@@ -22,7 +27,6 @@
 
 			<div class="product-details span7">
 				<h3><%= @product.name%></h3>
-				<p style="margin:0">no reviews</p>
 				<hr style="margin:0">
 				<table>
 					<tbody>

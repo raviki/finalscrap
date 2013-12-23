@@ -3,8 +3,13 @@
   <head>
 
   	<title>
-    	<%= yield :title %> || <%= I18n.t(:title_default) %>
+  		<% if content_for?(:title) %>
+    		<%= yield :title %>  
+    	<% else %>
+    		<%= title_default %>
+    	<% end %>
   	</title>
+      
     <%= stylesheet_link_tag "application", media: "screen", recursive: false,
                                            "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
@@ -17,6 +22,8 @@
     <meta name="google-site-verification" content="SNAvLDXXufCJnVIHIySUqG778NxEY0hB9yrLmL_ioQ4" />	
     
     <%= render 'shared/metadata' %>
+    
+    <link href="/assets/favicon.png" rel="shortcut icon" type="image/vnd.microsoft.icon" />
     
   </head>
 
