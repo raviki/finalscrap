@@ -25,12 +25,17 @@ class CartItemsController < ApplicationController
   # POST /cart_items.json
   def create
     @cart = current_cart
-    @product = ProductVariant.find(params[:cart_item][:product_id])    
+    if params[:include_service].present? 
+      @product = ProductVariant.find(params[:product_id_with_service]) 
+    else
+       @product = ProductVariant.find(params[:cart_item][:product_id]) 
+    end
+       
     if !(params[:cart_item][:quantity].to_i > 0)
       params[:cart_item][:quantity] = "1"
     end   
     
-    @cart_item = @cart.add_products({:product_id => @product.id, :price => @product.price,:quantity => params[:cart_item][:quantity],:cart_id => @cart.id})
+    @cart_item = @cart.add_products({:product_id => @product.id, :price => @product.price,:quantity => params[:cart_item][:quantity],:cart_id => @cart.id, :include_service => params[:include_service]})
    
     respond_to do |format|
       if @cart_item.save 

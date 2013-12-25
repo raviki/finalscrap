@@ -10,10 +10,10 @@ class OrderToProduct < ActiveRecord::Base
      self.update_attributes(:store_id =>  storeId)
   end
   
-  def update_price_quantity(price, quantity)
+  def update_price_quantity(price, quantity, include_service)
     self.update_attributes(:quantity => self.quantity.to_i + quantity)
     if !self.price
-      self.update_attributes(:price => price)
+      self.update_attributes(:price => price, :include_service => include_service)
     end
     self.save
   end

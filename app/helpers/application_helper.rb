@@ -24,7 +24,8 @@ module ApplicationHelper
     TASK: 'task',
     TOOL: 'tool',
     TASKnREADY: 'task not ready',
-    TASKwBRAND: 'task vary with brand'
+    TASKwBRAND: 'task vary with brand',
+    TOOLnTASK: 'tool and task'
     }
     
   def ProductNature(type)

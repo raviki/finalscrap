@@ -17,6 +17,8 @@ class Cart < ActiveRecord::Base
     else
       current_item = cart_items.new(params)
     end
+    
+    current_item.include_service = params[:include_service]
     return current_item
   end
   

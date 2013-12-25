@@ -1,3 +1,23 @@
+<!-- Google Code for Sales Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 991103063;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "gLj9CIGrkwgQ15DM2AM";
+var google_conversion_value = 10;
+var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/991103063/?value=10&amp;label=gLj9CIGrkwgQ15DM2AM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
 <div class="order-page center">
 <div class="span1"></div>
 <div class="span3"><h4>Appointment Details</h4></div>
@@ -45,6 +65,7 @@
     <tr>
       <th>Product</th>
       <th class="hidden-phone">Price</th>
+      <th class="hidden-phone">Home Service</th>
       <th>Value</th>
       <th>Total</th>
       <th>Workman Name</th>
@@ -59,6 +80,7 @@
       	<% @order2product = order_to_product %>
         <td><%= @order2product.product.name %></td>
         <td class="hidden-phone"><%= @order2product.price %></td>  
+         <td class="hidden-phone"><%= @order2product.include_service == false ? "NO" : "YES" %></td> 
         <td><%= order_to_product.quantity %></td>
         <td><%= @order2product.price * order_to_product.quantity %></td>
         <td><%= @order2product.store.contact_name unless !@order2product.store %></td>
@@ -69,6 +91,7 @@
     <% end %>
     <tr>
     	<td></td>
+    	<td class="hidden-phone"></td>
     	<td class="hidden-phone"></td>
     	<td>Total</td>
     	<td><%= total_value %></td>

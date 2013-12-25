@@ -4,6 +4,7 @@
 			<h4 class="center"> <%= @category.name %> </h4> 
 		<% end %>
 	</div>
+	<div class="first_split span3">
 	<% if !@category %>
 		<div class="category-submenu span3" style="margin-left:0;">		
 		<% if @categories.size > 0 %>
@@ -13,6 +14,11 @@
     	<% end %>    
 		</div>
 	<% end %>
+	<% if @show_request == true  %>
+		<%= render :template => 'order_requests/new' %>
+	<% end %>
+	
+	</div>
 	<div class="products-list span9">	
 		<% if @products.size < 1 %>
 			<h5 class="offset4" style="margin-top:3em;"> No Tasks to list </h5>  
@@ -73,8 +79,5 @@
 		</ul>
 		<%= will_paginate @products %>
 	</div>
-	<% if @show_request == true  %>
-		<%= render :template => 'order_requests/new' %>
-	<% end %>
 </div>
 

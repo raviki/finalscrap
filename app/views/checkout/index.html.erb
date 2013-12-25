@@ -145,7 +145,7 @@
 					<% @cart_items.each do |cart_item| %>
 					<tr>
 						<td class="span2"><%= cart_item.product.name%></td>
-						<td class="span2"><%= cart_item.price %></td>
+						<td class="span2"><%= cart_item.unit_price_str %></td>
 						<td class="span2" align="center"> <%= form_for(cart_item, remote:true) do |f| %><%= f.text_field :quantity, :class => "span1"%><% end %></td>
 						<td class="span2"> Rs<%= cart_item.total_price %></td>
 						<td class="span2"><%= link_to raw('<i class="icon-remove"></i>'), cart_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -157,6 +157,7 @@
 					<td></td>
 					<td >Total</td>
 					<td class="total_cell" ><%= @cart_items.to_a.sum(&:total_price) %></td>
+					<td></td>
 					<td></td>
 				</tr>
 				<tr>

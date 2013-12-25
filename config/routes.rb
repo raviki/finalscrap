@@ -1,6 +1,5 @@
 Website::Application.routes.draw do
   
-  get "about_us/index"
   get "prices/index"
   get '/robots.txt' => 'home#robots'
   root to: "categories#index"
@@ -43,6 +42,8 @@ Website::Application.routes.draw do
   end 
   
   resources :terms_and_conditions, :only => [:index]
+  
+  resources :about_us, :only => [:index]
   
   resources :prices, :only => [:index]
   

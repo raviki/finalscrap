@@ -10,6 +10,15 @@ class ProductVariant < ActiveRecord::Base
     if self.brand
       name = name+"["+self.brand+"] "
     end 
-   return name+self.value + " (Rs. " + self.price.to_s+")"
+   return name+self.value + " ( Rs. " + self.price.to_s+" )"
   end
+  
+  def display_name_with_service
+    name = ""
+    if self.brand
+      name = name+"["+self.brand+"] "
+    end 
+   return name+self.value + " ( Rs. " + self.price.to_s + " + Service Price: "+((self.service_price.to_i > 0) ? self.service_price.to_s : "0")+" )"
+  end
+  
 end

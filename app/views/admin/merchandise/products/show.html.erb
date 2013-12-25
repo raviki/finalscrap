@@ -36,6 +36,7 @@
 <%=form_for(:product_variant, url: product_variants_path, :action => :create) do |f|%>
 <%= f.number_field :value,  :placeholder => "Units"%>
 <%= f.number_field :price,  :placeholder => "Price"%>
+<%= f.number_field :service_price,  :placeholder => "Home Service Cost"%>
 <% if @product.nature == ProductNature(:TASKwBRAND) %>
 	<%= f.number_field :brand,  :placeholder => "Brand"%>
 <% end %>

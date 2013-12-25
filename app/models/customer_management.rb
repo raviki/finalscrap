@@ -75,6 +75,12 @@ def send_password_reset
   UserMailer.password_reset(self).deliver
 end
 
+def send_order_confirmation_mail
+  if self.email && self.email != ""
+    UserMailer.order_confirmation(self).deliver
+  end 
+end
+
    ## Auto generated code using java @ Ravi
   ## Begin
 

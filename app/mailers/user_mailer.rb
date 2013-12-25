@@ -19,4 +19,8 @@ class UserMailer < ActionMailer::Base
    
     mail :to => I18n.t(:admin_email), :subject => "Order Request - "+@category_name
   end
+  
+  def order_confirmation(user)
+    mail :to => user.email, :from => I18n.t(:order_email), :subject => "Order Confirmation"
+  end
 end

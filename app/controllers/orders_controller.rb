@@ -40,13 +40,13 @@ class OrdersController < ApplicationController
         @order = Order.find_or_create_by(:customer_id => order_params[:customer_id],:active => true)
         @customer.cart_items.each do |cart_item|      
           @order_to_product = OrderToProduct.where(:product_id => cart_item.product_id, :order_id => @order.id).first_or_create
-          @order_to_product.update_price_quantity(cart_item.price, cart_item.quantity)
+          @order_to_product.update_price_quantity(cart_item.unit_price, cart_item.quantity,cart_item.include_service)
           cart_item.delete       
         end
         @order.save
-        puts "-------#{order_params[:additional_info]}"
         @order.update_columns(address_id: @customer.cart.address_id, customer_id: @customer.id, active: true, additional_info: order_params[:additional_info])
         @customer.cart.delete      
+        @customer.send_order_confirmation_mail
         redirect_to action: 'show', id: @order.id
       else
         redirect_back_or(root_url, notice: 'Empty Cart.')

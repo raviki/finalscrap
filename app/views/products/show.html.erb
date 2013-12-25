@@ -1,21 +1,22 @@
 <script type="text/javascript" charset="utf-8">
 	$(function() {
+		 $('#with_service').hide();
 		$("#productaddcart").bind("ajax:complete", function() {
 
 			$("#myModal").modal();
 			return false;
-		})
-		$('#listing_brand_id').on('change', function(){
-    		var option = $(this).find(':selected');
-    		$('[data-show-for]').hide(); //And maybe reset?
-    		$('[data-show-for='+ option.text() +']').show()
 		});
-	})
+		$('#include_service').change(function() {
+			$('#with_service').toggle();
+			$('#without_service').toggle();
+		});
+
+	}); 
 </script>
 
 <% content_for :metadata do %>
-  <meta name="keywords"     content="<%= @category.meta_keywords %>">
-  <meta name="description"  content="<%= @category.meta_description %>">
+<meta name="keywords"     content="<%= @category.meta_keywords %>">
+<meta name="description"  content="<%= @category.meta_description %>">
 <% end %>
 
 <div class="product-show row-fluid container">
@@ -26,7 +27,7 @@
 			</div>
 
 			<div class="product-details span7">
-				<h3><%= @product.name%></h3>
+				<h4><%= @product.name%></h4>
 				<hr style="margin:0">
 				<table>
 					<tbody>
@@ -35,46 +36,80 @@
 						</tr>
 
 						<%=form_for(:cart_item,url: cart_items_path, remote:true, :html => {id: "productaddcart"}) do |f|%>
-						<% if @product.product_variants.size > 1 %>
-							<% if @product.nature == ProductNature(:TASKwBRAND) %>
-							  	<tr>
-									<td class="product-details-value span4">
-										<b>Brand:</b>
-										<%=	select("listing_brand","id", @product.product_variants.select("brand").group(:brand).collect {|p| [ p.brand, p.brand ] }, { prompt: "Select a Brand" },class:"select optional dropdown-toggle")%>									
-			
-									</td>					  	
-							  	</tr>
+
+						<% if @product.nature == ProductNature(:TOOLnTASK) %>
+
+						<tr>
+							<td class="product-details-value span4"> <%= check_box_tag 'include_service' %>  Include Home Service </td>
+						</tr>
+
+						<tr>
+							<td class="product-details-value span6">
+							<div id="without_service">
+								<% if @product.product_variants.size > 1 %>
+										<b><%= @product.variant_name ? @product.variant_name : "Model" %>:</b> 
+										<%= select_tag "cart_item[product_id]", options_from_collection_for_select(@product.product_variants.order("id  asc"), "id", "display_name"), :class => "dropdown-toggle" %> 
+								<% else %>
+								<p>
+									<% if @product.product_variants.first.price.to_i > 0 %>
+									<FONT SIZE="3.5em;"><del>&#2352;</del></FONT SIZE></FONT> <%= @product.product_variants.first.price%>
+									<% else %>
+									Price - Upon Inspection
+									<% end %>
+									<%= f.hidden_field :product_id, value:@product.product_variants.first.id%>
+								</p>
+								<% end %>
+								</div>
+
+								<div id="with_service">
+									<% if @product.product_variants.size > 1 %>
+										<b><%= @product.variant_name ? @product.variant_name : "Model" %>:</b> 
+										<%= select_tag "product_id_with_service", options_from_collection_for_select(@product.product_variants.order("id  asc"), "id", "display_name_with_service"), :class => "dropdown-toggle" %> 		
+									<% else %>
+									<p>
+										<% if @product.product_variants.first.price.to_i > 0 %>
+										<FONT SIZE="3.5em;"><del>&#2352;</del></FONT SIZE></FONT> <%= @product.product_variants.first.price %> + 
+												Service Cost: <FONT SIZE="3.5em;"><del>&#2352;</del></FONT SIZE></FONT> <%= (@product.product_variants.first.service_price.to_i > 0) ? @product.product_variants.first.service_price.to_s : "0" %>
+										<% else %>
+										Price - Upon Inspection
+										<% end %>
+										<%= f.hidden_field :product_id, value:@product.product_variants.first.id%>
+									</p>
+									<% end %>
+								</div>
 								
- 								<tr>
-									<td class="product-details-value span6"> 
-										
-										<% @product.product_variants.select("brand").group(:brand).each do |product_variant_group| %>		
-											<div style="display: none;" data-show-for=<%= product_variant_group.brand%>>
-											<b><%= @product.variant_name ? @product.variant_name : "Sizes" %>:</b>
-											<%= select_tag "cart_item[product_id]", options_from_collection_for_select(@product.product_variants.where(:brand => product_variant_group.brand), "id", "display_name"), :class => "dropdown-toggle" %>									
-											</div> 
-										<%end%> 
-									</td>
-								</tr>																	
-							<% else %>
-							<tr>
-								
-								<td class="product-details-value span6"> 
-									<b><%= @product.variant_name ? @product.variant_name : "Sizes" %>:</b>
-									<%= select_tag "cart_item[product_id]", options_from_collection_for_select(@product.product_variants.order("id  asc"), "id", "display_name"), :class => "dropdown-toggle" %> 
-								</td>
-							</tr>
-							<% end %>
-							
+
+							</td>
+						</tr>
+
+						<% elsif @product.product_variants.size > 1 %>
+						<% if @product.nature == ProductNature(:TASKwBRAND) %>
+						<tr>
+							<td class="product-details-value span4"><b>Brand:</b> <%= select("listing_brand","id", @product.product_variants.select("brand").group(:brand).collect {|p| [ p.brand, p.brand ] }, { prompt: "Select a Brand" },class:"select optional dropdown-toggle")%> </td>
+						</tr>
+
+						<tr>
+							<td class="product-details-value span6"> <% @product.product_variants.select("brand").group(:brand).each do |product_variant_group| %>
+							<div style="display: none;" data-show-for=<%= product_variant_group.brand%>>
+								<b><%= @product.variant_name ? @product.variant_name : "Sizes" %>:</b>
+								<%= select_tag "cart_item[product_id]", options_from_collection_for_select(@product.product_variants.where(:brand => product_variant_group.brand), "id", "display_name"), :class => "dropdown-toggle" %>
+							</div> <%end%> </td>
+						</tr>
+						<% else %>
+						<tr>
+
+							<td class="product-details-value span6"><b><%= @product.variant_name ? @product.variant_name : "Sizes" %>:</b> <%= select_tag "cart_item[product_id]", options_from_collection_for_select(@product.product_variants.order("id  asc"), "id", "display_name"), :class => "dropdown-toggle" %> </td>
+						</tr>
+						<% end %>
+
 						<% else %>
 						<tr>
 							<td class="product-details-value span6">
 							<p>
-								<% puts "----@product.product_variants.first.price --#{@product.product_variants.first.price}"%>
 								<% if @product.product_variants.first.price.to_i > 0 %>
-									<FONT SIZE="3.5em;"><del>&#2352;</del></FONT SIZE></FONT> <%= @product.product_variants.first.price%>
+								<FONT SIZE="3.5em;"><del>&#2352;</del></FONT SIZE></FONT> <%= @product.product_variants.first.price%>
 								<% else %>
-									Price - Upon Inspection
+								Price - Upon Inspection
 								<% end %>
 							</p> <%= f.hidden_field :product_id, value:@product.product_variants.first.id%> </td>
 						</tr>
@@ -99,24 +134,28 @@
 		<div class ="product-tools-bar span12">
 			<ul class="product-tools">
 				<% @product.tools.each do |tool| %>
-					<%= link_to(category_product_path(@category,tool)) do %>
-					<li class="product-tools-each span2">
-						<ul class="product-tools-each-split">
-							<li><%= image_tag(tool.image) %></li>
-							<li class="product-info center-vertical center">
-								<p class="text-align:center;"><%= tool.name%></p>
-								<%= simple_format("<del>&#2352;</del> #{tool.product_variants.first.price}")%>
-					<% end %>
-								<%=form_for(:cart_item,url: cart_items_path, :action => :create) do |f|%>
-									<div class="product-show-quantity span6 center form-horizontal">
-										<%= hidden_field_tag "cart_item[product_id]", tool.product_variants.first.id%>
-										<%= f.text_field :quantity, :class=>"product-quanity-input product-show-quantity-input span4",:placeholder => "#"%>
-										<%= f.submit "Add", {class: "product-quanity-input btn btn-info", id:"addcart"}%>
-									</div>
-								<%end%>
-							</li>
-						</ul>
-					</li>
+				<%= link_to(category_product_path(@category,tool)) do %>
+				<li class="product-tools-each span2">
+					<ul class="product-tools-each-split">
+						<li>
+							<%= image_tag(tool.image) %>
+						</li>
+						<li class="product-info center-vertical center">
+							<p class="text-align:center;">
+								<%= tool.name%>
+							</p>
+							<%= simple_format("<del>&#2352;</del> #{tool.product_variants.first.price}")%>
+							<% end %>
+							<%=form_for(:cart_item,url: cart_items_path, :action => :create) do |f|%>
+							<div class="product-show-quantity span6 center form-horizontal">
+								<%= hidden_field_tag "cart_item[product_id]", tool.product_variants.first.id%>
+								<%= f.text_field :quantity, :class=>"product-quanity-input product-show-quantity-input span4",:placeholder => "#"%>
+								<%= f.submit "Add", {class: "product-quanity-input btn btn-info", id:"addcart"}%>
+							</div>
+							<%end%>
+						</li>
+					</ul>
+				</li>
 				<% end %>
 			</ul>
 		</div>

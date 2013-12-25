@@ -23,6 +23,8 @@ en:
   company:              'Ever Task'
   company_phone:        '+91 1234567890'
   admin_email:          'orders@evertask.in'
+  order_email:          'orders@evertask.in'
+  customercare_email:   'customercare@evertask.in'
   mobile_feature:       'no'
   title_default:        'EverTask - Electricians, Plumbers,Carpenters, Mobile, Computer and Laptop repairs'
   meta_description:     'Professional repair services for your Laptops, Computers and Mobile Phones. Plumbers, Electricians and Carpenters at your doorstep along with the products you need to repair. A one stop for all your repairs, spares and tools.'
