@@ -20,7 +20,10 @@ class UserMailer < ActionMailer::Base
     mail :to => I18n.t(:admin_email), :subject => "Order Request - "+@category_name
   end
   
-  def order_confirmation(user)
-    mail :to => user.email, :from => I18n.t(:order_email), :subject => "Order Confirmation"
+  def order_confirmation(user, order)
+    @order = order
+    mail(:to => user.email, :subject => "Order Confirmation") do |format|
+      format.html { render :template => 'orders/show' }
+    end
   end
 end

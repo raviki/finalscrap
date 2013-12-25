@@ -75,9 +75,9 @@ def send_password_reset
   UserMailer.password_reset(self).deliver
 end
 
-def send_order_confirmation_mail
+def send_order_confirmation_mail(order)
   if self.email && self.email != ""
-    UserMailer.order_confirmation(self).deliver
+    UserMailer.order_confirmation(self, order).deliver
   end 
 end
 
