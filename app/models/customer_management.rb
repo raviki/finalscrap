@@ -13,7 +13,6 @@ has_many :orders, :foreign_key => "customer_id"
 has_many :vouchers,       :through => :customer_group
 
 
-
 include BCrypt
  validates :name, presence: true, length: { maximum: 50 }
  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -75,13 +74,31 @@ def send_password_reset
   UserMailer.password_reset(self).deliver
 end
 
+def send_welcome_message
+  if self.email && self.email != ""
+    UserMailer.welcome_mail(self).deliver
+  elsif ApplicationController.helpers.is_mobile_number(self.mobile_number)
+    ApplicationController.helpers.sms_welcome_message(self) 
+  end
+end
+
+def send_password_reset_4mobile
+  new_password = 100000 + rand(99999)
+  self.password = new_password
+  self.password_reset_token = SecureRandom.urlsafe_base64
+  self.password_reset_sent_at = Time.zone.now
+  self.provider = "self_mobile_reset"
+  self.save
+  ApplicationController.helpers.sms_password_reset(self, new_password)
+end
+
 def send_order_confirmation_mail(order)
   if self.email && self.email != ""
     UserMailer.order_confirmation(self, order).deliver
   end 
 end
 
-   ## Auto generated code using java @ Ravi
+  ## Auto generated code using java @ Ravi
   ## Begin
 
   def self.admin_grid(params = {}, active_state = nil)
@@ -92,7 +109,6 @@ end
           customer_id_filter(params[:customer_id]).
           provider_filter(params[:provider])
   end
-
 
   private
 

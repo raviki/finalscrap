@@ -37,9 +37,14 @@ end
       end
       encrypted_token = user.encrypt_token(remember_token)
       user.update_columns(remember_token: encrypted_token)
-      redirect_back_or(categories_path, :success  => "Logged In!!")   
+      if user.provider == "self_mobile_reset"
+        redirect_to edit_password_reset_url(user.password_reset_token)  
+      else
+        redirect_back_or(categories_path, :success  => "Logged In!!")   
+      end
     else
      #puts "#{user_hash} this is not #{params.inspect}"
+     flash[:notice] = 'Invalid Email / Password Combination. Enter valid data/Reset Your Password' # Not quite right!
      render "new"
     end
    else 

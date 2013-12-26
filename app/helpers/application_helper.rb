@@ -1,8 +1,7 @@
 module ApplicationHelper
   def site_name
     I18n.t(:company)
-  end
-  
+  end 
   
   def contact_number
     I18n.t(:company_phone)
@@ -30,6 +29,10 @@ module ApplicationHelper
     
   def ProductNature(type)
       return Type[type].to_s  
+  end
+  
+  def is_mobile_number(phone)
+    return ((phone =~ /^\d{10}$/) && (phone.to_i >= 999999999))
   end
   
   def is_mobile_feature_present

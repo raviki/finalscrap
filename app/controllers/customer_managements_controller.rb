@@ -44,10 +44,7 @@ class CustomerManagementsController < ApplicationController
 
       respond_to do |format|
       if @customer_management.save
-        
-        @customer = Customer.new
-        @customer.save
-        @customer_management.update_columns(customer_id: @customer.id)
+        @customer_management.send_welcome_message
         format.html { redirect_back_or(sessions_path, notice: 'Account was successfully created.') }
         format.json { render action: 'show', status: :created, location: @customer_management }
       else

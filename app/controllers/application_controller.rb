@@ -22,11 +22,6 @@ class ApplicationController < ActionController::Base
     params[:rows].to_i
   end
   
-  def is_mobile_number(phone)
-    return ((phone =~ /^\d{10}$/) && (phone.to_i >= 999999999))
-  end
-
-  
   def require_user
     if !current_user
       if cookies[:require_user_page]
@@ -90,7 +85,7 @@ class ApplicationController < ActionController::Base
 
     else
       unless @cart
-        @cart = Cart.create(:customer_id => rand(1990))
+        @cart = Cart.create(:customer_id => (1000000+rand(1990)))
         cookies.permanent[:cart_customer_id] = @cart.customer_id
       end
     end
