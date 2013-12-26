@@ -43,6 +43,8 @@ Website::Application.routes.draw do
   
   resources :terms_and_conditions, :only => [:index]
   
+  resources :privacy_policy, :only => [:index]
+  
   resources :about_us, :only => [:index]
   
   resources :prices, :only => [:index]
