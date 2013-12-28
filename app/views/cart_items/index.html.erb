@@ -23,7 +23,7 @@
 			<td class="span2"><%= (cart_item.include_service == false) ? "NO" : "YES"  %></td>
 			<td class="span2" align="center"><%= (cart_item.unit_price  > 0)? cart_item.unit_price_str : "On Site" %></td>
 			<td class="span2" align="center"><del>&#2352;</del>  <%= cart_item.total_price %></td>
-			<td class="span2" align="center"><%= link_to raw('<i class="icon-remove"></i>'), cart_item, url: cart_items_path(cart_item), method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
+			<td class="span2" align="center"><%= link_to image_tag("trash.png" ), cart_item, url: cart_items_path(cart_item), method: :delete, remote: true, data: { confirm: 'Do You want to DELETE It Permanently ?' } %></td>
 		</tr>
 		<% end %>
 	</tbody>
@@ -31,9 +31,10 @@
 		<td></td>
 		<td></td>
 		<td></td>
+		<td></td>
 		<td><strong>Total</strong></td>
 		<td class="total_cell" ><strong><del>&#2352;</del> 	<%= @cart_items.to_a.sum(&:total_price) %></strong></td>
-		<td></td>
+		<td>*</td>
 	</tr>
 </table>
 <%else%>
