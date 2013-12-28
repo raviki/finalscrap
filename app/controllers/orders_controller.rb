@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
         @order.update_columns(address_id: @customer.cart.address_id, customer_id: @customer.id, active: true, additional_info: order_params[:additional_info])
         @customer.cart.delete      
         @customer.send_order_confirmation_mail(@order)
-        redirect_to action: 'show', id: @order.id
+        redirect_to action: 'show', id: @order
       else
         redirect_back_or(root_url, notice: 'Empty Cart.')
       end

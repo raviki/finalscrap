@@ -18,6 +18,17 @@
 		<%= render :template => 'order_requests/new' %>
 	<% end %>
 	
+		<p class="center" style="color:#21B6A8;">Available For</p>
+    	<div class="logo-images span5 center">
+    	<% Category.all.each do |temp| %>
+    		<% if temp.image && temp.image != ""%>
+    			<%= link_to(category_path(temp)) do %>
+    				<%= image_tag(temp.image)%>
+    			<% end %>
+    		<% end %>
+    	<% end %>
+    	</div>
+	
 	</div>
 	<div class="products-list span9">	
 		<% if @products.size < 1 %>

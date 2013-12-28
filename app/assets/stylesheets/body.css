@@ -131,7 +131,27 @@ html body{
 
 .welcome-page .first-split .right-block
 {
-	margin-top:1em;
+	margin-bottom:1em;
+	background-color: #7F171F;
+	color: #FFFFFF;
+	padding-top:0.25em;
+	padding-bottom:0.25em;
+	margin-top:0;
+}
+
+.welcome-page .first-split .content-block div.bs-docs,
+.welcome-page .first-split .content-block 
+{
+	margin-left:0;
+	margin-right:0;
+}
+
+
+.welcome-page .first-split .border-line .content-block .carousel
+{
+	margin-bottom:0.5em;
+	padding-left:1em;
+	padding-right:1em;
 }
 
 .welcome-page .first-split .how_it_works .call-now-message,
@@ -202,13 +222,6 @@ html body{
 {
 	color: #F2F2F2;	
 	margin-left:2em;
-}
-.welcome-page .first-split .message-block h2,
-.welcome-page .first-split .message-block h4,
-.welcome-page .first-split .message-block h3,
-.welcome-page .first-split h5
-{
-	margin-top: 0.5em;
 }
 
 .welcome-page div.first-split .right-block .how_it_works .table
@@ -332,17 +345,11 @@ html body{
 	margin-bottom:1em;
 }
 
-.welcome-page .first-split .right-block .how_it_works
-{
-	min-height:125px;
-}
-
 .welcome-page .first-split .right-block h5
 {
 	margin-right:1em;
 	margin-left:1em;
 }
-
 
 .flash_messages {
   margin-top: 1em;

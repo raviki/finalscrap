@@ -7,6 +7,7 @@ class Order < ActiveRecord::Base
   belongs_to :customer_management
   belongs_to :payment
   belongs_to :address
+  before_save :create_displayid
   
   
   def toggle_active
@@ -16,6 +17,10 @@ class Order < ActiveRecord::Base
       self.active = true
     end
     self.save
+  end
+  
+  def to_param
+    self.display_id
   end
   
   def addProduct(product_id_value)
@@ -41,6 +46,9 @@ class Order < ActiveRecord::Base
 
   private
 
+   def create_displayid
+    self.display_id = id.to_s.rjust(5, '0')
+   end
 
     def self.id_filter(id)
       if id.present?

@@ -21,7 +21,7 @@
   <tbody>
     <% @past_orders.each do |order| %>
       <tr>
-      	<td><%= link_to order.id,  order_path(order) %></td>
+      	<td><%= link_to order.display_id,  order_path(order) %></td>
         <td><%= order.appointment_date %></td>
       </tr>
     <% end %>

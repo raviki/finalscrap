@@ -10,70 +10,53 @@
  	  <div class="border-line  span12">
 		<div class="visible-phone center">
 			<div class="how_it_works">
-    				<h5 class="call-now-message center">Book Now with a single Call</h5>
-    				
-    				<div class="call-now center">
-    					
-    					<h4 class="cell-number"><%= link_to contact_number, "tel:"+contact_number %></h4>
-    					<h6>Mr. Fixer is Just a Call Away</h6>
-    				</div>
-    			
-    				
+    			<h5 class="call-now-message center">Book Now with a single Call</h5>
+    			<div class="call-now center">
+    				<h4 class="cell-number"><%= link_to contact_number, "tel:"+contact_number %></h4>
     			</div>
-    		 
-    	</div>
+    		</div>
+      	</div>
+      	
 		<div class="first-split-submenu span3">
- 		<% if @categories.size > 0 %>
- 		<div class="bs-docs-sidebar">
- 			<%= render :partial => 'shared/items_sidebar' %>
+ 			<% if @categories.size > 0 %>
+ 				<div class="bs-docs-sidebar">
+ 					<%= render :partial => 'shared/items_sidebar' %>
+    			</div>   	
+    		<% end %> 	
     	</div>
-    	
-    	<% end %>
-    	
-    	
-    	</div>
-    	
-    	
-    	<div class="content-block">
-    		<div class="middle-block span5">
-    		
-    		 <div class="warranty-message">
-    		 	<div class="visible-desktop visible-tablet">
-    		 		
-    		 	</div>
-    		 	
-    		 	
-  				<h5 class="color1 center visible-phone">Service Warranty on all Our Tasks…</h5>	
-    			<h4 class="color1 center visible-desktop visible-tablet">Service Warranty on all Our Tasks…</h4> 
-    			<p class="center" style="color:#21B6A8;">Available For</p>
-    				<div class="logo-images span5 center">
-    					<% Category.all.each do |temp| %>
-    						<% if temp.image && temp.image != ""%>
-    						<%= link_to(category_path(temp)) do %>
-    							<%= image_tag(temp.image)%>
-    						<% end %>
-    						<% end %>
-    					<% end %>
-    				</div>
-    		</div> 
-    		</div>
-    		<div class="right-block span4">
-    			<div class="how_it_works visible-desktop visible-tablet">
-    				<h5 class="call-now-message center">Book Now with a single Call</h5>
-    				
-    				<div class="call-now center">
-    					
-    					<h4 class="cell-number"><%= link_to contact_number, "tel:"+contact_number %></h4>
-    					<h6>Mr. Fixer is Just a Call Away</h6>
-    				</div>
-    			
-    				
-    			</div>
-    			<div class="right-block-logo span4">
-    				
-    				
-    			</div>
-    		</div>
+      	
+    	<div class="content-block visible-tablet visible-desktop span9">   		
+    		<div class="bs-docs span9">
+              <div id="myCarousel" class="carousel slide">
+                <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" data-interval="20" class="active"></li>
+                  <li data-target="#myCarousel" data-interval="20" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-interval="20" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img src="assets/carousel/sma.png" alt="">
+                    <div class="carousel-caption">
+                      <p>Quality repair of smartphones and mobile phones</p>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <img src="assets/carousel/lap.png" alt="">
+                    <div class="carousel-caption">
+                      <p>Professional Laptop and Computer Repair Services.</p>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <img src="assets/carousel/tab.png" alt="">
+                    <div class="carousel-caption">
+                      <p>Trusted partner in tablet repairs</p>
+                    </div>
+                  </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+              </div>
+            </div>
     	</div> 
       </div>  	
  	</div>
