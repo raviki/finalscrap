@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
     if @customer.cart.address_id
       if @customer.cart_items.length > 0 
         location_same = false
-        if @customer.cart.address.city.downcase == current_location.downcase
+        if @customer.cart.address.city && @customer.cart.address.city.downcase == current_location.downcase
           location_same = true  
         end
         
