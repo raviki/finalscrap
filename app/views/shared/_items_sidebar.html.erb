@@ -11,10 +11,14 @@
  					<% level = 0 %>
  					<% @temp_category.activeProducts.order("menu_parent  asc").each do |product| %>
  					
- 						<% present_menu = product.menu_parent.split("/").first %>
- 						<% present_submenu = ""%>
- 						<%if product.menu_parent.split("/").count > 1%>
- 							<% present_submenu = product.menu_parent.split("/").second %>
+ 						<% present_menu = "" %>
+ 						<% present_submenu = "" %>
+ 						
+ 						<% if product.menu_parent %>
+ 							<% present_menu = product.menu_parent.split("/").first %>
+ 							<%if product.menu_parent.split("/").count > 1%>
+ 								<% present_submenu = product.menu_parent.split("/").second %>
+							<% end %>
 						<% end %>				
  						
  						<% if (present_submenu != @pre_submenu || present_menu != @pre_menu) && level == 2 %>
