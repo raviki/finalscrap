@@ -105,8 +105,10 @@ class ApplicationController < ActionController::Base
   end
   
   def is_home_service_available(location = "hyderabad", user_location = current_location)
-    puts "location=#{location} ---#{user_location}"
-    return user_location.downcase == location.downcase || location == "all" || location == "" || !location
+    if !location
+      return false
+    end
+    return user_location.downcase == location.downcase || location == "all" || location == "" 
   end
   
   def set_location(location)
