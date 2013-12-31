@@ -20,6 +20,8 @@
   }
 }
 
+
+
 .product-list-page .category-submenu
 {
   margin-left: 0;
@@ -47,13 +49,14 @@
   border-radius: 0 0 0 0;
 }
 
-.product-list-page .category-submenu .dropdown-submenu, 
+.product-list-page .category-submenu li.dropdown-submenu, 
 .welcome-page .first-split .first-split-submenu .dropdown-submenu
 {
     border-bottom: 1px solid #E0E0E0;
     line-height: 30px;
     position: relative;
     border-radius: 0 0 0 0;
+    padding: 0 0.5em;
 }
 
 .product-list-page .category-submenu .dropdown-submenu ul, 
@@ -63,6 +66,7 @@
   border-radius: 0 8px 8px 0;
   margin-top:-2px;
 }
+
 
 .product-list-page .category-submenu .dropdown-submenu ul li, 
 .welcome-page .first-split .first-split-submenu .dropdown-submenu ul li

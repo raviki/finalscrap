@@ -1,4 +1,4 @@
-<ul class="nav nav-list bs-docs-sidenav">
+ 	<ul class="nav nav-list bs-docs-sidenav">
  		<% @categories.each do |c| %>
  			<li class="dropdown-submenu">
  				<% @temp_category = c %>				
@@ -7,47 +7,60 @@
 					<ul class="dropdown-menu"> 
 					
  					<% @pre_menu = "some_defualt" %>
- 					<% @pre_submenu = "another_default"%>
+ 					<% @pre_submenu =""%>
  					<% level = 0 %>
  					<% @temp_category.activeProducts.order("menu_parent  asc").each do |product| %>
- 						<% if product.menu_parent.split(' ').second != @pre_submenu && level == 2%>
- 						    </ul>
- 						    </li>
- 						    <% level = 1%>
-					    <%end%>
- 						<% if product.menu_parent.split(' ').first != @pre_menu && level == 1 %>
- 							</ul>
- 								</li>
- 							<% level = 0 %>
- 						<% end %>
+ 					
+ 						<% present_menu = product.menu_parent.split("/").first %>
+ 						<% present_submenu = ""%>
+ 						<%if product.menu_parent.split("/").count > 1%>
+ 							<% present_submenu = product.menu_parent.split("/").second %>
+						<% end %>				
  						
- 						<% if product.menu_parent.split(' ').first != @pre_menu && product.menu_parent && product.menu_parent != "" && level == 0%>
- 							<% level = 1 %>
-							<li class="dropdown-submenu"> <%= link_to(product.menu_parent.split(' ').first) %> 
-								<ul class="dropdown-menu"> 
+ 						<% if (present_submenu != @pre_submenu || present_menu != @pre_menu) && level == 2 %>
+ 						    </ul>
+ 						   	</li>
+ 						   	<% level = 1%>
+					    <%end%>
+					    	
+ 						<% if present_menu != @pre_menu %>
+ 							<% if  level == 1 %>
+ 								</ul>
+ 								</li>
+ 								<% level = 0 %>
+ 								
+							<% end %>
+ 								
+ 							<% if present_menu && present_menu != "" && level == 0 %>
+ 								<% level = 1 %>
+								<li class="dropdown-submenu"> <a> <%= present_menu %> </a>
+								<ul class="dropdown-menu"> 							
+							<% end %>
  						<% end %>
- 						<% if product.menu_parent.split(' ').second != @pre_submenu  && level == 2%>
- 							</ul>
- 							</li>
-						<%end%>
- 						<%if product.menu_parent.split(' ').second != @pre_submenu && product.menu_parent.split(' ').second != "" && product.menu_parent.split(' ').second != "/" && level == 1%>
+ 
+  						<%if present_submenu != @pre_submenu && present_submenu != nil && present_submenu != ""  && level == 1 %>
  							<% level = 2%>
- 							<li class="dropdown-submenu"> <%= link_to(product.menu_parent.split(' ').second) %> 
-								<ul class="dropdown-menu"> 
+ 							<li class="dropdown-submenu"><a> <%= present_submenu %> </a>
+							<ul class="dropdown-menu"> 
  						<%end%>
+ 							
  						<li><%= link_to product.name,  category_product_path(@temp_category,product), :class => "product_submenu_final" %></li>
- 						<% @pre_submenu = product.menu_parent.split(' ').second %>					
- 						<% @pre_menu = product.menu_parent.split(' ').first %>
- 					<% end %>
- 					<% if level == 2%>
- 						<% level = 1%>
- 						</ul>
- 						</li>
+ 							
+ 						<% @pre_submenu = present_submenu %>					
+ 						<% @pre_menu = present_menu %> 						
  					<%end%>
- 					<% if level == 1 %>
- 					    </ul>
- 						   </li>
+ 				
+					<% if level == 2 %>
+ 				  		<% level = 1 %>
+					  	</ul>
+ 					  	<li>
+ 					<%end%>
+ 					
+					<% if level == 1 %>
+	 				    </ul>
+					   </li>
  					<% end %>
+ 					
  					<li><%= link_to("Tools & Spares", category_path(c, :tools => true), :class => "product_submenu_final") %></li>	
  					
  					</ul>		
