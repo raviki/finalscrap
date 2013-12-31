@@ -308,7 +308,7 @@ table.cart-items-list-popup
 
 .product-show .product-info div.product-details  select#cart_item_product_id.dropdown-toggle
 {
-  width:auto;
+  max-width: 100%;
 }
 
 .product-show div.product-tools-bar

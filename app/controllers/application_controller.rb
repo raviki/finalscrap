@@ -100,12 +100,12 @@ class ApplicationController < ActionController::Base
       if cookies[:lat_lon].present?
 
       end
-      return "Hyderabad"
+      return "hyderabad"
     end 
   end
   
-  def is_home_service_available(location = "Hyderabad", user_location = current_location)
-    return user_location == location || location == "all" || location == "" || !location
+  def is_home_service_available(location = "hyderabad", user_location = current_location)
+    return user_location.downcase == location.downcase || location == "all" || location == "" || !location
   end
   
   def set_location(location)

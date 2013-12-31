@@ -14,7 +14,7 @@ class ProductVariant < ActiveRecord::Base
   end
   
   def self.served_at(location)
-    where("location = '' OR location = 'all' OR location = '#{location}'") 
+    where("location = '' OR LOWER(location) = 'all' OR LOWER(location) = '#{location.downcase}'") 
   end
   
   def display_name_with_service

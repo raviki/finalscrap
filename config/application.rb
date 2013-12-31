@@ -21,6 +21,9 @@ module Website
     # config.i18n.default_locale = :de
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     
+    
+    config.time_zone = 'Kolkata'
+    
     config.action_mailer.smtp_settings = { enable_starttls_auto: false  }
     
   end

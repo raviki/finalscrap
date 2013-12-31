@@ -20,6 +20,12 @@
 			$('#myTab a[href="#finalorder"]').tab('show');
 			return false;
 		})
+		$("#addcarttime").bind("ajax:complete", function() {
+
+			$('#myTab a[href="#payment"]').tab('show');
+			return false;
+		})
+		
 	})
 </script>
 <div class="checkout-page container">
@@ -75,28 +81,28 @@
 				<table class="span4" style="margin:0;">
 					<tr>
 					<tr>
-						<td width="15%"> <%= f.label :name %> </td>
-						<td width="85%"> <%= f.text_field :name %> </td>
+						<td width="15%"> <%= f.label :name %></td>
+						<td width="85%"> <sup style="color:red;">*</sup><%= f.text_field :name %> </td>
 					</tr>
-					<td width="15%"> <%= f.label :"Address*" %></td>
-					<td width="85%"> <%= f.text_area :address %> </td>
-					</tr>
-
-					<tr>
-						<td width="15%"> <%= f.label :city %> </td>
-						<td width="85%"> <%= f.text_field :city, value: current_location %> </td>
+					<td width="15%"> <%= f.label :"Address" %></td>
+					<td width="85%"> <sup style="color:red;">*</sup><%= f.text_area :address %> </td>
 					</tr>
 
 					<tr>
-						<td width="15%"> <%= f.label :pin %> </td>
-						<td width="85%"> <%= f.text_field :pin %> </td>
+						<td width="15%"> <%= f.label :city %></td>
+						<td width="85%"> <sup style="color:red;">*</sup><%= f.text_field :city, value: current_location %> </td>
+					</tr>
+
+					<tr>
+						<td width="15%"> <%= f.label :pin %></td>
+						<td width="85%"> <sup style="color:red;">*</sup><%= f.text_field :pin %> </td>
 					</tr>
 					<tr>
 						<td width="15%"> <%= f.label :phone %></td>
-						<td width="85%"><%= f.text_field :phone, value: @user.mobile_number %></td>
+						<td width="85%"><sup style="color:red;">*</sup><%= f.text_field :phone, value: @user.mobile_number %></td>
 					</tr>
 					<tr>
-						<td> <%= f.submit "Save Address",:class =>"btn btn-info"%> </td>
+						<td> <%= f.submit "Save And Select",:class =>"btn btn-info"%> </td>
 					</tr>
 					<% end %>
 				</table>
@@ -114,8 +120,7 @@
 						<td class="span4"><%= address.city%>, <%=address.pin%></td>
 					</tr>
 
-					<tr>
-						
+					<tr>					
 						<td class="span2"><%= form_for(@cart,remote: true,:html =>{:id =>"address_select"}) do |f|%>
 						<%= f.hidden_field("address_id",:value => address.id)%>
 						<%= f.submit "Select Address",:class =>"btn btn-link"%>
@@ -130,8 +135,12 @@
 
 			<%= render :template => 'cart_items/index' %>
 			
-			<%= link_to "Checkout", "#payment",:class=>"btn btn-info",:style =>"float:center",:onclick => "myfunction3()"%>
-		
+			<%= form_for(@cart,remote: true,:html =>{:id =>"addcarttime"}) do |f| %>
+				<%= f.label "Appointment Time"%>
+				<%= f.datetime_select(:appointment_time, :default => { :hour => 23, :minute => 59 }) %>
+				<%= f.submit "Checkout",:class=>"btn btn-info" %>
+			<% end %>
+				
 
 		</div>
 		<div class="tab-pane fade" id="payment">
