@@ -34,71 +34,86 @@
 						<tr>
 							<td class=" product-details-value span6"> <%= simple_format(@product.description) %> </td>
 						</tr>
+						
+						<tr>							
+							<td class=" product-details-value span6">Home service Available only in <%= I18n.t(:service_available_at) %>. Spares/Tools are delievered to <span style="color:blue">Any where in India.</div></td>	
+						</tr>
 
 						<%=form_for(:cart_item,url: cart_items_path, remote:true, :html => {id: "productaddcart"}) do |f|%>
 
 						<% if @product.nature == ProductNature(:TOOLnTASK) %>
 
-						<tr>
-							<td class="product-details-value span4"> <%= check_box_tag 'include_service' %>  Include Home Service </td>
-						</tr>
+							<% if is_home_service_available %>
+							<tr>
+								<td class="product-details-value span4"> <%= check_box_tag 'include_service' %>  Include Home Service </td>
+							</tr>
+							<% end %>
 
-						<tr>
+						  <tr>
 							<td class="product-details-value span6">
 							<div id="without_service">
-								<% if @product.product_variants.size > 1 %>
+								<% if @served_product_variants.size > 1 %>
 										<b><%= @product.variant_name ? @product.variant_name : "Model" %>:</b> 
-										<%= select_tag "cart_item[product_id]", options_from_collection_for_select(@product.product_variants.order("id  asc"), "id", "display_name"), :class => "dropdown-toggle" %> 
+										<%= select_tag "cart_item[product_id]", options_from_collection_for_select(@served_product_variants.order("id  asc"), "id", "display_name"), :class => "dropdown-toggle" %> 
 								<% else %>
 								<p>
-									<% if @product.product_variants.first.price.to_i > 0 %>
-									<FONT SIZE="3.5em;"><del>&#2352;</del></FONT SIZE></FONT> <%= @product.product_variants.first.price%>
+									
+									<% if @served_product_variants.size == 0 %>
+								 		Product is not served in <%= current_location %>	
+									<% elsif @served_product_variants.first.price.to_i > 0 %>
+									<FONT SIZE="3.5em;"><del>&#2352;</del></FONT SIZE></FONT> <%= @served_product_variants.first.price%>
+									<%= f.hidden_field :product_id, value:@served_product_variants.first.id%>
 									<% else %>
 									Price - Upon Inspection
+									<%= f.hidden_field :product_id, value:@served_product_variants.first.id%>
 									<% end %>
-									<%= f.hidden_field :product_id, value:@product.product_variants.first.id%>
+									
 								</p>
 								<% end %>
 								</div>
 
 								<div id="with_service">
-									<% if @product.product_variants.size > 1 %>
+									<% if @served_product_variants.size > 1 %>
 										<b><%= @product.variant_name ? @product.variant_name : "Model" %>:</b> 
-										<%= select_tag "product_id_with_service", options_from_collection_for_select(@product.product_variants.order("id  asc"), "id", "display_name_with_service"), :class => "dropdown-toggle" %> 		
+										<%= select_tag "product_id_with_service", options_from_collection_for_select(@served_product_variants.order("id  asc"), "id", "display_name_with_service"), :class => "dropdown-toggle" %> 		
 									<% else %>
 									<p>
-										<% if @product.product_variants.first.price.to_i > 0 %>
-										<FONT SIZE="3.5em;"><del>&#2352;</del></FONT SIZE></FONT> <%= @product.product_variants.first.price %> + 
-												Service Cost: <FONT SIZE="3.5em;"><del>&#2352;</del></FONT SIZE></FONT> <%= (@product.product_variants.first.service_price.to_i > 0) ? @product.product_variants.first.service_price.to_s : "0" %>
+										<% if @served_product_variants.size == 0 %>
+								 			Product is not served in <%= current_location %>	
+										<% elsif @served_product_variants.first.price.to_i > 0 %>
+										<FONT SIZE="3.5em;"><del>&#2352;</del></FONT SIZE></FONT> <%= @served_product_variants.first.price %> + 
+												Service Cost: <FONT SIZE="3.5em;"><del>&#2352;</del></FONT SIZE></FONT> <%= (@served_product_variants.first.service_price.to_i > 0) ? @product.product_variants.first.service_price.to_s : "0" %>
+											<%= f.hidden_field :product_id_with_service, value:@served_product_variants.first.id%>
 										<% else %>
 										Price - Upon Inspection
+										<%= f.hidden_field :product_id_with_service, value:@served_product_variants.first.id%>
 										<% end %>
-										<%= f.hidden_field :product_id, value:@product.product_variants.first.id%>
+										
 									</p>
 									<% end %>
 								</div>
 								
 
 							</td>
-						</tr>
+						    b</tr>
 
-						<% elsif @product.product_variants.size > 1 %>
+						<% elsif @served_product_variants.size > 1 %>
 						<% if @product.nature == ProductNature(:TASKwBRAND) %>
 						<tr>
-							<td class="product-details-value span4"><b>Brand:</b> <%= select("listing_brand","id", @product.product_variants.select("brand").group(:brand).collect {|p| [ p.brand, p.brand ] }, { prompt: "Select a Brand" },class:"select optional dropdown-toggle")%> </td>
+							<td class="product-details-value span4"><b>Brand:</b> <%= select("listing_brand","id", @served_product_variants.select("brand").group(:brand).collect {|p| [ p.brand, p.brand ] }, { prompt: "Select a Brand" },class:"select optional dropdown-toggle")%> </td>
 						</tr>
 
 						<tr>
-							<td class="product-details-value span6"> <% @product.product_variants.select("brand").group(:brand).each do |product_variant_group| %>
+							<td class="product-details-value span6"> <% @served_product_variants.select("brand").group(:brand).each do |product_variant_group| %>
 							<div style="display: none;" data-show-for=<%= product_variant_group.brand%>>
 								<b><%= @product.variant_name ? @product.variant_name : "Sizes" %>:</b>
-								<%= select_tag "cart_item[product_id]", options_from_collection_for_select(@product.product_variants.where(:brand => product_variant_group.brand), "id", "display_name"), :class => "dropdown-toggle" %>
+								<%= select_tag "cart_item[product_id]", options_from_collection_for_select(@served_product_variants.where(:brand => product_variant_group.brand), "id", "display_name"), :class => "dropdown-toggle" %>
 							</div> <%end%> </td>
 						</tr>
 						<% else %>
 						<tr>
 
-							<td class="product-details-value span6"><b><%= @product.variant_name ? @product.variant_name : "Sizes" %>:</b> <%= select_tag "cart_item[product_id]", options_from_collection_for_select(@product.product_variants.order("id  asc"), "id", "display_name"), :class => "dropdown-toggle" %> </td>
+							<td class="product-details-value span6"><b><%= @product.variant_name ? @product.variant_name : "Sizes" %>:</b> <%= select_tag "cart_item[product_id]", options_from_collection_for_select(@served_product_variants.order("id  asc"), "id", "display_name"), :class => "dropdown-toggle" %> </td>
 						</tr>
 						<% end %>
 
@@ -106,20 +121,28 @@
 						<tr>
 							<td class="product-details-value span6">
 							<p>
-								<% if @product.product_variants.first.price.to_i > 0 %>
-								<FONT SIZE="3.5em;"><del>&#2352;</del></FONT SIZE></FONT> <%= @product.product_variants.first.price%>
+								<% if @served_product_variants.size == 0 %>
+								 	Product is not served in <%= current_location %>	
+								<% elsif @served_product_variants.first.price.to_i > 0 %>
+								<FONT SIZE="3.5em;"><del>&#2352;</del></FONT SIZE></FONT> <%= @served_product_variants.first.price%>
+								<%= f.hidden_field :product_id, value:@served_product_variants.first.id%> 
 								<% else %>
 								Price - Upon Inspection
+								<%= f.hidden_field :product_id, value:@served_product_variants.first.id%> 
 								<% end %>
-							</p> <%= f.hidden_field :product_id, value:@product.product_variants.first.id%> </td>
+							</p> 
+							</td>
 						</tr>
 						<% end %>
 
 						<tr>
 							<td class="product-details-value span6">
 							<div class="form-horizontal">
-								<%= f.submit "Add to Cart", {class: "btn btn-info", id:"productaddcart"}%>
+								<% if @served_product_variants.size > 0 %>
+									<%= f.submit "Add to Cart", {class: "btn btn-info", id:"productaddcart"}%>
+								<% end %>
 							</div></td>
+							
 						</tr>
 						<%end%>
 					</tbody>

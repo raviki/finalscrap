@@ -64,11 +64,19 @@ class CategoriesController < ApplicationController
   def edit
   end
   
-  def standard_search
-    if params[:text].present? 
-       @category = Category.standard_search(params[:text])  
-    
+  def update_location
+    store_location()
+    if params[:location].present?
+      set_location(params[:location])
+      update_cart_items
     end
+    redirect_back_or(root_url) 
+  end
+  
+  def standard_search        
+    if params[:text].present? 
+       @category = Category.standard_search(params[:text])      
+    end    
   end
 
   # POST /categories

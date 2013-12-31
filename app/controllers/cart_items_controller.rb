@@ -26,7 +26,7 @@ class CartItemsController < ApplicationController
   def create
     @cart = current_cart
     if params[:include_service].present? 
-      @product = ProductVariant.find(params[:product_id_with_service]) 
+      @product = ProductVariant.find(params[:cart_item][:product_id_with_service]) 
     else
        @product = ProductVariant.find(params[:cart_item][:product_id]) 
     end

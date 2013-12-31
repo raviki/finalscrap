@@ -34,6 +34,7 @@ class AddressesController < ApplicationController
       if @address.save
         if @cart
           @cart.update(:address => @address.id)
+          update_cart_items
         end
         format.html { redirect_back_or(@address, notice: 'Address was successfully created.') }
         format.json { render action: 'show', status: :created, location: @address }
@@ -49,6 +50,7 @@ class AddressesController < ApplicationController
   def update
     respond_to do |format|
       if @address.update(address_params)
+        update_cart_items
         format.html { redirect_to @address, notice: 'Address was successfully updated.' }
         format.json { head :no_content }
       else

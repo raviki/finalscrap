@@ -24,6 +24,7 @@ gem "omniauth-facebook", "~> 1.4.1"
 gem 'omniauth-google-oauth2'
 gem "breadcrumbs_on_rails"
 gem 'thin'
+gem 'geocoder'
 # end 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

@@ -3,6 +3,7 @@ has_many :carts
 validates :address, :presence => true
 validates :name, :presence => true
 validates :pin, :presence => true
+validates :city, :presence => true
 validates :phone, :presence => true
 validates :user_id, :presence => true
 

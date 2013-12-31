@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  helper_method :current_user
+  helper_method :current_user, :current_location, :is_home_service_available, :current_cart
   include SessionsHelper
   add_breadcrumb "Home", :root_path
 
@@ -92,6 +92,25 @@ class ApplicationController < ActionController::Base
 
     return @cart
   end  
+  
+  def current_location
+    if cookies.permanent[:current_location_temp]      
+      return cookies.permanent[:current_location_temp]
+    else
+      if cookies[:lat_lon].present?
+
+      end
+      return "Hyderabad"
+    end 
+  end
+  
+  def is_home_service_available(location = "Hyderabad", user_location = current_location)
+    return user_location == location || location == "all" || location == "" || !location
+  end
+  
+  def set_location(location)
+    cookies.permanent[:current_location_temp] = location 
+  end 
 
   def current_user
     rem_token_cookie = cookies[:remember_token]
@@ -112,6 +131,18 @@ class ApplicationController < ActionController::Base
   def update_cart_items
     @cart = current_cart
     @cart_items = @cart.cart_items
+    
+    @cart_items.each do |cart_item|
+      if is_home_service_available(cart_item.product_variant.location)
+        if cart_item.include_service
+          cart_item.update_columns(price: (cart_item.product_variant.price + cart_item.product_variant.service_price))
+        else
+          cart_item.update_columns(price: cart_item.product_variant.price)
+        end
+      else
+        cart_item.update_columns(price: 0)
+      end
+    end
   end
 
 end

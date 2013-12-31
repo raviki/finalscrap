@@ -5,8 +5,10 @@
 		<% end %>
 	</div>
 	<div class="first_split span3">
+		<%= render :template => 'order_requests/new' %>
+
 	<% if !@category %>
-		<div class="category-submenu span3" style="margin-left:0;">		
+		<div class="category-submenu" style="margin-left:0;">		
 		<% if @categories.size > 0 %>
  			<div class="bs-docs-sidebar">
     			<%= render :partial => 'shared/items_sidebar' %>
@@ -14,12 +16,9 @@
     	<% end %>    
 		</div>
 	<% end %>
-	<% if @show_request == true  %>
-		<%= render :template => 'order_requests/new' %>
-	<% end %>
 	
 		<p class="center" style="color:#21B6A8;">Available For</p>
-    	<div class="logo-images span5 center">
+    	<div class="logo-images center">
     	<% Category.all.each do |temp| %>
     		<% if temp.image && temp.image != ""%>
     			<%= link_to(category_path(temp)) do %>
@@ -34,7 +33,7 @@
 		<% if @products.size < 1 %>
 			<h5 class="offset4" style="margin-top:3em;"> No Tasks to list </h5>  
 		<% end %>
-		
+		<% @location = current_location %>
 		<ul class="thumbnails">
 			<% @products.each do |product| %>
 			<% if !@category %>
@@ -53,32 +52,39 @@
 					<div class="caption">
 						<%= simple_format(product.name,:class=>:name)%>
 						<% @item = product %>
-						<% if @item.product_variants.first.price.to_i > 0  || @item.nature != ProductNature(:TASK)%>
-							<%= simple_format("<del>&#2352;</del> #{@item.product_variants.first.price}",:class =>:pricehilit)%>
-						<% else %>
+						<% if @item.product_variants.served_at(@location).size > 0 %>
+						  <% if @item.product_variants.served_at(@location).first.price.to_i > 0  || @item.nature != ProductNature(:TASK)%>
+							<%= simple_format("<del>&#2352;</del> #{@item.product_variants.served_at(@location).first.price}",:class =>:pricehilit)%>
+						  <% else %>
 							<p class="pricehilit">On Site</p>
+						  <% end %>
+						<% else %>
+							<p class="pricehilit">Not Served at <%= @location %></p>
 						<% end %>
 					</div>
 				<% end %>			
 					<div class="product-info">
 						<%=form_for(:cart_item,url: cart_items_path, :action => :create) do |f|%>
 			
-							<% if @item.product_variants.size > 1 %>
+							<% if @item.product_variants.served_at(@location).size > 1 %>
 							<div class="product-size">
 							<tr>
 								<td class="span1"><b><%= @item.variant_name ? @item.variant_name : "Sizes" %>:</b></td>
 								<td class="span2 center form-horizontal">								
-									<%= select_tag "cart_item[product_id]", options_from_collection_for_select(@item.product_variants.order("brand  asc"), "id", "display_name") %>
+									<%= select_tag "cart_item[product_id]", options_from_collection_for_select(@item.product_variants.served_at(@location).order("brand  asc"), "id", "display_name") %>
 								</td>
 							</tr>
 							</div>
-							<% else %>
-								<%= hidden_field_tag "cart_item[product_id]", @item.product_variants.first.id%>			
+							
+							<% elsif @item.product_variants.served_at(@location).size > 0 %>
+								<%= hidden_field_tag "cart_item[product_id]", @item.product_variants.served_at(@location).first.id%>			
 							<% end %>
 						
 							<div class="product-quantity center form-horizontal">
-								<%=form_for(:cart_item,url: cart_items_path, :action => :create) do |f|%>				
-									<%= f.submit "Quick Add", {class: "btn btn-info", id:"addcart"}%>
+								<% if @item.product_variants.served_at(@location).size > 0 %>
+									<%=form_for(:cart_item,url: cart_items_path, :action => :create) do |f|%>				
+										<%= f.submit "Quick Add", {class: "btn btn-info", id:"addcart"}%>
+									<% end %>
 								<% end %>
 							</div>
 						<%end%>

@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  
+  include ApplicationHelper
 
   # GET /products
   # GET /products.json
@@ -47,6 +47,7 @@ class ProductsController < ApplicationController
       end
       @product.updateViewCount
       @cart_items = current_cart.cart_items
+      @served_product_variants = @product.product_variants.served_at(current_location)
     end
   end
 

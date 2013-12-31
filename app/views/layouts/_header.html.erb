@@ -5,10 +5,33 @@
           $("#myModal").modal();
           return false;
         })	
+        $("#chagelocation").bind("ajax:complete",function() {	
+          $("#myLocation").modal();
+          return false;
+        })
       })
 </script>
+
+<%unless @lat_long%>
+<script type="text/javascript" charset="UTF-8">
+window.onload =function getLocation()
+  {
+  	if (navigator.geolocation)
+    {
+    	navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  	else{x.innerHTML="Geolocation is not supported by this browser.";}
+  	}
+	function showPosition(position)
+  	{
+  	var coke =  position.coords.latitude+"|"+position.coords.longitude
+  	document.cookie = "lat_lon="+ encodeURI(coke);
+  	}
+</script>
+<%end%>
 	
 	<div class="header-block navbar">
+		<div class="location"><%=current_location%> | <%= link_to "Change City", carts_path, :remote => true, :method=>:get , :id => "chagelocation" %></div>
 		<div class="header-bar navbar-inner container">
 			
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>

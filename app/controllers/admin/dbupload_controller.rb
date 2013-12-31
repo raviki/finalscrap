@@ -27,9 +27,12 @@ class Admin::DbuploadController < AdminController
           end
         end
         if (@product  || (row['price'] && row['price'] != "" && @insert_status))
-          
+          @location = row['location']
+          if row['location'] && row['location'] == ""
+            @location = "all"
+          end
           @productVariant = ProductVariant.find_or_create_by(:product_id =>  @product? @product.id: @pre_product.id,
-                              :value => row['value'])              
+                              :value => row['value'], :location => @location)              
           @productVariant.save  
           @productVariant.update_attributes(:price => ((row['price'].to_f > 0)?  row['price'].to_f : 0))
         end

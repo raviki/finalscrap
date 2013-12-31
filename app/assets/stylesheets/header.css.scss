@@ -9,10 +9,17 @@ div.header-block
   -webkit-box-shadow: 1px 1px 1px #b2b2b2;
 }
 
+.header-block .location
+{
+  text-align: right;
+  color: black;
+  margin-right: 3.5em;
+}
+
 .header-bar
 {
 	background-color: #FFFFFF;
-  padding: 0.5em 0 0.5em 0;
+  padding: 0;
   font-family: "Open Sans";
  
 		

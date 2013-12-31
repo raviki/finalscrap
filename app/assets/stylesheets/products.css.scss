@@ -28,6 +28,19 @@
   border-radius: 0 0 0 0;
 }
 
+
+.product-list-page .first_split .logo-images  img
+{
+    width: 3em;
+    height:3em;
+    border: 2px solid #FFFFFF;
+}
+
+.product-list-page .first_split .logo-images  img:hover
+{
+    border: 2px solid #996600;
+}
+
 .product-list-page div.products-list
 {
   margin:0;
@@ -94,6 +107,7 @@
 .product-list-page .product-each .caption p.name
 {
   text-align: center;
+  height: 2em;
   margin:0;
   white-space: nowrap;
   overflow: hidden;
@@ -103,7 +117,7 @@
 .product-list-page .product-each .caption p.pricehilit
 {
   text-align:right;
-  font-size:1em; 
+  font-size:0.75em; 
   margin:0;
 }
 

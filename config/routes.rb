@@ -61,7 +61,7 @@ Website::Application.routes.draw do
       get "products/:id/delete_tool_map" => "products#delete_tool_map"
       get "categories/:id/toggle_active" => "categories#toggle_active"
       put "categories/:id/new_product_map" => "categories#new_product_map"
-      get "categories/:id/delete_product_map" => "categories#delete_product_map"    
+      get "categories/:id/delete_product_map" => "categories#delete_product_map"   
     end 
     
       
@@ -106,8 +106,10 @@ Website::Application.routes.draw do
    
   end 
   
+  put "update_location" => "categories#update_location"
   get ":id" => "categories#show"
   resources :categories , :path => '' do
+     
     resources :products, :path=>''  
   end 
   resources :products

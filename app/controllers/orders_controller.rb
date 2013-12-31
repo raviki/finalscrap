@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
   def show
     require_user()
     add_breadcrumb "Orders", orders_path
-    add_breadcrumb @order.id, order_path
+    add_breadcrumb @order.display_id, order_path
   end
 
   # GET /orders/new
@@ -37,17 +37,43 @@ class OrdersController < ApplicationController
     @customer = CustomerManagement.find(order_params[:customer_id])
     if @customer.cart.address_id
       if @customer.cart_items.length > 0 
-        @order = Order.find_or_create_by(:customer_id => order_params[:customer_id],:active => true)
-        @customer.cart_items.each do |cart_item|      
-          @order_to_product = OrderToProduct.where(:product_id => cart_item.product_id, :order_id => @order.id).first_or_create
-          @order_to_product.update_price_quantity(cart_item.unit_price, cart_item.quantity,cart_item.include_service)
-          cart_item.delete       
+        location_same = false
+        if @customer.cart.address.city == current_location
+          location_same = true  
         end
-        @order.save
-        @order.update_columns(address_id: @customer.cart.address_id, customer_id: @customer.id, active: true, additional_info: order_params[:additional_info])
-        @customer.cart.delete      
-        @customer.send_order_confirmation_mail(@order)
-        redirect_to action: 'show', id: @order
+        
+        serve_all = true
+        
+        if !location_same
+          @extra_cart_items = ""
+          @customer.cart_items.each do |cart_item|  
+            if !((!cart_item.product_variant.location) || cart_item.product_variant.location == "")
+              @temp_item = ProductVariant.where(:product_id => cart_item.product_variant.product_id, :location => @customer.cart.address.city, :value => cart_item.product_variant.value).first
+              if @temp_item
+                cart_item.update_columns(product_id: @temp_item.id, price: (@temp_item.price + (cart_item.include_service ? @temp_item.service_price : 0)))  
+              else
+                @extra_cart_items = @extra_cart_items + " & " + cart_item.product.name
+                serve_all = false
+              end 
+            end 
+          end    
+        end
+        
+        if location_same || serve_all
+          @order = Order.find_or_create_by(:customer_id => order_params[:customer_id],:active => true)
+          @customer.cart_items.each do |cart_item|      
+            @order_to_product = OrderToProduct.where(:product_id => cart_item.product_id, :order_id => @order.id).first_or_create
+            @order_to_product.update_price_quantity(cart_item.unit_price, cart_item.quantity,cart_item.include_service)
+            cart_item.delete       
+          end
+          @order.save
+          @order.update_columns(address_id: @customer.cart.address_id, customer_id: @customer.id, active: true, additional_info: order_params[:additional_info])
+          @customer.cart.delete      
+          @customer.send_order_confirmation_mail(@order)
+          redirect_to action: 'show', id: @order
+        else
+          redirect_back_or(root_url, notice: @extra_cart_items+" can not be served at #{@customer.cart.address.city}")
+        end 
       else
         redirect_back_or(root_url, notice: 'Empty Cart.')
       end

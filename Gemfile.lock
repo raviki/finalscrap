@@ -48,10 +48,12 @@ GEM
     daemons (1.1.9)
     erubis (2.7.0)
     eventmachine (1.0.3)
+    eventmachine (1.0.3-x86-mingw32)
     execjs (2.0.1)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     fssm (0.2.10)
+    geocoder (1.1.9)
     hashie (2.0.5)
     hike (1.2.3)
     httpauth (0.2.0)
@@ -162,6 +164,7 @@ DEPENDENCIES
   breadcrumbs_on_rails
   coffee-rails (~> 4.0.0)
   compass
+  geocoder
   jbuilder (~> 1.2)
   jquery-rails
   omniauth (~> 1.1.1)

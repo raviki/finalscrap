@@ -170,18 +170,6 @@ html body{
 }
 
 
-.welcome-page .first-split .logo-images img
-{
-		width: 3em;
-		height:3em;
-		border: 2px solid #FFFFFF;
-}
-
-.welcome-page .first-split .logo-images img:hover
-{
-		border: 2px solid #996600;
-}
-
 @media (max-width: 512px) {
 
 	.welcome-page .first-split .warranty-message h5
@@ -445,4 +433,9 @@ html body{
 	padding-left: 3.5em;
 	padding-right: 3.5em;
 	line-height: 1.75em;
+}
+
+div#myLocation.modal form.prepend-6
+{
+	margin-bottom:0;
 }

@@ -27,6 +27,11 @@ class Product < ActiveRecord::Base
   validates :description,           :presence => true
   before_save :create_permalink
  
+  
+  def user_location
+    return ApplicationController.helpers.current_location
+  end
+  
   def toggle_active
     if self.active == true
       self.active = false

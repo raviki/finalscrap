@@ -2,6 +2,7 @@
   <thead>
     <tr>    
       <th>Value</th>
+      <th>Location Serviced</th>
       <th>Price</th>
       <th>Home Service Prices</th>
       <% if @product.nature == ProductNature(:TASKwBRAND) %>
@@ -16,6 +17,7 @@
     <% @product_variants.each do |product_variant| %>
       <tr>
         <td><%= product_variant.value %></td>
+        <td><%= product_variant.location %></td>
         <td><%= product_variant.price %></td>
         <td><%= product_variant.service_price %></td> 
         <% if @product.nature == ProductNature(:TASKwBRAND) %>

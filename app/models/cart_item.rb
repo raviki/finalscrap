@@ -12,10 +12,7 @@ class CartItem < ActiveRecord::Base
   end  
   
   def unit_price
-    return self.price + ((self.include_service == true)? product_variant.service_price: 0)
+    return self.price 
   end
   
-  def unit_price_str
-    return self.price.to_s + (((self.include_service == true) && (product_variant.service_price > 0))? " + "+product_variant.service_price.to_s: "")
-  end
 end
