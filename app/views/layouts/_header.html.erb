@@ -25,7 +25,7 @@ window.onload =function getLocation()
 	function showPosition(position)
   	{
   	var coke =  position.coords.latitude+"|"+position.coords.longitude
-  	document.cookie = "lat_lon="+ encodeURI(coke);
+  	document.cookie = "lat_lon="+ coke;
   	}
 </script>
 <%end%>

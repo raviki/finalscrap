@@ -4,6 +4,18 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
+    if cookies[:lat_lon]
+      lat_lng = cookies[:lat_lon]
+      lat = lat_lng.split("|").first.to_f
+      lng = lat_lng.split("|").second.to_f
+      puts "lat long #{lat}  #{lng}" 
+      @location = Geocoder.search("#{lat},#{lng}")
+ 
+      if @location
+        cookies.permanent[:current_location_city] = @location[0].city
+      end
+    end
+    
     if params[:key].present?
       if params[:select].present?
         redirect_to :action => "show", :id => params[:select], :key => params[:key]

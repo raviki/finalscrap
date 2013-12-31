@@ -94,14 +94,10 @@ class ApplicationController < ActionController::Base
   end  
   
   def current_location
-    if cookies.permanent[:current_location_temp]      
-      return cookies.permanent[:current_location_temp]
-    else
-      if cookies[:lat_lon].present?
-
-      end
-      return "hyderabad"
-    end 
+    if cookies.permanent[:current_location_city]      
+      return cookies.permanent[:current_location_city]
+    end
+    return "default hyderabad"  
   end
   
   def is_home_service_available(location = "hyderabad", user_location = current_location)
@@ -112,7 +108,7 @@ class ApplicationController < ActionController::Base
   end
   
   def set_location(location)
-    cookies.permanent[:current_location_temp] = location 
+    cookies.permanent[:current_location_city] = location 
   end 
 
   def current_user
