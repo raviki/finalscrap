@@ -25,7 +25,7 @@ gem 'omniauth-google-oauth2'
 gem "breadcrumbs_on_rails"
 gem 'thin'
 gem 'geocoder'
-gem "JSON"
+gem "json"
 # end 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

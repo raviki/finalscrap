@@ -167,6 +167,7 @@ DEPENDENCIES
   geocoder
   jbuilder (~> 1.2)
   jquery-rails
+  json
   omniauth (~> 1.1.1)
   omniauth-facebook (~> 1.4.1)
   omniauth-google-oauth2
