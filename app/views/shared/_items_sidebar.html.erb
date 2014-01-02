@@ -1,5 +1,104 @@
+ 	
+ 	<div class="visible-phone visible-tablet">
+ 		<div class="accordion">
+ 			<div class="accordion-group">
+ 				<%count = 1%>
+ 				<%@categories.each do |category|%>
+ 					<%@temp_category = category%>
+ 					<div class="accordion-heading">
+ 						<%string = "#" + category.name.gsub(/\s+/,"")%>
+ 						
+ 						<%=link_to category.name,string, {:class => "accordion-toggle collapsed", "data-toggle" => "collapse" }%>
+ 						<% if @temp_category.activeProducts.size > 0 %>
+ 							
+ 							<div id="<%=category.name.gsub(/\s+,""/)%>" class="accordion-body collapse">
+ 								<div class="accordion-inner">
+ 									<% @pre_menu = "default"%>
+ 									<% @pre_submenu = ""%>
+ 									<% level = 0%>
+ 									<%countl1 = 0%>
+ 									<%countl2 = 0%>
+ 									<%@temp_category.activeProducts.order("menu_parent asc").each do |product| %>
+ 										
+ 										<%present_menu =""%>
+ 										<%present_submenu =""%>						
+ 										<%if product.menu_parent%>
+ 											<% present_menu = product.menu_parent.split("/").first %>
+ 											<%if product.menu_parent.split("/").count > 1%>
+ 												<% present_submenu = product.menu_parent.split("/").second %>
+											<%end%>
+										<%end%>
+										
+										<% if (present_submenu != @pre_submenu || present_menu != @pre_menu) && level == 2 %>
+ 						    					</div>
+ 						   						</div>
+ 						   						</div>
+ 						   						<% level = 1%>
+					    				<%end%>
+					    				<% if present_menu != @pre_menu %>
+ 											<% if  level == 1 %>
+ 												</div>
+ 												</div>
+ 												</div>
+ 												<% level = 0 %>
+											<%end%>
+ 								
+ 											<% if present_menu && present_menu != "" && level == 0 %>
+ 												<% level = 1 %>
+ 												<%countl1 = countl1 + 1%>
+												<div class="accordion-heading">
+												<% div_id= present_menu.gsub(/\s+/,"")+countl1.to_s%>  								
+												<%idstring =  "#"+present_menu.gsub(/\s+/,"")+countl1.to_s %>
+												<%=link_to present_menu,idstring, {:class => "accordion-toggle collapsed", "data-toggle" => "collapse"}%>
+												<div id="<%=div_id%>" class= "accordion-body collapse"%>
+													<div class="accordion-inner">
+											<%end%>
+										<%end%>
+										
+										<%if present_submenu != @pre_submenu && present_submenu != nil && present_submenu != ""  && level == 1 %>
+ 												<% level = 2%>
+ 												<%countl2 = countl2 + 1%>
+ 												<div class="accordion-heading"> 
+ 												<% sub_divid = present_submenu.gsub(/\s+/,"")+countl2.to_s%>
+ 												<%subidstring =  "#"+present_submenu.gsub(/\s+/,"")+countl2.to_s%>
+ 												<%=link_to present_submenu,subidstring, :class => "accordion-toggle collapsed"%> 
+ 												<div id="<%=sub_divid%>" class="accordion-body collapse"> 
+												<div class="accordion-inner"> 
+ 										<%end%>
+ 												
+ 										<%= link_to product.name,  category_product_path(@temp_category,product), {:class => "product_submenu_final", "data-toggle" => "collapse"} %>
+ 							
+ 										<% @pre_submenu = present_submenu %>					
+ 										<% @pre_menu = present_menu %> 
+ 					
+ 									<%end%>
+ 									<% if level == 2 %>
+ 				  						<% level = 1 %>
+					  						</div>
+ 					  						</div>
+ 					  						</div>
+ 									<%end%>
+ 					
+								<% if level == 1 %>
+	 				   				 </div>
+					   				 </div>
+					   				 </div>
+ 								<% end %>
+ 							
+ 							</div>
+ 							</div>
+ 						<%end%>
+ 					</div>	
+ 				<%end%>
+ 			</div>
+ 		</div>
+ 	</div>
+ 	
+ 	
  	<ul class="nav nav-list bs-docs-sidenav">
+ 		
  		<% @categories.each do |c| %>
+ 		
  			<li class="dropdown-submenu">
  				<% @temp_category = c %>				
  				<%= link_to c.name, category_path(c), :class => "dropdown-toggle", :data => { :toggle => "dropdown" } %>
@@ -37,14 +136,14 @@
  								
  							<% if present_menu && present_menu != "" && level == 0 %>
  								<% level = 1 %>
-								<li class="dropdown-submenu"> <a> <%= present_menu %> </a>
+								<li class="dropdown-submenu"> <a> <%= link_to(present_menu) %> </a>
 								<ul class="dropdown-menu"> 							
 							<% end %>
  						<% end %>
  
   						<%if present_submenu != @pre_submenu && present_submenu != nil && present_submenu != ""  && level == 1 %>
  							<% level = 2%>
- 							<li class="dropdown-submenu"><a> <%= present_submenu %> </a>
+ 							<li class="dropdown-submenu"><a> <%= link_to(present_submenu) %> </a>
 							<ul class="dropdown-menu"> 
  						<%end%>
  							
@@ -70,6 +169,7 @@
  					</ul>		
  				<% end %>		
  			</li> 							
- 		<% end %> 		
+ 		<% end %> 
+ 			
 	</ul> 
 
