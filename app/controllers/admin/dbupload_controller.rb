@@ -13,7 +13,7 @@ class Admin::DbuploadController < AdminController
           :active => row['active'],
           :nature => row['nature'],
           :video => row['video'],
-          :variant_name => row['variant_name'],
+          :variant_matric => row['variant_matric'],
           :menu_parent => row['menu_parent'],
           :how2fix => row['how2fix'])
           @product.save

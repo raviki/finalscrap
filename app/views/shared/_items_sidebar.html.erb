@@ -19,7 +19,7 @@
  									<% level = 0%>
  									<%countl1 = 0%>
  									<%countl2 = 0%>
- 									<%@temp_category.activeProducts.order("menu_parent asc").each do |product| %>
+ 									<%@temp_category.activeProducts.order("menu_parent asc, name asc").each do |product| %>
  										
  										<%present_menu =""%>
  										<%present_submenu =""%>						
@@ -109,7 +109,7 @@
  					<% @pre_menu = "some_defualt" %>
  					<% @pre_submenu =""%>
  					<% level = 0 %>
- 					<% @temp_category.activeProducts.order("menu_parent  asc").each do |product| %>
+ 					<% @temp_category.activeProducts.order("menu_parent  asc, name asc").each do |product| %>
  					
  						<% present_menu = "" %>
  						<% present_submenu = "" %>
