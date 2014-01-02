@@ -7,11 +7,11 @@
  					<%@temp_category = category%>
  					<div class="accordion-heading">
  						<%string = "#" + category.name.gsub(/\s+/,"")%>
- 						
+ 						<%div_str = category.name.gsub(/\s+/,"")%>
  						<%=link_to category.name,string, {:class => "accordion-toggle collapsed", "data-toggle" => "collapse" }%>
  						<% if @temp_category.activeProducts.size > 0 %>
  							
- 							<div id="<%=category.name.gsub(/\s+,""/)%>" class="accordion-body collapse">
+ 							<div id="<%=div_str%>" class="accordion-body collapse">
  								<div class="accordion-inner">
  									<% @pre_menu = "default"%>
  									<% @pre_submenu = ""%>
