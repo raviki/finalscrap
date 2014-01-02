@@ -69,7 +69,7 @@
 							<% if @item.product_variants.served_at(@location).size > 1 %>
 							<div class="product-size">
 							<tr>
-								<td class="span1"><b><%= @item.variant_name ? @item.variant_name : "Sizes" %>:</b></td>
+								<td class="span1"><b><%= @item.variant_matric ? @item.variant_matric : "Sizes" %>:</b></td>
 								<td class="span2 center form-horizontal">								
 									<%= select_tag "cart_item[product_id]", options_from_collection_for_select(@item.product_variants.served_at(@location).order("brand  asc"), "id", "display_name") %>
 								</td>

@@ -53,7 +53,7 @@
 							<td class="product-details-value span6">
 							<div id="without_service">
 								<% if @served_product_variants.size > 1 %>
-										<b><%= @product.variant_name ? @product.variant_name : "Model" %>:</b> 
+										<b><%= @product.variant_matric ? @product.variant_matric : "Model" %>:</b> 
 										<%= select_tag "cart_item[product_id]", options_from_collection_for_select(@served_product_variants.order("id  asc"), "id", "display_name"), :class => "dropdown-toggle" %> 
 								<% else %>
 								<p>
@@ -74,7 +74,7 @@
 
 								<div id="with_service">
 									<% if @served_product_variants.size > 1 %>
-										<b><%= @product.variant_name ? @product.variant_name : "Model" %>:</b> 
+										<b><%= @product.variant_matric ? @product.variant_matric : "Model" %>:</b> 
 										<%= select_tag "product_id_with_service", options_from_collection_for_select(@served_product_variants.order("id  asc"), "id", "display_name_with_service"), :class => "dropdown-toggle" %> 		
 									<% else %>
 									<p>
@@ -106,14 +106,14 @@
 						<tr>
 							<td class="product-details-value span6"> <% @served_product_variants.select("brand").group(:brand).each do |product_variant_group| %>
 							<div style="display: none;" data-show-for=<%= product_variant_group.brand%>>
-								<b><%= @product.variant_name ? @product.variant_name : "Sizes" %>:</b>
+								<b><%= @product.variant_matric ? @product.variant_matric : "Sizes" %>:</b>
 								<%= select_tag "cart_item[product_id]", options_from_collection_for_select(@served_product_variants.where(:brand => product_variant_group.brand), "id", "display_name"), :class => "dropdown-toggle" %>
 							</div> <%end%> </td>
 						</tr>
 						<% else %>
 						<tr>
 
-							<td class="product-details-value span6"><b><%= @product.variant_name ? @product.variant_name : "Sizes" %>:</b> <%= select_tag "cart_item[product_id]", options_from_collection_for_select(@served_product_variants.order("id  asc"), "id", "display_name"), :class => "dropdown-toggle" %> </td>
+							<td class="product-details-value span6"><b><%= @product.variant_matric ? @product.variant_matric : "Sizes" %>:</b> <%= select_tag "cart_item[product_id]", options_from_collection_for_select(@served_product_variants.order("id  asc"), "id", "display_name"), :class => "dropdown-toggle" %> </td>
 						</tr>
 						<% end %>
 

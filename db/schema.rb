@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131231114010) do
+ActiveRecord::Schema.define(version: 20140102103604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -211,6 +211,7 @@ ActiveRecord::Schema.define(version: 20131231114010) do
     t.string   "nature"
     t.string   "variant_name"
     t.string   "permalink"
+    t.string   "variant_matric"
   end
 
   create_table "searches", force: true do |t|

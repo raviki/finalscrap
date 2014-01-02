@@ -1,4 +1,5 @@
  	
+ 	
  	<div class="visible-phone visible-tablet">
  		<div class="accordion">
  			<div class="accordion-group">
@@ -66,8 +67,8 @@
 												<div class="accordion-inner"> 
  										<%end%>
  												
- 										<%= link_to product.name,  category_product_path(@temp_category,product), {:class => "product_submenu_final", "data-toggle" => "collapse"} %>
- 							
+ 										<%= link_to product.name,  category_product_path(@temp_category,product), {:class => "product_submenu_final" } %>
+ 										<br>
  										<% @pre_submenu = present_submenu %>					
  										<% @pre_menu = present_menu %> 
  					
@@ -95,7 +96,7 @@
  	</div>
  	
  	
- 	<ul class="nav nav-list bs-docs-sidenav">
+ 	<ul class="nav nav-list bs-docs-sidenav visible-desktop">
  		
  		<% @categories.each do |c| %>
  		
@@ -136,14 +137,14 @@
  								
  							<% if present_menu && present_menu != "" && level == 0 %>
  								<% level = 1 %>
-								<li class="dropdown-submenu"> <a> <%= link_to(present_menu) %> </a>
+ 								<li class="dropdown-submenu"> <%= link_to(present_menu) %> 
 								<ul class="dropdown-menu"> 							
 							<% end %>
  						<% end %>
  
   						<%if present_submenu != @pre_submenu && present_submenu != nil && present_submenu != ""  && level == 1 %>
  							<% level = 2%>
- 							<li class="dropdown-submenu"><a> <%= link_to(present_submenu) %> </a>
+ 							<li class="dropdown-submenu"> <%= link_to(present_submenu) %> 
 							<ul class="dropdown-menu"> 
  						<%end%>
  							
