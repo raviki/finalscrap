@@ -11,7 +11,7 @@ class CategoriesController < ApplicationController
       puts "lat long #{lat}  #{lng}" 
       @location = Geocoder.search("#{lat},#{lng}")
  
-      if @location
+      if @location[0]
         cookies.permanent[:current_location_city] = @location[0].city
       end
     end
