@@ -1,6 +1,5 @@
 Website::Application.routes.draw do
   
-  get "prices/index"
   get '/robots.txt' => 'home#robots'
   root to: "categories#index"
   get "accounts/index" 
@@ -51,6 +50,8 @@ Website::Application.routes.draw do
   resources :prices, :only => [:index]
   
   resources :about_us, :only => [:index]
+  
+  resources :areas_covered, :only => [:index]
   
   namespace :admin do   
     root to: "fulfillments/orders#index"

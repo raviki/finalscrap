@@ -6,10 +6,8 @@ class FeedbackController < ApplicationController
     store_location()
     if (params[:mobile].present? && is_mobile_number(params[:mobile])) || (params[:email].present?)
       if params[:request].present? 
-
-            UserMailer.feedback_request(params, current_user).deliver
-            redirect_to root_url, notice: 'Thanks for Your Feedback. We are Looking Forward to Convert Your Inputs into Action.'  
-      
+        UserMailer.feedback_request(params, current_user).deliver
+        redirect_to root_url, notice: 'Thanks for Your Feedback. Your Feedback is valuable to Us.'        
       else
          redirect_back_or(root_url, alert: 'Please Enter Your Task discription. ')  
       end 

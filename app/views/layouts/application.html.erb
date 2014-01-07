@@ -54,11 +54,11 @@
       		<div class="breadcrumbs" style="min-height:1em;">     	
       			<ul class="inline hidden-phone">	
       				<li class="pull-left"><%= render_breadcrumbs :separator => ' / ' %></li>	
-					<li class="pull-right"><h6 style="margin:0 0 5px 0;">Call Us: <%= link_to contact_number, "tel:"+contact_number %></h6></li>
+					<li class="pull-right"><h6 style="margin:0 0 5px 0;">Call Us: <%= link_to contact_number, "tel:"+contact_number %> (9AM - 7PM | 7 Days)</h6></li>
 				</ul>
 				<div class="visible-phone">
 					<p><%= render_breadcrumbs :separator => ' / ' %></p>
-					<h6 style="margin:0 0 5px 0;text-align:right;">Call Us: <%= link_to contact_number, "tel:"+contact_number %></h6>
+					<h6 style="margin:0 0 5px 0;text-align:right;">Call Us: <%= link_to contact_number, "tel:"+contact_number %> (9AM - 7PM | 7 Days)</h6>
 				</div>
 			</div>
 			<% end %>

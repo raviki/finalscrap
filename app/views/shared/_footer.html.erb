@@ -2,18 +2,18 @@
 	<hr>
 	<div class="visible-desktop visible-tablet">
 	<div class="row first">
+		<% if @info_url.present? %>
 		<ul class="section first">
-			<% if @info_url.present? %>
-				<li class="link"><%= link_to 'Home',      root_path, :class => "text"%></li>
-			<% end %>
-			<li class="link"><%= link_to 'About Us',      about_us_path, :class => "text"%></li>				
+				<li class="link"><%= link_to 'Home',      root_path, :class => "text"%></li>				
 		</ul>
+		<% end %>
 		<ul class="section second">
-			<li class="link"><%= link_to 'Areas Covered', plus_inprogress_index_path, :class => "text"%></li>
+			<li class="link"><%= link_to 'Areas Covered', areas_covered_index_path, :class => "text"%></li>
 			<li class="link"><%= link_to 'Pricing',       prices_path, :class => "text"%></li>		
 		</ul>
 		<ul class="section third">
-			<li class="link"><%= link_to 'Contact Us',       plus_inprogress_index_path, :class => "text"%></li>		
+			<li class="link"><%= link_to 'Contact Us',       plus_inprogress_index_path, :class => "text"%></li>	
+			<li class="link"><%= link_to 'About Us',      about_us_path, :class => "text"%></li>	
 			<li class="link"><%= link_to 'Feedback',       new_feedback_path, :class => "text"%></li>
 		</ul>
 		<ul class="section forth">	

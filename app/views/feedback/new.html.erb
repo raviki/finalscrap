@@ -5,7 +5,9 @@
 	<div class="feedback-body center">
 		<%=form_for(:feedback,url: feedback_index_path, :action => :create) do |f|%>
 			<%= text_area_tag 'request', nil, :class=>"span6",:placeholder => "Request"%>
+			<br>
 	 		<%= text_field_tag 'mobile', nil, :class=>"span6",:placeholder => "Mobile Number" %>
+	 		<br>
 	 		<%= text_field_tag 'email', nil, :class=>"span6",:placeholder => "Email Id" %>		
 	 		<br>
  			<%= f.submit "Post Feedback", :class => "btn span6 btn-info" %>
