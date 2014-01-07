@@ -1,5 +1,11 @@
 <div class="request-form span5">
-	<h5 class="center span5" style="color:#78420A;">Your Task is not Listed ? <b>Request a Callback</b></h5>			
+	
+	<h5 class="center span5" style="color:#78420A;">
+		<ul class="inline">	
+      				<li class="pull-left">Your Task is not Listed ?</li>	
+					<li class="pull-right">Request a Callback</li>
+		</ul>
+	</h5><br>		
 		<%=form_for(:order_request,url: order_requests_path, :action => :create) do |f|%>
 		 	<%= text_area_tag 'request', nil, :class=>"span5",:placeholder => "Tell us Your Need"%>
 			<%= text_field_tag 'mobile', nil, :class=>"span2",:placeholder => "Mobile Number" %>

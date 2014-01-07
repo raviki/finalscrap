@@ -1,0 +1,10 @@
+Feedback Form:
+
+Mobile Number: <%= link_to @mobile, "tel:"+@mobile %>
+Email Id: <%= @email %>
+Text: <%= @request %>
+Time: <%= Time.zone.now %>
+
+<% if @user %>
+Customer Information is <%= link_to "available",  admin_customers_customer_path(@user)  %>
+<% end %>

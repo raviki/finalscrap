@@ -363,6 +363,12 @@ html body{
 {
 	align:right;
 	padding:0 0 1em 0;
+	margin-top: 1em;
+}
+
+.welcome-page .request-form h5
+{
+	margin-left:0;
 }
 
 .welcome-page .request-form select
@@ -433,6 +439,12 @@ html body{
 	padding-left: 3.5em;
 	padding-right: 3.5em;
 	line-height: 1.75em;
+}
+
+.feedback_page .btn,
+
+{
+	width: 100%;
 }
 
 div#myLocation.modal form.prepend-6

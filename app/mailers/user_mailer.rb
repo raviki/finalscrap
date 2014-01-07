@@ -20,6 +20,16 @@ class UserMailer < ActionMailer::Base
     mail :to => I18n.t(:admin_email), :subject => "Order Request - "+@category_name
   end
   
+  def feedback_request(params, user)
+    @mobile = params[:mobile]
+    @request = params[:request]
+    @email = params[:email]
+    @user = user
+   
+    mail :to => I18n.t(:admin_email), :subject => "FeedBack"
+  end
+  
+  
   def welcome_mail(user)
     @user = user
     @phone_number = I18n.t(:company_phone)

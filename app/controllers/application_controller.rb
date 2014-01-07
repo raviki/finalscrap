@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  helper_method :current_user, :current_location, :is_home_service_available, :current_cart
+  helper_method :current_user, :current_location, :is_home_service_available, :current_cart, :is_mobile_number
   include SessionsHelper
   add_breadcrumb "Home", :root_path
 
@@ -98,6 +98,10 @@ class ApplicationController < ActionController::Base
       return cookies[:current_location_city]
     end
     return "hyderabad"  
+  end
+  
+  def is_mobile_number(phone)
+    return ((phone =~ /^\d{10}$/) && (phone.to_i >= 999999999))
   end
   
   def is_home_service_available(location = "hyderabad", user_location = current_location)

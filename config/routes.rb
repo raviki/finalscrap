@@ -36,6 +36,7 @@ Website::Application.routes.draw do
   
   resources :order_requests, :only => [:create]
   
+  resources :feedback, :only  => [:new, :create]
   
   namespace :plus do
     resources :inprogress, :only => [:index]

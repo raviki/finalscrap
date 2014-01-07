@@ -31,10 +31,6 @@ module ApplicationHelper
       return Type[type].to_s  
   end
   
-  def is_mobile_number(phone)
-    return ((phone =~ /^\d{10}$/) && (phone.to_i >= 999999999))
-  end
-  
   def is_mobile_feature_present
     if I18n.t(:mobile_feature) == "yes"
       return true
