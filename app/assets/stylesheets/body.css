@@ -441,10 +441,9 @@ html body{
 	line-height: 1.75em;
 }
 
-.feedback_page .btn,
-
+.feedback_page .btn
 {
-	width: 100%;
+	max-width: 100%;
 }
 
 div#myLocation.modal form.prepend-6
