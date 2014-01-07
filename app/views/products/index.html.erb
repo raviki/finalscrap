@@ -41,6 +41,7 @@
 			  	<% @category = product.categories.first %>
 			  <% end %>	
 			<% end %>
+			<% @isServed = true %>
 			<% if @category %>
 			
 			<li class="product-each span3 thumbnail">				
@@ -59,10 +60,12 @@
 							<p class="pricehilit">On Site</p>
 						  <% end %>
 						<% else %>
-							<p class="pricehilit">Not Served at <%= @location %></p>
+							<p class="pricehilit">Not Served in <%= @location %></p>
+							<% @isServed = false %>
 						<% end %>
 					</div>
-				<% end %>			
+				<% end %>	
+				<% if @isServed != false %>		
 					<div class="product-info">
 						<%=form_for(:cart_item,url: cart_items_path, :action => :create) do |f|%>
 			
@@ -89,7 +92,7 @@
 							</div>
 						<%end%>
 					</div>
-				
+				<% end %>
 			</li>
 			<% end %>
 			<%end%>								
