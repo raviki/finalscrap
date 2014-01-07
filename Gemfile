@@ -49,8 +49,6 @@ gem 'bootstrap-sass', '2.3.2.2'
 
 # Use ActiveModel has_secure_password
  
- gem 'bcrypt-ruby',:require => "bcrypt"
- 
  gem 'compass'
  
  gem 'rails_12factor', group: :production
