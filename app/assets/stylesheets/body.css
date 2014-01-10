@@ -102,6 +102,12 @@ html body{
 	width:100%;	
 }
 
+.first-split .carousel-inner img
+{
+	width: 100%;
+	max-height:225px;
+}
+
 .welcome-page .first-split .border-line
 {
 	margin-left:3.5em;
