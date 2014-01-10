@@ -76,7 +76,6 @@ html body{
 .welcome-page .dna-message h5
 {
 	margin-bottom: 0;
-	margin-left:3.5em;
 	padding-top:0.5em;
 	padding-bottom:0.5em;
 }
@@ -100,7 +99,6 @@ html body{
 	margin: 0;
 	width:100%;
 	background-color: #FFFFFF;
-	min-height: 250px;
 	width:100%;	
 }
 

@@ -70,7 +70,7 @@
 
 .carousel-control {
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 15px;
   width: 40px;
   height: 40px;
@@ -112,7 +112,7 @@
 .carousel-indicators {
   position: absolute;
   top: 15px;
-  right: 15px;
+  right: 30px;
   z-index: 5;
   margin: 0;
   list-style: none;
@@ -140,10 +140,10 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
+  top: 0;
   padding: 10px 15px;
   background: $grayDark;
-  background: rgba(0,0,0,.75);
+  background: rgba(94, 99, 101,.75);
 }
 .carousel-caption h4,
 .carousel-caption p {
