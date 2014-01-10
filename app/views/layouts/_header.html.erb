@@ -9,6 +9,12 @@
           $("#myLocation").modal();
           return false;
         })
+        $('#searchDropdownShow').click(function(event){
+        	$('div#searchDropdown').show();
+        })
+        $('#searchDropdownHide').click(function(event){
+        	$('div#searchDropdown').hide();
+        })
       })
 </script>
 
@@ -30,26 +36,34 @@ window.onload =function getLocation()
 </script>
 <%end%>
 	
-	<div class="header-block navbar">
-		<div class="location"><%=current_location%> | <%= link_to "Change City", carts_path, :remote => true, :method=>:get , :id => "chagelocation" %></div>
-		<div class="header-bar navbar-inner container">
+	<div id= "searchDropdown" class="search-block hidden-tablet hidden-phone">
+		<div class="header-container center visible-desktop">
 			
+			<%= form_tag(categories_path, :method => 'get', :class => 'navbar-search span12') do %>
+				<div class="span2"></div>
+				<div class="input-prepend span6 visible-desktop input-append">																				
+					<%=	select(@categories,"id", Category.where(:active => true).collect {|p| [ p.name, p.name ] }, { prompt:"All" },{class:"search-select btn  center dropdown-toggle", id: "cat",name:"select"})%>											
+					<%= text_field_tag :key, params[:key], :class => "search-query" %>
+					<%= submit_tag "Search", :name => nil, :class => "search-submit btn btn-info" %>								
+				</div>
+				<a id="searchDropdownHide" class="search-close visible-desktop"><%= image_tag("icon-remove.png")%></a>
+				<div class="span1"></div>
+			<%end%>
+		</div>
+	</div>
+	
+	<div class="header-block navbar">
+		<div class="header-bar navbar-inner container">
+			<div class="margin-block">
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
-				<%= link_to image_tag("logo.png", :class => "header-logo"),root_url%>
+				<%= link_to image_tag("logo.png", :class => "header-logo pull-left"),root_url%>
 				<div class="nav-collapse collapse">
 					<div class="search-bar">
 						<ul class="nav">
 						<li>
 							<%= form_tag(categories_path, :method => 'get', :class => 'navbar-search') do %>
-								<div class="input-prepend  span6 visible-desktop input-append">																				
-									<%=	select(@categories,"id", Category.all.collect {|p| [ p.name, p.name ] }, { prompt:"All" },{class:"search-select btn  center dropdown-toggle", id: "cat",name:"select"})%>											
-									
-									<%= text_field_tag :key, params[:key], :class => "search-query" %>
-									<%= submit_tag "Search", :name => nil, :class => "search-submit btn btn-info" %>								
-								</div>
-								
 								<div class="visible-phone hidden-desktop">
-									<%=	select(@categories,"id", Category.all.collect {|p| [ p.name, p.id ] }, { prompt:"All" },{class:"btn btn-block"})%>
+									<%=	select(@categories,"id", Category.where(:active => true).collect {|p| [ p.name, p.id ] }, { prompt:"All" },{class:"btn btn-block"})%>
 									<input type="text">
 									<button type="submit" class="btn btn-block">Search</button>
 								</div>
@@ -57,29 +71,39 @@ window.onload =function getLocation()
 						</li>						
 						</ul>
 					</div>
-						<ul class="nav pull-right">
+						<ul class="header-nav-button-block nav pull-right">
+							
+							<li><a id="searchDropdownShow" class="search-button visible-desktop"><%= image_tag("icon-search.png")%></a></li>
 							<li><%= link_to "Cart", carts_path, :remote => true, :method=>:get , :id => "addcart" %></li>
-
+							<li id="fat-menu" class="dropdown">
+             					 <a id="location-btn" href="#" class="dropdown-toggle" data-toggle="dropdown">	
+             					 <%=current_location%>  <b class="caret"></b>
+              					</a>
+              					
+              					<ul class="dropdown-menu">
+              						<li><%= link_to "Change City", carts_path, :remote => true, :method=>:get , :id => "chagelocation" %></li>
+              					</ul>
+            				</li>
 							<% if signed_in? %>
-            <li id="fat-menu" class="dropdown">
-              <a id="sign-btn" href="#" class="dropdown-toggle" data-toggle="dropdown">	
-				Hello <%= @user.first_name %> <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Account", accounts_index_path %></li>
-                <li><%= link_to "Orders", orders_path %></li>
-                <li class="divider"></li>
-                <li>
-                  <%= link_to "Sign out", log_out_path%>
-                </li>
-              </ul>
-            </li>
-          <% else %>
-            <li><%= link_to "Sign in", login_path, :id => "sign-btn" %></li>
-          <% end %>	
+            					<li id="fat-menu" class="dropdown">
+              						<a id="sign-btn" href="#" class="dropdown-toggle" data-toggle="dropdown">	
+									Hello <%= @user.first_name %> <b class="caret"></b>
+              						</a>
+             						<ul class="dropdown-menu">
+                						<li><%= link_to "Account", accounts_index_path %></li>
+                						<li><%= link_to "Orders", orders_path %></li>
+                						<li class="divider"></li>
+                						<li><%= link_to "Sign out", log_out_path%></li>
+              						</ul>
+            					</li>
+          					<% else %>
+            					<li><%= link_to "Sign in", login_path, :id => "sign-btn" %></li>
+          					<% end %>	
+          						
+              	
           		</ul>
 				</div><!-- /.nav-collapse -->
-			
+			</div>>
 		</div><!-- /navbar-inner -->
 	</div><!-- /navbar -->
 	

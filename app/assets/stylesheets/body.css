@@ -244,7 +244,8 @@ html body{
 	background-color: #FFFFFF;
 	min-height: 225px;	
 	padding-bottom:44px;
-	width:100%;		
+	width:100%;	
+	margin:0;	
 }
 
 @media (min-width: 1028px) {
@@ -253,6 +254,7 @@ html body{
 		margin-right:3.5em;		
 	}
 }
+
 
 @media (min-width: 512px) {
 	.welcome-page .second-split .message-box{
