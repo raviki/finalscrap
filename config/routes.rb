@@ -53,6 +53,8 @@ Website::Application.routes.draw do
   
   resources :areas_covered, :only => [:index]
   
+  resources :contact_us, :only => [:index]
+  
   namespace :admin do   
     root to: "fulfillments/orders#index"
     namespace :merchandise do
