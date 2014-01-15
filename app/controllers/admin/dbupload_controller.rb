@@ -3,8 +3,22 @@ class Admin::DbuploadController < AdminController
   def index
     require 'csv'
     @insert_status = false
-    if params[:export_file].present?
-      CSV.foreach(params[:export_file], :headers => true , :encoding => 'ISO-8859-1') do |row|
+    @insert_file = Rails.root.to_s + '/app/assets/images/products/'
+    
+    
+    puts "#{params[:online_file]}"
+    puts "#{Rails.root}"
+    puts "#{@insert_file}"
+    if params[:online_file] == "1"
+      puts "yes"
+      @insert_file = @insert_file + params[:export_file]
+      puts "#{@insert_file}"
+    else
+      @insert_file = params[:export_file]
+    end 
+    
+    if @insert_file.present?
+      CSV.foreach(@insert_file, :headers => true , :encoding => 'ISO-8859-1') do |row|
         if row['name'] && row['name'] != ""
           @product = Product.find_or_create_by(name: row['name'].gsub(/<\/?[^>]*>/, '').strip)
           @product.update_attributes( :image  =>  row['image'],

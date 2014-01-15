@@ -1,4 +1,5 @@
 <%= form_tag(admin_dbupload_index_path, :method => 'get') do %>
 	<%= text_field_tag :export_file, params[:export_file], :placeholder => "CSV File name to Upload" %> 
+	<%= check_box_tag 'online_file' %>  Load from Online
   	<%= submit_tag "Export DB", :class => 'submit-input btn btn-info'%>
 <% end %>
