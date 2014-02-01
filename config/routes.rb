@@ -1,5 +1,7 @@
 Website::Application.routes.draw do
   
+  resources :reviews
+
   get '/robots.txt' => 'home#robots'
   root to: "categories#index"
   get "accounts/index" 
@@ -106,7 +108,9 @@ Website::Application.routes.draw do
     end
     
     get "help" => "help#index"
-    resources :dbupload, :only => [:index] 
+    resources :dbupload, :only => [:index,:uploadFile] 
+    match 'dbupload/updateDB' => 'dbupload#updateDb', :as => :dbupload_updateDb, :via => [:get,:post]
+    match 'dbupload/uploadFile' => 'dbupload#uploadFile', :as => :dbupload_uploadFile, :via => [:get,:post]
    
   end 
   
@@ -114,7 +118,7 @@ Website::Application.routes.draw do
   get ":id" => "categories#show"
   resources :categories , :path => '' do
      
-    resources :products, :path=>''  
+   
   end 
   resources :products
 

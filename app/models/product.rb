@@ -27,6 +27,7 @@ class Product < ActiveRecord::Base
   validates :description,           :presence => true
   before_save :create_permalink
  
+  has_many :reviews 
   
   def user_location
     return ApplicationController.helpers.current_location

@@ -12,7 +12,7 @@ min-height: 100%;
 
 .footer {
     background-color: #909DA1;;
-    position: fixed;
+    position: relative;
     bottom:0;
     left:0;
 	right:0;

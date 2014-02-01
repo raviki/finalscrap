@@ -199,5 +199,21 @@
 			</p>
 		</div>
 		<% end %>
+		<%if signed_in?%>
+			<%=form_for @review, :url => review_path do |f|%>
+			Please enter your review: <%=f.text_field :content%>
+			<%=f.hidden_field :user_id, :value => current_user.id%>
+			<%= f.submit "Add your review",:class => "btn btn-info"%>
+			<%end%>
+		<%end%>
+		<%if @product.reviews%>
+		<table class="table-striped">
+			<%@product.reviews.each do |product|%>
+			<tr>
+			<td class="span4"><%=current_user.name%> </td>
+			<td class="span8"><%=product.content%></td>
+			</tr>
+			<%end%>
+		</table>
 	</div>
 </div>

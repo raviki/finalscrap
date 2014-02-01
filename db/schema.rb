@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140102103604) do
+ActiveRecord::Schema.define(version: 20140201061146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 20140102103604) do
     t.datetime "updated_at"
     t.integer  "customer_group_id"
     t.integer  "customer_lead_id"
+    t.string   "role"
   end
 
   create_table "customers", force: true do |t|
@@ -123,11 +124,6 @@ ActiveRecord::Schema.define(version: 20140102103604) do
     t.boolean  "wishlist"
     t.integer  "customer_group_id"
     t.integer  "customer_lead_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "geocodes", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -187,8 +183,8 @@ ActiveRecord::Schema.define(version: 20140102103604) do
     t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "brand"
     t.decimal  "price"
+    t.string   "brand"
     t.decimal  "service_price"
     t.string   "location"
   end
@@ -207,11 +203,18 @@ ActiveRecord::Schema.define(version: 20140102103604) do
     t.string   "menu_parent"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "price"
     t.string   "nature"
     t.string   "variant_name"
     t.string   "permalink"
     t.string   "variant_matric"
+  end
+
+  create_table "reviews", force: true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "searches", force: true do |t|

@@ -23,9 +23,10 @@ gem "omniauth", "~> 1.1.1"
 gem "omniauth-facebook", "~> 1.4.1"
 gem 'omniauth-google-oauth2'
 gem "breadcrumbs_on_rails"
-gem 'thin'
+
 gem 'geocoder'
 gem "json"
+gem "cancan"
 # end 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -52,6 +53,8 @@ gem 'bootstrap-sass', '2.3.2.2'
  gem 'compass'
  
  gem 'rails_12factor', group: :production
+ 
+
  
 end
 # Use unicorn as the app server

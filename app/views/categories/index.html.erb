@@ -17,11 +17,12 @@
     		</div>
       	</div>
       	
-		<div class="first-split-submenu span3">
- 			<% if @categories.size > 0 %>
- 				<div class="bs-docs-sidebar">
+		<div class="span3">
+ 			
+ 				<div class="demo-container clear">
  					<%= render :partial => 'shared/items_sidebar' %>
     			</div>   	
+    			<% if @categories.size > 0 %>
     		<% end %> 	
     	</div>
       	

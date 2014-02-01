@@ -1,5 +1,11 @@
-<%= form_tag(admin_dbupload_index_path, :method => 'get') do %>
+<%= form_tag(admin_dbupload_updateDb_path, :method => 'get') do %>
+Load from local folder
 	<%= text_field_tag :export_file, params[:export_file], :placeholder => "CSV File name to Upload" %> 
-	<%= check_box_tag 'online_file' %>  Load from Online
   	<%= submit_tag "Export DB", :class => 'submit-input btn btn-info'%>
 <% end %>
+
+<%= form_tag(admin_dbupload_uploadFile_path, :multipart => true) do%>
+<p><label for="upload_file">Select File</label> 
+<%= file_field_tag 'upload_file'%></p>
+<%= submit_tag "Upload",:class => 'submit-input btn btn-info' %>
+<%end%>

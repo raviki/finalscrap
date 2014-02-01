@@ -19,7 +19,18 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="SNAvLDXXufCJnVIHIySUqG778NxEY0hB9yrLmL_ioQ4" />	
+	
+	<script type="text/javascript">
+	$(document).ready(function($){
+	
+		$('#mega').dcVerticalMegaMenu({		
+			rowItems: '3',
+			speed: 'fast',
+			effect: 'show',
+			direction: 'right'
+		});
+	});
+	</script>
     
     <%= render 'shared/metadata' %>
     

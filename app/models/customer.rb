@@ -7,6 +7,7 @@ class Customer < ActiveRecord::Base
   has_one :cart,             :through => :customer_management
   has_many :cart_items,      :through => :cart
   has_many :products,        :through => :cart_items
+  has_many :reviews
 
   has_many :orders         
   has_many :vouchers,        :through => :customer_group
