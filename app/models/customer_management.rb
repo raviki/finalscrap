@@ -12,6 +12,7 @@ belongs_to :customer_lead, :foreign_key => "customer_id"
 has_many :orders, :foreign_key => "customer_id"                 
 has_many :vouchers,       :through => :customer_group
 
+has_many :reviews
 
 include BCrypt
  validates :name, presence: true, length: { maximum: 50 }
@@ -21,7 +22,10 @@ include BCrypt
 validates :password, presence: true
 validates_confirmation_of :password, on: :create
 validates_presence_of :password_confirmation, :unless => lambda{ |user| user.password_confirmation.blank? } 
+validates :role, presence: true
+
 before_save :encrypt
+
 
 has_many :addresses, foreign_key: "user_id"
 

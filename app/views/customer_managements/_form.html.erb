@@ -31,7 +31,7 @@
   <div class="control-group">
     <div class="center">
     <%= f.text_field :name, :placeholder => "Full Name", :class => "text-Box" %>
-    <%= f.hidden_field, :role, :value => "author"%>
+    
     </div>
   </div>
     <div class="control-group">
@@ -43,6 +43,7 @@
   <div class="control-group">
 	<div class="center"
   		<div class="actions">
+  			<%= f.hidden_field :role, :value => "author"%>
     		<%= f.submit "Create Account", class: "btn btn-info"%>
   		</div>
 	</div>

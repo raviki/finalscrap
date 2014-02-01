@@ -155,10 +155,10 @@
 				var maxHeight = bodyHeight - offset;
 				var xsHeight = maxHeight - outerHeight;
 				var rowspanCount = $(this).nextUntil('.dc-mega').find(".dc-mega").length;
-				var offset = -42;
+				var offset = -48;
 				
 								
-				var containerMargin = offset - ( (8-rowspanCount)*42)
+				var containerMargin = offset+(4-rowspanCount)*offset ;
 				
 				$container.css({marginTop: containerMargin+'px'});
 				

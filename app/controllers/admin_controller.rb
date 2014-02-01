@@ -3,7 +3,7 @@ class AdminController < ApplicationController
   before_filter :verify_admin
   
   def index
-       
+       @user = current_user
   end
   
   def log
@@ -27,10 +27,12 @@ class AdminController < ApplicationController
   
   def verify_admin
     if signed_in?    
-      if !current_user.role? :admin
-        redirect_to :back
-     elsif current_user.role? :admin
-       return true
+      if current_user.role !=  "admin"
+        puts"---------------------------------------aaaaaaaaaaaaaaaaaaa"
+        puts"#{current_user.role}"
+        session[:return_to] = request.url
+     elsif current_user.role ==  "admin"
+       session[:return_to] = request.url
     end
    end
   end

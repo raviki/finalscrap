@@ -59,7 +59,7 @@ width: 100%; overflow: hidden; /* Clear floats */
 }
 .mega-menu li .sub li {
 float: none; 
-width: 150px; 
+width: 250px; 
 font-size: 1em; 
 font-weight: normal;
 

@@ -117,9 +117,8 @@ Website::Application.routes.draw do
   put "update_location" => "categories#update_location"
   get ":id" => "categories#show"
   resources :categories , :path => '' do
-     
-   
-  end 
   resources :products
+  end 
+  
 
 end
