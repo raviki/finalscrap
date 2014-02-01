@@ -98,15 +98,15 @@
  	
  <div class="visible-desktop">
 
-	<ul class="nav nav-list bs-docs-sidenav visible-desktop">
+	<ul class="mega-menu" id='mega'>
  		
  		<% @categories.each do |c| %>
  		
- 			<li class="dropdown-submenu">
+ 			<li>
  				<% @temp_category = c %>				
- 				<%= link_to c.name, category_path(c), :class => "dropdown-toggle", :data => { :toggle => "dropdown" } %>
+ 				<%= link_to c.name, category_path(c) %>
  				<% if @temp_category.activeProducts.size > 0 %>
-					<ul class="dropdown-menu"> 
+					<ul> 
 
  					<% pre_submenu = Array.new(10, "some_defualt") %>
  					<% level = 0 %>
@@ -138,16 +138,16 @@
 							<% end %>
  								
  							<% if level == 0 && present_submenu[level] && present_submenu[level] != ""  %>					
- 								<li class="dropdown-submenu"> <%= link_to(present_submenu[level]) %> 
-								<ul class="dropdown-menu"> 
+ 								<li> <%= link_to(present_submenu[level]) %> 
+								<ul> 
 								<% level = level + 1 %>							
 							<% end %>
  						<% end %>
  
   						<%if level == 1 && present_submenu[level] != pre_submenu[level] && present_submenu[level] != nil && present_submenu[level] != "" %>
  							
- 							<li class="dropdown-submenu"> <%= link_to(present_submenu[level]) %> 
-							<ul class="dropdown-menu"> 
+ 							<li> <%= link_to(present_submenu[level]) %> 
+							<ul> 
 							<% level =  level + 1%>
  						<%end%>
  							
