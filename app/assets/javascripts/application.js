@@ -15,3 +15,5 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+//= require jquery.hoverIntent.minified.js
+//= require jquery.dcverticalmegamenu.1.3.js
