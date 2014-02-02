@@ -1,0 +1,17 @@
+<%unless @lat_long%>
+<script type="text/javascript" charset="UTF-8">
+window.onload =function getLocation()
+  {
+  	if (navigator.geolocation)
+    {
+    	navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  	else{x.innerHTML="Geolocation is not supported by this browser.";}
+  	}
+	function showPosition(position)
+  	{
+  	var coke =  position.coords.latitude+"|"+position.coords.longitude
+  	document.cookie = "lat_lon="+ coke;
+  	}
+</script>
+<%end%>
