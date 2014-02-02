@@ -36,10 +36,15 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show   
     if params[:key].present?
-      add_breadcrumb "Search", category_path
+      add_breadcrumb params[:key], category_path
+
       if @category   
-        @show_request = true    
-        @products = @category.activeProducts.standard_search(params[:key]).
+        @show_request = true  
+        is_search_name = true
+        if params[:is_submenu].present?
+          is_search_name = false
+        end
+        @products = @category.activeProducts.standard_search(params[:key], !(params[:is_submenu].present?)).
                                     paginate(:page => pagination_page, :per_page => pagination_rows)
 
       else

@@ -8,8 +8,8 @@
  				<%@categories.each do |category|%>
  					<%@temp_category = category%>
  					<div class="accordion-heading">
- 						<%string = "#" + category.name.gsub(/\s+/,"")%>
- 						<%div_str = category.name.gsub(/\s+/,"")%>
+ 						<%string = "#" + category.name.gsub(/[^a-zA-Z0-9\-]/,"")%>
+ 						<%div_str = category.name.gsub(/[^a-zA-Z0-9\-]/,"")%>
  						<%=link_to category.name,string, {:class => "accordion-toggle collapsed", "data-toggle" => "collapse" }%>
  						<% if @temp_category.activeProducts.size > 0 %>
  							
@@ -138,7 +138,8 @@
 							<% end %>
  								
  							<% if level == 0 && present_submenu[level] && present_submenu[level] != ""  %>					
- 								<li> <%= link_to(present_submenu[level]) %> 
+ 								<li> 
+ 									<%= link_to present_submenu[level], category_path(@temp_category, :key => present_submenu[level], :is_submenu => true) %> 									
 								<ul> 
 								<% level = level + 1 %>							
 							<% end %>

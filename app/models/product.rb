@@ -54,15 +54,19 @@ class Product < ActiveRecord::Base
     end
   end
   
-  def self.standard_search(text)
+  def self.standard_search(text,search_in_name = true)
     if text.present?
-      keys=text.split(" ")
-      @query = ""
-      keys.each do |key|
-       if @query != ""
-          @query=@query+" or " 
+     if !search_in_name
+        @query="LOWER(products.menu_parent) LIKE '%#{text.downcase}%'"
+      else 
+        keys=text.split(" ")
+        @query = ""
+        keys.each do |key|
+          if @query != ""
+            @query=@query+" or " 
+          end
+          @query=@query+"LOWER(products.name) LIKE '%#{key.downcase}%'"
         end
-        @query=@query+"LOWER(products.name) LIKE '%#{key.downcase}%'"
       end
       grid = where(@query)
     else
