@@ -28,13 +28,13 @@ class AdminController < ApplicationController
   def verify_admin
     if signed_in?    
       if current_user.role !=  "admin"
-        puts"---------------------------------------aaaaaaaaaaaaaaaaaaa"
-        puts"#{current_user.role}"
-        session[:return_to] = request.url
+        redirect_to root_url
      elsif current_user.role ==  "admin"
        session[:return_to] = request.url
     end
-   end
+   else 
+      redirect_to login_path 
+   end 
   end
   
  # redirect_to sessions_path

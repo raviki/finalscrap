@@ -8,8 +8,12 @@ class PasswordResetsController < ApplicationController
       redirect_to sessions_path, :notice => "Email sent with password reset instructions."
     else
       user = CustomerManagement.find_by_mobile_number(params[:mobile])
-      user.send_password_reset_4mobile
-      redirect_to sessions_path, :notice => "New One Time Password is sent to Your Mobile. It is valid for only 2 Hours."
+       if user 
+        user.send_password_reset_4mobile
+        redirect_to sessions_path, :notice => "New One Time Password is sent to Your Mobile. It is valid for only 2 Hours."
+      else
+        redirect_to new_password_reset_path, :notice => "User not Found."
+      end 
     end
   end
 

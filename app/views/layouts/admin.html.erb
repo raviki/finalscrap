@@ -22,7 +22,7 @@
   <%= yield :head %>
   
 <div id="user_nav">
-	Hello <%= @user.name %> <%= link_to "Sign out", log_out_path%>
+	Hello <%= current_user.name %> <%= link_to "Sign out", log_out_path%>
 </div>
  </head>
  <body class="bp">

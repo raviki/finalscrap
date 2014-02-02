@@ -26,7 +26,6 @@ validates :role, presence: true
 
 before_save :encrypt
 
-
 has_many :addresses, foreign_key: "user_id"
 
  
@@ -81,7 +80,7 @@ end
 def send_welcome_message
   if self.email && self.email != ""
     UserMailer.welcome_mail(self).deliver
-  elsif ApplicationController.helpers.is_mobile_number(self.mobile_number)
+  elsif   ((self.mobile_number =~ /^\d{10}$/) && (self.mobile_number.to_i >= 999999999))
     ApplicationController.helpers.sms_welcome_message(self) 
   end
 end
