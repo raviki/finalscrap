@@ -6,16 +6,7 @@
 	</div>
 	<div class="first_split span3">
 		<%= render :template => 'order_requests/new' %>
-
-	<% if !@category %>
-		<div class="category-submenu" style="margin-left:0;">		
-		<% if @categories.size > 0 %>
- 			<div class="bs-docs-sidebar">
-    			<%= render :partial => 'shared/items_sidebar' %>
-    		</div>
-    	<% end %>    
-		</div>
-	<% end %>
+	
 		<div class="logo-images-block">
 			<p class="center" style="color:#21B6A8;">Available For</p>
     		<div class="logo-images center">
