@@ -43,7 +43,7 @@
             <% if @tempcartitem && @tempcartitem.quantity %>
             	<% @quantity = @tempcartitem.quantity %>
             <% else %>
-            	<% @quantity = "" %>
+            	<% @quantity = 0 %>
             <% end %>
     		<td>
     			<% if product.product_variants.size > 1%>
