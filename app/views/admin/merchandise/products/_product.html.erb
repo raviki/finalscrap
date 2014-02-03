@@ -41,9 +41,13 @@
         <% elsif defined? add_products2checklist %>
             <% @tempcartitem = @customer.cart_items.find_by(:product_id => product.id) %>
             <% if @tempcartitem && @tempcartitem.quantity %>
+            	<% puts "1--------------1 #{@quantity}"%>
             	<% @quantity = @tempcartitem.quantity %>
+            	<% puts "1--------------2 #{@quantity}"%>
             <% else %>
+            	<% puts "2--------------1 #{@quantity}"%>
             	<% @quantity = 0 %>
+            	<% puts "2--------------2 #{@quantity}"%>
             <% end %>
     		<td>
     			<% if product.product_variants.size > 1%>
