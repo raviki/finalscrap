@@ -40,7 +40,11 @@
         	
         <% elsif defined? add_products2checklist %>
             <% @tempcartitem = @customer.cart_items.find_by(:product_id => product.id) %>
-            <% @quantity = (@tempcartitem? @tempcartitem.quantity: "") %>
+            <% if @tempcartitem && @tempcartitem.quantity %>
+            	<% @quantity = @tempcartitem.quantity %>
+            <% else %>
+            	<% @quantity = "" %>
+            <% end %>
     		<td>
     			<% if product.product_variants.size > 1%>
     				<%= select_tag "cart_item[#{product.id}]", options_from_collection_for_select(product.product_variants.order("id  asc"), "id", "display_name"), :class => "dropdown-toggle" %>
