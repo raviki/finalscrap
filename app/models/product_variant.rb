@@ -10,7 +10,8 @@ class ProductVariant < ActiveRecord::Base
     if self.brand && self.brand != ""
       name = name+"["+self.brand+"] "
     end 
-   return name+self.value + " ( Rs. " + self.price.to_s+" )"
+    value = (self.value ? self.value : "NA")
+   return name+value + " ( Rs. " + self.price.to_s+" )"
   end
   
   def self.served_at(location)
