@@ -50,14 +50,18 @@
             	<% puts "2--------------2 #{@quantity}"%>
             <% end %>
     		<td>
+    			<% puts "3--------------"%>
     			<% if product.product_variants.size > 1%>
+    			<% puts "4--------------"%>
     				<%= select_tag "cart_item[#{product.id}]", options_from_collection_for_select(product.product_variants.order("id  asc"), "id", "display_name"), :class => "dropdown-toggle" %>
 				<% else %>
+					<% puts "5--------------"%>
 					default
 					<%= hidden_field_tag "cart_item[#{product.id}]", product.product_variants.first.id%>
+					<% puts "6--------------"%>
 				<% end %>    		
     		</td>													
-        	<td><%=  text_field_tag "quantity[#{product.id}]", @quantity  %></td>
+        	<td><%=  text_field_tag "quantity[#{product.id}]", @quantity.to_s  %></td>
         	<td><%= check_box_tag "select[]", product.id %></td>  	     	
         <% elsif defined? category_page %>
         		<td><%= link_to 'Detach', :controller => admin_merchandise_categories_path, :id => @category.id, :product_id => product.id, :action => "delete_product_map", :method => :put %></td>
